@@ -557,7 +557,7 @@
 
   // ---------- timeline (IntersectionObserver scroll reveal) ----------
   const initTimeline = async () => {
-    const host = $('#timeline');
+    const host = $('#timeline-list');
     if (!host) return;
     let phases = [];
     try {
@@ -567,7 +567,7 @@
     } catch (e) { return; }
     host.innerHTML = phases.map((p, i) => `
       <li class="timeline-item" id="${p.id}">
-        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</div>
         <div class="timeline-card">
           <h3>${p.title}</h3>
           <p class="timeline-span">${p.span_en} <span lang="es">/ ${p.span_es}</span></p>
@@ -584,6 +584,8 @@
       host.querySelectorAll('.timeline-item').forEach(el => el.classList.add('is-visible'));
       return;
     }
+    // Force visible immediately to avoid invisible content if observer is unreliable
+    host.querySelectorAll('.timeline-item').forEach(el => el.classList.add('is-visible'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -593,6 +595,25 @@
       });
     }, { threshold: 0.2 });
     host.querySelectorAll('.timeline-item').forEach(el => io.observe(el));
+  };
+
+  // ---------- flip cards (a11y + reduced motion) ----------
+  const initFlipCards = () => {
+    const cards = $$('.flip-card');
+    if (!cards.length) return;
+    cards.forEach(card => {
+      const toggle = () => {
+        const flipped = card.classList.toggle('is-flipped');
+        card.setAttribute('aria-pressed', String(flipped));
+      };
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
   };
 
   // ---------- footnotes (hover + click) ----------
@@ -612,6 +633,7 @@
     initNav();
     initScrollspy();
     initCaseTabs();
+    initFlipCards();
     initCountryChart();
     initBudgetCharts();
     initMap();

@@ -393,14 +393,36 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   border-radius: var(--radius);
   padding: var(--sp-5);
   box-shadow: var(--c-card-shadow);
+  color: var(--c-fg);
 }
 .callout { position: sticky; top: 100px; }
-.callout-warn  { border-left-color: var(--c-warn);  background: #fdf4f1; }
-.callout-info  { border-left-color: var(--c-good);  background: #f1faf8; }
-.callout h3, .callout-warn h3, .callout-info h3 {
-  font-size: var(--fs-400);
+.callout-warn  { border-left-color: var(--c-warn); }
+.callout-info  { border-left-color: var(--c-good); }
+.callout-warn h3,
+.callout-info h3,
+.callout h3 {
+  color: #fff;
   margin-top: 0;
   margin-bottom: var(--sp-3);
+  font-size: var(--fs-400);
+}
+.callout-warn p,
+.callout-warn li,
+.callout-info p,
+.callout-info li,
+.callout p,
+.callout li {
+  color: var(--c-fg);
+}
+.callout-warn strong,
+.callout-info strong,
+.callout strong {
+  color: #fff;
+}
+.callout-warn .muted,
+.callout-info .muted,
+.callout .muted {
+  color: var(--c-fg-soft);
 }
 .callout ul, .callout-warn ul, .callout-info ul { margin-bottom: 0; }
 .keyvals {
@@ -680,24 +702,130 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .timeline {
   list-style: none;
   padding: 0;
-  margin: var(--sp-5) 0 0;
+  margin: var(--sp-6) 0 0;
   position: relative;
 }
 .timeline::before {
   content: "";
   position: absolute;
-  left: 8px;
-  top: 8px; bottom: 8px;
-  width: 2px;
-  background: var(--c-rule);
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--c-primary) 0%,
+    var(--c-accent) 50%,
+    var(--c-good) 100%
+  );
+  border-radius: 3px;
+  opacity: 0.35;
 }
+.timeline-item {
+  position: relative;
+  padding: 0 0 var(--sp-6) var(--sp-8);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+.timeline-item.is-visible { opacity: 1; transform: translateY(0); }
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c-bg);
+  border: 3px solid var(--c-accent);
+  box-shadow: 0 0 0 3px var(--c-bg), 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-200);
+  font-weight: 800;
+  color: var(--c-accent);
+  z-index: 1;
+}
+.timeline-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-rule);
+  border-radius: var(--radius);
+  padding: var(--sp-5);
+  box-shadow: var(--c-card-shadow);
+}
+.timeline-card h3 {
+  font-size: var(--fs-500);
+  margin: 0 0 var(--sp-1);
+  color: #fff;
+}
+.timeline-span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-200);
+  font-weight: 600;
+  color: var(--c-fg-soft);
+  background: rgba(12, 92, 138, 0.12);
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin: 0 0 var(--sp-4);
+}
+.timeline-card h4 {
+  font-size: var(--fs-200);
+  margin: var(--sp-4) 0 var(--sp-2);
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.timeline-card strong {
+  color: #fff;
+}
+.timeline-card dl {
+  margin: 0;
+  padding: var(--sp-3);
+  background: rgba(12, 92, 138, 0.08);
+  border-radius: var(--radius-sm);
+}
+.timeline-card dt {
+  font-weight: 700;
+  color: var(--c-warn);
+  margin-bottom: var(--sp-1);
+}
+.timeline-card dd {
+  margin: 0 0 var(--sp-3);
+  color: var(--c-fg);
+}
+
+/* Milestone bullets */
+.timeline-card ul li::marker {
+  color: var(--c-accent);
+  font-size: 1.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item { transition: none; opacity: 1; transform: none; }
+}
+@media (max-width: 700px) {
+  .timeline::before { left: 12px; }
+  .timeline-dot {
+    width: 28px; height: 28px;
+    font-size: var(--fs-100);
+    border-width: 2px;
+    box-shadow: 0 0 0 2px var(--c-bg), 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  .timeline-item { padding-left: var(--sp-6); }
+}
+
+/* OLD legacy timeline selectors — kept for compatibility if JS still emits classic markup */
 .timeline li {
   position: relative;
   padding: 0 0 var(--sp-5) var(--sp-6);
   margin: 0;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 600ms ease, transform 600ms ease;
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 .timeline li.is-visible { opacity: 1; transform: none; }
 .timeline li::before {
@@ -730,6 +858,19 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .timeline ul, .timeline .risks { margin: var(--sp-2) 0 0; padding-left: 1.2em; }
 .timeline .risks { font-size: var(--fs-200); color: var(--c-fg-soft); }
 .timeline .risks li { padding: 0; opacity: 1; transform: none; }
+
+/* Ensure modern .timeline-item children are always visible */
+.timeline > .timeline-item {
+  opacity: 1;
+  transform: none;
+}
+.timeline > .timeline-item.is-visible { opacity: 1; transform: none; }
+.timeline-card li,
+.timeline-card .risk-list li {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
 
 /* ============================== RISK LIST ============================== */
 .risk-list {
@@ -783,6 +924,146 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .site-footer p { margin-bottom: var(--sp-3); }
 .site-footer .muted { color: rgba(255, 255, 255, 0.55); }
 .noreply { font-family: var(--ff-mono); font-size: 0.95em; }
+
+/* ============================== FLIP CARDS (ELI5) ============================== */
+.flip-card {
+  --flip-h: 150px;
+  perspective: 1000px;
+  width: 100%;
+  max-width: 680px;
+  min-height: var(--flip-h);
+  margin: var(--sp-4) 0 var(--sp-5);
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+.flip-card:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: var(--flip-h);
+  transform-style: preserve-3d;
+  transition: transform 500ms ease;
+  border-radius: var(--radius);
+  display: grid;
+}
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  grid-area: 1 / 1 / 2 / 2;
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-rule);
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--c-card);
+  box-shadow: var(--c-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  align-self: stretch;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: var(--c-bg-alt);
+  color: var(--c-fg);
+}
+.flip-title {
+  font-size: var(--fs-400);
+  font-weight: 700;
+  margin: 0;
+  color: var(--c-primary);
+  line-height: var(--lh-snug);
+}
+.flip-hook {
+  font-size: var(--fs-300);
+  line-height: var(--lh-base);
+  margin: 0;
+  color: var(--c-fg);
+}
+.flip-hint {
+  margin-top: auto;
+  margin-bottom: 0;
+  font-size: var(--fs-100);
+  color: var(--c-fg-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: 500;
+}
+.flip-hint .icon {
+  display: inline-flex;
+  width: 1.1em;
+  height: 1.1em;
+  align-items: center;
+  justify-content: center;
+}
+.flip-card-back p {
+  font-size: var(--fs-200);
+  line-height: var(--lh-base);
+  margin: 0;
+  color: var(--c-fg);
+}
+.flip-card-back p + p {
+  margin-top: var(--sp-2);
+}
+
+/* Reduced motion: no 3D rotation, simple swap */
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    transform-style: flat;
+    transition: none;
+  }
+  .flip-card.is-flipped .flip-card-inner {
+    transform: none;
+  }
+  .flip-card-front,
+  .flip-card-back {
+    position: relative;
+    transform: none;
+    backface-visibility: visible;
+  }
+  .flip-card:not(.is-flipped) .flip-card-back {
+    display: none;
+  }
+  .flip-card.is-flipped .flip-card-front {
+    display: none;
+  }
+}
+
+/* Print: show both faces, hide hint, avoid page breaks */
+@media print {
+  .flip-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .flip-card-inner {
+    transform: none !important;
+    transform-style: flat;
+    display: block;
+  }
+  .flip-card-front,
+  .flip-card-back {
+    position: relative;
+    transform: none;
+    backface-visibility: visible;
+    box-shadow: none;
+    grid-area: auto;
+  }
+  .flip-card-back {
+    display: block !important;
+    margin-top: var(--sp-3);
+    border-style: dashed;
+  }
+  .flip-card-front .flip-hint {
+    display: none;
+  }
+}
 
 /* ============================== PILLS ============================== */
 .pill {
@@ -841,10 +1122,10 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .ask-card p { font-size: var(--fs-200); line-height: 1.55; }
 
 .callout-strong {
-  background: linear-gradient(135deg, rgba(12, 92, 138, 0.05), rgba(245, 165, 36, 0.05));
+  background: linear-gradient(135deg, rgba(12, 92, 138, 0.10), rgba(245, 165, 36, 0.08));
   border-left: 4px solid var(--c-primary);
 }
-.callout-strong h3 { color: var(--c-primary); }
+.callout-strong h3 { color: #fff; }
 
 .stakeholder-list {
   counter-reset: stakeholder;
