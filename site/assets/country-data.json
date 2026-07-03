@@ -1,15 +1,15 @@
 {
-  "year": 2024,
-  "source_meta": "OECD, Abralatas, AVM/EU, JBA, ISRI; figures are latest publicly available (2019-2024). Estimates flagged 'est.'. PR rate is a 2022 estimate per ASCE / Sierra Club Boricua.",
+  "year": 2025,
+  "source_meta": "Abralatas/Recicla Latas (Brazil 2024), JACRA (Japan FY2023/FY2024), European Aluminium/Metal Packaging Europe (EU/Germany 2023), Aluminum Association/CMI (U.S. 2023), state CDS annual reports (Australia 2024), Endurvinnslan/Úrvinnslusjóður (Iceland). Estimates flagged 'est.'. PR current is a 2022 estimate per DRNA ISWMP / EPA State Measurement Program; PR target is the project proposal's Year-7 goal.",
   "rates": [
-    { "iso": "BR", "name": "Brazil",                 "rate": 0.973, "mechanism": "PNRS reverse logistics",       "scaleTonnesYr": 417700, "note": "World leader 15 years running; cooperative-driven" },
-    { "iso": "JP", "name": "Japan",                  "rate": 0.975, "mechanism": "Containers & Packaging Recycling Act (EPR)", "scaleTonnesYr": 26000,  "note": "73.8% can-to-can; rest is downcycled" },
-    { "iso": "DE", "name": "Germany",                "rate": 0.990, "mechanism": "VerpackG Pfand DRS (25¢/can)",  "scaleTonnesYr": 250000, "note": "99%; Novelis Nachterstedt, Speira plants" },
-    { "iso": "EU", "name": "European Union (avg.)",  "rate": 0.763, "mechanism": "PPWR 2025/40 + WSR 2024/1157", "scaleTonnesYr": 1200000,"note": "12+ member states with mandatory DRS by 2029" },
-    { "iso": "US", "name": "United States",          "rate": 0.450, "mechanism": "Mixed: 10-state CDL + single-stream", "scaleTonnesYr": 730000, "note": "10¢ deposit only in 10 states; rest of country under 30%" },
-    { "iso": "AU", "name": "Australia",              "rate": 0.760, "mechanism": "State CDS 10¢/can",            "scaleTonnesYr": 40000,  "note": "67% to 80% in 7 years once CDS rolled out" },
-    { "iso": "TW", "name": "Taiwan",                 "rate": 0.770, "mechanism": "EPR + RVMs at convenience stores", "scaleTonnesYr": 91000, "note": "Industrial UBC >95% recovery; household UBC ~55%" },
-    { "iso": "IS", "name": "Iceland",                "rate": 0.910, "mechanism": "EPR via EEA; voluntary",       "scaleTonnesYr": 1800,   "note": "Primary aluminum giant, but no domestic can sheet" },
+    { "iso": "BR", "name": "Brazil",                 "rate": 0.973, "mechanism": "PNRS reverse logistics",       "scaleTonnesYr": 417700, "note": "2024; 97.3% of cans sold recycled; ~33.9 B cans; cooperative-driven; scrap-export surge pulled 2023 100% down" },
+    { "iso": "JP", "name": "Japan",                  "rate": 0.998, "mechanism": "Containers & Packaging Recycling Act (EPR)", "scaleTonnesYr": 35500,  "note": "FY2024: 99.8% collection, 75.7% can-to-can; ~2.09 B cans/yr" },
+    { "iso": "DE", "name": "Germany",                "rate": 0.990, "mechanism": "VerpackG Pfand DRS (25¢/can)",  "scaleTonnesYr": 250000, "note": "2023; 99% recovery; Novelis Nachterstedt + Speira Voerde can-sheet" },
+    { "iso": "EU", "name": "European Union (avg.)",  "rate": 0.763, "mechanism": "PPWR 2025/40 + CRMA 2024/1252 + WSR 2024/1157", "scaleTonnesYr": 1200000,"note": "2023 Europe aggregate 76.3%; 12+ states with DRS by 2025; 80/90% targets by 2029/2033" },
+    { "iso": "US", "name": "United States",          "rate": 0.430, "mechanism": "Mixed: 10-state CDL + single-stream", "scaleTonnesYr": 730000, "note": "2023; 43% lowest in decades; deposit states 60–90%, non-deposit often <30%" },
+    { "iso": "AU", "name": "Australia",              "rate": 0.775, "mechanism": "State CDS 10¢/can",            "scaleTonnesYr": 40000,  "note": "2024 est. 75–80% national; first continent fully covered (Tasmania May 2025); SA/NT/ACT 80%+" },
+    { "iso": "TW", "name": "Taiwan",                 "rate": 0.660, "mechanism": "EPR + RVMs at convenience stores", "scaleTonnesYr": 91000, "note": "2019 blended est.; 55% household / 77% industrial; strong domestic secondary loop" },
+    { "iso": "IS", "name": "Iceland",                "rate": 0.880, "mechanism": "National DRS (Endurvinnslan); 16 ISK deposit", "scaleTonnesYr": 1800,   "note": "~88% aluminum can redemption (est. recent); ~844 kt/yr primary smelting but no domestic can-sheet, so UBC is exported for re-rolling" },
     { "iso": "PR", "name": "Puerto Rico (current)",  "rate": 0.018, "mechanism": "Informal + export to US",      "scaleTonnesYr": 1200,   "note": "est.; no DRS, no EPR for cans", "isCurrent": true },
     { "iso": "PR", "name": "Puerto Rico (target)",   "rate": 0.750, "mechanism": "Proposed: DRS + facility",     "scaleTonnesYr": 12800,  "note": "Year-7 target per project proposal", "isTarget": true }
   ]
