@@ -54,37 +54,70 @@
 
   // ---------- case study tabs (a11y + deep-link) ----------
   const initCaseTabs = () => {
-    const tablist = $('[role="tablist"][data-tablist="cases"]');
+    const tablist = $('[role="tablist"][aria-label="Country case studies"]');
     if (!tablist) return;
     const tabs = $$('[role="tab"]', tablist);
-    const panels = tabs.map(t => $(`#${t.getAttribute('aria-controls')}`));
-    const activate = (i) => {
+    const panels = tabs.map(t => $(`#${t.getAttribute('aria-controls')}`)).filter(Boolean);
+    if (!tabs.length || !panels.length) return;
+
+    const setActiveTab = (i) => {
       tabs.forEach((t, j) => {
         const on = i === j;
         t.setAttribute('aria-selected', String(on));
         t.setAttribute('tabindex', on ? '0' : '-1');
-        if (panels[j]) panels[j].hidden = !on;
+        if (on) {
+          t.classList.add('is-active');
+          t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+        } else {
+          t.classList.remove('is-active');
+        }
       });
-      if (panels[i]) {
-        panels[i].querySelectorAll('.case-chart').forEach(c => c.__render && c.__render());
-      }
-      history.replaceState(null, '', `#${panels[i].id}`);
+      panels.forEach((p, j) => {
+        const on = i === j;
+        if (on) {
+          p.removeAttribute('hidden');
+          p.classList.add('is-entering');
+          requestAnimationFrame(() => {
+            p.classList.remove('is-entering');
+            p.classList.add('is-visible');
+          });
+        } else {
+          p.setAttribute('hidden', '');
+          p.classList.remove('is-visible');
+        }
+      });
+      history.replaceState(null, '', `#case-${panels[i].id.replace('panel-', '')}`);
     };
+
+    const activate = (i) => {
+      if (i < 0 || i >= tabs.length) return;
+      setActiveTab(i);
+    };
+
     tabs.forEach((tab, i) => {
       tab.addEventListener('click', () => activate(i));
       tab.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { e.preventDefault(); activate((i + 1) % tabs.length); tabs[(i+1)%tabs.length].focus(); }
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); activate((i - 1 + tabs.length) % tabs.length); tabs[(i-1+tabs.length)%tabs.length].focus(); }
-        if (e.key === 'Home')       { e.preventDefault(); activate(0); tabs[0].focus(); }
-        if (e.key === 'End')        { e.preventDefault(); activate(tabs.length-1); tabs[tabs.length-1].focus(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); activate((i + 1) % tabs.length); tabs[(i + 1) % tabs.length].focus(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); activate((i - 1 + tabs.length) % tabs.length); tabs[(i - 1 + tabs.length) % tabs.length].focus(); }
+        else if (e.key === 'Home') { e.preventDefault(); activate(0); tabs[0].focus(); }
+        else if (e.key === 'End') { e.preventDefault(); activate(tabs.length - 1); tabs[tabs.length - 1].focus(); }
       });
     });
-    // Deep-link to a specific case
-    const m = location.hash.match(/^#case-([a-z]+)$/);
-    if (m) {
-      const idx = tabs.findIndex(t => t.getAttribute('aria-controls') === `case-${m[1]}`);
+
+    // Deep-link to a specific case (#case-...)
+    const resolveFromHash = () => {
+      const m = location.hash.match(/^#case-([a-z-]+)$/);
+      if (!m) return -1;
+      return tabs.findIndex(t => t.dataset.target === m[1] || t.getAttribute('aria-controls') === `panel-${m[1]}`);
+    };
+
+    const initialIndex = resolveFromHash();
+    activate(initialIndex >= 0 ? initialIndex : 0);
+
+    window.addEventListener('hashchange', () => {
+      const idx = resolveFromHash();
       if (idx >= 0) activate(idx);
-    }
+    });
   };
 
   // ---------- country recovery-rate bar chart ----------
