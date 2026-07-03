@@ -196,23 +196,43 @@
       const x = d3.scaleBand().domain(scenarios).range([padL, w - padR]).padding(0.3);
       const yMax = d3.max(scenarioCapex, d => d.total) * 1.05;
       const y = d3.scaleLinear().domain([0, yMax]).range([h - padB, padT]);
-      // Use the largest scenario's line items as the canonical list
-      const big = scenarioCapex.find(s => s.id === 'large') || scenarioCapex[scenarioCapex.length-1];
-      const cats = big.lines.map(l => l.category);
-      // For each scenario, sum amounts by category (or use same line items where present)
-      const grouped = scenarioCapex.map(s => {
-        const map = new Map(s.lines.map(l => [l.category, l.amount]));
-        return cats.map(c => ({ category: c, amount: map.get(c) || 0 }));
+      // Use the medium scenario's line items as the canonical list (only scenario with full breakdown)
+      const medium = scenarioCapex.find(s => s.id === data.scenario_lead || s.id === 'medium') || scenarioCapex[0];
+      const cats = (medium.lines || []).map(l => l.category);
+      // For each scenario, sum amounts by category (fall back to medium's distribution for scenarios without line items)
+      const grouped = scenarioCapex.map((s, sIdx) => {
+        let amounts;
+        if (s.lines && s.lines.length) {
+          const map = new Map(s.lines.map(l => [l.category, l.amount]));
+          amounts = cats.map(c => map.get(c) || 0);
+        } else {
+          const ratio = s.total / medium.total;
+          amounts = (medium.lines || []).map(l => l.amount * ratio);
+        }
+        return { scenarioId: s.id, scenarioIdx: sIdx, amounts };
       });
-      const stack = d3.stack().keys(cats);
+      const stack = d3.stack().keys(cats)
+        .value((d, key) => {
+          // Map category → amount within this scenario
+          const catIdx = cats.indexOf(key);
+          return catIdx >= 0 ? (d.amounts[catIdx] || 0) : 0;
+        });
       const series = stack(grouped);
       svg.append('g').selectAll('g').data(series).join('g')
         .attr('fill', (d, i) => PALETTE[i % PALETTE.length])
-        .selectAll('rect').data(d => d.map(v => ({ ...v, key: d.key }))).join('rect')
-        .attr('x', d => x(d.data ? scenarios[grouped.findIndex(g => g === d)] : 0) || 0)
-        .attr('y', d => y(d[1])).attr('height', d => Math.max(0, y(d[0]) - y(d[1])))
-        .attr('width', x.bandwidth())
-        .append('title').text(d => `${d.key || ''}\n${d.category}: ${fmt.usd0.format(d[1] - d[0])}`);
+        .selectAll('rect').data((d, gi) => d.map((v, ri) => ({
+          x: x(grouped[ri].scenarioId),
+          y0: y(v[0]),
+          y1: y(v[1]),
+          width: x.bandwidth(),
+          key: d.key,
+          amount: v[1] - v[0],
+        }))).join('rect')
+        .attr('x', d => d.x)
+        .attr('y', d => Number.isFinite(d.y1) ? d.y1 : 0)
+        .attr('height', d => Number.isFinite(d.y0) && Number.isFinite(d.y1) ? Math.max(0, d.y0 - d.y1) : 0)
+        .attr('width', d => d.width)
+        .append('title').text(d => `${d.key}\n${fmt.usd0.format(d.amount)}`);
       // X axis
       svg.append('g').attr('transform', `translate(0, ${h - padB})`)
         .call(d3.axisBottom(x))
@@ -242,16 +262,18 @@
     // ----- OPEX table (medium) -----
     const tbl = $('#budget-opex-table');
     if (tbl) {
+      const perT = opex.total_per_t || Math.round(opex.total / data.scenario_lead_capacity_tonnes_yr);
       const rows = opex.lines.map(l => `
         <tr>
           <th scope="row">${l.category}</th>
           <td class="num">${fmt.usd0.format(l.amount)}</td>
+          <td class="num">${fmt.usd0.format(Math.round(l.amount / data.scenario_lead_capacity_tonnes_yr))}</td>
           <td class="num pct">${(l.amount / opex.total * 100).toFixed(0)}%</td>
         </tr>`).join('');
       tbl.innerHTML = `
         <caption>Annual OPEX, ${lead} scenario · total <strong>${fmt.usd0.format(opex.total)}</strong>
-          (${fmt.usd0.format(opex.total_per_t || Math.round(opex.total/data.scenario_lead_capacity_tonnes_yr))}/t)</caption>
-        <thead><tr><th scope="col">Line</th><th scope="col" class="num">USD/yr</th><th scope="col" class="num">%</th></tr></thead>
+          (${fmt.usd0.format(perT)}/t)</caption>
+        <thead><tr><th scope="col">Line</th><th scope="col" class="num">USD/yr</th><th scope="col" class="num">$/t</th><th scope="col" class="num">%</th></tr></thead>
         <tbody>${rows}</tbody>`;
     }
 

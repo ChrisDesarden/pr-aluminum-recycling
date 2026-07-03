@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230c1f33'/%3E%3Cpath d='M50 20a30 30 0 110 60 30 30 0 010-60zm0 10a20 20 0 100 40 20 20 0 000-40z' fill='%23f5a524'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/[email protected]/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -339,6 +339,13 @@
         <code>assets/budget-data.json</code>.
       </p>
 
+      <p class="muted small">
+        <strong>Note:</strong> Detailed small and large scenario line items live in
+        <code>site/assets/budget-data-scenarios.json</code> (currently bundled into
+        <code>budget-data.json</code>). Medium is fully itemized below; small/large are
+        top-down summaries.
+      </p>
+
       <div class="grid-2">
         <figure class="chart-figure">
           <h3>CAPEX by line — medium (lead)</h3>
@@ -357,7 +364,7 @@
         <table id="budget-opex-table" class="data-table" aria-label="Medium scenario OPEX breakdown by category">
           <caption class="caption">OPEX total: $12.3 M/yr ($820/t processed). Year-3 steady state, 2026 USD.</caption>
           <thead>
-            <tr><th scope="col">Category</th><th scope="col">$/yr</th><th scope="col">$/t</th><th scope="col">% of OPEX</th></tr>
+            <tr><th scope="col">Category</th><th scope="col">USD/yr</th><th scope="col">$/t</th><th scope="col">% of OPEX</th></tr>
           </thead>
           <tbody></tbody>
         </table>
@@ -682,8 +689,8 @@
   </main>
 
   <!-- ============================== SCRIPTS ============================== -->
-  <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/d3.min.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" crossorigin=""></script>
   <script src="app.js" defer></script>
 </body>
 </html>
