@@ -15,6 +15,10 @@ audit/
 # OS
 Thumbs.db
 
+# Puppeteer QA output
+*.log.json
+tools/puppeteer/test-site.log.json
+
 # Node / Python (none used by the site, but just in case)
 node_modules/
 __pycache__/
