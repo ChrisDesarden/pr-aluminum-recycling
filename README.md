@@ -50,18 +50,31 @@ python3 -m http.server 8765
 
 ## Re-generate the PDF
 
-The site has a print stylesheet. The simplest way:
+The site has a print stylesheet. The simplest reproducible way uses Puppeteer:
 
 ```bash
-node ../tools/generate-pdf.js   # if present
-# or
+cd tools/puppeteer
+npm ci                          # install puppeteer + chromium once
+node generate-pdf.js            # writes docs/recircular-onepage.pdf
+```
+
+Or use any headless browser pointed at the local server:
+
+```bash
 google-chrome --headless \
   --print-to-pdf=docs/recircular-onepage.pdf \
   --no-pagerender-await \
   http://127.0.0.1:8765/index.html
 ```
 
-(Or use any headless browser pointed at the local server.)
+## Automated QA
+
+The Puppeteer test runner clicks every case-study tab and captures console/page/network errors:
+
+```bash
+cd tools/puppeteer
+node test-site.js
+```
 
 ## License
 
