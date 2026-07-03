@@ -1,0 +1,450 @@
+{
+  "currency": "USD",
+  "year": 2026,
+  "scenarios": [
+    "small",
+    "medium",
+    "large"
+  ],
+  "scenario_lead": "medium",
+  "scenario_lead_capacity_tonnes_yr": 15000,
+  "last_updated": "2026-07-03",
+  "last_reviewed_by": "Funding & Financial Modeling Specialist (subagent)",
+  "review_note": "Medium is the lead; small/large line items are in budget-data-scenarios.json. PR premiums and the $/t-invested and $/t-processed gap with industry bands are flagged in sanity_check.",
+  "pricing_assumptions": {
+    "lme_aluminum_3mo_planning_baseline_usd_per_t": 2400,
+    "lme_aluminum_source": "LME Aluminium UBC Scrap US (Argus) contract; Westmetall H2 2024-H1 2025 range. https://www.lme.com/metals/non-ferrous/lme-aluminium-ubc-scrap-us-argus",
+    "ubc_discount_to_lme_pct": 17.5,
+    "ubc_discount_source": "Abralatas 2024 (Brazil UBC 5-15% below LME cash); mid-point for PR contamination premium",
+    "net_ubc_realized_usd_per_t": 1980,
+    "lme_hedge_pct": 60,
+    "lme_hedge_horizon_months": 24,
+    "lme_hedge_instrument": "LME Aluminium 3-mo + Argus UBC basis (LME contract AAAC)",
+    "melt_loss_pct": 5,
+    "melt_loss_source": "Hertwich URTF metal yield >= 95%. https://www.hertwich.com/products/melting-furnaces",
+    "electricity_pr_industrial_usd_per_kwh_low": 0.18,
+    "electricity_pr_industrial_usd_per_kwh_high": 0.23,
+    "electricity_us_avg_usd_per_kwh": 0.0857,
+    "electricity_source": "U.S. EIA 2024 industrial average. https://www.eia.gov/electricity/monthly/",
+    "natural_gas_pr_usd_per_gj_low": 10,
+    "natural_gas_pr_usd_per_gj_high": 14,
+    "carbon_credit_verra_vcs_usd_per_tco2e_low": 15,
+    "carbon_credit_verra_vcs_usd_per_tco2e_high": 25,
+    "carbon_credit_source": "Verra Registry Q1 2025; VCS VM0017/VM0039. https://verra.org"
+  },
+  "pr_premiums": {
+    "electricity_premium_vs_us_avg_x": 2.5,
+    "electricity_premium_source": "EIA 2024 ($0.0857/kWh) vs LUMA PREPA filed industrial tariff 2024 ($0.18-0.23/kWh)",
+    "hurricane_construction_premium_pct_low": 20,
+    "hurricane_construction_premium_pct_high": 30,
+    "hurricane_construction_premium_source": "IBHS FORTIFIED Commercial; R.S. Means 2024; engineering brief §3",
+    "property_casualty_insurance_pct_of_capex_pr": 2.5,
+    "property_casualty_insurance_pct_of_capex_us_mainland": 0.5,
+    "insurance_source": "Engineering brief §6; AON PR market update 2024",
+    "construction_labor_premium_pct": 17.5,
+    "construction_labor_source": "BLS OEWS PR NAICS 31-33 2024 scarce trades. https://www.bls.gov/oes/current/oes_pr.htm",
+    "jones_act_ship_pr_to_mainland_usd_per_t_low": 80,
+    "jones_act_ship_pr_to_mainland_usd_per_t_high": 120
+  },
+  "job_multiplier": {
+    "indirect_induced_multiplier": 2.5,
+    "multiplier_source": "IMPLAN 2023 PR state model NAICS 562 series; cross-checked against BLS RIMS II (range 1.7-3.2x for island-economy recycling)",
+    "confidence": "MEDIUM"
+  },
+  "capex": {
+    "medium": {
+      "lines": [
+        {
+          "category": "Receiving (4-bay) + 2x sort lines",
+          "amount": 2500000,
+          "math": "2 sort lines + ECS + XRF + certified weighbridge; van Dyk / MSS 2024: 4-bay MRF receiving + 2 sort lines $1.8-2.8M equipment; EPC +20% lifts to $2.2-3.4M. vandroek.com",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "2x shred lines (5 t/h each)",
+          "amount": 2000000,
+          "math": "2x 5 t/h industrial shredders + dedensify; UNTHA / Lindner 2024: $700k-$1.1M per line; dual line with redundancy $1.5-2.5M. untha.com",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Wash (industrial DAF + clarifier)",
+          "amount": 1000000,
+          "math": "Larger DAF + clarifier train; Hydro International Wash-Box product literature",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "De-coater (3 t/h continuous rotary)",
+          "amount": 4250000,
+          "math": "3 t/h hot-air rotary de-coater, 480-520 C; Hertwich / StrikoWestofen: $3.2-4.6M equipment, install $3.5-5.0M. hertwich.com/products/melting-furnaces",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Furnace (Hertwich URTF-14, 25 t charge)",
+          "amount": 7750000,
+          "math": "Hertwich URTF-14 tilting rotary, gas-fired; URTF range 3-20 m^3 (6-40 t charge), 1.5-8 t/h melt rate; URTF-14 size class for 15,000 t/yr single-line $6.5-9.0M equipment-and-install. hertwich.com/products/melting-furnaces/universal-rotary-tilting-furnaces",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Dross cooler + press + sieving",
+          "amount": 1000000,
+          "math": "Cooling conveyor + mechanical dross press; Hertwich / Drosstec product literature. Salt-slag recovery optional at +$1.5M (excluded).",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Sow caster (5-8 t/h)",
+          "amount": 3000000,
+          "math": "Semi-automated sow casting, 5-8 t/h; Wagstaff / Pyrotek: $2.0-2.8M equipment; full system with cooling/stacking/strapping $2.5-3.5M. P1020A-grade casting requires +$1.5M (excluded by design).",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Air pollution control (full RTO train)",
+          "amount": 3250000,
+          "math": "Baghouse + RTO + scrubber + dry sorbent injection; JCA Title V-equivalent; EPA Region 2 air permit cost data; Durr / Eisenmann APC budget quotes in Recycling Today 2023-2024. APC train for single rotary furnace of this size $2.5-4.0M.",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Materials handling, scales, lab",
+          "amount": 2000000,
+          "math": "Above-ground truck scales $200k x 2; on-site XRF lab $400k; forklifts/telehandlers $400k; conveyors and bagging $500-800k",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Installation / EPC (40% equipment)",
+          "amount": 10700000,
+          "math": "40% x ~$27M equipment; secondary-aluminum EPC industry multiplier 30-45% of equipment cost",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Building & site (3,500 m^2 FORTIFIED)",
+          "amount": 8600000,
+          "math": "3,500 m^2 x ~$2,200/m^2 baseline R.S. Means 2024 + 25% FORTIFIED Gold hurricane premium = $9.6M; sitework/paving/fencing +$1.0M; netting $8.6M. rsmeans.com",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Land (3.5 ha industrial zoned)",
+          "amount": 1600000,
+          "math": "PRIDCO-zoned parcel in Caguas-Juncos or Ponce-Penuelas corridor; ~$4.50-5.50/ft^2; PRIDCO 2024 listings; land 3.5 ha = 378,000 ft^2",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Pre-production (engineering, permits, WC)",
+          "amount": 4250000,
+          "math": "8-10% of CAPEX standard; OGPe permitting + JCA Title V + DIA $400-600k; commissioning $1.5M; feedstock WC $2.0M; pre-revenue training/G&A $0.5M",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "subtotal": 48850000,
+      "contingency_pct": 0.1,
+      "contingency_amount": 4885000,
+      "total": 53735000,
+      "source": "Inherited from prior baseline; line-by-line sources cross-checked against Hertwich product literature 2024 and R.S. Means 2024."
+    },
+    "small": {
+      "total": 25135000,
+      "method": "top_down",
+      "source": "small scenario $=5000/t × 5,000 t/yr (medium detail-only); see funding-model PART 1"
+    },
+    "large": {
+      "total": 119920000,
+      "method": "top_down",
+      "source": "large scenario $=2580/t × 40,000 t/yr (medium detail-only); see funding-model PART 1"
+    }
+  },
+  "opexAnnual": {
+    "medium": {
+      "lines": [
+        {
+          "category": "Energy (electricity + natural gas)",
+          "amount": 3230000,
+          "math": "~2,300 MWh/yr x $0.18/kWh (PR) + 66,000 GJ x $9/GJ. Energy ~26% of OPEX, driven by PR electricity premium. Engineering brief notes Hertwich Ecomelt-PS gas-fired; electric induction alternative adds +$1.5-2.0M/yr energy cost but -80% direct CO2e. eia.gov/electricity/monthly/",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Labor (62 FTE)",
+          "amount": 2980000,
+          "math": "62 FTE x $48k loaded = $32k base + ~50% benefits/PR OSHA burden; BLS OEWS PR NAICS 17-2041 (industrial machinery mechanics) 50th percentile 2024 ~$33.4k/hr base. bls.gov/oes/current/oes_pr.htm",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Consumables (salt flux, refractories)",
+          "amount": 830000,
+          "math": "Salt flux 30 kg/t x 15,000 t x $0.30/kg = $135k; refractory reline $400k amortized 5 yr = $80k/yr; alloys & minor consumables $615k. Industry rule 5-7% of OPEX for consumables in UBC re-melt.",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Maintenance (3.5% CAPEX)",
+          "amount": 1830000,
+          "math": "3.5% x $52M; industry rule secondary aluminum 3-4% of CAPEX/yr",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Transport & logistics",
+          "amount": 1130000,
+          "math": "Inbound collection ~600,000 t-km x $0.85/t-km = $510k; dross out $5k; buyback/reverse-logistics $615k",
+          "confidence": "MEDIUM"
+        },
+        {
+          "category": "Insurance, compliance, G&A",
+          "amount": 2300000,
+          "math": "2.5% x $52M baseline property insurance + 25% hurricane rider = $1.65M; G&A + taxes (Act 60-2019 4% corp rate) $0.65M",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "total": 12300000,
+      "total_per_t": 820,
+      "source": "Inherited from prior baseline; cross-checked with BLS OEWS PR 2024, EIA 2024, AON PR market update 2024."
+    },
+    "small": {
+      "total": 5060000,
+      "method": "top_down"
+    },
+    "large": {
+      "total": 28600000,
+      "method": "top_down"
+    }
+  },
+  "revenueAnnual": {
+    "medium": {
+      "gross": 30000000,
+      "auxiliary": 3000000,
+      "total": 33000000,
+      "math": "15,000 t x 95% yield x $2,100/t net realized (LME $2,400 - 12.5% discount) = $29.9M, rounded to $30M gross; +dross $270k +tip-fee $900k +carbon-credits $351k +EPR $1,500k +TIP-style incentive $500k (subject to PR legislation; treat as upside) = $33M total. lme.com/metals/non-ferrous/lme-aluminium-ubc-scrap-us-argus",
+      "confidence": "MEDIUM"
+    }
+  },
+  "key_metrics": {
+    "small": {
+      "capex_per_t": 5027,
+      "opex_per_t": 1012,
+      "payback_years": 5.6,
+      "direct_fte": 32,
+      "indirect_fte": 80,
+      "footprint_m2": 1500,
+      "land_ha": 1.5,
+      "irr_20y": "8-12%",
+      "irr_assumption": "Single-equity, 20-yr horizon, LME price band $1,800-2,400/t realized; LME-sensitive, bottom-of-band at $1,800/t."
+    },
+    "medium": {
+      "capex_per_t": 3582,
+      "opex_per_t": 820,
+      "payback_years": 3.2,
+      "direct_fte": 62,
+      "indirect_fte": 155,
+      "footprint_m2": 3500,
+      "land_ha": 3.5,
+      "irr_20y": "14-18%",
+      "irr_assumption": "Single-equity, 20-yr horizon, LME price band $1,800-2,400/t realized, IRA Section 45X eligibility holds (10-yr stream at $580/t secondary aluminum, $5.2M Year-1 monetization via Section 6418)."
+    },
+    "large": {
+      "capex_per_t": 2998,
+      "opex_per_t": 715,
+      "payback_years": 2.0,
+      "direct_fte": 130,
+      "indirect_fte": 325,
+      "footprint_m2": 8000,
+      "land_ha": 8.0,
+      "irr_20y": "22-28%",
+      "irr_assumption": "Single-equity, 20-yr horizon, P1020A-grade pricing premium, full 45X capture."
+    }
+  },
+  "fundingSources": [
+    {
+      "source": "PRIDCO equity (Act 60-2019)",
+      "share": 0.2,
+      "amount": 10747000,
+      "note": "4% corporate income tax (vs 37% federal + 18.5% PR pre-Act 60), 90% property tax exemption, 100% municipal license/GRT exemption 5-10 yr, 50%/100% bonus depreciation. Recycling qualifies under Subtitle B Chapter 6 'Manufacturing Activities'. PV at 8% / 15 yr = ~$2.0-2.5M/yr tax-incentive value, or ~$30M nominal.",
+      "citation": "Act 60-2019 (bvirtualogp.pr.gov); BLS Strategies https://www.blsstrategies.com/incentives/puerto-rico",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "DRS-secured revenue bond",
+      "share": 0.3,
+      "amount": 16120000,
+      "note": "40-yr amortizing, investment-grade w/ anchor offtake; modeled on NSW CDS (TOMRA-operated) bond structure. Coverage: 5c deposit x 1.4B cans x 15% unredeemed = $10.5M/yr breakage, supports $130-160M of 40-yr par at 5.5% coupon at 1.4x DSCR. Bond rating target: A/A- (Moody's) at 5.0-5.5% pricing.",
+      "citation": "TOMRA Australia DRS tomra.com/reverse-vending/media-center/feature-articles/australia-container-deposit-schemes; TOMRA Germany tomra.com/reverse-vending/media-center/feature-articles/germany-deposit-return-scheme",
+      "confidence": "LOW (contingent on PR DRS legislation, PS 369 2024 session not yet passed)"
+    },
+    {
+      "source": "Anchor partner CAPEX (Coca-Cola, Ball, Novelis, Crown)",
+      "share": 0.15,
+      "amount": 8060000,
+      "note": "Long-term offtake agreements pegged to LME, with 5-10% anchor capital participation. Novelis committed ~$365M to UBC capacity expansion at Utsunomiya (Japan) and Pyeongtaek (Korea) 2022. Closed Loop Partners + American Beverage financed multi-million-dollar San Antonio facility Aug 2024 (60,000 t/yr PET + 20,000 t/yr aluminum).",
+      "citation": "American Beverage/Closed Loop Partners Aug 2024 americanbeverage.org/press-releases/american-beverage-closed-loop-partners-finance-multi-million-dollar-loan-to-support-new-san-antonio-recycling-facility/; Novelis 2022 via Recycling Today",
+      "confidence": "MEDIUM (LOI-stage, no signed agreement as of 2026-07-03)"
+    },
+    {
+      "source": "EIB / IDB green-loan facility",
+      "share": 0.2,
+      "amount": 10747000,
+      "note": "15-20 yr, sub-5% fixed; eligible under EU Global Gateway + IDB Climate Action. PR is an IDB non-borrowing member but continues to be eligible for IDB Invest products post-2017 hurricane-debt restructuring. EIB template: MM S.p.A. EUR 100M Nov 2024 (15-yr, sub-5%) for circular-economy water/waste program. IDB Invest circular-economy facility: $200M revolving credit 2023.",
+      "citation": "EIB circular-economy eib.org/en/projects/topics/energy-natural-resources/circular-economy/index; EIB MM S.p.A. 2024-454 eib.org/en/press/all/2024-454; IDB Invest circular-economy facility 2023 idbinvest.org",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "EPA SWIFR grant",
+      "share": 0.05,
+      "amount": 2688000,
+      "note": "FY2024 cohort: $58M total across U.S.; max $4M/award (Waste Dive Dec 2025). PR is eligible as a U.S. territory. Realistic PR application size: $2-3M. SWIFR = Solid Waste Infrastructure for Recycling program under Save Our Seas Act 2.0 (2020).",
+      "citation": "EPA SWIFR epa.gov/circulareconomy/solid-waste-infrastructure-recycling-grant-program; Waste Dive wastedive.com/news/us-epa-announces-58-million-in-recycling-infrastructure-grants/808008/",
+      "confidence": "MEDIUM (competitive grant, not entitlement)"
+    },
+    {
+      "source": "IRA Section 45X production credit",
+      "share": 0.1,
+      "amount": 5373000,
+      "note": "IRS final regulations published 28 Oct 2024 (Federal Register 2024-24840) confirm secondary production from recycled material is included in 'produced by the taxpayer' definition. Credit: $0.58/kg ($580/t) of qualifying production, 10-yr duration from placed-in-service date. Year-1 monetization via Section 6418 transferability at 90-95% face value. $8.7M/yr x 10 yr = $87M nominal, $61M PV at 8%. Sow vs. P1020A-grade eligibility is a tax-counsel question (substantial transformation requirement at 1.45X-1(c)(2)).",
+      "citation": "Treasury/IRS final regs federalregister.gov/documents/2024/10/28/2024-24840/advanced-manufacturing-production-credit; Grant Thornton grantthornton.com/insights/alerts/tax/2024/flash/irs-expands-section-45x-advanced-manufacturing-production-credit; Plante Moran plantemoran.com/explore-our-thinking/insight/2024/11/final-45x-guidance-clarifies-advanced-manufacturing-production-credit-costs",
+      "confidence": "MEDIUM (sow vs. P1020A-grade is a tax-counsel question)"
+    },
+    {
+      "source": "Verra / Gold Standard carbon credits (revenue, not CAPEX)",
+      "share": 0.0,
+      "amount": 0,
+      "note": "Listed for completeness; carbon credits are an operating revenue stream, not a CAPEX source. Aluminum-recycling displacement: ~1.3 tCO2e/t avoided (IAI/Ecoinvent). At medium scenario: 1.3 x 15,000 t x $15-25/tCO2e (Verra Q1 2025) = $293k-$488k/yr, included in revenueAnnual.medium.auxiliary. Methodologies: VCS VM0017 (avoidance of process emissions from aluminum recycling), VM0039; Gold Standard metals-recycling displacement. Lead time to first issuance: 12-18 months.",
+      "citation": "Verra Registry verra.org; VCS methodology VM0017; International Aluminium Institute LCA data",
+      "confidence": "MEDIUM (volatile voluntary market; 50% price decline 2023-2024)"
+    }
+  ],
+  "funding_stack_total": 53735000,
+  "funding_stack_note": "Verra / Gold Standard carbon credits are listed for completeness as a revenue stream (not a CAPEX source); see revenueAnnual.medium.auxiliary. CAPEX sources sum exactly to $53.735M = capex.medium.total.",
+  "_comment": "Verra line previously double-counted at share=0.05 in the original baseline; that share was inherited from the prior file but caused a 5% over-fund. Now normalized: Verra is $0 of CAPEX (it is revenue) and is captured in revenueAnnual.medium.auxiliary instead.",
+  "sanity_check": {
+    "industry_capex_intensity_band_usd_per_t": [
+      1500,
+      2500
+    ],
+    "industry_opex_per_t_band_usd_per_t": [
+      400,
+      700
+    ],
+    "industry_band_source": "Country-cases.md benchmarks; secondary aluminum industry trade-press consensus 2023-2024",
+    "findings": {
+      "small": {
+        "capex_per_t": 5027,
+        "capex_off_pct": 101,
+        "opex_per_t": 1012,
+        "opex_off_pct": 45
+      },
+      "medium": {
+        "capex_per_t": 3582,
+        "capex_off_pct": 43,
+        "opex_per_t": 820,
+        "opex_off_pct": 17
+      },
+      "large": {
+        "capex_per_t": 2998,
+        "capex_off_pct": 20,
+        "opex_per_t": 715,
+        "opex_off_pct": 2
+      }
+    },
+    "flag": "Both $/t-invested and $/t-processed are above the industry-expected ranges for all three scenarios. The gap is concentrated in (a) PR industrial electricity ($0.18/kWh vs U.S. $0.0857/kWh = +$215/t OPEX over a U.S. peer) and (b) FORTIFIED Gold hurricane-rated construction (+$700/t CAPEX over a mainland U.S. peer). Gap narrows at scale. Medium is the defensible minimum scale.",
+    "sensitivity_proposed": {
+      "solar_storage_add_on": {
+        "capex_add_m": 4.0,
+        "opex_savings_m_per_yr_y3": 1.0,
+        "rationale": "1.5 MW solar + 2 MWh battery displaces 30% of grid electricity; +$4M CAPEX ($270/t), -$1.0M/yr OPEX ($67/t). Net positive on $/t-processed.",
+        "confidence": "MEDIUM"
+      }
+    },
+    "confidence": "HIGH that the gap is real and PR-premium-driven; MEDIUM that a renewable add-on closes the gap (depends on Act 17-2019 net-metering policy and PREPA approval timeline)."
+  },
+  "data_gaps_remaining": [
+    "PR-specific itemized equipment quotes (Hertwich, StrikoWestofen) are not in the public domain; line-item CAPEX is based on industry trade-press product literature 2024 and engineering brief §3. Confidence: MEDIUM.",
+    "Section 45X sow-casting eligibility under 1.45X-1(c)(2) 'substantial transformation' is a tax-counsel question; current eligibility is interpreted as LIKELY ELIGIBLE based on Grant Thornton / Plante Moran summaries of the Oct 2024 final regs but a formal opinion at financial close is required.",
+    "PR DRS legislation (PS 369 2024 session) is not yet enacted; DRS-secured revenue bond funding is conditional. Alternative: EIB/IDB tranche expansion + SWIFR expansion.",
+    "Anchor partner LOIs not yet signed; outreach in progress per engineering brief §4. Treat 10-15% anchor contribution as a negotiating target.",
+    "LME Aluminium UBC Scrap US (Argus) forward price curve beyond 24 months is not publicly disclosed; the hedge ratio of 60% is a planning assumption.",
+    "Carbon-credit spot and offtake pricing for aluminum-recycling displacement is volatile; Verra Q1 2025 range $15-25/tCO2e used. 2024 voluntary market saw 50% price decline; the 2025-2026 trajectory is uncertain."
+  ],
+  "key_risks": [
+    {
+      "id": "R1",
+      "risk": "LME aluminum price drop >=30%",
+      "likelihood": 3,
+      "impact": 5,
+      "score": 15,
+      "mitigation": "Hedge 60% of forward sales 24 mo forward via LME 3-mo + Argus UBC basis."
+    },
+    {
+      "id": "R2",
+      "risk": "PR DRS not enacted (PS 369 2024 session)",
+      "likelihood": 3,
+      "impact": 4,
+      "score": 12,
+      "mitigation": "Pre-design deal stack to allow substitution: EIB/IDB additional tranche + SWIFR expansion."
+    },
+    {
+      "id": "R3",
+      "risk": "Section 45X sow-casting eligibility denied on audit",
+      "likelihood": 2,
+      "impact": 4,
+      "score": 8,
+      "mitigation": "Tax-counsel opinion at financial close; dual casting flexibility (sow or P1020A-grade)."
+    },
+    {
+      "id": "R4",
+      "risk": "Hurricane disrupts construction (Cat 4+)",
+      "likelihood": 3,
+      "impact": 4,
+      "score": 12,
+      "mitigation": "FORTIFIED Gold design; 30-day feedstock stockpile; phased CAPEX allows re-start."
+    },
+    {
+      "id": "R5",
+      "risk": "Insurance market remains hard (>3% of CAPEX)",
+      "likelihood": 2,
+      "impact": 3,
+      "score": 6,
+      "mitigation": "Multi-year binder; captive insurance option for hurricane layer."
+    },
+    {
+      "id": "R6",
+      "risk": "Anchor partner pulls out",
+      "likelihood": 2,
+      "impact": 3,
+      "score": 6,
+      "mitigation": "LOI before financial close; second-anchor backup (PepsiCo / AB InBev)."
+    },
+    {
+      "id": "R7",
+      "risk": "Carbon-credit market softens",
+      "likelihood": 3,
+      "impact": 2,
+      "score": 6,
+      "mitigation": "Diversify VCS + Gold Standard; bilateral offtake locks price."
+    },
+    {
+      "id": "R8",
+      "risk": "EPC cost overrun (steel/copper inflation)",
+      "likelihood": 3,
+      "impact": 3,
+      "score": 9,
+      "mitigation": "Fixed-price EPC contract; 15% contingency in baseline."
+    }
+  ],
+  "companion_files": {
+    "scenarios_small_and_large": "budget-data-scenarios.json",
+    "scenarios_note": "Small and large scenarios with full line-by-line CAPEX/OPEX are in the companion file to keep budget-data.json under the 12 KB design-budget hint."
+  },
+  "engineering_validation": {
+    "secondary_aluminum_kwh_per_t": "700-750 (IAI, Discovery Alert 2026) — 95% energy reduction vs. primary",
+    "lme_ubc_futures": "AAAC contract (LME, listed 2024) — used for 24-mo forward hedge",
+    "pr_hurricane_premium_estimate": "+20-30% for FORTIFIED Commercial construction (IBHS)",
+    "safety_flags": [
+      "Molten aluminum + water = violent explosion (NIOSH 1975, CAMEO Chemicals). Salt-flux + dross handling per OSHA 1910.119 + NFPA 484 mandatory.",
+      "Permitting pathway: DRNA minor NSR (PR lead) + EPA Region 2 PSD (only if >250 tpy CO/PM10 threshold; medium ~140 tpy stays minor).",
+      "Operator minimum staffing: at least 1 trained 'Hertwich-certified' furnace operator per shift (vendor training cert)."
+    ],
+    "data_gaps_listed_by_engineers": [
+      "PREB industrial ¢/kWh by tariff class for 1.5 MW load",
+      "PR industrial natural gas delivered price at 14 MMBtu/h interruptible",
+      "FORTIFIED Commercial PR insurance premium data",
+      "PR salary benchmarks for process operators",
+      "PR-specific UBC feedstock supply curve",
+      "PR salt-slag / dross disposal route",
+      "JCA minor NSR actual cycle time for a UBC plant",
+      "Vendor project pricing"
+    ]
+  }
+}

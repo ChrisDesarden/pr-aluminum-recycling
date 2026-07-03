@@ -1,19 +1,76 @@
-# Recircular: Puerto Rico Closed-Loop Aluminum Recycling
+# Recircular: Puerto Rico closed-loop aluminum recycling
 
-A proposal and interactive website for establishing a closed-loop aluminum
-can recycling facility in Puerto Rico. The vision: keep the aluminum
-already circulating on the island circulating on the island — turning
-discarded cans back into bars, sheet, and feedstock for local industry,
-reducing dependence on imported virgin aluminum.
+A working proposal, version 1.0, for a 15,000 t/yr UBC (used beverage
+can) recycling facility on PRIDCO land in Puerto Rico. Plain HTML,
+CSS, and JavaScript — no build step, no framework. Designed to be
+read on GitHub Pages and printed to a 19-page PDF.
 
-## Structure
+## Live site
 
-- `research/` — source material from sub-agent research (country case
-  studies, PR-specific context, engineering and budget)
-- `site/` — interactive website (static, GitHub Pages)
-- `docs/` — proposal text, download-ready PDF, supporting documents
-- `assets/` — images, charts, maps
+<https://chrisdesarden.github.io/pr-aluminum-recycling/>
 
-## Status
+## What's here
 
-Research in progress. See `research/` for raw findings as they come in.
+- **`site/`** — the live site. Open `index.html` in a browser.
+  - `assets/` — six JSON data files (budget, country cases,
+    dropoff points, industrial zones, municipalities, timeline)
+  - `DESIGN.md` — the 14-section design specification the site
+    implements
+- **`research/`** — five long-form research documents
+  (PR context, country cases, engineering tech, engineering/budget,
+  funding model). ~268 KB total. These are the source of every
+  number on the site.
+- **`docs/recircular-onepage.pdf`** — full-site PDF export,
+  generated from the live site. 19 pages, A4.
+- **`audit/`** — local-only previews of the site (gitignored).
+- **`docs/preview-*.png`** — local-only screenshots (gitignored).
+
+## Headline numbers
+
+| Metric                          | Value                              |
+| ------------------------------- | ---------------------------------- |
+| UBC generated in PR per year    | 17,000 t (1.4B cans)               |
+| Current recovery rate           | 1.8%                               |
+| Target recovery (Year 5, DRS 5¢)| 75%                                |
+| CAPEX (medium scenario)         | $52 M                              |
+| OPEX (annual)                   | $12.3 M                            |
+| Payback                         | 3.0 yr                             |
+| IRR                             | 14–18%                             |
+| Direct FTE                      | 62                                 |
+| Indirect + induced (IMPLAN 2.5×)| 155                                |
+| Energy savings vs. virgin Al    | 95%                                |
+
+## Run locally
+
+```bash
+cd site
+python3 -m http.server 8765
+# open http://127.0.0.1:8765
+```
+
+## Re-generate the PDF
+
+The site has a print stylesheet. The simplest way:
+
+```bash
+node ../tools/generate-pdf.js   # if present
+# or
+google-chrome --headless \
+  --print-to-pdf=docs/recircular-onepage.pdf \
+  --no-pagerender-await \
+  http://127.0.0.1:8765/index.html
+```
+
+(Or use any headless browser pointed at the local server.)
+
+## License
+
+Code: MIT. Data and research: CC-BY-4.0 — please cite as
+"Recircular Puerto Rico, working proposal v1.0, 2026."
+
+## Contributing
+
+This is a working proposal, intentionally open. The data, sources,
+and code are all public. To comment, contribute, or signal
+interest: open an issue, or email
+<ChrisDesarden@users.noreply.github.com>.

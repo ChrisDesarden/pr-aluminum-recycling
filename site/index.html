@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Recircular Puerto Rico — A closed-loop aluminum can recycling facility</title>
+  <meta name="description" content="A government-ready proposal for a 15,000 t/year closed-loop aluminum can recycling facility in Puerto Rico. Engineering, financing, and policy for a self-sufficient island aluminum cycle.">
+  <meta name="author" content="Chris Desarden, Iris (assistant)">
+  <meta name="theme-color" content="#0c1f33">
+  <meta property="og:title" content="Recircular Puerto Rico — Closed-loop aluminum recycling facility">
+  <meta property="og:description" content="A 15,000 t/yr UBC-to-ingot plant on the south coast of PR. Engineering, financing, and policy case, 2026.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230c1f33'/%3E%3Cpath d='M50 20a30 30 0 110 60 30 30 0 010-60zm0 10a20 20 0 100 40 20 20 0 000-40z' fill='%23f5a524'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/[email protected]/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================== HEADER ============================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="Recircular Puerto Rico home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="36" height="36" focusable="false">
+            <rect width="100" height="100" rx="20" fill="currentColor" opacity="0.18"/>
+            <path d="M50 18a32 32 0 110 64 32 32 0 010-64zm0 10a22 22 0 100 44 22 22 0 000-44z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Recircular Puerto Rico</strong>
+          <span class="brand-sub">A closed-loop aluminum can facility · 2026 proposal</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+          <span class="visually-hidden">Toggle navigation</span>
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#pr-context">Why PR</a></li>
+          <li><a href="#map">Map</a></li>
+          <li><a href="#case-studies">Case studies</a></li>
+          <li><a href="#engineering">Engineering</a></li>
+          <li><a href="#budget">Budget</a></li>
+          <li><a href="#funding">Funding</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#risks">Risks</a></li>
+          <li><a href="#conclusion">Asks</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+  <!-- ============================== HERO ============================== -->
+  <section id="top" class="hero">
+    <div class="container">
+      <p class="eyebrow">A working proposal · 2026 · v1.0</p>
+      <h1>
+        Close the can.<br>
+        <span class="accent">A 15,000&nbsp;t/yr aluminum cycle for Puerto&nbsp;Rico.</span>
+      </h1>
+      <p class="lede">
+        Every year, roughly <strong>17,000&nbsp;tonnes of used beverage cans</strong> leave the island as
+        baled scrap, ship under the Jones&nbsp;Act, get melted in Texas or Mississippi, and ship back as
+        new cans. We're proposing to keep that loop on the island: a FORTIFIED&nbsp;Commercial
+        secondary-aluminum plant on PRIDCO land, fed by a deposit-return scheme and a coast-to-coast
+        drop-off network. <strong>$52&nbsp;M CAPEX, $12.3&nbsp;M/yr OPEX, 3.0-yr payback, 14–18% IRR.</strong>
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#budget">Read the numbers</a>
+        <a class="btn btn-ghost" href="#sources">All sources &amp; citations</a>
+      </div>
+
+      <!-- Stats strip -->
+      <ul class="stats-strip" aria-label="Headline numbers">
+        <li>
+          <span class="stat-num">17,000</span>
+          <span class="stat-label">t/yr UBC generated in PR <small>(CIA, Abralatas, EcoEléctrica MRF data)</small></span>
+        </li>
+        <li>
+          <span class="stat-num">1.8%</span>
+          <span class="stat-label">PR's current aluminum can recovery rate <small>(DRNA 2022 ISWMP, EPA State Measurement Program)</small></span>
+        </li>
+        <li>
+          <span class="stat-num">75%</span>
+          <span class="stat-label">Target recovery by Year&nbsp;5 with DRS at 5¢</small></span>
+        </li>
+        <li>
+          <span class="stat-num">62</span>
+          <span class="stat-label">Direct FTE · +155 indirect/induced <small>(IMPLAN 2.5× multiplier)</small></span>
+        </li>
+        <li>
+          <span class="stat-num">95%</span>
+          <span class="stat-label">Energy savings vs. primary aluminum <small>(IAI, Aluminum Association EPD)</small></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== SUMMARY ============================== -->
+  <section id="summary" class="section section-light" data-section="summary">
+    <div class="container two-col">
+      <div>
+        <h2>The one-paragraph version</h2>
+        <p class="lede small">
+          Build a single medium-scale secondary-aluminum melting and casting plant on a PRIDCO industrial
+          parcel in Guayama or Ponce, licensed under IBHS FORTIFIED&nbsp;Commercial standards and a
+          JCA minor NSR air permit. Feed it with a 5¢ island-wide Deposit-Return Scheme (DRS) on aluminum
+          cans plus a network of supermarket, mall, and civic drop-off points covering all 78&nbsp;municipalities.
+          Sell T-bar sow and P1020A ingot to Anchor partners (Coca-Cola, Ball, Novelis, Crown) under
+          multi-year offtake agreements. Use the IRA's transferable §48&nbsp;ITC and §45X production credit
+          to lower blended cost of capital to ~4.5%.
+        </p>
+        <p>
+          The proposal is intentionally <em>medium</em>-scaled: large enough to be economically
+          meaningful and to capture a meaningful share of the island's UBC, but small enough that a
+          single site won't concentrate hurricane risk and that permitting is tractable inside one
+          legislative cycle.
+        </p>
+        <p>
+          This is a working document, not a glossy marketing deck. Every dollar has a source.
+          Every claim links to a citation. Every assumption is named.
+          <a href="#sources">See all sources &rarr;</a>
+        </p>
+      </div>
+      <aside class="callout" aria-label="Headline callout">
+        <h3>Lead scenario: medium (15,000 t/yr)</h3>
+        <dl class="keyvals">
+          <div><dt>Capacity</dt><dd>15,000 t/yr UBC</dd></div>
+          <div><dt>PR UBC captured</dt><dd>~75% (recovery rate by Y5)</dd></div>
+          <div><dt>CAPEX (total)</dt><dd><strong>$53.7 M</strong> <small>(10% contingency on $48.85M)</small></dd></div>
+          <div><dt>OPEX / yr</dt><dd><strong>$12.3 M</strong> <small>($820/t)</small></dd></div>
+          <div><dt>Revenue / yr (steady state)</dt><dd><strong>$32.0 M</strong></dd></div>
+          <div><dt>Payback (undiscounted)</dt><dd><strong>3.0 yr</strong></dd></div>
+          <div><dt>20-yr IRR</dt><dd><strong>14–18%</strong></dd></div>
+          <div><dt>Direct jobs</dt><dd><strong>62 FTE</strong> (+155 indirect/induced)</dd></div>
+          <div><dt>Site</dt><dd>PRIDCO Ponce industrial zone, FTZ 163 (lead); Guayama fallback</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================== PR CONTEXT ============================== -->
+  <section id="pr-context" class="section" data-section="pr-context">
+    <div class="container">
+      <h2>Why Puerto Rico, and why now</h2>
+      <p class="lede small">
+        The island's recycling rate is one of the lowest in the U.S. and Caribbean, and the
+        economics of the Jones&nbsp;Act make shipping cans off-island uniquely expensive.
+        Closing the loop is technically possible, financially viable at scale, and overdue.
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <h3>The problem</h3>
+          <p>
+            PR generated an estimated <strong>10,000–17,000&nbsp;t/yr of UBC</strong>
+            (CIA World Factbook beverage consumption × 33% can share; cross-checked against
+            Abralatas per-capita figures and EcoEléctrica MRF intake). Of that,
+            only <strong>~1.8%</strong> is recovered domestically — the rest is baled and
+            shipped under the Jones&nbsp;Act to mainland smelters.
+          </p>
+        </article>
+        <article class="card">
+          <h3>The opportunity</h3>
+          <p>
+            A 5¢ deposit-return scheme — modeled on NSW&nbsp;Australia, Michigan, and
+            Connecticut — would lift recovery to <strong>~75% by Year&nbsp;5</strong>, on
+            par with Germany and Belgium. Add a 95% energy savings vs. primary
+            production, and the climate case is independent of the financial case.
+          </p>
+        </article>
+        <article class="card">
+          <h3>The constraint</h3>
+          <p>
+            PR's grid is fragile (Maria, Fiona, 2025 LUMA emergency-rate filing),
+            industrial electricity is <strong>2.5× the U.S. average</strong>, and the
+            island sits in a Cat&nbsp;5 hurricane zone. Any island-scale plant has
+            to be FORTIFIED, on-site generation-equipped, and insured to a level
+            mainland plants don't have to think about.
+          </p>
+        </article>
+      </div>
+
+      <div class="callout-warn">
+        <h3>Honest caveats</h3>
+        <ul>
+          <li>PR has no aluminum smelter today. Engineering workforce has to be recruited or trained. We assume a 12-month ramp for direct hires and a 3-year build-out for supervisory roles.</li>
+          <li>Cans are imported pre-made (no can-sheet plant on-island). Closing the loop on cans themselves is out of scope; this proposal handles UBC → ingot/sow, which is the highest-value stage of the recycling chain.</li>
+          <li>Carbon-credit revenue is methodology-eligible (VCS VM0017/VM0039) but volume-constrained in voluntary markets. We model $15–25/tCO₂e, not the speculative $100+ figures that have circulated.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== MAP ============================== -->
+  <section id="map" class="section section-light" data-section="map">
+    <div class="container">
+      <h2>Where it goes</h2>
+      <p class="lede small">
+        Site shortlist narrowed to two PRIDCO industrial zones on the south coast: Ponce
+        (lead, near Port of the Americas, IFCO 2017 anchor, FTZ 163) and Guayama (fallback,
+        near Peñuelas LNG terminal and EcoEléctrica MRF). The drop-off network covers all
+        78 municipalities; the map below shows confirmed and in-discussion sites plus the
+        25 highest-population municipalities and 8 PRIDCO industrial zones.
+      </p>
+      <div class="map-controls">
+        <label for="map-search" class="visually-hidden">Search map</label>
+        <input id="map-search" type="search" placeholder="Filter by municipality or operator…" aria-controls="pr-map">
+        <fieldset class="layer-toggles" aria-label="Map layers">
+          <legend class="visually-hidden">Map layers</legend>
+          <label><input type="checkbox" data-layer="dropOff" checked> Drop-off points</label>
+          <label><input type="checkbox" data-layer="industrial" checked> Industrial zones</label>
+          <label><input type="checkbox" data-layer="municipalities" checked> Municipalities</label>
+        </fieldset>
+      </div>
+      <div id="pr-map" role="region" aria-label="Map of Puerto Rico with drop-off points, industrial zones, and municipalities" tabindex="0"></div>
+      <p class="map-meta">
+        Map data: 25 highest-population municipalities, 8 PRIDCO industrial zones, 14 drop-off points.
+        <span class="map-legend">
+          <span class="dot dot-cyan"></span> Drop-off
+          <span class="dot dot-amber"></span> Industrial zone
+          <span class="dot dot-ink"></span> Municipality
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== CASE STUDIES ============================== -->
+  <section id="case-studies" class="section" data-section="case-studies">
+    <div class="container">
+      <h2>How other jurisdictions do it</h2>
+      <p class="lede small">
+        Six jurisdictions, six different tools. None is a perfect template for PR, but together
+        they sketch the design space.
+      </p>
+
+      <div class="tabs" role="tablist" aria-label="Country case studies">
+        <div class="tablist" role="presentation">
+          <button role="tab" id="tab-brazil" aria-controls="panel-brazil" aria-selected="true" data-target="brazil" tabindex="0">Brazil</button>
+          <button role="tab" id="tab-japan" aria-controls="panel-japan" aria-selected="false" data-target="japan" tabindex="-1">Japan</button>
+          <button role="tab" id="tab-eu" aria-controls="panel-eu" aria-selected="false" data-target="eu" tabindex="-1">EU</button>
+          <button role="tab" id="tab-us" aria-controls="panel-us" aria-selected="false" data-target="us" tabindex="-1">United States</button>
+          <button role="tab" id="tab-australia" aria-controls="panel-australia" aria-selected="false" data-target="australia" tabindex="-1">Australia</button>
+          <button role="tab" id="tab-iceland" aria-controls="panel-iceland" aria-selected="false" data-target="iceland" tabindex="-1">Iceland</button>
+        </div>
+
+        <div class="tab-panels">
+          <div role="tabpanel" id="panel-brazil" aria-labelledby="tab-brazil" data-panel="brazil">
+            <p>Highest reported recovery rate in the world at <strong>&gt;95%</strong>, run on a producer-funded system called <em>Reverse Logistics</em> with municipal collection points. Abralatas runs the program. Takeaway for PR: producer stewardship + accessible drop-off beats deposit-only.</p>
+          </div>
+          <div role="tabpanel" id="panel-japan" aria-labelledby="tab-japan" data-panel="japan" hidden>
+            <p>Japan's <em>Containers and Packaging Recycling Law</em> (1995) pushes cost to producers and municipalities, with the Japan Aluminum Can Recycling Association coordinating collection. Takeaway for PR: legal framework matters more than consumer deposit.</p>
+          </div>
+          <div role="tabpanel" id="panel-eu" aria-labelledby="tab-eu" data-panel="eu" hidden>
+            <p>The new <em>Packaging and Packaging Waste Regulation</em> (PPWR, 2025) sets mandatory 25% recycled content in beverage cans by 2030, plus a separate Critical Raw Materials Act targeting aluminum. Takeaway for PR: export market will increasingly <em>require</em> recycled content.</p>
+          </div>
+          <div role="tabpanel" id="panel-us" aria-labelledby="tab-us" data-panel="us" hidden>
+            <p>Ten U.S. states have Container Recycling Laws (CRV) — Michigan, Connecticut, California, etc. Average recovery: ~70%. The Can Manufacturers Institute (CMI) runs parallel industry-funded programs in non-CRV states. Takeaway for PR: a state-level CRV-like scheme is the most-tested tool.</p>
+          </div>
+          <div role="tabpanel" id="panel-australia" aria-labelledby="tab-australia" data-panel="australia" hidden>
+            <p>NSW's Container Deposit Scheme (CDS) raised recovery to ~70% within two years. The 10¢ deposit is funded by a product stewardship scheme and underwritten by a network of return-point operators. Takeaway for PR: this is the most directly applicable model for an island.</p>
+          </div>
+          <div role="tabpanel" id="panel-iceland" aria-labelledby="tab-iceland" data-panel="iceland" hidden>
+            <p>Small-island, cold-climate, hydro-powered grid: Iceland is the closest analog to PR on scale, and <em>Endurvinnslan</em> operates a single national MRF. Takeaway for PR: at the right scale, a single plant plus a tight drop-off network can hit 80%+ recovery.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Reported can recovery rates</h3>
+      <p class="caption">Higher is better. PR is included for context — both current and target.</p>
+      <figure class="chart-figure">
+        <div id="country-chart" role="img" aria-label="Horizontal bar chart of reported can recovery rates by jurisdiction. Brazil leads at over 95 percent; Iceland and Germany near 80 percent; Australia, Japan, and EU at 70 to 75 percent; the United States average at 50 percent; Puerto Rico current at 1.8 percent; Puerto Rico target at 75 percent."></div>
+        <figcaption class="caption">Sources: Abralatas, JACRA, Eurostat, EPA State Measurement Program, Container Return Scheme NSW annual report 2024, Icelandic Recycling Fund.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== ENGINEERING ============================== -->
+  <section id="engineering" class="section section-light" data-section="engineering">
+    <div class="container">
+      <h2>What the plant looks like</h2>
+      <p class="lede small">
+        A single 15,000&nbsp;t/yr line, gas-fired (PR grid is ~95% fossil; gas dominates on
+        emissions and cost), inside an IBHS FORTIFIED&nbsp;Commercial steel building,
+        with on-site generation sized to ride through 4–8&nbsp;h of grid outage.
+      </p>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Receiving &amp; sorting</h3>
+          <p>4-bay receiving dock, 2× MSS optical-sort lines for UBC. Capacity: 3&nbsp;t/h feed. Vendor: Van Dyk / MSS.</p>
+        </article>
+        <article class="card">
+          <h3>De-coating</h3>
+          <p>Counterflow rotary drum, gas-fired, with CEBA&nbsp;CLEAN RTO afterburner for VOC destruction. Capacity: 3&nbsp;t/h. Vendor: CEBA / Presezzi.</p>
+        </article>
+        <article class="card">
+          <h3>Melting</h3>
+          <p>One <strong>Hertwich URTF-14</strong> gas-fired rotary tilting furnace, 14&nbsp;m³ charge, melt rate 1.5–8&nbsp;t/h. <em>Dual-source with StrikoWestofen</em> to limit delivery slip. Low-salt flux (0.2–0.5 salt factor).</p>
+        </article>
+        <article class="card">
+          <h3>Casting</h3>
+          <p>Wagstaff T-bar VDC casting line. Output: <strong>T-bar sow and P1020A ingot</strong> — global offtake-compatible.</p>
+        </article>
+        <article class="card">
+          <h3>Building &amp; resilience</h3>
+          <p>3,500&nbsp;m² FORTIFIED&nbsp;Commercial steel building. 2&nbsp;MW diesel gen + 1–2&nbsp;MWh BESS for ride-through. 1.5&nbsp;MW rooftop + carport solar optionality.</p>
+        </article>
+        <article class="card">
+          <h3>Permits</h3>
+          <p>JCA minor NSR air permit, DRNA NPDES-equivalent (PR water-quality certification), EPA Region 2 PSD not triggered (capacity below 50&nbsp;kt/yr threshold).</p>
+        </article>
+      </div>
+
+      <h3>Top engineering risks</h3>
+      <ol class="risk-list">
+        <li><strong>Permitting slip.</strong> Mitigation: pre-application meetings with DRNA and EPA Region 2, PRIDCO NEZ designation as a single point of contact.</li>
+        <li><strong>Grid fragility.</strong> Mitigation: on-site diesel + BESS sized for the medium scenario at 2&nbsp;MW / 1–2&nbsp;MWh minimum.</li>
+        <li><strong>Hurricane exposure.</strong> Mitigation: FORTIFIED Commercial shell, all process equipment anchored, salt storage indoors, dross pit covered.</li>
+        <li><strong>Molten aluminum + water.</strong> Mitigation: explicit dry-drainage, exclusion zone, quench pit discipline. NIOSH 1975 reference applies.</li>
+        <li><strong>Vendor delivery slip.</strong> Mitigation: dual-source furnace (Hertwich + StrikoWestofen); long-lead items (Wagstaff casting line) ordered Year 0.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================== BUDGET ============================== -->
+  <section id="budget" class="section" data-section="budget">
+    <div class="container">
+      <h2>The numbers, in full</h2>
+      <p class="lede small">
+        Three facility-size scenarios, line-by-line. The medium (15,000&nbsp;t/yr) is the
+        lead case; small and large are kept for reference. All values are 2026 USD and
+        carry a ±25% planning range. Every line has a sourcing method documented in
+        <code>assets/budget-data.json</code>.
+      </p>
+
+      <div class="grid-2">
+        <figure class="chart-figure">
+          <h3>CAPEX by line — medium (lead)</h3>
+          <div id="budget-donut" role="img" aria-label="Donut chart of CAPEX allocation for the medium scenario. Largest slice: equipment and EPC installation; followed by building; then contingency."></div>
+          <ul id="budget-donut-legend" class="legend" aria-label="Donut chart legend"></ul>
+        </figure>
+        <figure class="chart-figure">
+          <h3>CAPEX $ per tonne installed</h3>
+          <div id="budget-capex-bar" role="img" aria-label="Horizontal bar chart of CAPEX per tonne installed for each scenario. Small is highest per tonne, large is lowest."></div>
+          <ul id="budget-capex-legend" class="legend" aria-label="CAPEX bar chart legend"></ul>
+        </figure>
+      </div>
+
+      <h3>OPEX breakdown — medium (lead)</h3>
+      <div class="opex-table-wrap">
+        <table id="budget-opex-table" class="data-table" aria-label="Medium scenario OPEX breakdown by category">
+          <caption class="caption">OPEX total: $12.3 M/yr ($820/t processed). Year-3 steady state, 2026 USD.</caption>
+          <thead>
+            <tr><th scope="col">Category</th><th scope="col">$/yr</th><th scope="col">$/t</th><th scope="col">% of OPEX</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>Revenue vs. OPEX (Year 1 → Year 5)</h3>
+      <figure class="chart-figure">
+        <div id="budget-revenue-line" role="img" aria-label="Line chart of revenue versus operating expenses over five years. Revenue grows from Year 1 to Year 3 steady state, OPEX stays roughly flat."></div>
+        <figcaption class="caption">Steady state from Year 3, after ramp and commissioning. Hedged revenue: 60% of forward sales 24&nbsp;mo out.</figcaption>
+      </figure>
+
+      <h3>Three scenarios, side by side</h3>
+      <div class="scenario-table-wrap">
+        <table id="budget-scenarios" class="data-table scenario-table" aria-label="Three-scenario financial comparison">
+          <thead>
+            <tr>
+              <th scope="col">Metric</th>
+              <th scope="col">Small (5,000&nbsp;t/yr)</th>
+              <th scope="col"><strong>Medium · lead (15,000&nbsp;t/yr)</strong></th>
+              <th scope="col">Large (40,000&nbsp;t/yr)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="callout-info">
+        <h3>Sanity check vs. industry benchmarks</h3>
+        <p>
+          Industry ranges for greenfield UBC-to-ingot plants are <strong>~$2,000–2,500/t</strong> for
+          CAPEX intensity and <strong>~$550–700/t</strong> for OPEX. Medium here is
+          <strong>+39%</strong> on CAPEX/t and <strong>+17%</strong> on OPEX/t — driven by
+          PR's industrial electricity premium (2.5× U.S. avg), FORTIFIED construction (+20–25%
+          over baseline), insurance (2.5% of CAPEX vs. 0.5% mainland), and Jones&nbsp;Act
+          shipping penalties. A 1.5&nbsp;MW solar + 2&nbsp;MWh BESS add-on would close
+          most of the OPEX gap, putting medium at ~$720/t (within industry band).
+        </p>
+        <p>
+          The plant is still financially viable because the revenue side is anchored
+          to a 15–20% UBC discount on LME (~$2,000/t realized) and a 5¢ DRS that
+          solves feedstock economics in a way mainland plants don't have.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FUNDING ============================== -->
+  <section id="funding" class="section section-light" data-section="funding">
+    <div class="container">
+      <h2>How it gets paid for</h2>
+      <p class="lede small">
+        Seven sources, blended cost of capital ~4.5% pre-tax. DRS-secured revenue bond is
+        the largest single line and the highest-risk dependency.
+      </p>
+
+      <div class="opex-table-wrap">
+        <table id="funding-table" class="data-table" aria-label="Funding sources for the medium scenario">
+          <caption class="caption">Target: $52.0 M = 100% of medium CAPEX (excluding 10% contingency, which is held in reserve).</caption>
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">%</th>
+              <th scope="col">$</th>
+              <th scope="col">Status</th>
+              <th scope="col">Risk</th>
+              <th scope="col">Note</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="callout-info">
+        <h3>IRA credits in plain English</h3>
+        <p>
+          Two credits make this deal pencil: <strong>§48 ITC</strong> (30% of solar+BESS
+          CAPEX, transferred at 90% face value) and <strong>§45X</strong> (production
+          credit on secondary aluminum, $580/t nominal, 10-yr duration, transferable).
+          Final IRS regulations published October 2024 cleared up the eligibility
+          questions; tax counsel needs to confirm <em>sow</em> vs. <em>P1020A</em>
+          grade language for §45X. Nominal §45X value over 10 years: $87M;
+          present value at 8%: ~$61M.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== TIMELINE ============================== -->
+  <section id="timeline" class="section" data-section="timeline">
+    <div class="container">
+      <h2>Five-year build, in phases</h2>
+      <p class="lede small">
+        Site, permits, and procurement happen in Year 0–1. Construction and commissioning
+        Year 1–2. Full ramp Year 2–3. Steady state from Year 3.
+      </p>
+      <ol id="timeline-list" class="timeline"></ol>
+    </div>
+  </section>
+
+  <!-- ============================== RISKS ============================== -->
+  <section id="risks" class="section section-light" data-section="risks">
+    <div class="container">
+      <h2>What could go wrong (and what we do about it)</h2>
+      <p class="lede small">Ranked roughly by impact on the deal.</p>
+      <ol class="risk-list big">
+        <li>
+          <strong>DRS legislation stalls.</strong> Mitigation: anchor EPR-style partnerships
+          with Coca-Cola, Ball, Novelis, Crown as a backstop feedstock-supply contract.
+          Modeled as a Phase&nbsp;1 fallback in <code>funding-model.md §2.5</code>.
+        </li>
+        <li>
+          <strong>LME aluminum price drop of 30%+.</strong> Mitigation: 60% of forward
+          sales hedged 24&nbsp;mo out via LME 3-mo + Argus UBC basis. Unhedged
+          exposure would push payback from 3.0 → 5.5&nbsp;yr; hedged: 3.0 → 4.0&nbsp;yr.
+        </li>
+        <li>
+          <strong>Hurricane damages plant.</strong> Mitigation: FORTIFIED Commercial
+          shell, on-site generation, 2.5% of CAPEX insurance line (vs. 0.5% mainland).
+          Plan for a 2-week offline period per major storm; revenue impact ~$1.3&nbsp;M.
+        </li>
+        <li>
+          <strong>Permit delay &gt; 12 months.</strong> Mitigation: pre-application
+          meetings, NEZ designation, dual-track minor NSR + Part 71. Worst case: slip
+          first dividend by one year (still inside investment horizon).
+        </li>
+        <li>
+          <strong>Vendor delivery slip.</strong> Mitigation: dual-source furnace
+          (Hertwich + StrikoWestofen); long-lead casting line (Wagstaff) ordered
+          Year 0; EPC contract carries liquidated-damages clause.
+        </li>
+        <li>
+          <strong>IRA tax-credit eligibility narrowing.</strong> Mitigation: §48 ITC
+          and §45X both have multi-year in-service windows; if administration
+          changes, transferability is already locked in contracts at 90% face.
+        </li>
+        <li>
+          <strong>Workforce shortage (industrial electricians, instrumentation).</strong>
+          Mitigation: 12-month pre-hire, partnership with UPR-Mayagüez, AEPPR apprenticeship.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================== CONCLUSION / ASKS ============================== -->
+  <section id="conclusion" class="section section-light" data-section="conclusion">
+    <div class="container">
+      <h2>What we need to build it</h2>
+      <p class="lede small">
+        The project is fundable, buildable, and operable. The bottleneck is political will, not engineering or capital.
+        Three asks, in order of urgency.
+      </p>
+
+      <div class="grid-3">
+        <article class="card ask-card ask-1">
+          <p class="ask-step">Ask 1 · Foundation</p>
+          <h3>Commit to a 5¢ deposit-return scheme</h3>
+          <p>
+            A 5¢ DRS is the single policy intervention that makes the plant pencil. Without it, recovery stalls at &lt;5%
+            and the plant has no feedstock. We need a PR Legislative Assembly bill drafted before session 2027, modeled on
+            NSW's Container Deposit Scheme (Australia) and Michigan's Bottle Bill. Abralatas data shows producer-funded
+            stewardship beats deposit-only by 20+ percentage points on recovery — we propose the hybrid.
+          </p>
+          <p class="muted small">
+            Target: <strong>law enacted by Q4 2027</strong>. Plant is not financeable without it.
+          </p>
+        </article>
+
+        <article class="card ask-card ask-2">
+          <p class="ask-step">Ask 2 · Land &amp; permits</p>
+          <h3>Designate PRIDCO Ponce as the host site</h3>
+          <p>
+            A single point of contact at PRIDCO plus a pre-application MOU with EPA Region 2 / DRNA / JCA. NEZ tax
+            designation (Act 60-2019) provides 90–100% property-tax exemption, 4% corporate income tax, and
+            municipal-tax negotiation room. Caguas, Ponce, and Bayamón are the most consistent 100%-grantors.
+          </p>
+          <p class="muted small">
+            Target: <strong>land MOU signed Q2 2027</strong>, full permit package Q2 2028, groundbreaking Q3 2028.
+          </p>
+        </article>
+
+        <article class="card ask-card ask-3">
+          <p class="ask-step">Ask 3 · Capital</p>
+          <h3>Back a $52M green bond / IRA-anchored financing stack</h3>
+          <p>
+            Seven-source funding stack, blended cost of capital ~4.5% pre-tax. Largest single line: DRS-secured revenue
+            bond (~$30M). Second: IRA §45X + §48 ITC monetization (~$15M nominal, ~$11M PV). Equity sponsor
+            target: ~$10M from a PR-anchored impact fund or pension co-invest. Grant ask: $5–8M from the
+            EPA Solid Waste Infrastructure for Recycling (SWIFR) program, NOAA Marine Debris, or USDA Rural Development.
+          </p>
+          <p class="muted small">
+            Target: <strong>financial close Q4 2027</strong>, contingent on Ask 1.
+          </p>
+        </article>
+      </div>
+
+      <div class="callout-info callout-strong">
+        <h3>The economic case in one paragraph</h3>
+        <p>
+          Every year PR exports roughly 17,000 tonnes of UBC and imports back the resulting cans. The current system
+          leaks capital, jobs, energy, and material off the island. Closing the loop keeps an estimated
+          <strong>$32M/yr in revenue</strong> on-island, creates <strong>217 direct + indirect jobs</strong>,
+          avoids <strong>~140,000 tCO₂e/yr</strong> vs. virgin primary aluminum, and reduces PR's trade deficit by
+          roughly the same dollar amount as the plant's revenue. The 5¢ DRS is the on-ramp; the plant is the
+          on-island value capture.
+        </p>
+      </div>
+
+      <h3>Who needs to say yes</h3>
+      <ol class="stakeholder-list">
+        <li><strong>PR Legislative Assembly</strong> — DRS bill. 26 Senate + 51 House districts. Bill champions needed in both chambers; environment and economic-development committees are the natural leads.</li>
+        <li><strong>Office of the Governor</strong> — executive action on the PRIDCO land MOU, NEZ designation, executive order on government-fleet can-collection.</li>
+        <li><strong>PRIDCO</strong> — site lease, FTZ sub-zone designation, infrastructure extension (power, water, road).</li>
+        <li><strong>EPA Region 2</strong> — Part 71 air permit (minor NSR, capacity below 50 kt/yr PSD threshold).</li>
+        <li><strong>DRNA</strong> — NPDES-equivalent water-quality certification, solid-waste handling permit.</li>
+        <li><strong>JCA</strong> — minor NSR air permit (companion to EPA Part 71).</li>
+        <li><strong>PREPA / LUMA</strong> — interconnection agreement, tariff class, demand-response program opt-in.</li>
+        <li><strong>Producer stewardship organizations</strong> — Abralatas-style program design, EPR funding, stewardship fee collection.</li>
+        <li><strong>Municipal governments (all 78)</strong> — host-site compensation (Act 60 NEZ), bring-center siting, RVM placement in public spaces.</li>
+      </ol>
+
+      <h3>How to get in touch</h3>
+      <p>
+        This is a working proposal, version 1.0, intentionally open. The data, the sources, and the code are all
+        public. To comment, contribute, or signal interest: open an issue on the
+        <a href="https://github.com/ChrisDesarden/pr-aluminum-recycling">GitHub repo</a>,
+        or email <span class="noreply">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span>.
+        For a 1-page summary suitable for a legislative packet, see
+        <a href="docs/recircular-onepage.pdf" download>docs/recircular-onepage.pdf</a>
+        (generated 2026-07-03 from this proposal).
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== SOURCES ============================== -->
+  <section id="sources" class="section" data-section="sources">
+    <div class="container">
+      <h2>Sources &amp; citations</h2>
+      <p class="lede small">
+        Every claim in this document links to a public source. The full bibliography
+        lives in <code>research/*.md</code>; the abbreviated list below covers the
+        most-cited references.
+      </p>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Puerto Rico context</h3>
+          <ul class="src-list">
+            <li>CIA World Factbook — Puerto Rico (population, GDP, energy mix)</li>
+            <li>DRNA — Integrated Solid Waste Management Plan 2022</li>
+            <li>PRIDCO — Industrial parks directory 2024</li>
+            <li>EPA Region 2 — Clean Air Permitting in Puerto Rico</li>
+            <li>LUMA / PREB — Current industrial electricity tariffs 2024</li>
+            <li>EcoEléctrica MRF — Annual intake report 2023</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Engineering &amp; technology</h3>
+          <ul class="src-list">
+            <li>SMS Group — Universal Rotary Tilting Furnaces (Hertwich URTF family)</li>
+            <li>CEBA S.p.A. — Decoating system + CEBA CLEAN RTO</li>
+            <li>Wagstaff — T-bar VDC casting lines</li>
+            <li>Aluminum Association EPD — Secondary Ingot (2022)</li>
+            <li>IBHS — FORTIFIED Commercial Wind Standard (2022)</li>
+            <li>US EPA AP-42 Ch. 12.8 — Secondary Aluminum Operations</li>
+            <li>NIOSH/CDC 1975 — Molten Aluminum-Water Explosion Mechanism</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Markets &amp; finance</h3>
+          <ul class="src-list">
+            <li>LME — Aluminium UBC Scrap US (Argus) contract specifications</li>
+            <li>Westmetall — LME historical price data 2024–2025</li>
+            <li>Abralatas — Brazil UBC market commentary Aug 2025</li>
+            <li>Federal Register — IRA §45X and §48 final regulations (Oct 2024)</li>
+            <li>IMPLAN — PR 2023 Type II employment multipliers (NAICS 562)</li>
+            <li>U.S. EIA — Average Price of Electricity to Industrial Customers 2024</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>International case studies</h3>
+          <ul class="src-list">
+            <li>Abralatas — Brazil reverse-logistics program (95% recovery)</li>
+            <li>JACRA — Japan Aluminum Can Recycling Association</li>
+            <li>EU — Packaging and Packaging Waste Regulation (PPWR) 2025/40</li>
+            <li>EU — Critical Raw Materials Act 2024</li>
+            <li>Container Return Scheme NSW — Annual Report 2024</li>
+            <li>Endurvinnslan — Iceland national MRF</li>
+            <li>CMI / CRI — U.S. CRV-state program data</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="muted">
+        Full annotated bibliography with direct links lives in
+        <code>research/country-cases.md</code>, <code>research/engineering-tech.md</code>,
+        and <code>research/funding-model.md</code>.
+        Source code: <a href="https://github.com/ChrisDesarden/pr-aluminum-recycling">github.com/ChrisDesarden/pr-aluminum-recycling</a>.
+        This proposal is an open document; PR, please use it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>
+        <strong>Recircular Puerto Rico</strong> — a working proposal, v1.0, 2026.
+        Open data, open code, no marketing-speak. Made on a CachyOS box in Puerto&nbsp;Rico.
+      </p>
+      <p class="muted small">
+        Project lead: <span class="noreply">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span><br>
+        Research &amp; writing assistance: Iris (autonomous AI assistant) · Built with vanilla HTML, CSS, ES2020+, D3, Leaflet.<br>
+        Data files: <code>site/assets/*.json</code> · Research files: <code>research/*.md</code>
+      </p>
+      <p class="muted small">
+        This document is licensed
+        <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY 4.0</a>.
+        Cite it. Improve it. Show your work.
+      </p>
+    </div>
+  </footer>
+  </main>
+
+  <!-- ============================== SCRIPTS ============================== -->
+  <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/d3.min.js" crossorigin=""></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

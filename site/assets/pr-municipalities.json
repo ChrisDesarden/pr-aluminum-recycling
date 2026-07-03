@@ -1,0 +1,31 @@
+{
+  "source": "US Census Bureau 2020 + DSNAP/JCA population estimates",
+  "note": "Centroids are city/town halls (approximate), not geographic centroids",
+  "municipalities": [
+    {"name": "San Juan", "pop": 318441, "lat": 18.4655, "lng": -66.1057, "region": "metro"},
+    {"name": "Bayamón", "pop": 185399, "lat": 18.3984, "lng": -66.1553, "region": "metro"},
+    {"name": "Carolina", "pop": 146984, "lat": 18.3806, "lng": -65.9594, "region": "metro"},
+    {"name": "Ponce", "pop": 132251, "lat": 18.0111, "lng": -66.6141, "region": "south"},
+    {"name": "Caguas", "pop": 127244, "lat": 18.2388, "lng": -66.0350, "region": "east"},
+    {"name": "Guaynabo", "pop": 83910, "lat": 18.3587, "lng": -66.1100, "region": "metro"},
+    {"name": "Arecibo", "pop": 87284, "lat": 18.4725, "lng": -66.7157, "region": "north"},
+    {"name": "Mayagüez", "pop": 71976, "lat": 18.2013, "lng": -67.1451, "region": "west"},
+    {"name": "Toa Baja", "pop": 74955, "lat": 18.4436, "lng": -66.2546, "region": "metro"},
+    {"name": "Trujillo Alto", "pop": 63674, "lat": 18.3547, "lng": -66.0100, "region": "metro"},
+    {"name": "Humacao", "pop": 50653, "lat": 18.1497, "lng": -65.8277, "region": "east"},
+    {"name": "Fajardo", "pop": 29907, "lat": 18.3258, "lng": -65.6538, "region": "east"},
+    {"name": "Cayey", "pop": 42467, "lat": 18.1119, "lng": -66.1660, "region": "central"},
+    {"name": "Guayama", "pop": 36242, "lat": 17.9841, "lng": -66.1135, "region": "south"},
+    {"name": "Yauco", "pop": 33570, "lat": 18.0344, "lng": -66.8495, "region": "south"},
+    {"name": "Cabo Rojo", "pop": 47517, "lat": 18.0838, "lng": -67.1451, "region": "west"},
+    {"name": "Isabela", "pop": 40606, "lat": 18.4991, "lng": -67.0240, "region": "west"},
+    {"name": "Aguadilla", "pop": 54089, "lat": 18.4275, "lng": -67.1541, "region": "west"},
+    {"name": "Manatí", "pop": 39492, "lat": 18.4291, "lng": -66.4907, "region": "north"},
+    {"name": "Vega Baja", "pop": 53044, "lat": 18.4462, "lng": -66.3980, "region": "north"},
+    {"name": "Río Grande", "pop": 47015, "lat": 18.3803, "lng": -65.8304, "region": "east"},
+    {"name": "Canóvanas", "pop": 43805, "lat": 18.3765, "lng": -65.9015, "region": "east"},
+    {"name": "Loíza", "pop": 24497, "lat": 18.4313, "lng": -65.8801, "region": "metro"},
+    {"name": "Vieques", "pop": 8386, "lat": 18.1247, "lng": -65.4401, "region": "island-municipio"},
+    {"name": "Culebra", "pop": 1714, "lat": 18.3167, "lng": -65.3000, "region": "island-municipio"}
+  ]
+}

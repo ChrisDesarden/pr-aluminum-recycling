@@ -1,0 +1,21 @@
+# Preview / audit scratch — never commit
+docs/preview-*.png
+site/preview-*.png
+site/preview.png
+audit/
+
+# Build / editor
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+
+# Node / Python (none used by the site, but just in case)
+node_modules/
+__pycache__/
+*.pyc

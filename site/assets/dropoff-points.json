@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "name": "Puerto Rico municipality candidates for drop-off point network",
+    "year": 2025,
+    "note": "Coordinates are approximate (municipal centroid). Drop-off point density target: 1 point per 4,000 residents for the first phase, ramping to 1 per 2,500."
+  },
+  "drop_off_points": [
+    { "name": "Walmart Supercenter Bayamón",        "type": "supermarket",  "operator": "Walmart Inc.",     "municipality": "Bayamón",    "lat": 18.3986, "lng": -66.1557, "status": "in-discussion", "tonnagePerMonthEst": 1.2 },
+    { "name": "Plaza Las Américas",                   "type": "mall",         "operator": "Plaza Las Américas", "municipality": "San Juan",  "lat": 18.4166, "lng": -66.0597, "status": "in-discussion", "tonnagePerMonthEst": 1.8 },
+    { "name": "Pueblo Supermarket Carolina",         "type": "supermarket",  "operator": "Pueblo Inc.",      "municipality": "Carolina",   "lat": 18.3806, "lng": -65.9594, "status": "in-discussion", "tonnagePerMonthEst": 0.9 },
+    { "name": "Costco Wholesale Bayamón",             "type": "supermarket",  "operator": "Costco Wholesale",  "municipality": "Bayamón",    "lat": 18.3800, "lng": -66.1650, "status": "in-discussion", "tonnagePerMonthEst": 1.5 },
+    { "name": "UPR Recinto Río Piedras",              "type": "school",       "operator": "UPR",               "municipality": "San Juan",   "lat": 18.4020, "lng": -66.0510, "status": "confirmed",     "tonnagePerMonthEst": 0.4 },
+    { "name": "Mayagüez Mall",                        "type": "mall",         "operator": "Inversión Total",   "municipality": "Mayagüez",   "lat": 18.2013, "lng": -67.1451, "status": "hypothetical",  "tonnagePerMonthEst": 0.8 },
+    { "name": "Ponce Town Center",                    "type": "mall",         "operator": "Inversión Total",   "municipality": "Ponce",      "lat": 18.0111, "lng": -66.6141, "status": "hypothetical",  "tonnagePerMonthEst": 0.7 },
+    { "name": "Caguas Municipal Recycling Center",    "type": "civic",        "operator": "Municipality of Caguas", "municipality": "Caguas", "lat": 18.2388, "lng": -66.0350, "status": "confirmed",     "tonnagePerMonthEst": 1.0 },
+    { "name": "Guayama Recycling Center",             "type": "civic",        "operator": "Municipality of Guayama", "municipality": "Guayama", "lat": 17.9841, "lng": -66.1135, "status": "in-discussion", "tonnagePerMonthEst": 0.6 },
+    { "name": "Vieques Ferry Terminal",               "type": "civic",        "operator": "PR DTOP",            "municipality": "Vieques",    "lat": 18.1247, "lng": -65.4401, "status": "hypothetical",  "tonnagePerMonthEst": 0.1 },
+    { "name": "Culebra Ferry Terminal",               "type": "civic",        "operator": "PR DTOP",            "municipality": "Culebra",    "lat": 18.3167, "lng": -65.3000, "status": "hypothetical",  "tonnagePerMonthEst": 0.05 },
+    { "name": "Arecibo Recycling Cooperative",        "type": "cooperative",  "operator": "Cooperativa Reciclaje del Norte", "municipality": "Arecibo", "lat": 18.4725, "lng": -66.7157, "status": "in-discussion", "tonnagePerMonthEst": 0.4 },
+    { "name": "Fajardo Marina",                       "type": "civic",        "operator": "PR DRNA",            "municipality": "Fajardo",    "lat": 18.3258, "lng": -65.6538, "status": "hypothetical",  "tonnagePerMonthEst": 0.3 },
+    { "name": "Humacao Plaza",                        "type": "civic",        "operator": "Municipality of Humacao", "municipality": "Humacao", "lat": 18.1497, "lng": -65.8277, "status": "hypothetical",  "tonnagePerMonthEst": 0.3 }
+  ]
+}

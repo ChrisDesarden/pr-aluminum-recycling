@@ -1,0 +1,14 @@
+{
+  "source": "PRIDCO (Puerto Rico Industrial Development Company) registered zones",
+  "note": "Approximate centroids; verify exact boundaries via PRIDCO before site selection",
+  "zones": [
+    {"name": "Carolina Industrial Zone", "lat": 18.3950, "lng": -65.9700, "size_ha": 80, "utilities": "full", "transit": "highway+port-15min"},
+    {"name": "Bayamón Industrial", "lat": 18.3870, "lng": -66.1600, "size_ha": 45, "utilities": "full", "transit": "highway"},
+    {"name": "Caguas Industrial Park", "lat": 18.2350, "lng": -66.0380, "size_ha": 90, "utilities": "full", "transit": "highway"},
+    {"name": "Ponce Industrial", "lat": 18.0030, "lng": -66.5900, "size_ha": 60, "utilities": "full", "transit": "highway+port-5min"},
+    {"name": "Mayagüez Industrial", "lat": 18.2100, "lng": -67.1400, "size_ha": 35, "utilities": "full", "transit": "port-10min"},
+    {"name": "Guayama Industrial", "lat": 17.9700, "lng": -66.1100, "size_ha": 120, "utilities": "full", "transit": "highway+port-20min"},
+    {"name": "Yabucoa Industrial", "lat": 18.0520, "lng": -65.8770, "size_ha": 50, "utilities": "partial", "transit": "port-15min"},
+    {"name": "Peñuelas Industrial", "lat": 18.0560, "lng": -66.7240, "size_ha": 25, "utilities": "partial", "transit": "highway"}
+  ]
+}

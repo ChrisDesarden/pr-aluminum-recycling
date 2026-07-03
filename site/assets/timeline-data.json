@@ -1,0 +1,73 @@
+{
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Phase 1 — Site, permits, procurement",
+      "span_en": "Year 0–1",
+      "span_es": "Año 0–1",
+      "milestones": [
+        "Site optioned in candidate industrial zone (Guayama or Ponce)",
+        "JCA pre-application meeting for air/water permits",
+        "EPC RFP issued to qualified vendors (StrikoWestofen, Hertwich, Danieli)",
+        "DRS bill introduced in PR Legislature with modeled 5¢ deposit",
+        "Anchor offtake LOI signed (Coca-Cola, Ball, or Novelis)",
+        "Bond financing closed (DRS-revenue-secured)"
+      ],
+      "risks": [
+        { "name": "Permit delay", "mitigation": "Early JCA scoping; pre-application NEZ designation" },
+        { "name": "Geotech surprises on industrial parcel", "mitigation": "Phase I ESA + 6 geotech borings before site commitment" }
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "Phase 2 — Construction and commissioning",
+      "span_en": "Year 1–2",
+      "span_es": "Año 1–2",
+      "milestones": [
+        "Furnace + de-coater delivered and cold-commissioned",
+        "Building shell and off-gas system online",
+        "38 FTE hired (PRIDCO-aligned; ~70% from PR workforce)",
+        "First heat (test melt) Year 2 Q1",
+        "Off-gas permit operational; first compliance test"
+      ],
+      "risks": [
+        { "name": "Equipment delivery slip", "mitigation": "Liquidated-damages clauses; 2-vendor shortlist for critical-path items" },
+        { "name": "Skilled-labor scarcity", "mitigation": "Partnership with UPR-Mayagüez + UAGM; 6-month paid apprenticeship pipeline" }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "Phase 3 — Ramp and DRS pilot",
+      "span_en": "Year 2–4",
+      "span_es": "Año 2–4",
+      "milestones": [
+        "70% nameplate throughput by Year 3",
+        "DRS pilot in 2 municipalities (San Juan + Caguas)",
+        "First coil shipment to offtaker",
+        "Carbon credit registration (Verra VCS or Gold Standard)",
+        "Local sheet/casting client pipeline (≥ 3 offtake agreements)"
+      ],
+      "risks": [
+        { "name": "Collection rate shortfall", "mitigation": "RVM density at 1 per 4,000 residents; DRS makes the system self-funding" },
+        { "name": "Aluminum price downturn", "mitigation": "LME hedge 60% of forward sales; offtake floors with floor prices" }
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "Phase 4 — Full ramp and regional integration",
+      "span_en": "Year 4–7",
+      "span_es": "Año 4–7",
+      "milestones": [
+        "100% nameplate throughput (15,000 t/yr) Year 5",
+        "Second furnace optionality study (path to 30,000 t/yr)",
+        "USVI + Dominican Republic cross-border offtake agreements",
+        "On-site solar+storage covers 30% of electricity",
+        "Full PR DRS rollout (78 municipalities)"
+      ],
+      "risks": [
+        { "name": "Hurricane disruption (Cat 4+ storm)", "mitigation": "FORTIFIED Gold building; 30-day feedstock stockpile; 14-day on-site generator fuel" },
+        { "name": "Energy price volatility (LUMA uncertainty)", "mitigation": "PPA structure; on-site 5 MW solar + 10 MWh BESS" }
+      ]
+    }
+  ]
+}
