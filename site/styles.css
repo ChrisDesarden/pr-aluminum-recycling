@@ -1202,6 +1202,18 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   padding-left: 1.1em;
 }
 .src-list li { margin-bottom: var(--sp-1); color: var(--c-fg-soft); }
+/* Wide card spans the full grid row, list reflows into 2–3 columns
+   so the international case-studies (17 sources) doesn't dwarf the
+   3 small cards above it. */
+.card-wide { grid-column: 1 / -1; }
+.card-wide .src-list {
+  column-count: 3;
+  column-gap: var(--sp-6);
+  padding-left: 1.1em;
+}
+.card-wide .src-list li { break-inside: avoid; }
+@media (max-width: 1100px) { .card-wide .src-list { column-count: 2; } }
+@media (max-width: 700px)  { .card-wide .src-list { column-count: 1; } }
 
 /* ============================== FOOTER ============================== */
 .site-footer {
