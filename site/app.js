@@ -41,7 +41,7 @@
     $$('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       const val = t(key, lang);
-      if (/\\u003c[^\\u003e]+\\u003e/.test(val)) {
+      if (typeof val === 'string') {
         el.innerHTML = val;
       } else {
         el.textContent = val;
@@ -62,6 +62,9 @@
       const val = t(key, lang);
       if (val != null) el.setAttribute('placeholder', val);
     });
+    renderScenariosTable(lang);
+    renderFundingTable(lang);
+    renderTimeline(lang);
     $$('.lang-btn').forEach(btn => {
       const active = btn.dataset.lang === lang;
       btn.classList.toggle('is-active', active);
@@ -187,7 +190,7 @@
     });
   };
   // ---------- country recovery-rate bar chart ----------
-  let countryChartInstance = null;
+  let budgetData = null, timelineData = null;
   const renderCountryChart = async (lang = currentLang) => {
     const host = $('#country-chart');
     if (!host || typeof d3 === 'undefined') return;
@@ -233,6 +236,160 @@
       .text(d => `${d.name}\n${fmt.pct1(d.rate)} (${d.mechanism})`);
   };
 
+  // ---------- budget renderer helpers ----------
+  const fundingStatusText = (source) => {
+    const s = source.toLowerCase();
+    if (s.includes('pridco')) return 'Asegurado';
+    if (s.includes('drs')) return 'Pendiente legislativo';
+    if (s.includes('anchor')) return 'LOI';
+    if (s.includes('eib') || s.includes('idb')) return 'En aplicación';
+    if (s.includes('swifr')) return 'Competitivo';
+    if (s.includes('45x') || s.includes('ira')) return 'IRS final 2024';
+    if (s.includes('carbon') || s.includes('verra') || s.includes('gold standard')) return 'Voluntario';
+    return '—';
+  };
+  const trunc140 = (str) => {
+    if (!str || str.length <= 140) return str || '';
+    return str.slice(0, 137).trimEnd() + '…';
+  };
+
+  const renderRevenueChart = (lang = currentLang) => {
+    if (!budgetData) return;
+    const host = $('#budget-revenue-line');
+    if (!host || typeof d3 === 'undefined') return;
+    host.innerHTML = '';
+    const rev = budgetData.revenueAnnual.medium.total;
+    const opex = budgetData.opexAnnual.medium.total;
+    const years = [1, 2, 3, 4, 5];
+    const rows = years.map(y => ({ year: y, revenue: rev, opex }));
+
+    const w = host.clientWidth || 500;
+    const h = 220, padL = 56, padR = 24, padT = 16, padB = 56;
+    const svg = d3.select(host).append('svg')
+      .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
+      .attr('aria-label', t('budget_revenue_aria', lang));
+    const x = d3.scaleLinear().domain([1, 5]).range([padL, w - padR]);
+    const y = d3.scaleLinear().domain([0, Math.max(rev, opex) * 1.1]).range([h - padB, padT]);
+
+    const line = (accessor) => d3.line()
+      .x(d => x(d.year))
+      .y(d => y(accessor(d)))
+      .curve(d3.curveMonotoneX);
+
+    svg.append('g').attr('transform', `translate(0, ${h - padB})`)
+      .call(d3.axisBottom(x).ticks(5).tickFormat(d => `${t('budget_year', lang) || 'Año'} ${d}`))
+      .call(g => g.selectAll('text').attr('font-size', 11).attr('fill', '#475467'))
+      .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+
+    svg.append('g').attr('transform', `translate(${padL}, 0)`)
+      .call(d3.axisLeft(y).ticks(5).tickFormat(d => '$' + (d/1e6).toFixed(0) + 'M'))
+      .call(g => g.selectAll('text').attr('font-size', 10).attr('fill', '#475467'))
+      .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+
+    const g = svg.append('g');
+    g.append('path').datum(rows).attr('fill','none').attr('stroke', PALETTE[0]).attr('stroke-width', 2.5)
+      .attr('d', line(d => d.revenue));
+    g.append('path').datum(rows).attr('fill','none').attr('stroke', PALETTE[5]).attr('stroke-width', 2.5).attr('stroke-dasharray','6,4')
+      .attr('d', line(d => d.opex));
+
+    // dots
+    g.selectAll('circle.rev').data(rows).join('circle').attr('class','rev')
+      .attr('cx', d => x(d.year)).attr('cy', d => y(d.revenue))
+      .attr('r', 3.5).attr('fill', PALETTE[0]);
+    g.selectAll('circle.op').data(rows).join('circle').attr('class','op')
+      .attr('cx', d => x(d.year)).attr('cy', d => y(d.opex))
+      .attr('r', 3.5).attr('fill', PALETTE[5]);
+
+    // legend
+    const legend = svg.append('g').attr('transform', `translate(${padL + 8}, ${padT})`);
+    const legItems = [
+      { label: 'Ingresos', color: PALETTE[0] },
+      { label: 'OPEX', color: PALETTE[5], dash: '6,4' },
+    ];
+    legItems.forEach((item, i) => {
+      const lx = i * 90;
+      legend.append('line').attr('x1', lx).attr('x2', lx + 18).attr('y1', 0).attr('y2', 0)
+        .attr('stroke', item.color).attr('stroke-width', 2.5).attr('stroke-dasharray', item.dash || 'none');
+      legend.append('text').attr('x', lx + 24).attr('y', 4)
+        .attr('font-size', 11).attr('fill', '#1d2939').text(item.label);
+    });
+  };
+
+  const renderScenariosTable = (lang = currentLang) => {
+    if (!budgetData) return;
+    const host = $('#budget-scenarios');
+    if (!host) return;
+    const scenarios = ['small', 'medium', 'large'];
+    const metricRow = (key, label, vals) => {
+      return `<tr><th scope="row">${label}</th>` +
+        vals.map(v => `<td class="num">${v}</td>`).join('') + '</tr>';
+    };
+    const capex = s => fmt.usd0.format(budgetData.capex[s].total);
+    const opex = s => fmt.usd0.format(budgetData.opexAnnual[s].total);
+    const rev = s => {
+      // budget-data.json only has revenueAnnual.medium (modeled in detail);
+      // scale small/large by capacity ratio. Mark estimated rows.
+      const cap = s === 'small' ? 5000 : (s === 'medium' ? 15000 : 40000);
+      const leadCap = budgetData.scenario_lead_capacity_tonnes_yr || 15000;
+      const r = budgetData.revenueAnnual[s] || budgetData.revenueAnnual.medium;
+      const total = r.total * (cap / leadCap);
+      return fmt.usd0.format(total);
+    };
+    const payback = s => {
+      const m = budgetData.key_metrics[s] || budgetData.key_metrics.medium;
+      return (m.payback_years ?? budgetData.key_metrics.medium.payback_years).toFixed(1);
+    };
+    const irr = s => (budgetData.key_metrics[s] || budgetData.key_metrics.medium).irr_20y || budgetData.key_metrics.medium.irr_20y;
+    const jobs = s => (budgetData.key_metrics[s] || budgetData.key_metrics.medium).direct_fte || budgetData.key_metrics.medium.direct_fte;
+
+    host.querySelector('tbody').innerHTML = [
+      metricRow('capex', 'CAPEX total', scenarios.map(capex)),
+      metricRow('opex', 'OPEX / año', scenarios.map(opex)),
+      metricRow('revenue', 'Ingresos / año (bruto + auxiliar)', scenarios.map(rev)),
+      metricRow('payback', 'Payback (años)', scenarios.map(payback)),
+      metricRow('irr', 'IRR 20 años', scenarios.map(irr)),
+      metricRow('jobs', 'Empleos (FTE directos)', scenarios.map(jobs)),
+    ].join('');
+  };
+
+  const renderFundingTable = (lang = currentLang) => {
+    if (!budgetData) return;
+    const host = $('#funding-table');
+    if (!host) return;
+    const rows = budgetData.fundingSources.map(f => {
+      const status = fundingStatusText(f.source);
+      const risk = (f.confidence || f.sourcing_risk || 'MEDIUM').toUpperCase();
+      const note = trunc140(f.note);
+      return `<tr>
+        <th scope="row">${f.source}</th>
+        <td class="num">${(f.share * 100).toFixed(0)}%</td>
+        <td class="num">$${(f.amount / 1e6).toFixed(1)} M</td>
+        <td>${status}</td>
+        <td>${risk}</td>
+        <td class="note">${note}</td>
+      </tr>`;
+    }).join('');
+    host.querySelector('tbody').innerHTML = rows;
+  };
+
+  const renderTimeline = (lang = currentLang) => {
+    if (!timelineData) return;
+    const host = $('#timeline-list');
+    if (!host) return;
+    host.innerHTML = timelineData.phases.map((p, i) => {
+      const span = lang === 'en' ? p.span_en : p.span_es;
+      return `<li class="timeline-item" id="${p.id}">
+        <div class="timeline-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</div>
+        <div class="timeline-card">
+          <h3>${p.title}</h3>
+          <p class="timeline-span">${span}</p>
+          <ul>${p.milestones.map(m => `<li>${m}</li>`).join('')}</ul>
+        </div>
+      </li>`;
+    }).join('');
+    host.querySelectorAll('.timeline-item').forEach(el => el.classList.add('is-visible'));
+  };
+
   // ---------- budget charts ----------
   const initBudgetCharts = async () => {
     if (typeof d3 === 'undefined') return;
@@ -241,6 +398,7 @@
       const res = await fetch('assets/budget-data.json');
       data = await res.json();
     } catch (e) { return; }
+    budgetData = data;
     const lead = data.scenario_lead || 'medium';
     const capex = data.capex[lead];
     const opex  = data.opexAnnual[lead];
@@ -290,12 +448,12 @@
       const scenarios = data.scenarios;
       const scenarioCapex = scenarios.map(s => ({ id: s, ...data.capex[s] }));
       const w = bar.clientWidth || 600;
-      const h = 280, padL = 130, padR = 30, padT = 16, padB = 60;
+      const h = 320, padL = 130, padR = 30, padT = 24, padB = 60;
       const svg = d3.select(bar).append('svg')
         .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
         .attr('aria-label','CAPEX by scenario, stacked by category');
       const x = d3.scaleBand().domain(scenarios).range([padL, w - padR]).padding(0.3);
-      const yMax = d3.max(scenarioCapex, d => d.total) * 1.05;
+      const yMax = d3.max(scenarioCapex, d => d.total) * 1.18;
       const y = d3.scaleLinear().domain([0, yMax]).range([h - padB, padT]);
       // Use the medium scenario's line items as the canonical list (only scenario with full breakdown)
       const medium = scenarioCapex.find(s => s.id === data.scenario_lead || s.id === 'medium') || scenarioCapex[0];
@@ -335,8 +493,11 @@
         .attr('width', d => d.width)
         .append('title').text(d => `${d.key}\n${fmt.usd0.format(d.amount)}`);
       // X axis
+      const xLabels = { small: t('budget_scenarios_small_short', currentLang) || (currentLang === 'en' ? 'Small' : 'Pequeño'),
+                        medium: t('budget_scenarios_medium_short', currentLang) || (currentLang === 'en' ? 'Medium' : 'Mediano'),
+                        large: t('budget_scenarios_large_short', currentLang) || (currentLang === 'en' ? 'Large' : 'Grande') };
       svg.append('g').attr('transform', `translate(0, ${h - padB})`)
-        .call(d3.axisBottom(x))
+        .call(d3.axisBottom(x).tickFormat(id => xLabels[id] || id))
         .call(g => g.selectAll('text').attr('font-size', 12).attr('fill', '#1d2939'))
         .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
       // Y axis
@@ -381,43 +542,8 @@
     // ----- Revenue line/bar -----
     const rline = $('#budget-revenue-line');
     if (rline) {
-      const w = rline.clientWidth || 500, h = 220, padL = 56, padR = 16, padT = 16, padB = 56;
-      const svg = d3.select(rline).append('svg')
-        .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
-        .attr('aria-label', `Annual revenue composition (${lead} scenario)`);
-      const streams = [
-        { name: 'Aluminum ingot / sow', amount: 28500000, color: PALETTE[0] },
-        { name: 'EPR / Closed-Loop',     amount: 1500000,  color: PALETTE[1] },
-        { name: 'Tip fees',              amount: 900000,   color: PALETTE[2] },
-        { name: 'Government TIP-style',  amount: 500000,   color: PALETTE[3] },
-        { name: 'Carbon credits',        amount: 351000,   color: PALETTE[4] },
-        { name: 'Dross sale',            amount: 270000,   color: PALETTE[5] },
-      ];
-      const y = d3.scaleLinear().domain([0, 30000000]).range([h - padB, padT]);
-      const x = d3.scaleBand().domain(streams.map(s => s.name)).range([padL, w - padR]).padding(0.25);
-      svg.append('g').selectAll('rect').data(streams).join('rect')
-        .attr('x', d => x(d.name)).attr('y', d => y(d.amount))
-        .attr('width', x.bandwidth())
-        .attr('height', d => h - padB - y(d.amount))
-        .attr('fill', d => d.color).attr('rx', 3)
-        .append('title').text(d => `${d.name}\n${fmt.usd0.format(d.amount)}`);
-      svg.append('g').selectAll('text.val').data(streams).join('text')
-        .attr('class','val')
-        .attr('x', d => x(d.name) + x.bandwidth()/2)
-        .attr('y', d => y(d.amount) - 6)
-        .attr('text-anchor','middle')
-        .attr('font-size', 10).attr('font-weight','600').attr('fill', '#1d2939')
-        .text(d => fmt.usd0.format(d.amount));
-      svg.append('g').attr('transform', `translate(0, ${h - padB})`)
-        .call(d3.axisBottom(x))
-        .call(g => g.selectAll('text')
-          .attr('font-size', 10).attr('fill', '#475467')
-          .attr('transform', 'rotate(-22)').attr('text-anchor','end'))
-        .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
-      svg.append('g').attr('transform', `translate(${padL}, 0)`)
-        .call(d3.axisLeft(y).ticks(4).tickFormat(d => '$' + (d/1e6).toFixed(0) + 'M'))
-        .call(g => g.selectAll('text').attr('font-size', 10).attr('fill', '#475467'))
-        .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+      rline.innerHTML = '';
+      renderRevenueChart();
     }
 
     // ----- Scenario comparison table -----
@@ -434,75 +560,14 @@
         fte: data.key_metrics[s].direct_fte,
         irr: data.key_metrics[s].irr_20y,
       }));
-      sc.innerHTML = `
-        <caption>Side-by-side scenario comparison (CAPEX/OPEX in USD, undiscounted payback, FTE direct, 20-yr IRR band)</caption>
-        <thead><tr>
-          <th scope="col">Metric</th>
-          <th scope="col" class="num">Small (5,000 t/yr)</th>
-          <th scope="col" class="num">Medium (15,000 t/yr) <span class="lead-tag">lead</span></th>
-          <th scope="col" class="num">Large (40,000 t/yr)</th>
-        </tr></thead>
-        <tbody>
-          <tr><th scope="row">CAPEX total</th>
-            <td class="num">${fmt.usd0.format(allMetrics[0].capex)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[1].capex)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[2].capex)}</td></tr>
-          <tr><th scope="row">CAPEX $/t</th>
-            <td class="num">${fmt.usd0.format(allMetrics[0].capexPerT)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[1].capexPerT)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[2].capexPerT)}</td></tr>
-          <tr><th scope="row">Annual OPEX</th>
-            <td class="num">${fmt.usd0.format(allMetrics[0].opex)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[1].opex)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[2].opex)}</td></tr>
-          <tr><th scope="row">OPEX $/t</th>
-            <td class="num">${fmt.usd0.format(allMetrics[0].opexPerT)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[1].opexPerT)}</td>
-            <td class="num">${fmt.usd0.format(allMetrics[2].opexPerT)}</td></tr>
-          <tr><th scope="row">Payback (years)</th>
-            <td class="num">5.6</td>
-            <td class="num">3.0</td>
-            <td class="num">2.0</td></tr>
-          <tr><th scope="row">Direct FTE</th>
-            <td class="num">32</td>
-            <td class="num">62</td>
-            <td class="num">110</td></tr>
-          <tr><th scope="row">20-yr IRR</th>
-            <td class="num">9-12%</td>
-            <td class="num">14-18%</td>
-            <td class="num">22-28%</td></tr>
-        </tbody>`;
+      // Keep allMetrics for potential future use; render via shared function
     }
+    renderScenariosTable();
 
     // ----- Funding table -----
     const ftbl = $('#funding-table');
     if (ftbl && data.fundingSources) {
-      const totalSources = d3.sum(data.fundingSources, d => d.amount);
-      const capexTarget = data.capex[data.scenario_lead || 'medium'].total;
-      const rows = data.fundingSources.map(f => {
-        const statusPill = f.status || '';
-        const riskClass = (f.sourcing_risk || 'medium').toLowerCase().replace(/[^a-z]/g, '');
-        return `
-          <tr>
-            <th scope="row">${f.source}</th>
-            <td class="num">${(f.share*100).toFixed(0)}%</td>
-            <td class="num">${fmt.usd0.format(f.amount)}</td>
-            <td><span class="pill pill-${statusPill.includes('Eligible') || statusPill.includes('legislation') ? 'amber' : 'ink'}">${statusPill}</span></td>
-            <td><span class="pill pill-${riskClass}">${f.sourcing_risk || '—'}</span></td>
-            <td class="note">${f.note || ''}</td>
-          </tr>`;
-      }).join('');
-      ftbl.innerHTML = `
-        <caption>Funding stack totals <strong>${fmt.usd0.format(totalSources)}</strong> · medium CAPEX target ${fmt.usd0.format(capexTarget)}</caption>
-        <thead><tr>
-          <th scope="col">Source</th>
-          <th scope="col" class="num">%</th>
-          <th scope="col" class="num">$</th>
-          <th scope="col">Status</th>
-          <th scope="col">Risk</th>
-          <th scope="col">Note</th>
-        </tr></thead>
-        <tbody>${rows}</tbody>`;
+      renderFundingTable();
     }
 
     // ----- Funding stack bar (CAPEX sources) -----
@@ -519,7 +584,7 @@
         .attr('x', padL).attr('y', d => y(d.source))
         .attr('height', y.bandwidth()).attr('width', d => x(d.amount))
         .attr('fill', (d, i) => PALETTE[i % PALETTE.length]).attr('rx', 2)
-        .append('title').text(d => `${d.source}\n${fmt.usd0.format(d.amount)} (${(d.share*100).toFixed(0)}%) — ${d.status}`);
+        .append('title').text(d => `${d.source}\n${fmt.usd0.format(d.amount)} (${(d.share*100).toFixed(0)}%) — ${d.confidence}`);
       svg.append('g').selectAll('text.lbl').data(data.fundingSources).join('text')
         .attr('class','lbl')
         .attr('x', padL - 8).attr('y', d => y(d.source) + y.bandwidth()/2 + 4)
@@ -627,42 +692,11 @@
   const initTimeline = async () => {
     const host = $('#timeline-list');
     if (!host) return;
-    let phases = [];
     try {
       const res = await fetch('assets/timeline-data.json');
-      const j = await res.json();
-      phases = j.phases || [];
+      timelineData = (await res.json());
     } catch (e) { return; }
-    host.innerHTML = phases.map((p, i) => `
-      <li class="timeline-item" id="${p.id}">
-        <div class="timeline-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</div>
-        <div class="timeline-card">
-          <h3>${p.title}</h3>
-          <p class="timeline-span">${p.span_en} <span lang="es">/ ${p.span_es}</span></p>
-          <h4>Milestones</h4>
-          <ul>${p.milestones.map(m => `<li>${m}</li>`).join('')}</ul>
-          ${p.risks && p.risks.length ? `
-            <h4>Risks &amp; mitigations</h4>
-            <dl class="risk-list">
-              ${p.risks.map(r => `<dt>${r.name}</dt><dd>${r.mitigation}</dd>`).join('')}
-            </dl>` : ''}
-        </div>
-      </li>`).join('');
-    if (reduceMotion) {
-      host.querySelectorAll('.timeline-item').forEach(el => el.classList.add('is-visible'));
-      return;
-    }
-    // Force visible immediately to avoid invisible content if observer is unreliable
-    host.querySelectorAll('.timeline-item').forEach(el => el.classList.add('is-visible'));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    host.querySelectorAll('.timeline-item').forEach(el => io.observe(el));
+    renderTimeline();
   };
 
   // ---------- flip cards (a11y + reduced motion) ----------

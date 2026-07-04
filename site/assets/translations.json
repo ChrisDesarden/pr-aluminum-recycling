@@ -1,7 +1,10 @@
 {
   "meta": {
     "default": "es",
-    "available": ["es", "en"]
+    "available": [
+      "es",
+      "en"
+    ]
   },
   "es": {
     "skip_link": "Saltar al contenido principal",
@@ -141,7 +144,7 @@
     "budget_donut_aria": "Gráfico de dona de la asignación del CAPEX para el escenario mediano. La porción más grande: equipo e instalación EPC; seguida del edificio; luego contingencia.",
     "budget_capex_bar_title": "CAPEX $ por tonelada instalada",
     "budget_capex_bar_aria": "Gráfico de barras horizontal del CAPEX por tonelada instalada para cada escenario. El pequeño es el más alto por tonelada; el grande el más bajo.",
-    "budget_opex_title": "Desglose de OPEX — mediano (líder)",
+    "budget_opex_title": "OPEX detallado (mediano)",
     "budget_opex_caption": "OPEX total: $12,3 M/año ($820/t procesada). Año 3 estado estacionario, USD 2026.",
     "budget_opex_col_category": "Categoría",
     "budget_opex_col_usdyr": "USD/año",
@@ -260,7 +263,17 @@
     "sources_footer_note": "Bibliografía completa con enlaces directos en <code>research/country-cases.md</code>, <code>research/engineering-tech.md</code> y <code>research/funding-model.md</code>. Código fuente: <a href=\"https://github.com/ChrisDesarden/pr-aluminum-recycling\">github.com/ChrisDesarden/pr-aluminum-recycling</a>. Este documento es abierto; PR, úsenlo.",
     "footer_line_1": "<strong>Recircular Puerto Rico</strong> — propuesta de trabajo, v1.0, 2026. Datos abiertos, código abierto, sin lenguaje de mercadeo. Hecho en una CachyOS en Puerto Rico.",
     "footer_line_2": "Líder del proyecto: <span class=\"noreply\">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span><br>Asistencia de investigación y redacción: Iris (asistente autónomo de IA) · Construido con HTML, CSS y JS vanilla, D3 y Leaflet.<br>Archivos de datos: <code>site/assets/*.json</code> · Documentos de investigación: <code>research/*.md</code>",
-    "footer_license": "Este documento está licenciado bajo <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>. Cítalo. Mejóralo. Muestra tu trabajo."
+    "footer_license": "Este documento está licenciado bajo <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>. Cítalo. Mejóralo. Muestra tu trabajo.",
+    "budget_year": "Año",
+    "budget_capex_breakdown_title": "Composición del CAPEX",
+    "budget_capex_breakdown_caption": "Trece partidas para el escenario mediano. El terreno donado por PRIDCO no aparece como CAPEX en efectivo.",
+    "budget_capex_scenarios_title": "CAPEX por escenario",
+    "budget_capex_scenarios_caption": "Pequeño, mediano y grande: el mismo desglose de categorías, escalado por capacidad. Las cifras de pequeño y grande son estimaciones a partir de la estructura de mediano.",
+    "funding_stack_title": "Stack de financiamiento",
+    "funding_stack_caption": "Siete fuentes, costo medio de capital ~4,5 % antes de impuestos. El bono de ingresos asegurado por el DRS es la línea más grande y la dependencia de mayor riesgo.",
+    "budget_scenarios_small_short": "Pequeño",
+    "budget_scenarios_medium_short": "Mediano",
+    "budget_scenarios_large_short": "Grande"
   },
   "en": {
     "skip_link": "Skip to main content",
@@ -400,7 +413,7 @@
     "budget_donut_aria": "Donut chart of CAPEX allocation for the medium scenario. Largest slice: equipment and EPC installation; followed by building; then contingency.",
     "budget_capex_bar_title": "CAPEX $ per tonne installed",
     "budget_capex_bar_aria": "Horizontal bar chart of CAPEX per tonne installed for each scenario. Small is highest per tonne, large is lowest.",
-    "budget_opex_title": "OPEX breakdown — medium (lead)",
+    "budget_opex_title": "Detailed OPEX (medium)",
     "budget_opex_caption": "OPEX total: $12.3 M/yr ($820/t processed). Year-3 steady state, 2026 USD.",
     "budget_opex_col_category": "Category",
     "budget_opex_col_usdyr": "USD/yr",
@@ -519,6 +532,16 @@
     "sources_footer_note": "Full annotated bibliography with direct links lives in research/country-cases.md, research/engineering-tech.md, and research/funding-model.md. Source code: github.com/ChrisDesarden/pr-aluminum-recycling. This proposal is an open document; PR, please use it.",
     "footer_line_1": "<strong>Recircular Puerto Rico</strong> — a working proposal, v1.0, 2026. Open data, open code, no marketing-speak. Made on a CachyOS box in Puerto Rico.",
     "footer_line_2": "Project lead: <span class=\"noreply\">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span><br>Research & writing assistance: Iris (autonomous AI assistant) · Built with vanilla HTML, CSS, ES2020+, D3, Leaflet.<br>Data files: <code>site/assets/*.json</code> · Research files: <code>research/*.md</code>",
-    "footer_license": "This document is licensed under <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>. Cite it. Improve it. Show your work."
+    "footer_license": "This document is licensed under <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>. Cite it. Improve it. Show your work.",
+    "budget_year": "Year",
+    "budget_capex_breakdown_title": "CAPEX composition",
+    "budget_capex_breakdown_caption": "Thirteen line items for the medium scenario. PRIDCO-donated land is not shown as cash CAPEX.",
+    "budget_capex_scenarios_title": "CAPEX by scenario",
+    "budget_capex_scenarios_caption": "Small, medium, and large: the same category breakdown, scaled by capacity. Small and large figures are estimates from the medium structure.",
+    "funding_stack_title": "Funding stack",
+    "funding_stack_caption": "Seven sources, weighted average cost of capital ~4.5% pre-tax. The DRS-secured revenue bond is the largest line and the highest-risk dependency.",
+    "budget_scenarios_small_short": "Small",
+    "budget_scenarios_medium_short": "Medium",
+    "budget_scenarios_large_short": "Large"
   }
 }

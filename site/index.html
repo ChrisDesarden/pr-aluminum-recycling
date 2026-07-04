@@ -618,6 +618,22 @@
 <div aria-label="Gráfico de barras de ingresos vs. gastos operativos durante cinco años. Los ingresos crecen del Año 1 al Año 3; OPEX se mantiene aproximadamente plano." data-i18n-aria="budget_revenue_aria" id="budget-revenue-line" role="img"></div>
 <figcaption class="caption" data-i18n="budget_revenue_caption">Estado estacionario desde el Año 3, después de la rampa y puesta en marcha. Ingresos coberturados: 60 % de ventas a futuro a 24 meses.</figcaption>
 </figure>
+<h3 data-i18n="budget_capex_breakdown_title">Composición del CAPEX</h3>
+<figure class="chart-figure">
+<div aria-label="Donut chart of CAPEX composition for the medium scenario" id="budget-donut" role="img"></div>
+<figcaption class="caption" data-i18n="budget_capex_breakdown_caption">Trece partidas para el escenario mediano. El terreno donado por PRIDCO no aparece como CAPEX en efectivo.</figcaption>
+</figure>
+<ul aria-label="CAPEX breakdown legend" class="legend-list" id="budget-donut-legend"></ul>
+<h3 data-i18n="budget_capex_scenarios_title">CAPEX por escenario</h3>
+<figure class="chart-figure">
+<div aria-label="CAPEX by scenario, stacked by category" id="budget-capex-bar" role="img"></div>
+<figcaption class="caption" data-i18n="budget_capex_scenarios_caption">Pequeño, mediano y grande: el mismo desglose de categorías, escalado por capacidad. Las cifras de pequeño y grande son estimaciones a partir de la estructura de mediano.</figcaption>
+</figure>
+<ul aria-label="CAPEX categories legend" class="legend-list" id="budget-capex-legend"></ul>
+<h3 data-i18n="budget_opex_title">OPEX detallado (mediano)</h3>
+<div class="opex-table-wrap">
+<table aria-label="Detailed OPEX line items for the medium scenario" class="data-table" id="budget-opex-table"></table>
+</div>
 <h3 data-i18n="budget_scenarios_title">Tres escenarios, lado a lado</h3>
 <div class="scenario-table-wrap">
 <table aria-label="Three-scenario financial comparison" class="data-table scenario-table" id="budget-scenarios">
@@ -671,6 +687,11 @@
 <tbody></tbody>
 </table>
 </div>
+<h3 data-i18n="funding_stack_title">Stack de financiamiento</h3>
+<figure class="chart-figure">
+<div aria-label="Stacked horizontal bar of funding sources for the medium scenario" id="budget-funding" role="img"></div>
+<figcaption class="caption" data-i18n="funding_stack_caption">Siete fuentes, costo medio de capital ~4,5 % antes de impuestos. El bono de ingresos asegurado por el DRS es la línea más grande y la dependencia de mayor riesgo.</figcaption>
+</figure>
 <div class="callout-info">
 <h3 data-i18n="ira_title">Créditos IRA en palabras sencillas</h3>
 <p data-i18n="ira_body">Dos créditos hacen viable el negocio:  (30 % del CAPEX solar+BESS, transferible al 90 % del valor nominal) y  (crédito de producción sobre aluminio secundario, $580/t nominal, 10 años de duración, transferible). Regulaciones finales del IRS publicadas en octubre de 2024 aclararon la elegibilidad; un asesor fiscal debe confirmar el lenguaje de grado  vs.  para §45X. Valor nominal §45X a 10 años: $87 M; valor presente al 8 %: ~$61 M.</p>
