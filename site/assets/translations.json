@@ -4,7 +4,8 @@
     "available": [
       "es",
       "en"
-    ]
+    ],
+    "case_studies_added": "2026-07-04"
   },
   "es": {
     "skip_link": "Saltar al contenido principal",
@@ -273,7 +274,564 @@
     "funding_stack_caption": "Siete fuentes, costo medio de capital ~4,5 % antes de impuestos. El bono de ingresos asegurado por el DRS es la línea más grande y la dependencia de mayor riesgo.",
     "budget_scenarios_small_short": "Pequeño",
     "budget_scenarios_medium_short": "Mediano",
-    "budget_scenarios_large_short": "Grande"
+    "budget_scenarios_large_short": "Grande",
+    "hero_aside_eyebrow": "La planta propuesta",
+    "hero_aside_title": "Recircular Puerto Rico",
+    "hero_aside_unit": "t/año",
+    "hero_aside_unit_m": "M",
+    "hero_aside_unit_y": "años",
+    "hero_aside_capacity_k": "Capacidad instalada · escenario líder",
+    "hero_aside_capex_k": "CAPEX de construcción",
+    "hero_aside_payback_k": "Periodo de recuperación estimado",
+    "hero_aside_b1": "T-bar sow + lingote P1020A vendible al LME",
+    "hero_aside_b2": "Edificio FORTIFIED para huracanes + diésel + baterías",
+    "hero_aside_b3": "Cerca de 62 empleos directos, 155 indirectos/inducidos",
+    "hero_aside_b4": "Sitio industrial PRIDCO · costa sur · Ponce / Guayama",
+    "eyebrow_summary": "Resumen ejecutivo",
+    "eyebrow_pr_context": "El problema",
+    "eyebrow_map": "Ubicación",
+    "eyebrow_case_studies": "Comparación internacional",
+    "eyebrow_engineering": "Ingeniería y proceso",
+    "eyebrow_budget": "Modelo financiero",
+    "eyebrow_funding": "Estructura de capital",
+    "eyebrow_timeline": "Calendario de ejecución",
+    "eyebrow_risks": "Riesgos y mitigaciones",
+    "eyebrow_conclusion": "Próximos pasos",
+    "eyebrow_sources": "Bibliografía y fuentes",
+    "chart_axis_x_year": "Año",
+    "chart_axis_y_usd_millions": "Millones USD",
+    "chart_axis_y_tonnes": "Toneladas / año",
+    "chart_axis_y_share": "% del total",
+    "chart_axis_y_recovery": "Tasa de recuperación",
+    "chart_total_label": "Total",
+    "chart_insight_revenue": "<strong>Lectura clave:</strong> los ingresos superan al OPEX desde el Año 1, con un margen creciente hasta el estado estacionario (Año 3+). El OPEX permanece casi plano por la tarifa eléctrica fija de PREPA.",
+    "chart_insight_capex": "<strong>Lectura clave:</strong> el escenario mediano es el recomendado: CAPEX 60 % mayor que el pequeño, pero los ingresos a estado estacionario son 3× mayores y la recuperación se mantiene en ~3 años.",
+    "chart_insight_donut": "<strong>Lectura clave:</strong> el horno de fusión y la planta física concentran el 60 % del CAPEX. La inversión es intensiva en equipo, no en terreno.",
+    "chart_insight_country": "<strong>Lectura clave:</strong> Puerto Rico está 70+ puntos porcentuales por debajo de los líderes. La tasa objetivo (75 %) es alcanzable y ya la ostentan varias jurisdicciones comparables.",
+    "chart_insight_funding": "<strong>Lectura clave:</strong> el bono de depósito cubre ~58 % de la pila de capital. Es la pieza más grande, pero la más sensible al calendario legislativo.",
+    "chart_insight_opex": "<strong>Lectura clave:</strong> electricidad y mano de obra directa suman 55 % del OPEX. Cualquier acuerdo de tarifa industrial con PREPA reduce directamente el OPEX por tonelada.",
+    "case_studies": {
+      "brazil": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "97.3 % de recuperación (2024)"
+          },
+          {
+            "class": "scale",
+            "text": "~417 700 t/año"
+          },
+          {
+            "class": "no-drs",
+            "text": "Sin depósito al consumidor"
+          }
+        ],
+        "sections": [
+          {
+            "title": "1. Estructura y gobernanza del sistema",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Brasil opera el sistema de recuperación de latas de aluminio de mayor rendimiento del mundo sin un depósito al consumidor. La base legal es la <strong>Política Nacional de Residuos Sólidos (PNRS, Ley 12.305/2010)</strong> y su decreto reglamentario, que obligan a productores, importadores, distribuidores y comerciantes de envases desechables a financiar y operar sistemas de <em>logística reversa</em>."
+              },
+              {
+                "type": "p",
+                "html": "Para las latas de aluminio, el sector firma un <strong>Compromiso</strong> federal administrado por <strong>Abralatas</strong> (fabricantes de latas) y <strong>Abal</strong> (productores de aluminio). Los productores aportan a un fondo de corresponsabilidad que garantiza la compra del 100 % del UBC generado. Como la chatarra de aluminio tiene alto valor comercial, el sistema se autofinancia en gran medida: la venta del UBC limpio cubre acopio y transporte, y las cuotas de los productores cubren cualquier brecha."
+              },
+              {
+                "type": "p",
+                "html": "Un rasgo distintivo de gobernanza es la integración formal de los <strong>catadores</strong> —recicladores informales y cooperativas— como proveedores reconocidos de servicio. La PNRS los incluye explícitamente, y el modelo Abralatas/Recicla Latas canaliza ingresos a los puntos de acopio cooperativos en lugar de depender solo de contratos municipales."
+              }
+            ]
+          },
+          {
+            "title": "2. Infraestructura de acopio, clasificación y reciclaje",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Acopio descentralizado:</strong> una red nacional de cooperativas, puntos de entrega voluntarios (PEV), chatarreros y programas municipales. Solo ~60 % de los municipios brasileños ofrecen recolección de reciclables, pero la tasa de recuperación de latas supera el 95 % porque la capa informal/cooperativa cubre el vacío.",
+                  "<strong>Polos regionales de reciclaje:</strong> el mayor es <strong>Pindamonhangaba, São Paulo</strong>, un clúster histórico de hojalata y reciclaje con capacidad cercana a 250 t/día. Novelis y Aleris Latasa operan importantes refundidoras y plantas de hojalata.",
+                  "<strong>Velocidad:</strong> la lata promedio se acopia, recicla y vuelve al anaquel en unos <strong>30 días</strong>.",
+                  "<strong>Automatización:</strong> el acopio es mayormente manual o semimecanizado; la clasificación se apoya en corrientes de Foucault y separación manual en MRF y cooperativas."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "3. Tasas de recuperación y resultados económicos",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "En 2024 Brasil recicló el <strong>97,3 %</strong> de las latas de aluminio vendidas —el decimoquinto año consecutivo por encima del 95 %—, equivalente a <strong>33 900 millones de latas (~417 700 t)</strong>. La tasa cayó del 100 % de 2022–2023 principalmente porque un aumento del 64 % en las exportaciones de chatarra de aluminio desvió material de los recicladores domésticos."
+              },
+              {
+                "type": "p",
+                "html": "Los retornos económicos fluyen del alto valor del material. Una tonelada de UBC limpio vale sustancialmente más que una masa equivalente de reciclables mixtos, por lo que las cooperativas priorizan las latas. En la última década, el programa afirma haber evitado <strong>18 Mt de CO₂e</strong> y <strong>17 Mt de extracción de bauxita</strong>. No se encontró un costo público transparente por tonelada del flujo de latas; el superávit del sistema proviene de la reventa del material, no de partidas públicas."
+              }
+            ]
+          },
+          {
+            "title": "4. Cómo encaja en el contexto brasileño",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Brasil es un país continental con servicios municipales de residuos desiguales, una gran fuerza laboral de recicladores informales y sólida capacidad doméstica de hojalata y refundición (Novelis, Aleris). El modelo funciona porque:"
+              },
+              {
+                "type": "ul",
+                "items": [
+                  "el metal es suficientemente valioso para pagar su propia recolección;",
+                  "las cooperativas aportan mano de obra geográficamente distribuida y de bajo costo; y",
+                  "los recicladores domésticos tienen hambre de materia prima, por lo que la chatarra se compra con rapidez."
+                ]
+              },
+              {
+                "type": "p",
+                "html": "El aumento de exportaciones de 2024 es una advertencia: incluso un circuito cerrado maduro puede perder material si compradores externos pagan más que los recicladores domésticos."
+              }
+            ]
+          },
+          {
+            "title": "5. Lecciones para Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>La corresponsabilidad del productor + acopio accesible supera al esquema de solo depósito.</strong> Un sistema financiado por productores puede alcanzar 95 %+ sin un depósito al consumidor de 10¢ si la economía se estructura para que los agentes de acopio cobren de inmediato por UBC limpio.",
+                  "<strong>Formalizar a los recicladores y grupos comunitarios como socios de acopio.</strong> PR tiene organizaciones comunitarias activas y recicladores informales de latas; darles un rol reconocido y un porcentaje directo de los ingresos es más rápido que construir una flota municipal desde cero.",
+                  "<strong>Proteger la materia prima doméstica.</strong> Cualquier ley de PR debe exigir que el UBC se ofrezca primero a la planta insular antes de exportarse, replicando la lógica del «derecho de rechazo» del nuevo Reglamento de Traslados de Residuos de la UE.",
+                  "<strong>Construir la refundidora antes de que la tasa alcance su pico.</strong> El circuito brasileño es ajustado porque existen refundidoras y plantas de hojalata. PR necesita que la planta secundaria exista para que las latas acopiadas tengan comprador."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "japan": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "99,8 % de acopio · 75,7 % lata-a-lata (2024)"
+          },
+          {
+            "class": "scale",
+            "text": "~2,09 mil millones de latas/año"
+          },
+          {
+            "class": "no-drs",
+            "text": "Tarifa EPR, sin depósito en efectivo"
+          }
+        ],
+        "sections": [
+          {
+            "title": "1. Estructura y gobernanza del sistema",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "El sistema japonés se basa en la <strong>Ley de Reciclaje de Envases y Embalajes (Ley N.º 112 de 1995, vigente desde 1997)</strong>. Es una ley de Responsabilidad Extendida del Productor (EPR), no un sistema de depósito-reembolso. Los consumidores separan y los municipios recolectan; los dueños de marca de bebidas y productores de envases pagan tarifas de reciclaje a la <strong>Asociación Japonesa de Reciclaje de Envases y Embalajes (JCPRA)</strong>, designada por el gobierno, que realiza licitaciones públicas para seleccionar recicladores en cada prefectura."
+              },
+              {
+                "type": "p",
+                "html": "La <strong>Asociación Japonesa de Reciclaje de Latas de Aluminio (JACRA)</strong> coordina la divulgación industrial y publica las tasas anuales de recuperación y de ciclo cerrado. Las tarifas se publican por año fiscal y categoría de material; para latas de aluminio han rondado los ¥70–100/kg, pagadas por los productores a la JCPRA. Los municipios reciben apoyo para acopio y transporte, mientras los recicladores compran el UBC ya separado en las plantas municipales."
+              }
+            ]
+          },
+          {
+            "title": "2. Infraestructura de acopio, clasificación y reciclaje",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Predomina la separación en el acopio domiciliario.</strong> Los hogares depositan las latas de aluminio en bolsas transparentes dedicadas; la recolección ocurre en días programados, separada de los combustibles y del PET. Casi en cada barrio hay estaciones públicas de reciclaje.",
+                  "<strong>Compresión en máquinas expendedoras</strong> es común en zonas urbanas densas: muchas máquinas aceptan la lata vacía en un lateral, la compactan y mejoran la logística.",
+                  "<strong>Refundidoras domésticas:</strong> Showa Denko (hoy Resonac), Daiki Aluminium y Nippon Light Metal consumen UBC y producen hojalata para cuerpo de lata y otras aleaciones secundarias."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "3. Tasas de recuperación y resultados económicos",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "En el año fiscal 2023, Japón recolectó el <strong>97,5 %</strong> de las latas de aluminio; en 2024 la JACRA reportó un <strong>99,8 %</strong> de acopio y un <strong>75,7 % lata-a-lata</strong> —es decir, cerca de tres cuartos de las latas recuperadas volvieron a producir latas nuevas, y el resto se reconvirtió en otros productos de aluminio (aún dentro del país). La demanda se mantuvo estable en torno a <strong>2,09 mil millones de latas</strong> en 2025, ya que la caída demográfica y la sustitución por PET se compensaron mutuamente."
+              },
+              {
+                "type": "p",
+                "html": "El modelo de tarifa por servicio hace que los productores —no los consumidores— asuman el costo del sistema. Esto reduce la «fricción de devolución» —los residentes no tienen que visitar un centro de reembolso— pero exige una cultura de separación disciplinada y de alta observancia, además de una flota municipal capaz."
+              }
+            ]
+          },
+          {
+            "title": "4. Cómo encaja en el contexto japonés",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Japón tiene alta densidad poblacional, fuerte capacidad de gobierno local, cultura de separación domiciliaria e industrias domésticas de hojalata y fundición secundaria. El modelo EPR encaja porque los municipios pueden hacer cumplir las reglas de separación y los productores están suficientemente organizados para cobrar y remitir las tarifas. Sería más difícil replicarlo en una jurisdicción con servicios municipales de residuos débiles y sin refundidora doméstica."
+              }
+            ]
+          },
+          {
+            "title": "5. Lecciones para Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Separar la «tasa de acopio» de la «tasa de circuito cerrado».</strong> Una tasa de acopio del 99 % es impresionante, pero el indicador económicamente significativo para una planta doméstica es la cuota que se queda en la isla. PR debería medir ambos explícitamente.",
+                  "<strong>Las tarifas EPR pueden sustituir a los depósitos si la disciplina de acopio es alta.</strong> Si PR no aprueba un DRS de 5¢, un sistema de tarifas por productor inspirado en la JCPRA podría funcionar —pero solo si los municipios entregan UBC limpio y separado a un procesador central.",
+                  "<strong>Los calendarios de tarifas públicos y transparentes generan confianza.</strong> La JCPRA publica anualmente el arancel por material; un PRO puertorriqueño debería hacer lo mismo.",
+                  "<strong>La conveniencia es el motor principal.</strong> PR debe ubicar los puntos de devolución donde la gente ya compra —supermercados, gasolineras, farmacias— en lugar de esperar viajes dedicados."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "eu": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "76,3 % promedio (2023); Alemania 99 %"
+          },
+          {
+            "class": "scale",
+            "text": "~1,2 Mt/año (agregado Europa)"
+          },
+          {
+            "class": "drs",
+            "text": "DRS en más de 12 estados miembro"
+          }
+        ],
+        "sections": [
+          {
+            "title": "1. Estructura y gobernanza del sistema",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Europa es un mosaico que avanza hacia una recuperación alta y armonizada. El <strong>Reglamento de Envases y Residuos de Envases (PPWR, Reglamento (UE) 2025/40)</strong>, en vigor desde febrero de 2025, sustituyó a la Directiva de 1994. Exige a los estados miembro alcanzar el <strong>80 % de recolección separada de latas de bebida en 2029 y el 90 % en 2033</strong>, y en la práctica obliga a contar con sistemas de depósito-reembolso en la mayoría de los estados."
+              },
+              {
+                "type": "p",
+                "html": "Otras dos leyes inciden específicamente sobre el aluminio:"
+              },
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Ley de Materias Primas Críticas (CRMA, 2024/1252):</strong> el aluminio figura como materia prima estratégica; la UE aspira a que ≥25 % del consumo anual provenga del reciclaje europeo en 2030, con estándares de procesamiento más estrictos para aluminio.",
+                  "<strong>Reglamento de Traslados de Residuos refundido (2024/1157):</strong> desde el 21 de mayo de 2026, los estados miembro deberán notificar y justificar las exportaciones de residuos de la «lista verde», incluido el UBC de aluminio no peligroso, concediendo a los recicladores domésticos un derecho de rechazo antes de que el material salga de la UE."
+                ]
+              },
+              {
+                "type": "p",
+                "html": "La gobernanza se reparte: Bruselas fija metas, los estados diseñan DRS y PRO, y las asociaciones industriales (European Aluminium, Metal Packaging Europe) reportan tasas agregadas y presionan por restricciones a la exportación."
+              }
+            ]
+          },
+          {
+            "title": "2. Infraestructura de acopio, clasificación y reciclaje",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>DRS obligatorio</strong> en más de 12 estados miembro a 2025 (Alemania, Finlandia, Suecia, Noruega, Dinamarca, Países Bajos, Bélgica, Estonia, Lituania, Letonia, Irlanda, Malta, Eslovaquia). Los depósitos suelen ir de €0,10 a €0,25 por envase, con redes densas de máquinas reversoras (RVM) en cada supermercado.",
+                  "<strong>Acopio domiciliario y puntos bring-bank</strong> persisten en estados sin DRS (Francia, Italia, España), con tasas más bajas y variables.",
+                  "<strong>Capacidad de hojalata:</strong> las plantas alemanas <strong>Novelis Nachterstedt</strong> y <strong>Speira Voerde</strong>, más Novelis Göttingen y Pieve (Italia), Hydro (Noruega/Alemania) y Constellium (Francia) consumen UBC para producir hojalata."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "3. Tasas de recuperación y resultados económicos",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Europa alcanzó una tasa récord de <strong>76,3 %</strong> de reciclaje de latas de bebida de aluminio en 2023. Los estados con DRS maduro se concentran en 90–99 %; Alemania lidera con <strong>99 %</strong>. Los nuevos DRS han producido saltos rápidos: Malta, Letonia y Eslovaquia pasaron de ~50 % a más del 80 % en 12–18 meses tras su lanzamiento."
+              },
+              {
+                "type": "p",
+                "html": "El motor económico combina los ingresos por depósitos no reclamados («rotura») y las cuotas de los productores, que financian las redes de RVM y la logística. En 2024, los precios europeos de la chatarra oscilaron entre €1 400 y €1 800/t para UBC limpio, en línea con la LME. Se espera que las nuevas normas de exportación profundicen el circuito cerrado doméstico al retener material dentro de la región."
+              }
+            ]
+          },
+          {
+            "title": "4. Cómo encaja en el contexto europeo",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Europa tiene alta densidad poblacional, cadenas de suministro integradas y capacidad de hojalata ya existente. El consenso político en torno a la regulación de economía circular es fuerte, y el mercado único facilita el monitoreo de movimientos transfronterizos de chatarra. Las restricciones europeas a la exportación son una respuesta directa a la demanda asiática que extrae material del circuito europeo."
+              }
+            ]
+          },
+          {
+            "title": "5. Lecciones para Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Fijar metas de recuperación vinculantes y elevarlas gradualmente.</strong> El marco 80 % en 2029 / 90 % en 2033 del PPWR da certidumbre a los inversionistas. PR podría legislar 60 % en 2030, 75 % en 2033 y 85 % en 2035.",
+                  "<strong>Combinar un DRS con un «derecho de rechazo» para la industria doméstica.</strong> Una ley de PR debe exigir que los exportadores ofrezcan el UBC a la planta insular primero, a precios de mercado, antes de embarcar chatarra fuera de la isla.",
+                  "<strong>El DRS es la palanca más rápida.</strong> Los nuevos estados DRS europeos avanzaron más rápido que los estados solo con EPR. Un DRS de 5¢ en PR es la vía más probada para alcanzar 75 %+ de recuperación.",
+                  "<strong>Los mandatos de contenido reciclado generan demanda.</strong> Las metas de contenido reciclado del PPWR garantizan un comprador a los recicladores domésticos. PR podría exigir que una cuota creciente de las latas vendidas en la isla use aluminio postconsumo."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "us": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "43 % (2023, la más baja en décadas)"
+          },
+          {
+            "class": "scale",
+            "text": "~1,7 Mt colocadas en el mercado"
+          },
+          {
+            "class": "drs",
+            "text": "Leyes de depósito en 10 estados"
+          }
+        ],
+        "sections": [
+          {
+            "title": "1. Estructura y gobernanza del sistema",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Estados Unidos <strong>no tiene una ley federal de EPR ni de depósito de envases</strong>. El reciclaje se financia mayormente con impuestos generales municipales, y los ingresos por venta de materiales cubren una porción decreciente del costo. El resultado es un mosaico: diez estados aplican leyes de depósito (CDL o «bottle bills»), mientras el resto depende del acopio domiciliario de flujo único, que recupera latas con menor pureza y a tasas más bajas."
+              },
+              {
+                "type": "p",
+                "html": "Los diez estados con depósito son California (CRV), Connecticut, Hawái, Iowa, Maine, Massachusetts, Michigan, Nueva York, Oregón y Vermont. Los depósitos van de 5¢ a 10¢. Michigan y Oregón están en 10¢; California usa 5¢ para envases menores de 24 oz y 10¢ para los mayores. Los grupos industriales —la <strong>Aluminum Association</strong> y el <strong>Can Manufacturers Institute (CMI)</strong>— publican un informe anual de tasa de reciclaje y una hoja de ruta con metas de 70 % en 2030, 80 % en 2040 y 90 % en 2050."
+              },
+              {
+                "type": "p",
+                "html": "La EPR de envases avanza por separado: Maine, Oregón, California, Colorado, Minnesota, Maryland y Washington aprobaron leyes de EPR/PRO entre 2021 y 2024, con cuotas que se activarán entre 2027 y 2031. Las latas de aluminio quedarán cada vez más cubiertas por cuotas PRO, pero los estados con depósito siguen mostrando la mayor recuperación."
+              }
+            ]
+          },
+          {
+            "title": "2. Infraestructura de acopio, clasificación y reciclaje",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>El flujo único domiciliario domina</strong> en más del 70 % de los municipios. Las MRF usan separadores de corrientes de Foucault y selección manual, pero la contaminación y la rotura son altas, y el ingreso por aluminio a menudo subsidia materiales de menor valor.",
+                  "<strong>Centros de reembolso y RVM</strong> en los estados con depósito capturan la mayor parte del UBC estatal con mayor pureza y menor contaminación.",
+                  "<strong>Capacidad doméstica importante de hojalata:</strong> Novelis (varias plantas), Arconic, JW Aluminum y Constellium Muscle Shoals. EE. UU. puede refundir la mayor parte de su UBC internamente, pero una proporción significativa se filtra al exterior como chatarra."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "3. Tasas de recuperación y resultados económicos",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "La tasa de reciclaje de latas de aluminio en EE. UU. cayó al <strong>43 % en 2023</strong>, desde un promedio histórico cercano al 52 % desde 1990 —la más baja en décadas. De aproximadamente <strong>100 mil millones de latas</strong> colocadas en el mercado (~1,7 Mt de aluminio), la cuota reciclada fue de unas <strong>730 000 t</strong> de UBC. Más de <strong>61 mil millones de latas</strong> terminaron en vertederos, representando casi <strong>1,2 mil millones USD</strong> en aluminio."
+              },
+              {
+                "type": "p",
+                "html": "La divergencia entre estados con y sin depósito es marcada: los estados con depósito recuperan consistentemente entre el 60 % y el 90 % de los envases, mientras los estados sin depósito a menudo caen por debajo del 30 %. La Aluminum Association y el CMI identifican explícitamente los sistemas de depósito-reembolso bien diseñados como la estrategia más eficaz para revertir la caída."
+              }
+            ]
+          },
+          {
+            "title": "4. Cómo encaja en el contexto estadounidense",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "EE. UU. tiene industrias de aluminio y bebidas grandes e integradas, amplia infraestructura de MRF y sólida capacidad doméstica de hojalata. El fallo es de política, no de tecnología: un sistema federal ha sido bloqueado por el cabildeo de minoristas y bebidas, dejando a los estados actuar por su cuenta. El resultado es que el aluminio de alto valor se trata como un material de bajo valor en la mayor parte del país."
+              }
+            ]
+          },
+          {
+            "title": "5. Lecciones para Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Un DRS a nivel de estado/territorio es la herramienta estadounidense más probada.</strong> El depósito de 10¢ de Michigan y el esquema modernizado de 10¢ de Oregón muestran que los depósitos funcionan cuando el valor es suficiente y el reembolso es conveniente.",
+                  "<strong>El flujo único por sí solo no alcanza.</strong> La caída de EE. UU. demuestra que depender de las MRF de acopio domiciliario para recuperar latas falla a escala. PR debe tratar el flujo único como un respaldo, no como el canal principal de recuperación de latas.",
+                  "<strong>Protegerse contra la fuga por exportación.</strong> EE. UU. exporta ~30–40 % del UBC y chatarra de aluminio mezclada. PR debería legislar una oferta doméstica primero, antes de exportar, para que la planta insular reciba el material.",
+                  "<strong>Usar cuotas PRO para respaldar el DRS.</strong> Las nuevas leyes EPR/PRO de EE. UU. pueden financiar educación, ubicación de RVM y subsidios de procesamiento sin reemplazar al depósito."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "australia": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "75–80 % nacional (2024)"
+          },
+          {
+            "class": "scale",
+            "text": "~3 mil millones de latas/año"
+          },
+          {
+            "class": "drs",
+            "text": "CDS estatal de 10¢"
+          }
+        ],
+        "sections": [
+          {
+            "title": "1. Estructura y gobernanza del sistema",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Australia es el <strong>primer continente completamente cubierto por esquemas de depósito de envases (CDS)</strong>, tras el lanzamiento de Recycle Rewards en Tasmania el 1 de mayo de 2025. Cada estado y territorio opera su propio esquema; no hay armonización federal. El depósito es uniforme, de <strong>10¢ por envase elegible</strong>, financiado por los productores e importadores de bebidas como una cuota de «primer vendedor», y el consumidor recibe el reembolso al devolverlo."
+              },
+              {
+                "type": "p",
+                "html": "Fechas clave de lanzamiento: Australia Meridional (1977, pionera), Territorio del Norte (2012), Nueva Gales del Sur (2017, «Return and Earn» operado por TOMRA), ACT (2018), Queensland (2018, «Containers for Change»), Australia Occidental (2020), Victoria (2023, «CDS Vic») y Tasmania (2025). Cada esquema tiene un operador o coordinador de red nombrado por el gobierno estatal."
+              },
+              {
+                "type": "p",
+                "html": "Los esquemas se respaldan en la política nacional de envases bajo la <strong>Ley de Reciclaje y Reducción de Residuos 2020</strong> y el Australian Packaging Covenant, que establece metas e informes obligatorios."
+              }
+            ]
+          },
+          {
+            "title": "2. Infraestructura de acopio, clasificación y reciclaje",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Redes densas de RVM:</strong> TOMRA es el operador dominante en NSW, QLD y otros estados; Visy y Envirobank operan en Victoria. NSW por sí sola tiene <strong>más de 600 puntos de devolución</strong> (RVM + depósitos).",
+                  "<strong>Devoluciones en mostrador</strong> en supermercados, tiendas de licor y depósitos comunitarios dan opciones a quienes no pueden usar las máquinas.",
+                  "<strong>Logística de acopio:</strong> los envases devueltos se cuentan, compactan, enfardan y envían a los recicladores. Como los esquemas desvían la fracción de alto valor fuera de los contenedores domiciliarios, las MRF pierden parte de sus ingresos —un costo de transición conocido."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "3. Tasas de recuperación y resultados económicos",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "La recuperación nacional de latas de aluminio pasó de ~67 % antes del despliegue de los CDS a aproximadamente <strong>75–80 %</strong> en 2024. Los esquemas maduros como Australia Meridional y el Territorio del Norte superan el <strong>80 %</strong>; NSW ronda el <strong>70–75 %</strong>. El CDS Vic de Victoria creó unos <strong>597 empleos directos</strong> y superó el 90 % de awareness público en sus primeros ocho meses."
+              },
+              {
+                "type": "p",
+                "html": "La economía descansa sobre los <strong>depósitos no reclamados («rotura»)</strong>, que típicamente representan el 10–20 % de los envases y financian la operación de la red. Las cuotas de los productores, neto de la rotura, rondan AUD 0,03–0,08 por lata. Los operadores de los esquemas reportan que un depósito de 10¢ es suficiente para motivar la conducta y a la vez bajo para mantener estables los precios de las bebidas."
+              }
+            ]
+          },
+          {
+            "title": "4. Cómo encaja en el contexto australiano",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Australia es un continente insular, urbanizado y próspero, con gobiernos estatales fuertes y poblaciones rurales dispersas. El enfoque estado por estado permitió a los adoptantes tempranos (SA, NSW) probar el modelo antes de que se sumaran los rezagados. Sin embargo, Australia <strong>no tiene un laminador importante de hojalata</strong>; la mayor parte del UBC recuperado se exporta a Corea, Tailandia, India o Indonesia para refundición. El circuito se <strong>rompe, por tanto, en la etapa de refundición y laminación</strong>."
+              }
+            ]
+          },
+          {
+            "title": "5. Lecciones para Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Este es el modelo más directamente aplicable para una isla.</strong> Un DRS de 5¢ con puntos de entrega en supermercados, centros comerciales y oficinas públicas puede elevar la recuperación de menos del 2 % a más del 70 % en pocos años, tal como Australia pasó de 67 % a 75–80 %.",
+                  "<strong>Comenzar con un depósito menor a 10¢.</strong> El ingreso per cápita y el volumen de latas en PR argumentan a favor de un depósito inicial de 5¢; puede elevarse cuando la red sea densa.",
+                  "<strong>Combinar el DRS con una refundidora doméstica.</strong> Australia muestra que una alta recuperación sin reprocesamiento local sigue enviando valor al exterior. La planta de PR es la mitad que le falta al modelo australiano.",
+                  "<strong>Publicar datos transparentes de toneladas y reembolsos.</strong> Los esquemas estatales australianos publican informes anuales con tasas de devolución, empleos y reducción de litter, lo que construye apoyo político."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "iceland": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "~88 % de reembolso de latas; circuito cerrado limitado"
+          },
+          {
+            "class": "scale",
+            "text": "Población ~380 000"
+          },
+          {
+            "class": "drs",
+            "text": "Depósito desde 1989"
+          }
+        ],
+        "sections": [
+          {
+            "title": "1. Estructura y gobernanza del sistema",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Islandia es un caso atípico: una isla pequeña y de clima frío que es a la vez una potencia mundial de aluminio primario y pionera del depósito-reembolso nacional. <strong>Endurvinnslan hf.</strong> se fundó por ley en 1989 (Ley N.º 52/1989, Reglamento 368/2000) y es la única empresa autorizada para pagar depósitos de botellas y latas. Islandia fue uno de los primeros países del mundo en implementar un DRS nacional."
+              },
+              {
+                "type": "p",
+                "html": "El sistema es supervisado por el Ministerio de Medio Ambiente y el <strong>Fondo Islandés de Reciclaje (Úrvinnslusjóður)</strong>, que ejecuta la responsabilidad extendida del productor para envases, electrónica, baterías y vehículos. Los productores e importadores de bebidas pagan cuotas al fondo, y este negocia contratos de procesamiento con empresas de gestión de residuos."
+              },
+              {
+                "type": "p",
+                "html": "El depósito actual es uniforme: <strong>16 ISK (~0,12 USD)</strong> por envase, con una tarifa de manejo de 3 ISK. Los depósitos no reclamados quedan en Endurvinnslan para refinanciar el sistema."
+              }
+            ]
+          },
+          {
+            "title": "2. Infraestructura de acopio, clasificación y reciclaje",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>60 puntos de devolución en todo el país,</strong> incluidas 10 ubicaciones automatizadas donde el consumidor no necesita separar ni contar los envases manualmente.",
+                  "<strong>Centros municipales de reciclaje</strong> en cada pueblo aceptan latas de aluminio en contenedores dedicados, a menudo compactadas en el sitio.",
+                  "<strong>Densidad geográfica:</strong> pese a la dispersión poblacional, los ~380 000 habitantes islandeses se concentran en el área metropolitana de Reikiavik y en unos pocos pueblos costeros, lo que hace viable un único operador nacional."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "3. Tasas de recuperación y resultados económicos",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Endurvinnslan reporta una tasa histórica de reciclaje de envases de bebida cercana al <strong>85 %</strong>, con latas de aluminio cerca del <strong>88 %</strong> en años recientes y alrededor del <strong>91 %</strong> en 2021. <strong>Reembolsar no es lo mismo que reciclar en circuito cerrado lata-a-lata:</strong> Islandia <em>no tiene capacidad doméstica de hojalata ni de fabricación de latas</em>. El UBC recolectado se enfarda y se embarca al extranjero para refundición y laminación; el metal puede regresar a la isla como hojalata nueva, pero esa segunda etapa se produce en Europa o Asia, no en Islandia. En otras palabras, Islandia reembolsa latas muy bien, pero su circuito de lata de bebida sigue abierto en la etapa de laminación."
+              },
+              {
+                "type": "p",
+                "html": "La industria de aluminio primario es grande —tres fundiciones producen unas <strong>844 000 t/año</strong> de lingote P1020— pero se trata de fundición, no de laminación de hojalata, y no consume UBC. La distinción importa: una jurisdicción puede ser productora de aluminio primario de clase mundial y aún no cerrar el circuito de sus propias latas de bebida."
+              }
+            ]
+          },
+          {
+            "title": "4. Cómo encaja en el contexto islandés",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "La geología e hidroelectricidad islandesas la convirtieron en un polo de fundición primaria de aluminio (Rio Tinto Alcan en Straumsvík, Norðurál en Grundartangi, Alcoa en Reyðarfjörður). Pero fundir alúmina en lingote P1020 no es lo mismo que fabricar hojalata. La isla carece de la industria downstream de laminación y de fabricación de latas, por lo que el UBC debe salir. La lección islandesa es que <strong>la capacidad de metal primario no crea automáticamente un circuito cerrado de lata de bebida; la tasa de reembolso es una métrica de acopio, no de refundición lata-a-lata</strong>."
+              }
+            ]
+          },
+          {
+            "title": "5. Lecciones para Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>La escala no es una barrera si la red es suficientemente densa.</strong> Una jurisdicción de ~3,2 millones de habitantes puede sostener un DRS nacional y una planta secundaria con mucha más holgura que los 380 000 habitantes que sostiene el sistema islandés.",
+                  "<strong>Un único operador nacional simplifica la gobernanza.</strong> El modelo monopólico de Endurvinnslan reduce los costos de coordinación. PR podría designar un coordinador único para todo el territorio (público o sin fines de lucro) en lugar de 78 programas municipales separados.",
+                  "<strong>No confundir fundición primaria con reciclaje.</strong> Una planta secundaria de UBC-a-lingote es un activo muy distinto, y mucho menos intensivo en energía, que una fundición primaria. PR debe construir primero la planta secundaria; la fundición primaria no es necesaria.",
+                  "<strong>Mantener el depósito simple y uniforme.</strong> Islandia usa un único valor de depósito para todos los materiales, lo que reduce la confusión del consumidor. PR debería comenzar con un solo depósito claro para latas de aluminio y añadir vidrio/PET más adelante."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
   },
   "en": {
     "skip_link": "Skip to main content",
@@ -542,6 +1100,563 @@
     "funding_stack_caption": "Seven sources, weighted average cost of capital ~4.5% pre-tax. The DRS-secured revenue bond is the largest line and the highest-risk dependency.",
     "budget_scenarios_small_short": "Small",
     "budget_scenarios_medium_short": "Medium",
-    "budget_scenarios_large_short": "Large"
+    "budget_scenarios_large_short": "Large",
+    "hero_aside_eyebrow": "The proposed plant",
+    "hero_aside_title": "Recircular Puerto Rico",
+    "hero_aside_unit": "t/yr",
+    "hero_aside_unit_m": "M",
+    "hero_aside_unit_y": "yr",
+    "hero_aside_capacity_k": "Installed capacity · lead scenario",
+    "hero_aside_capex_k": "Construction CAPEX",
+    "hero_aside_payback_k": "Estimated payback period",
+    "hero_aside_b1": "T-bar sow + P1020A ingot saleable at LME",
+    "hero_aside_b2": "FORTIFIED hurricane-rated building + diesel + battery backup",
+    "hero_aside_b3": "About 62 direct jobs, 155 indirect/induced",
+    "hero_aside_b4": "PRIDCO industrial site · south coast · Ponce / Guayama",
+    "eyebrow_summary": "Executive summary",
+    "eyebrow_pr_context": "The problem",
+    "eyebrow_map": "Location",
+    "eyebrow_case_studies": "International comparison",
+    "eyebrow_engineering": "Engineering and process",
+    "eyebrow_budget": "Financial model",
+    "eyebrow_funding": "Capital stack",
+    "eyebrow_timeline": "Execution timeline",
+    "eyebrow_risks": "Risks and mitigations",
+    "eyebrow_conclusion": "Next steps",
+    "eyebrow_sources": "Bibliography and sources",
+    "chart_axis_x_year": "Year",
+    "chart_axis_y_usd_millions": "USD millions",
+    "chart_axis_y_tonnes": "Tonnes / year",
+    "chart_axis_y_share": "% of total",
+    "chart_axis_y_recovery": "Recovery rate",
+    "chart_total_label": "Total",
+    "chart_insight_revenue": "<strong>Key insight:</strong> revenue exceeds OPEX from Year 1, with a growing margin into steady state (Year 3+). OPEX stays nearly flat due to PREPA's fixed electric tariff.",
+    "chart_insight_capex": "<strong>Key insight:</strong> the medium scenario is the recommended case: CAPEX is 60% higher than the small case, but steady-state revenue is 3× larger and payback stays at ~3 years.",
+    "chart_insight_donut": "<strong>Key insight:</strong> the melting furnace and physical plant account for 60% of CAPEX. The investment is equipment-intensive, not land-intensive.",
+    "chart_insight_country": "<strong>Key insight:</strong> Puerto Rico is 70+ percentage points behind the leaders. The 75% target rate is achievable — several comparable jurisdictions already hit it.",
+    "chart_insight_funding": "<strong>Key insight:</strong> the deposit-backed bond covers ~58% of the capital stack. It is the largest piece, but also the most sensitive to the legislative calendar.",
+    "chart_insight_opex": "<strong>Key insight:</strong> electricity and direct labor together account for 55% of OPEX. Any industrial tariff agreement with PREPA reduces per-tonne OPEX directly.",
+    "case_studies": {
+      "brazil": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "97.3% recovery (2024)"
+          },
+          {
+            "class": "scale",
+            "text": "~417,700 t/yr"
+          },
+          {
+            "class": "no-drs",
+            "text": "No cash deposit"
+          }
+        ],
+        "sections": [
+          {
+            "title": "How the system is structured and governed",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Brazil runs the world’s highest-performing aluminum-can recovery system without a consumer deposit. The legal foundation is the<strong>National Solid Waste Policy (PNRS, Law 12.305/2010)</strong>and its implementing decree, which require producers, importers, distributors, and retailers of disposable packaging to finance and operate<em>logística reversa</em>(reverse-logistics) systems."
+              },
+              {
+                "type": "p",
+                "html": "For aluminum cans, the sector signs a federal<strong>Commitment Agreement</strong>administered by<strong>Abralatas</strong>(can manufacturers) and<strong>Abal</strong>(aluminum producers). Producers pay into a stewardship pool that guarantees purchase of 100% of the UBC scrap generated. Because aluminum scrap has a high commodity value, the system is largely self-financing: the sale of clean UBC covers collection and transport, with producer fees filling any gaps."
+              },
+              {
+                "type": "p",
+                "html": "A distinctive governance feature is the formal integration of<strong>catadores</strong>— independent waste pickers and cooperatives — as recognized service providers. The PNRS explicitly includes them, and the Abralatas/Recicla Latas model channels revenue to cooperative collection points rather than relying solely on municipal contracts."
+              }
+            ]
+          },
+          {
+            "title": "Collection, sorting, and recycling infrastructure",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Decentralized collection:</strong>a nationwide web of cooperatives, voluntary drop-off points (PEVs), scrap merchants, and municipal programs. Only ~60% of Brazilian municipalities offer recycling collection, yet the can recovery rate is &gt;95% because the informal/cooperative layer fills the gap.",
+                  "<strong>Regional recycling hubs:</strong>the largest is<strong>Pindamonhangaba, São Paulo</strong>, a historic can-sheet and recycling cluster with capacity of roughly 250 t/day. Novelis and Aleris Latasa operate major re-melters and can-sheet plants.",
+                  "<strong>Speed:</strong>the average can is collected, recycled, and back on shelves in about<strong>30 days</strong>.",
+                  "<strong>Automation:</strong>collection is mostly manual or semi-mechanized; sorting relies on eddy-current and manual separation at MRFs and cooperative facilities."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recovery rates and economic outcomes",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "In 2024 Brazil recycled<strong>97.3%</strong>of aluminum beverage cans sold — the 15th consecutive year above 95%, amounting to<strong>33.9 billion cans (~417,700 t)</strong>. The rate slipped from 100% in 2022–2023 mainly because a 64% surge in aluminum scrap exports pulled material away from domestic recyclers."
+              },
+              {
+                "type": "p",
+                "html": "Economic returns flow through the high scrap value. A tonne of clean UBC is worth substantially more than an equivalent mass of mixed recyclables, so cooperatives prioritize cans. Over the past decade the program claims to have avoided<strong>18 Mt CO₂e</strong>and<strong>17 Mt of bauxite extraction</strong>. No transparent public cost-per-tonne for the can-specific collection stream was found; the system’s surplus comes from scrap resale rather than from public appropriations."
+              }
+            ]
+          },
+          {
+            "title": "How it fits Brazil’s context",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Brazil is a continental country with uneven municipal waste services, a large informal waste-picker workforce, and strong domestic can-sheet and re-melting capacity (Novelis, Aleris). The model works because:"
+              },
+              {
+                "type": "ul",
+                "items": [
+                  "the metal is valuable enough to pay for its own collection;",
+                  "cooperatives provide low-cost, geographically distributed labor; and",
+                  "domestic recyclers are hungry for feedstock, so scrap is purchased quickly."
+                ]
+              },
+              {
+                "type": "p",
+                "html": "The 2024 export surge is a warning: even a mature closed loop can leak material if foreign buyers pay more than domestic recyclers."
+              }
+            ]
+          },
+          {
+            "title": "Lessons for Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Producer stewardship + accessible drop-off beats deposit-only.</strong>A producer-funded system can reach 95%+ without a 10¢ consumer deposit if the economics are structured so that collection agents are paid immediately for clean UBC.",
+                  "<strong>Formalize waste-pickers and community groups as collection partners.</strong>PR has active community organizations and informal can collectors; giving them a recognized role and a direct revenue share is faster than building a municipal fleet from scratch.",
+                  "<strong>Protect domestic feedstock.</strong>Any PR law should require UBC to be offered first to the island plant before export, mirroring the EU’s new Waste Shipment Regulation “right of refusal” logic.",
+                  "<strong>Build the re-melter before the rate peaks.</strong>Brazil’s loop is tight because re-melters and can-sheet plants exist. PR needs the secondary plant to exist so that collected cans have a buyer."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "japan": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "99.8% collection · 75.7% can-to-can (2024)"
+          },
+          {
+            "class": "scale",
+            "text": "~2.09 B cans/yr"
+          },
+          {
+            "class": "no-drs",
+            "text": "EPR fee, no cash deposit"
+          }
+        ],
+        "sections": [
+          {
+            "title": "How the system is structured and governed",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Japan’s system is built on the<strong>Containers and Packaging Recycling Act (Law No. 112 of 1995, effective 1997)</strong>. It is an Extended Producer Responsibility (EPR) law, not a deposit-return scheme. Consumers sort and municipalities collect; beverage brand owners and packaging producers pay recycling fees to the government-designated<strong>Japan Container and Package Recycling Association (JCPRA)</strong>, which runs public tenders to select recyclers in each prefecture."
+              },
+              {
+                "type": "p",
+                "html": "The<strong>Japan Aluminum Can Recycling Association (JACRA)</strong>coordinates industry awareness and publishes the annual recovery and can-to-can rates. Fees are published per fiscal year by material category; for aluminum cans they have historically been around ¥70–100/kg, paid by producers into JCPRA. Municipalities receive support for collection and transport, while recyclers buy the sorted UBC from municipal yards."
+              }
+            ]
+          },
+          {
+            "title": "Collection, sorting, and recycling infrastructure",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Kerbside source separation is dominant.</strong>Households put aluminum cans into dedicated transparent bags; collection occurs on scheduled days separate from combustibles and PET. Public recycling stations sit in almost every neighborhood.",
+                  "<strong>Vending-machine compression</strong>is common in dense urban areas: many machines accept the empty can at the side of the unit, compacting it and improving logistics.",
+                  "<strong>Domestic re-melters:</strong>Showa Denko (now Resonac), Daiki Aluminium, and Nippon Light Metal consume UBC and produce can-body sheet and other secondary alloys."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recovery rates and economic outcomes",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "In FY2023 Japan collected<strong>97.5%</strong>of aluminum cans; in 2024 JACRA reported<strong>99.8%</strong>collection and<strong>75.7% can-to-can</strong>— meaning roughly three-quarters of recovered cans returned to new can production, with the remainder downcycled into other aluminum products (still in-country). Demand held steady at about<strong>2.09 billion cans</strong>in 2025 as population decline and PET substitution offset each other."
+              },
+              {
+                "type": "p",
+                "html": "The fee-for-service model means producers bear the system cost, not consumers. This reduces “return friction” — residents do not need to visit a redemption center — but it requires a disciplined, high-compliance sorting culture and a capable municipal collection fleet."
+              }
+            ]
+          },
+          {
+            "title": "How it fits Japan’s context",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Japan has high population density, strong local government capacity, a culture of household source separation, and domestic can-sheet and secondary smelting industries. The EPR model fits because municipalities can enforce sorting rules and producers are organized enough to collect and remit fees. It would be harder to replicate in a jurisdiction with weak municipal waste services and no domestic re-melter."
+              }
+            ]
+          },
+          {
+            "title": "Lessons for Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Separate “collection rate” from “closed-loop rate.”</strong>A 99% collection rate is impressive, but the economically meaningful number for a domestic plant is the share that stays on-island. PR should target both metrics explicitly.",
+                  "<strong>EPR fees can substitute for deposits if collection discipline is high.</strong>If PR does not pass a 5¢ DRS, a producer-fee system modeled on JCPRA could still work — but only if municipalities deliver clean, sorted UBC to a central processor.",
+                  "<strong>Transparent public fee schedules build trust.</strong>JCPRA’s annual per-material fee schedule is published; a PR PRO should do the same.",
+                  "<strong>Convenience is the key driver.</strong>PR should place return points where people already shop — supermarkets, gas stations, pharmacies — rather than expecting dedicated trips."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "eu": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "76.3% average (2023); Germany 99%"
+          },
+          {
+            "class": "scale",
+            "text": "~1.2 Mt/yr (Europe aggregate)"
+          },
+          {
+            "class": "drs",
+            "text": "DRS in 12+ member states"
+          }
+        ],
+        "sections": [
+          {
+            "title": "How the system is structured and governed",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Europe is a patchwork moving toward harmonized high recovery. The<strong>Packaging and Packaging Waste Regulation (PPWR, Regulation (EU) 2025/40)</strong>, in force since February 2025, replaced the 1994 Directive. It mandates that member states hit<strong>80% separate collection of beverage cans by 2029 and 90% by 2033</strong>, and it effectively requires deposit-return schemes in most member states."
+              },
+              {
+                "type": "p",
+                "html": "Two other laws shape aluminum specifically:"
+              },
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Critical Raw Materials Act (CRMA, 2024/1252):</strong>aluminum is listed as a strategic raw material; the EU aims for ≥25% of annual consumption to come from EU recycling by 2030, with stricter processing benchmarks for aluminum.",
+                  "<strong>Waste Shipment Regulation recast (2024/1157):</strong>from 21 May 2026, member states must notify and justify exports of “green-listed” scrap, including non-hazardous aluminum UBC, giving domestic recyclers a right of refusal before material leaves the EU."
+                ]
+              },
+              {
+                "type": "p",
+                "html": "Governance is split: Brussels sets targets, member states design DRS and PRO structures, and industry associations (European Aluminium, Metal Packaging Europe) report aggregate rates and lobby for export curbs."
+              }
+            ]
+          },
+          {
+            "title": "Collection, sorting, and recycling infrastructure",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Mandatory DRS</strong>in 12+ member states by 2025 (Germany, Finland, Sweden, Norway, Denmark, Netherlands, Belgium, Estonia, Lithuania, Latvia, Ireland, Malta, Slovakia). Deposits are typically €0.10–0.25 per container, with dense Reverse Vending Machine (RVM) networks in every supermarket.",
+                  "<strong>Kerbside and bring-bank systems</strong>persist in non-DRS states (France, Italy, Spain), yielding lower and more variable recovery.",
+                  "<strong>Can-sheet capacity:</strong>Germany’s<strong>Novelis Nachterstedt</strong>and<strong>Speira Voerde</strong>plants, plus Novelis Göttingen and Pieve (Italy), Hydro (Norway/Germany), and Constellium (France), consume UBC for can-sheet production."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recovery rates and economic outcomes",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Europe reached a record<strong>76.3%</strong>aluminum beverage can recycling rate in 2023. Mature DRS states cluster at 90–99%; Germany leads at<strong>99%</strong>. New DRS launches have produced rapid step changes: Malta, Latvia, and Slovakia jumped from ~50% to &gt;80% within 12–18 months of launch."
+              },
+              {
+                "type": "p",
+                "html": "The economic driver is a combination of unredeemed-deposit (“breakage”) revenue and producer fees, which fund RVM networks and logistics. EU scrap prices in 2024 ranged roughly €1,400–1,800/t for clean UBC, linked to LME. The new export rules are expected to deepen the domestic closed loop by keeping material in-region."
+              }
+            ]
+          },
+          {
+            "title": "How it fits Europe’s context",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Europe has high population density, integrated supply chains, and existing can-sheet capacity. The political consensus for circular-economy regulation is strong, and the single market makes cross-border scrap movements easy to monitor. The EU’s export curbs are a direct response to Asian demand pulling material out of the European loop."
+              }
+            ]
+          },
+          {
+            "title": "Lessons for Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Set binding recovery targets and ratchet them.</strong>The PPWR’s 80% by 2029 / 90% by 2033 framework gives investors certainty. PR could legislate 60% by 2030, 75% by 2033, and 85% by 2035.",
+                  "<strong>Pair a DRS with a “right of refusal” for domestic industry.</strong>A PR law should require exporters to offer UBC to the island plant first, at market terms, before shipping scrap off-island.",
+                  "<strong>DRS is the fastest lever.</strong>Europe’s new DRS states moved faster than its EPR-only states. A 5¢ DRS in PR is the most tested path to 75%+ recovery.",
+                  "<strong>Recycled-content mandates create pull.</strong>The PPWR’s recycled-content targets give domestic recyclers a guaranteed buyer. PR could require that a rising share of cans sold on-island use post-consumer aluminum."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "us": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "43% (2023, lowest in decades)"
+          },
+          {
+            "class": "scale",
+            "text": "~1.7 Mt placed on market"
+          },
+          {
+            "class": "drs",
+            "text": "10 state deposit laws"
+          }
+        ],
+        "sections": [
+          {
+            "title": "How the system is structured and governed",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "The United States has<strong>no federal packaging EPR or deposit law</strong>. Recycling is mostly funded by municipalities through general taxes, with revenue from commodity sales covering a declining share of costs. The result is a patchwork: ten states operate Container Deposit Laws (CDLs or “bottle bills”), while the rest rely on curbside single-stream, which recovers cans at much lower purity and rates."
+              },
+              {
+                "type": "p",
+                "html": "The ten deposit states are California (CRV), Connecticut, Hawaii, Iowa, Maine, Massachusetts, Michigan, New York, Oregon, and Vermont. Deposits range from 5¢ to 10¢. Michigan and Oregon are at 10¢; California uses 5¢ for containers under 24 oz and 10¢ above. Industry groups — the<strong>Aluminum Association</strong>and<strong>Can Manufacturers Institute (CMI)</strong>— publish an annual recycling-rate report and a roadmap targeting 70% by 2030, 80% by 2040, and 90% by 2050."
+              },
+              {
+                "type": "p",
+                "html": "Packaging EPR is now advancing separately: Maine, Oregon, California, Colorado, Minnesota, Maryland, and Washington passed EPR/PRO laws in 2021–2024, with fees rolling out between 2027 and 2031. Aluminum cans will increasingly be covered by PRO fees, but deposit states still deliver the highest recovery."
+              }
+            ]
+          },
+          {
+            "title": "Collection, sorting, and recycling infrastructure",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Curbside single-stream dominates</strong>in &gt;70% of municipalities. MRFs use eddy-current separators and hand sorting, but contamination and breakage are high, and aluminum revenue is often used to subsidize lower-value materials.",
+                  "<strong>Redemption centers and RVMs</strong>in deposit states capture the bulk of in-state UBC at higher purity and lower contamination.",
+                  "<strong>Major domestic can-sheet capacity:</strong>Novelis (multiple plants), Arconic, JW Aluminum, and Constellium Muscle Shoals. The U.S. can remelt most of its UBC domestically, but a large share leaks abroad as scrap."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recovery rates and economic outcomes",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "The U.S. aluminum can recycling rate fell to<strong>43% in 2023</strong>, down from a long-term average near 52% since 1990 — the lowest in decades. Of roughly<strong>100 billion cans placed on market</strong>(~1.7 Mt of aluminum), the recycled share was about<strong>730,000 t</strong>of UBC. More than<strong>61 billion cans</strong>were landfilled, representing nearly<strong>$1.2 billion</strong>worth of aluminum."
+              },
+              {
+                "type": "p",
+                "html": "The divergence between deposit and non-deposit states is stark: deposit states consistently recover 60–90% of containers, while non-deposit states often fall below 30%. The Aluminum Association and CMI explicitly identify well-designed deposit-return systems as the most effective strategy to reverse the decline."
+              }
+            ]
+          },
+          {
+            "title": "How it fits the U.S. context",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "The U.S. has large, integrated aluminum and beverage industries, extensive MRF infrastructure, and strong domestic can-sheet capacity. The failure is policy, not technology: a federal system has been blocked by retail and beverage lobbying, leaving states to act alone. The result is that high-value aluminum is treated like a low-grade commodity in most of the country."
+              }
+            ]
+          },
+          {
+            "title": "Lessons for Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>A state/territory-level DRS is the most-tested U.S. tool.</strong>Michigan’s 10¢ deposit and Oregon’s modernized 10¢ scheme show that deposits work when the value is high enough and redemption is convenient.",
+                  "<strong>Single-stream alone is not enough.</strong>The U.S. decline proves that relying on curbside MRFs to recover cans fails at scale. PR should treat single-stream as a fallback, not the primary can-recovery channel.",
+                  "<strong>Protect against export leakage.</strong>The U.S. exports ~30–40% of UBC and mixed aluminum scrap. PR should legislate a domestic-first offer before export, so the island plant receives the material.",
+                  "<strong>Use PRO fees to backstop the DRS.</strong>Emerging U.S. EPR/PRO laws can fund education, RVM siting, and processing subsidies without replacing the deposit itself."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "australia": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "75–80% national (2024)"
+          },
+          {
+            "class": "scale",
+            "text": "~3 B cans/yr"
+          },
+          {
+            "class": "drs",
+            "text": "10¢ state-level CDS"
+          }
+        ],
+        "sections": [
+          {
+            "title": "How the system is structured and governed",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Australia is the<strong>first continent fully covered by Container Deposit Schemes (CDS)</strong>, after Tasmania launched Recycle Rewards on 1 May 2025. Each state and territory operates its own scheme; there is no federal harmonization. Deposits are uniformly<strong>10¢ per eligible container</strong>, funded by beverage producers and importers as a “first seller” fee, with consumers receiving the refund on return."
+              },
+              {
+                "type": "p",
+                "html": "Key launch dates: South Australia (1977, pioneer), Northern Territory (2012), New South Wales (2017, “Return and Earn” run by TOMRA), ACT (2018), Queensland (2018, “Containers for Change”), Western Australia (2020), Victoria (2023, “CDS Vic”), and Tasmania (2025). Each scheme has a network operator or coordinator appointed by the state government."
+              },
+              {
+                "type": "p",
+                "html": "The schemes are backed by national packaging policy under the<strong>Recycling and Waste Reduction Act 2020</strong>and the Australian Packaging Covenant, which sets mandatory targets and reporting."
+              }
+            ]
+          },
+          {
+            "title": "Collection, sorting, and recycling infrastructure",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>RVM-dense networks:</strong>TOMRA is the dominant operator in NSW, QLD, and other states; Visy and Envirobank operate in Victoria. NSW alone has<strong>more than 600 return points</strong>(RVMs + depots).",
+                  "<strong>Over-the-counter returns</strong>at supermarkets, bottle shops, and community depots provide options for consumers who cannot use machines.",
+                  "<strong>Collection logistics:</strong>returned containers are counted, compacted, baled, and sent to recyclers. Because the schemes divert the high-value fraction out of kerbside bins, MRFs lose some revenue — a known transition cost."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recovery rates and economic outcomes",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "National aluminum can recovery climbed from ~67% before CDS rollout to roughly<strong>75–80%</strong>by 2024. Mature schemes such as South Australia and the Northern Territory exceed<strong>80%</strong>; NSW sits around<strong>70–75%</strong>. Victoria’s CDS Vic created an estimated<strong>597 direct jobs</strong>and reached &gt;90% public awareness in its first eight months."
+              },
+              {
+                "type": "p",
+                "html": "The economics rely on<strong>unredeemed deposits (“breakage”)</strong>, which typically run 10–20% of containers and fund network operations. Producer fees net of breakage are roughly AUD$0.03–0.08 per can. Scheme operators report that a 10¢ deposit is high enough to motivate behavior but low enough to keep beverage prices stable."
+              }
+            ]
+          },
+          {
+            "title": "How it fits Australia’s context",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Australia is a wealthy, urbanized, island continent with strong state governments and sparse rural populations. The state-by-state approach allowed early adopters (SA, NSW) to prove the model before laggards joined. However, Australia has<strong>no major can-sheet rolling mill</strong>; most recovered UBC is exported to Korea, Thailand, India, or Indonesia for smelting. The loop is therefore<strong>broken at the re-melting/rolling stage</strong>."
+              }
+            ]
+          },
+          {
+            "title": "Lessons for Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>This is the most directly applicable model for an island.</strong>A 5¢ DRS with supermarket, mall, and civic drop-off points can lift recovery from &lt;2% to 70%+ within a few years, just as Australia moved from 67% to 75–80%.",
+                  "<strong>Keep the deposit lower than 10¢ to start.</strong>PR’s per-capita income and can volume argue for a 5¢ deposit initially; it can be raised after the network is dense.",
+                  "<strong>Pair the DRS with a domestic re-melter.</strong>Australia shows that high recovery without local reprocessing still sends value offshore. PR’s plant is the missing second half of the Australian model.",
+                  "<strong>Publish transparent tonnage and redemption data.</strong>Australian state schemes publish annual reports on return rates, jobs, and litter reduction, which builds political support."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "iceland": {
+        "meta": [
+          {
+            "class": "rate",
+            "text": "~88% can redemption; closed loop limited"
+          },
+          {
+            "class": "scale",
+            "text": "Population ~380,000"
+          },
+          {
+            "class": "drs",
+            "text": "Deposit since 1989"
+          }
+        ],
+        "sections": [
+          {
+            "title": "How the system is structured and governed",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Iceland is an outlier: a small, cold-climate island that is simultaneously a global primary-aluminum powerhouse and a pioneer of national deposit-return.<strong>Endurvinnslan hf.</strong>was founded by law in 1989 (Law No. 52/1989, Regulation 368/2000) and is the only company authorized to pay deposits on bottles and cans. Iceland was one of the first countries in the world to implement a national DRS."
+              },
+              {
+                "type": "p",
+                "html": "The system is governed by the Ministry of Environment and the<strong>Icelandic Recycling Fund (Úrvinnslusjóður)</strong>, which executes extended producer responsibility for packaging, electronics, batteries, and vehicles. Beverage producers and importers pay fees into the fund, and the fund negotiates processing contracts with waste-management companies."
+              },
+              {
+                "type": "p",
+                "html": "The deposit is currently a uniform<strong>16 ISK (~US$0.12)</strong>per container, with a 3 ISK handling fee. Unredeemed deposits are kept by Endurvinnslan to refinance the system."
+              }
+            ]
+          },
+          {
+            "title": "Collection, sorting, and recycling infrastructure",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>60 return facilities nationwide,</strong>including 10 automated locations where consumers do not need to sort or count containers manually.",
+                  "<strong>Municipal recycling centers</strong>in every town accept aluminum cans in dedicated bins, often compacted on-site.",
+                  "<strong>Geographic density:</strong>despite a sparse population, Iceland’s ~380,000 residents are concentrated in the Greater Reykjavík area and a handful of coastal towns, making a single national operator feasible."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recovery rates and economic outcomes",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Endurvinnslan reports a historical drink-container recycling rate of approximately<strong>85%</strong>, with aluminum cans near<strong>88%</strong>in recent years and around<strong>91%</strong>in 2021.<strong>Redemption is not the same as closed-loop can-to-can recycling:</strong>Iceland has<em>no domestic can-sheet or can-making capacity</em>. The collected UBC is therefore baled and shipped abroad for re-melting and re-rolling; the metal may return to the island as new can sheet, but that second leg is produced in Europe or Asia, not Iceland. In other words, Iceland redeems cans very well, yet its beverage-can loop remains open at the rolling stage."
+              },
+              {
+                "type": "p",
+                "html": "The primary-aluminum industry is large — three smelters produce roughly<strong>844,000 t/yr</strong>of P1020 ingot — but this is smelting, not can-sheet rolling, and it does not consume UBC. The distinction matters: a jurisdiction can be a world-class primary-aluminum producer and still not close the loop on its own used beverage cans."
+              }
+            ]
+          },
+          {
+            "title": "How it fits Iceland’s context",
+            "blocks": [
+              {
+                "type": "p",
+                "html": "Iceland’s geology and hydropower made it a primary-aluminum smelting hub (Rio Tinto Alcan at Straumsvík, Norðurál at Grundartangi, Alcoa at Reyðarfjörður). But smelting alumina into P1020 ingot is not the same as making can sheet. The island lacks the downstream rolling and can-making industry, so UBC must leave. Iceland’s lesson is that<strong>primary metal capacity does not automatically create a closed beverage-can loop; redemption rate is a collection metric, not a can-to-can remelt metric.</strong>"
+              }
+            ]
+          },
+          {
+            "title": "Lessons for Puerto Rico",
+            "blocks": [
+              {
+                "type": "ul",
+                "items": [
+                  "<strong>Scale is not a barrier if the network is dense enough.</strong>A jurisdiction of ~3.2 million people can support a national DRS and a single secondary plant far more easily than Iceland’s 380,000 support their system.",
+                  "<strong>A single national operator simplifies governance.</strong>Endurvinnslan’s monopoly model reduces coordination costs. PR could appoint one territory-wide scheme coordinator (public or nonprofit) instead of 78 separate municipal programs.",
+                  "<strong>Do not confuse primary smelting with recycling.</strong>A secondary UBC-to-ingot plant is a different, far less energy-intensive asset than a primary smelter. PR should build the secondary plant first; primary smelting is not required.",
+                  "<strong>Keep the deposit simple and uniform.</strong>Iceland uses one deposit value for all materials, reducing consumer confusion. PR should start with one clear deposit for aluminum cans and add glass/PET later."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }

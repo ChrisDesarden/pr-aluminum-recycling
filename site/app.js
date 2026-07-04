@@ -65,6 +65,7 @@
     renderScenariosTable(lang);
     renderFundingTable(lang);
     renderTimeline(lang);
+    renderCases(lang);
     $$('.lang-btn').forEach(btn => {
       const active = btn.dataset.lang === lang;
       btn.classList.toggle('is-active', active);
@@ -251,6 +252,34 @@
   const trunc140 = (str) => {
     if (!str || str.length <= 140) return str || '';
     return str.slice(0, 137).trimEnd() + '…';
+  };
+
+  // ---------- case studies (jurisdictions) ----------
+  // Pulls localized data from translations.case_studies[iso] and renders into .case-body[data-case="X"]
+  const caseBadgeClass = (cls) => {
+    if (cls === 'rate' || cls === 'scale' || cls === 'drs' || cls === 'no-drs') return `case-badge ${cls}`;
+    return 'case-badge';
+  };
+  const escapeAttr = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const renderCases = (lang = currentLang) => {
+    const data = translations[lang]?.case_studies;
+    if (!data) return;
+    const isos = Object.keys(data);
+    for (const iso of isos) {
+      const host = document.querySelector(`.case-body[data-case="${iso}"]`);
+      if (!host) continue;
+      const c = data[iso];
+      const meta = (c.meta || []).map(b => `<span class="${caseBadgeClass(b.class)}">${escapeAttr(b.text)}</span>`).join('');
+      const sections = (c.sections || []).map(sec => {
+        const blocks = (sec.blocks || []).map(blk => {
+          if (blk.type === 'p') return `<p>${blk.html}</p>`;
+          if (blk.type === 'ul') return `<ul>${blk.items.map(it => `<li>${it}</li>`).join('')}</ul>`;
+          return '';
+        }).join('');
+        return `<section class="case-section"><h4>${escapeAttr(sec.title)}</h4>${blocks}</section>`;
+      }).join('');
+      host.innerHTML = `<article class="case-report"><div class="case-meta">${meta}</div>${sections}</article>`;
+    }
   };
 
   const renderRevenueChart = (lang = currentLang) => {
