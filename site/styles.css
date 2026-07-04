@@ -1202,6 +1202,12 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   padding-left: 1.1em;
 }
 .src-list li { margin-bottom: var(--sp-1); color: var(--c-fg-soft); }
+/* Long URLs have no natural break points (no spaces, no hyphens in the
+   meaningful part). Allow them to wrap at any character so they never
+   overflow the column or get clipped. In practice the browser already
+   breaks at slashes, but this is the safety net for the long PDF / EU
+   URLs that have slashes in awkward places. */
+.src-list a { overflow-wrap: anywhere; }
 /* Wide card spans the full grid row, list reflows into 2–3 columns
    so the international case-studies (17 sources) doesn't dwarf the
    3 small cards above it. */
