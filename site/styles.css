@@ -172,6 +172,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   display: grid;
   gap: var(--sp-5);
   margin: var(--sp-5) 0;
+  align-items: start;
 }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -1222,7 +1223,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   width: 100%;
   max-width: 680px;
   min-height: var(--flip-h);
-  margin: var(--sp-4) 0 var(--sp-5);
+  margin: var(--sp-5) 0 var(--sp-6);
   cursor: pointer;
   border-radius: var(--radius);
   transition: transform 180ms ease, box-shadow 180ms ease;
