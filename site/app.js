@@ -19,6 +19,73 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const PALETTE = ['#0c5c8a','#1f8fb8','#5fb8d3','#a3d9b1','#d6c25a','#e89c52','#c45a4a','#7a4a96','#444'];
 
+  // ---------- i18n ----------
+  let currentLang = document.documentElement.lang || 'es';
+  let translations = {};
+  const loadTranslations = async () => {
+    try {
+      const res = await fetch('assets/translations.json');
+      translations = await res.json();
+    } catch (e) { translations = {}; }
+  };
+  const t = (key, lang = currentLang) => {
+    if (!translations[lang]) return key;
+    const val = translations[lang][key];
+    if (val == null && lang !== 'en') return translations.en?.[key] ?? key;
+    return val ?? key;
+  };
+  const applyLang = (lang) => {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.title = t('brand_name', lang) + ' — ' + (lang === 'es' ? 'Planta de reciclaje de aluminio' : 'Closed-loop aluminum recycling facility');
+    $$('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const val = t(key, lang);
+      if (/\\u003c[^\\u003e]+\\u003e/.test(val)) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    });
+    $$('[data-i18n-aria]').forEach(el => {
+      const key = el.dataset.i18nAria;
+      const val = t(key, lang);
+      if (val != null) el.setAttribute('aria-label', val);
+    });
+    $$('[data-i18n-title]').forEach(el => {
+      const key = el.dataset.i18nTitle;
+      const val = t(key, lang);
+      if (val != null) el.setAttribute('title', val);
+    });
+    $$('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      const val = t(key, lang);
+      if (val != null) el.setAttribute('placeholder', val);
+    });
+    $$('.lang-btn').forEach(btn => {
+      const active = btn.dataset.lang === lang;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    renderCountryChart(lang);
+  };
+
+  const initI18n = () => {
+    $$('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        if (lang && lang !== currentLang && translations[lang]) {
+          applyLang(lang);
+          try { localStorage.setItem('recirc-lang', lang); } catch (e) {}
+        }
+      });
+    });
+    const saved = (() => { try { return localStorage.getItem('recirc-lang'); } catch (e) { return null; } })();
+    if (saved && saved !== currentLang && translations[saved]) {
+      applyLang(saved);
+    }
+  };
+
   // ---------- mobile nav ----------
   const initNav = () => {
     const btn = $('.nav-toggle');
@@ -54,7 +121,7 @@
 
   // ---------- case study tabs (a11y + deep-link) ----------
   const initCaseTabs = () => {
-    const tablist = $('[role="tablist"][aria-label="Country case studies"]');
+    const tablist = $('#case-studies [role="tablist"]');
     if (!tablist) return;
     const tabs = $$('[role="tab"]', tablist);
     const panels = tabs.map(t => $(`#${t.getAttribute('aria-controls')}`)).filter(Boolean);
@@ -119,23 +186,24 @@
       if (idx >= 0) activate(idx);
     });
   };
-
   // ---------- country recovery-rate bar chart ----------
-  const initCountryChart = async () => {
+  let countryChartInstance = null;
+  const renderCountryChart = async (lang = currentLang) => {
     const host = $('#country-chart');
     if (!host || typeof d3 === 'undefined') return;
+    host.innerHTML = '';
     let data;
     try {
       const res = await fetch('assets/country-data.json');
       data = await res.json();
-    } catch (e) { host.textContent = 'Failed to load country data.'; return; }
+    } catch (e) { host.textContent = t('chart_country_error', lang); return; }
     const rates = data.rates.slice().sort((a, b) => b.rate - a.rate);
     const w = host.clientWidth || 600;
     const rowH = 32, padL = 110, padR = 70;
     const h = rates.length * rowH + 24;
     const svg = d3.select(host).append('svg')
       .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
-      .attr('aria-label','Aluminum can recovery rates by jurisdiction');
+      .attr('aria-label', t('chart_country_aria', lang));
     const x = d3.scaleLinear().domain([0, 1]).range([0, w - padL - padR]);
     const y = d3.scaleBand().domain(rates.map(d => d.iso)).range([0, rates.length * rowH]).padding(0.2);
     svg.append('g').attr('transform', `translate(${padL}, 0)`)
@@ -629,12 +697,15 @@
   };
 
   // ---------- boot ----------
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadTranslations();
     initNav();
+    initI18n();
+    applyLang(currentLang);
     initScrollspy();
     initCaseTabs();
     initFlipCards();
-    initCountryChart();
+    renderCountryChart(currentLang);
     initBudgetCharts();
     initMap();
     initTimeline();

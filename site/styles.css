@@ -245,6 +245,41 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   cursor: pointer;
   color: var(--c-fg);
 }
+/* Language toggle */
+.lang-toggle {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-rule);
+  border-radius: var(--radius);
+  padding: 2px;
+  margin-right: var(--sp-3);
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-100);
+  font-weight: 700;
+  color: var(--c-fg-soft);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.lang-btn:hover, .lang-btn:focus {
+  color: var(--c-link);
+  background: rgba(12, 92, 138, 0.08);
+}
+.lang-btn.is-active {
+  background: var(--c-primary);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(13, 27, 42, 0.15);
+}
+.lang-btn:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
 .nav-toggle-icon, .nav-toggle-icon::before, .nav-toggle-icon::after {
   content: "";
   display: block;
@@ -258,6 +293,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .nav-toggle-icon::after  { position: absolute; top: 7px; left: 0; }
 @media (max-width: 900px) {
   .nav-toggle { display: block; }
+  .lang-toggle { margin-right: var(--sp-2); }
   .nav-list {
     position: absolute;
     top: 100%; left: 0; right: 0;
@@ -935,6 +971,12 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   margin: var(--sp-4) 0 var(--sp-5);
   cursor: pointer;
   border-radius: var(--radius);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.flip-card:hover,
+.flip-card:focus-within:not(.is-flipped) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(245, 165, 36, 0.35);
 }
 .flip-card:focus-visible {
   outline: 3px solid var(--c-accent);
@@ -968,10 +1010,29 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   gap: var(--sp-2);
   align-self: stretch;
 }
+.flip-card-front {
+  border-left: 4px solid var(--c-accent);
+}
+.flip-card-front::before {
+  content: "💡";
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  font-size: var(--fs-500);
+  opacity: 0.25;
+  filter: grayscale(0.4);
+}
+.flip-card:hover .flip-card-front::before,
+.flip-card:focus-within .flip-card-front::before {
+  opacity: 0.55;
+  filter: grayscale(0);
+  transition: opacity 180ms ease, filter 180ms ease;
+}
 .flip-card-back {
   transform: rotateY(180deg);
   background: var(--c-bg-alt);
   color: var(--c-fg);
+  border-left: 4px solid var(--c-primary);
 }
 .flip-title {
   font-size: var(--fs-400);
@@ -979,6 +1040,18 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   margin: 0;
   color: var(--c-primary);
   line-height: var(--lh-snug);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.flip-title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  box-shadow: 0 0 0 3px rgba(245, 165, 36, 0.25);
 }
 .flip-hook {
   font-size: var(--fs-300);
@@ -990,11 +1063,13 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   margin-top: auto;
   margin-bottom: 0;
   font-size: var(--fs-100);
-  color: var(--c-fg-muted);
+  color: var(--c-accent);
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 .flip-hint .icon {
   display: inline-flex;
@@ -1002,6 +1077,15 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   height: 1.1em;
   align-items: center;
   justify-content: center;
+  animation: flipHintPulse 1.6s ease-in-out infinite;
+}
+@keyframes flipHintPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+}
+.flip-card.is-flipped .flip-hint .icon {
+  animation: none;
+  transform: rotate(180deg);
 }
 .flip-card-back p {
   font-size: var(--fs-200);

@@ -1,1172 +1,893 @@
-<!doctype html>
-<html lang="en" data-theme="auto">
+<!DOCTYPE html>
+
+<html data-theme="auto" lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Recircular Puerto Rico — A closed-loop aluminum can recycling facility</title>
-  <meta name="description" content="A government-ready proposal for a 15,000 t/year closed-loop aluminum can recycling facility in Puerto Rico. Engineering, financing, and policy for a self-sufficient island aluminum cycle.">
-  <meta name="author" content="Chris Desarden, Iris (assistant)">
-  <meta name="theme-color" content="#0c1f33">
-  <meta property="og:title" content="Recircular Puerto Rico — Closed-loop aluminum recycling facility">
-  <meta property="og:description" content="A 15,000 t/yr UBC-to-ingot plant on the south coast of PR. Engineering, financing, and policy case, 2026.">
-  <meta property="og:type" content="article">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230c1f33'/%3E%3Cpath d='M50 20a30 30 0 110 60 30 30 0 010-60zm0 10a20 20 0 100 40 20 20 0 000-40z' fill='%23f5a524'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title data-i18n="brand_name">Recircular Puerto Rico</title>
+<meta content="Propuesta lista para gobierno de una planta de reciclaje de aluminio de 15 000 t/año en circuito cerrado en Puerto Rico. Ingeniería, financiamiento y política para un ciclo de aluminio autosuficiente en la isla." name="description"/>
+<meta content="Chris Desarden, Iris (assistant)" name="author"/>
+<meta content="#0c1f33" name="theme-color"/>
+<meta content="Recircular Puerto Rico — Planta de reciclaje de aluminio en circuito cerrado" property="og:title"/>
+<meta content="Planta UBC-a-lingote de 15 000 t/año en la costa sur de PR. Caso de ingeniería, financiamiento y política pública, 2026." property="og:description"/>
+<meta content="article" property="og:type"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230c1f33'/%3E%3Cpath d='M50 20a30 30 0 110 60 30 30 0 010-60zm0 10a20 20 0 100 40 20 20 0 000-40z' fill='%23f5a524'/%3E%3C/svg%3E" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- ============================== HEADER ============================== -->
-  <header class="site-header" role="banner">
-    <div class="container header-row">
-      <a class="brand" href="#top" aria-label="Recircular Puerto Rico home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" width="36" height="36" focusable="false">
-            <rect width="100" height="100" rx="20" fill="currentColor" opacity="0.18"/>
-            <path d="M50 18a32 32 0 110 64 32 32 0 010-64zm0 10a22 22 0 100 44 22 22 0 000-44z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="brand-text">
-          <strong>Recircular Puerto Rico</strong>
-          <span class="brand-sub">A closed-loop aluminum can facility · 2026 proposal</span>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
-          <span class="visually-hidden">Toggle navigation</span>
-          <span class="nav-toggle-icon" aria-hidden="true"></span>
-        </button>
-        <ul id="nav-list" class="nav-list">
-          <li><a href="#summary">Summary</a></li>
-          <li><a href="#pr-context">Why PR</a></li>
-          <li><a href="#map">Map</a></li>
-          <li><a href="#case-studies">Case studies</a></li>
-          <li><a href="#engineering">Engineering</a></li>
-          <li><a href="#budget">Budget</a></li>
-          <li><a href="#funding">Funding</a></li>
-          <li><a href="#timeline">Timeline</a></li>
-          <li><a href="#risks">Risks</a></li>
-          <li><a href="#conclusion">Asks</a></li>
-          <li><a href="#sources">Sources</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-  <!-- ============================== HERO ============================== -->
-  <section id="top" class="hero">
-    <div class="container">
-      <p class="eyebrow">A working proposal · 2026 · v1.0</p>
-      <h1>
-        Close the can.<br>
-        <span class="accent">A 15,000&nbsp;t/yr aluminum cycle for Puerto&nbsp;Rico.</span>
-      </h1>
-      <p class="lede">
-        Every year, roughly <strong>17,000&nbsp;tonnes of used beverage cans</strong> leave the island as
-        baled scrap, ship under the Jones&nbsp;Act, get melted in Texas or Mississippi, and ship back as
-        new cans. We're proposing to keep that loop on the island: a FORTIFIED&nbsp;Commercial
-        secondary-aluminum plant on PRIDCO land, fed by a deposit-return scheme and a coast-to-coast
-        drop-off network. <strong>$52&nbsp;M CAPEX, $12.3&nbsp;M/yr OPEX, 3.0-yr payback, 14–18% IRR.</strong>
-      </p>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Plain-language summary" aria-describedby="eli5-hero">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">In plain English</p>
-            <p class="flip-hook">We want to build a factory that turns empty cans back into aluminum without shipping them to the mainland.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-hero">Right now, most Puerto Ricans throw away aluminum cans. Those cans get baled, shipped to the U.S. mainland, melted down, and the new aluminum is shipped back as cans. This proposal is a plan to keep that whole loop on the island instead: collect the cans locally, melt them locally, and sell the recycled aluminum to can-makers. It would save a lot of energy, create local jobs, and keep money from leaking off the island.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#budget">Read the numbers</a>
-        <a class="btn btn-ghost" href="#sources">All sources &amp; citations</a>
-      </div>
-
-      <!-- Stats strip -->
-      <ul class="stats-strip" aria-label="Headline numbers">
-        <li>
-          <span class="stat-num">17,000</span>
-          <span class="stat-label">t/yr UBC generated in PR <small>(CIA, Abralatas, EcoEléctrica MRF data)</small></span>
-        </li>
-        <li>
-          <span class="stat-num">1.8%</span>
-          <span class="stat-label">PR's current aluminum can recovery rate <small>(DRNA 2022 ISWMP, EPA State Measurement Program)</small></span>
-        </li>
-        <li>
-          <span class="stat-num">75%</span>
-          <span class="stat-label">Target recovery by Year&nbsp;5 with DRS at 5¢</small></span>
-        </li>
-        <li>
-          <span class="stat-num">62</span>
-          <span class="stat-label">Direct FTE · +155 indirect/induced <small>(IMPLAN 2.5× multiplier)</small></span>
-        </li>
-        <li>
-          <span class="stat-num">95%</span>
-          <span class="stat-label">Energy savings vs. primary aluminum <small>(IAI, Aluminum Association EPD)</small></span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============================== SUMMARY ============================== -->
-  <section id="summary" class="section section-light" data-section="summary">
-    <div class="container two-col">
-      <div>
-        <h2>The one-paragraph version</h2>
-
-        <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="What this section means" aria-describedby="eli5-summary">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <p class="flip-title">What this means</p>
-              <p class="flip-hook">This is a business plan for an island-sized recycling factory.</p>
-              <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-            </div>
-            <div class="flip-card-back">
-              <p id="eli5-summary">The plan is to build a single medium-sized plant that can handle 15,000 tonnes of used cans each year. To get enough cans, the island would add a 5¢ deposit on every aluminum can sold — you pay a nickel when you buy the drink and get it back when you return the empty can. The plant would sit on industrial land near Ponce or Guayama, employ about 62 people directly, and be funded mostly by a bond backed by those deposits plus federal clean-energy credits. The math projects a payback in about three years and a solid long-term return.</p>
-            </div>
-          </div>
-        </div>
-
-        <p class="lede small">
-          Build a single medium-scale secondary-aluminum melting and casting plant on a PRIDCO industrial
-          parcel in Guayama or Ponce, licensed under IBHS FORTIFIED&nbsp;Commercial standards and a
-          JCA minor NSR air permit. Feed it with a 5¢ island-wide Deposit-Return Scheme (DRS) on aluminum
-          cans plus a network of supermarket, mall, and civic drop-off points covering all 78&nbsp;municipalities.
-          Sell T-bar sow and P1020A ingot to Anchor partners (Coca-Cola, Ball, Novelis, Crown) under
-          multi-year offtake agreements. Use the IRA's transferable §48&nbsp;ITC and §45X production credit
-          to lower blended cost of capital to ~4.5%.
-        </p>
-        <p>
+<a class="skip-link" data-i18n="skip_link" href="#main">Saltar al contenido principal</a>
+<!-- ============================== HEADER ============================== -->
+<header class="site-header" role="banner">
+<div class="container header-row">
+<a aria-label="Recircular Puerto Rico home" class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark">
+<svg focusable="false" height="36" viewbox="0 0 100 100" width="36">
+<rect fill="currentColor" height="100" opacity="0.18" rx="20" width="100"></rect>
+<path d="M50 18a32 32 0 110 64 32 32 0 010-64zm0 10a22 22 0 100 44 22 22 0 000-44z" fill="currentColor"></path>
+</svg>
+</span>
+<span class="brand-text">
+<strong data-i18n="brand_name">Recircular Puerto Rico</strong>
+<span class="brand-sub" data-i18n="brand_sub">Planta de reciclaje de aluminio en circuito cerrado · Propuesta 2026</span>
+</span>
+</a>
+<nav aria-label="Primary" class="site-nav">
+<div aria-label="Selector de idioma" class="lang-toggle" role="group">
+<button aria-pressed="true" class="lang-btn is-active" data-i18n-title="lang_es" data-lang="es" title="Español" type="button">ES</button>
+<button aria-pressed="false" class="lang-btn" data-i18n-title="lang_en" data-lang="en" title="English" type="button">EN</button>
+</div>
+<button aria-controls="nav-list" aria-expanded="false" aria-label="Alternar navegación" class="nav-toggle" data-i18n-aria="nav_toggle" type="button">
+<span class="visually-hidden" data-i18n="nav_toggle">Alternar navegación</span>
+<span aria-hidden="true" class="nav-toggle-icon"></span>
+</button>
+<ul class="nav-list" id="nav-list">
+<li><a data-i18n="nav_summary" href="#summary">Resumen</a></li>
+<li><a data-i18n="nav_pr_context" href="#pr-context">¿Por qué PR?</a></li>
+<li><a data-i18n="nav_map" href="#map">Mapa</a></li>
+<li><a data-i18n="nav_case_studies" href="#case-studies">Casos</a></li>
+<li><a data-i18n="nav_engineering" href="#engineering">Ingeniería</a></li>
+<li><a data-i18n="nav_budget" href="#budget">Presupuesto</a></li>
+<li><a data-i18n="nav_funding" href="#funding">Financiamiento</a></li>
+<li><a data-i18n="nav_timeline" href="#timeline">Cronograma</a></li>
+<li><a data-i18n="nav_risks" href="#risks">Riesgos</a></li>
+<li><a data-i18n="nav_conclusion" href="#conclusion">Solicitudes</a></li>
+<li><a data-i18n="nav_sources" href="#sources">Fuentes</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main">
+<!-- ============================== HERO ============================== -->
+<section class="hero" id="top">
+<div class="container">
+<p class="eyebrow" data-i18n="hero_eyebrow">Propuesta de trabajo · 2026 · v1.0</p>
+<h1 data-i18n="hero_title">Cierra el ciclo de la lata.<span class="accent">15 000 t/año de aluminio reciclado para Puerto Rico.</span></h1>
+<p class="lede" data-i18n="hero_lede">Cada año, cerca de  abandonan la isla como fardos de chatarra, navegan bajo la Ley Jones, se funden en Texas o Mississippi y regresan como latas nuevas. Proponemos cerrar ese ciclo en la isla: una planta secundaria de aluminio  en terrenos de PRIDCO, alimentada por un sistema de depósito-reembolso y una red de puntos de entrega de costa a costa. </p>
+<div aria-describedby="eli5-hero" aria-label="Plain-language summary" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title">In plain English</p>
+<p class="flip-hook">We want to build a factory that turns empty cans back into aluminum without shipping them to the mainland.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p id="eli5-hero">Right now, most Puerto Ricans throw away aluminum cans. Those cans get baled, shipped to the U.S. mainland, melted down, and the new aluminum is shipped back as cans. This proposal is a plan to keep that whole loop on the island instead: collect the cans locally, melt them locally, and sell the recycled aluminum to can-makers. It would save a lot of energy, create local jobs, and keep money from leaking off the island.</p>
+</div>
+</div>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" data-i18n="hero_cta_numbers" href="#budget">Ver los números</a>
+<a class="btn btn-ghost" data-i18n="hero_cta_sources" href="#sources">Todas las fuentes y citas</a>
+</div>
+<!-- Stats strip -->
+<ul aria-label="Cifras destacadas" class="stats-strip" data-i18n-aria="stats_label">
+<li>
+<span class="stat-num">17,000</span>
+<span class="stat-label" data-i18n="stat_ubc_label">t/año de UBC generadas en PR </span>
+</li>
+<li>
+<span class="stat-num">1.8%</span>
+<span class="stat-label" data-i18n="stat_recovery_label">tasa de recuperación actual de latas de aluminio en PR </span>
+</li>
+<li>
+<span class="stat-num">75%</span>
+<span class="stat-label" data-i18n="stat_target_label">objetivo de recuperación al Año 5 con depósito de 5¢</span>
+</li>
+<li>
+<span class="stat-num">62</span>
+<span class="stat-label" data-i18n="stat_jobs_label">Empleos directos · +155 indirectos/inducidos </span>
+</li>
+<li>
+<span class="stat-num">95%</span>
+<span class="stat-label" data-i18n="stat_energy_label">ahorro energético vs. aluminio primario </span>
+</li>
+</ul>
+</div>
+</section>
+<!-- ============================== SUMMARY ============================== -->
+<section class="section section-light" data-section="summary" id="summary">
+<div class="container two-col">
+<div>
+<h2 data-i18n="summary_title">La versión de un párrafo</h2>
+<div aria-describedby="eli5-summary" aria-label="What this section means" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_summary_title">Qué significa esto</p>
+<p class="flip-hook" data-i18n="flip_summary_hook">Es un plan de negocios para una fábrica de reciclaje del tamaño de una isla.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_summary_back" id="eli5-summary">El plan es construir una sola planta mediana que procese 15 000 toneladas de latas usadas al año. Para obtener suficientes latas, la isla añadiría un depósito de 5¢ por cada lata de aluminio vendida: pagas un níquel al comprar la bebida y lo recuperas al devolver la lata vacía. La planta se ubicaría en terreno industrial cerca de Ponce o Guayama, emplearía cerca de 62 personas directamente y se financiaría principalmente con un bono respaldado por esos depósitos más créditos fiscales federales de energía limpia. Las proyecciones indican recuperación de la inversión en unos tres años y una sólida rentabilidad a largo plazo.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="summary_lede">Construir una sola planta secundaria de fundición de aluminio y lingote en una parcela industrial de PRIDCO en Guayama o Ponce, licenciada bajo estándares  de IBHS y un permiso menor de aire NSR de la JCA. Alimentarla con un sistema isleño de depósito-reembolso de 5¢ sobre latas de aluminio, más una red de puntos de entrega en supermercados, centros comerciales y espacios cívicos que cubra los 78 municipios. Vender T-bar sow y lingote P1020A a socios compradores (Coca-Cola, Ball, Novelis, Crown) mediante contratos de offtake plurianuales. Usar el  y el crédito de producción  de la Ley IRA para reducir el costo medio de capital a ~4,5 %.</p>
+<p>
           The proposal is intentionally <em>medium</em>-scaled: large enough to be economically
           meaningful and to capture a meaningful share of the island's UBC, but small enough that a
           single site won't concentrate hurricane risk and that permitting is tractable inside one
           legislative cycle.
         </p>
-        <p>
+<p>
           This is a working document, not a glossy marketing deck. Every dollar has a source.
           Every claim links to a citation. Every assumption is named.
-          <a href="#sources">See all sources &rarr;</a>
-        </p>
-      </div>
-      <aside class="callout" aria-label="Headline callout">
-        <h3>Lead scenario: medium (15,000 t/yr)</h3>
-        <dl class="keyvals">
-          <div><dt>Capacity</dt><dd>15,000 t/yr UBC</dd></div>
-          <div><dt>PR UBC captured</dt><dd>~75% (recovery rate by Y5)</dd></div>
-          <div><dt>CAPEX (total)</dt><dd><strong>$53.7 M</strong> <small>(10% contingency on $48.85M)</small></dd></div>
-          <div><dt>OPEX / yr</dt><dd><strong>$12.3 M</strong> <small>($820/t)</small></dd></div>
-          <div><dt>Revenue / yr (steady state)</dt><dd><strong>$32.0 M</strong></dd></div>
-          <div><dt>Payback (undiscounted)</dt><dd><strong>3.0 yr</strong></dd></div>
-          <div><dt>20-yr IRR</dt><dd><strong>14–18%</strong></dd></div>
-          <div><dt>Direct jobs</dt><dd><strong>62 FTE</strong> (+155 indirect/induced)</dd></div>
-          <div><dt>Site</dt><dd>PRIDCO Ponce industrial zone, FTZ 163 (lead); Guayama fallback</dd></div>
-        </dl>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ============================== PR CONTEXT ============================== -->
-  <section id="pr-context" class="section" data-section="pr-context">
-    <div class="container">
-      <h2>Why Puerto Rico, and why now</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Why Puerto Rico matters" aria-describedby="eli5-pr-context">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">Why Puerto Rico?</p>
-            <p class="flip-hook">PR throws away almost every aluminum can it uses, then pays to import new ones.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-pr-context">Puerto Rico uses roughly 17,000 tonnes of aluminum cans a year, but only about 2% get recycled here. The rest are shipped to mainland smelters under the Jones Act, which makes shipping expensive. A 5¢ deposit on each can — like a bottle bill — would give people a reason to return empties instead of tossing them. The factory would be built to withstand hurricanes and power outages, because the island's climate and grid are real challenges. In short: the problem is large, the fix is proven elsewhere, and the timing makes sense because federal tax credits are currently available.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        The island's recycling rate is one of the lowest in the U.S. and Caribbean, and the
-        economics of the Jones&nbsp;Act make shipping cans off-island uniquely expensive.
-        Closing the loop is technically possible, financially viable at scale, and overdue.
-      </p>
-      <div class="grid-3">
-        <article class="card">
-          <h3>The problem</h3>
-          <p>
-            PR generated an estimated <strong>10,000–17,000&nbsp;t/yr of UBC</strong>
-            (CIA World Factbook beverage consumption × 33% can share; cross-checked against
-            Abralatas per-capita figures and EcoEléctrica MRF intake). Of that,
-            only <strong>~1.8%</strong> is recovered domestically — the rest is baled and
-            shipped under the Jones&nbsp;Act to mainland smelters.
-          </p>
-        </article>
-        <article class="card">
-          <h3>The opportunity</h3>
-          <p>
-            A 5¢ deposit-return scheme — modeled on NSW&nbsp;Australia, Michigan, and
-            Connecticut — would lift recovery to <strong>~75% by Year&nbsp;5</strong>, on
-            par with Germany and Belgium. Add a 95% energy savings vs. primary
-            production, and the climate case is independent of the financial case.
-          </p>
-        </article>
-        <article class="card">
-          <h3>The constraint</h3>
-          <p>
-            PR's grid is fragile (Maria, Fiona, 2025 LUMA emergency-rate filing),
-            industrial electricity is <strong>2.5× the U.S. average</strong>, and the
-            island sits in a Cat&nbsp;5 hurricane zone. Any island-scale plant has
-            to be FORTIFIED, on-site generation-equipped, and insured to a level
-            mainland plants don't have to think about.
-          </p>
-        </article>
-      </div>
-
-      <div class="callout-warn">
-        <h3>Honest caveats</h3>
-        <ul>
-          <li>PR has no aluminum smelter today. Engineering workforce has to be recruited or trained. We assume a 12-month ramp for direct hires and a 3-year build-out for supervisory roles.</li>
-          <li>Cans are imported pre-made (no can-sheet plant on-island). Closing the loop on cans themselves is out of scope; this proposal handles UBC → ingot/sow, which is the highest-value stage of the recycling chain.</li>
-          <li>Carbon-credit revenue is methodology-eligible (VCS VM0017/VM0039) but volume-constrained in voluntary markets. We model $15–25/tCO₂e, not the speculative $100+ figures that have circulated.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== MAP ============================== -->
-  <section id="map" class="section section-light" data-section="map">
-    <div class="container">
-      <h2>Where it goes</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Where the plant and return points go" aria-describedby="eli5-map">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">Where everything goes</p>
-            <p class="flip-hook">The factory goes on the south coast; the return points go everywhere.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-map">The main recycling plant would most likely sit on PRIDCO industrial land near Ponce, with Guayama as a backup. The map shows those two industrial zones, plus 14 drop-off points already identified and the biggest municipalities. The goal is a return network that covers all 78 municipalities, so almost no one has to drive far to return empties. The south coast also has access to ports, which matters for moving materials.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        Site shortlist narrowed to two PRIDCO industrial zones on the south coast: Ponce
-        (lead, near Port of the Americas, IFCO 2017 anchor, FTZ 163) and Guayama (fallback,
-        near Peñuelas LNG terminal and EcoEléctrica MRF). The drop-off network covers all
-        78 municipalities; the map below shows confirmed and in-discussion sites plus the
-        25 highest-population municipalities and 8 PRIDCO industrial zones.
-      </p>
-      <div class="map-controls">
-        <label for="map-search" class="visually-hidden">Search map</label>
-        <input id="map-search" type="search" placeholder="Filter by municipality or operator…" aria-controls="pr-map">
-        <fieldset class="layer-toggles" aria-label="Map layers">
-          <legend class="visually-hidden">Map layers</legend>
-          <label><input type="checkbox" data-layer="dropOff" checked> Drop-off points</label>
-          <label><input type="checkbox" data-layer="industrial" checked> Industrial zones</label>
-          <label><input type="checkbox" data-layer="municipalities" checked> Municipalities</label>
-        </fieldset>
-      </div>
-      <div id="pr-map" role="region" aria-label="Map of Puerto Rico with drop-off points, industrial zones, and municipalities" tabindex="0"></div>
-      <p class="map-meta">
-        Map data: 25 highest-population municipalities, 8 PRIDCO industrial zones, 14 drop-off points.
-        <span class="map-legend">
-          <span class="dot dot-cyan"></span> Drop-off
-          <span class="dot dot-amber"></span> Industrial zone
-          <span class="dot dot-ink"></span> Municipality
-        </span>
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================== CASE STUDIES ============================== -->
-  <section id="case-studies" class="section" data-section="case-studies">
-    <div class="container">
-      <h2>How other jurisdictions do it</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Lessons from other countries" aria-describedby="eli5-case-studies">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">What we can learn from other places</p>
-            <p class="flip-hook">Other countries have already figured out how to recycle cans at high rates.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-case-studies">Brazil, Japan, the EU, Australia, Iceland, and parts of the U.S. all show different ways to get cans back. The common pattern is simple: give people a clear reason to return empties (a deposit or a producer-funded reward) and make sure there is a local factory to melt them. Australia and many European countries use deposits. Japan and Brazil rely more on producer responsibility. The lesson for Puerto Rico is that deposits work fast and that a local re-melter is the missing piece that keeps value on the island.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        Six jurisdictions, six different tools. None is a perfect template for PR, but together
-        they sketch the design space.
-      </p>
-
-      <div class="tabs" role="tablist" aria-label="Country case studies">
-        <div class="tablist" role="presentation">
-          <button role="tab" id="tab-brazil" aria-controls="panel-brazil" aria-selected="true" data-target="brazil" tabindex="0">Brazil</button>
-          <button role="tab" id="tab-japan" aria-controls="panel-japan" aria-selected="false" data-target="japan" tabindex="-1">Japan</button>
-          <button role="tab" id="tab-eu" aria-controls="panel-eu" aria-selected="false" data-target="eu" tabindex="-1">EU</button>
-          <button role="tab" id="tab-us" aria-controls="panel-us" aria-selected="false" data-target="us" tabindex="-1">United States</button>
-          <button role="tab" id="tab-australia" aria-controls="panel-australia" aria-selected="false" data-target="australia" tabindex="-1">Australia</button>
-          <button role="tab" id="tab-iceland" aria-controls="panel-iceland" aria-selected="false" data-target="iceland" tabindex="-1">Iceland</button>
-        </div>
-
-        <div class="tab-panels">
-          <!-- BRAZIL -->
-          <div role="tabpanel" id="panel-brazil" aria-labelledby="tab-brazil" data-panel="brazil">
-            <article class="case-report">
-              <div class="case-meta">
-                <span class="case-badge rate">97.3% recovery (2024)</span>
-                <span class="case-badge scale">~417,700 t/yr</span>
-                <span class="case-badge no-drs">No cash deposit</span>
-              </div>
-
-              <h3>1. How the system is structured and governed</h3>
-              <p>
+          <a href="#sources">See all sources →</a>
+</p>
+</div>
+<aside aria-label="Headline callout" class="callout">
+<h3 data-i18n="callout_lead_title">Escenario líder: mediano (15 000 t/año)</h3>
+<dl class="keyvals">
+<div><dt data-i18n="callout_capacity">Capacidad</dt><dd data-i18n="callout_capacity_val">15 000 t/año de UBC</dd></div>
+<div><dt data-i18n="callout_capture">UBC de PR capturada</dt><dd data-i18n="callout_capture_val">~75 % (tasa de recuperación al Año 5)</dd></div>
+<div><dt data-i18n="callout_capex">CAPEX (total)</dt><dd data-i18n="callout_capex_val"><strong>$53,7 M</strong><small>(10 % de contingencia sobre $48,85 M)</small></dd></div>
+<div><dt data-i18n="callout_opex">OPEX / año</dt><dd data-i18n="callout_opex_val"><strong>$12,3 M</strong><small>($820/t)</small></dd></div>
+<div><dt data-i18n="callout_revenue">Ingresos / año (estado estacionario)</dt><dd data-i18n="callout_revenue_val"><strong>$32,0 M</strong></dd></div>
+<div><dt data-i18n="callout_payback">Recuperación (sin descuento)</dt><dd data-i18n="callout_payback_val"><strong>3,0 años</strong></dd></div>
+<div><dt data-i18n="callout_irr">TIR a 20 años</dt><dd data-i18n="callout_irr_val"><strong>14–18 %</strong></dd></div>
+<div><dt data-i18n="callout_jobs">Empleos directos</dt><dd data-i18n="callout_jobs_val"><strong>62 FTE</strong></dd></div>
+<div><dt data-i18n="callout_site">Sitio</dt><dd data-i18n="callout_site_val">Zona industrial PRIDCO Ponce, FTZ 163 (líder); Guayama alternativa</dd></div>
+</dl>
+</aside>
+</div>
+</section>
+<!-- ============================== PR CONTEXT ============================== -->
+<section class="section" data-section="pr-context" id="pr-context">
+<div class="container">
+<h2 data-i18n="pr_context_title">¿Por qué Puerto Rico, y por qué ahora?</h2>
+<div aria-describedby="eli5-pr-context" aria-label="Why Puerto Rico matters" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_pr_title">¿Por qué Puerto Rico?</p>
+<p class="flip-hook" data-i18n="flip_pr_hook">PR desecha casi todas las latas de aluminio que usa y luego paga por importar latas nuevas.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_pr_back" id="eli5-pr-context">Puerto Rico usa aproximadamente 17 000 toneladas de latas de aluminio al año, pero solo alrededor del 2 % se recicla aquí. El resto se envía a fundidores del continente bajo la Ley Jones, lo que encarece el transporte. Un depósito de 5¢ por lata —similar a las leyes de envases— daría a la gente una razón para devolver las vacías en lugar de tirarlas. La fábrica se construiría para resistir huracanes y cortes de energía, porque el clima y la red de la isla son desafíos reales. En resumen: el problema es grande, la solución está probada en otros lugares y el momento es oportuno porque existen créditos fiscales federales.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="pr_context_lede">La tasa de reciclaje de la isla es una de las más bajas de EE. UU. y el Caribe, y la economía de la Ley Jones hace que enviar latas fuera de la isla sea particularmente cara. Cerrar el ciclo es técnicamente posible, financieramente viable a escala y atrasado.</p>
+<div class="grid-3">
+<article class="card">
+<h3 data-i18n="pr_card_problem_title">El problema</h3>
+<p data-i18n="pr_card_problem_body">PR genera unas  (CIA World Factbook × 33 % de participación de latas; cruzado con cifras per cápita de Abralatas y la entrada de la MRF EcoEléctrica). De eso, solo se recupera  a nivel doméstico; el resto se farda y se envía bajo la Ley Jones a fundidores del continente.</p>
+</article>
+<article class="card">
+<h3 data-i18n="pr_card_opportunity_title">La oportunidad</h3>
+<p data-i18n="pr_card_opportunity_body">Un esquema de depósito-reembolso de 5¢ —modelado en NSW Australia, Michigan y Connecticut— elevaría la recuperación a , al nivel de Alemania y Bélgica. Sumar un ahorro energético del 95 % vs. la producción primaria, y el caso climático es independiente del caso financiero.</p>
+</article>
+<article class="card">
+<h3 data-i18n="pr_card_constraint_title">La restricción</h3>
+<p data-i18n="pr_card_constraint_body">La red de PR es frágil (María, Fiona, tarifa de emergencia de LUMA 2025), la electricidad industrial cuesta  y la isla está en zona de huracán Cat 5. Cualquier planta a escala isleña debe ser FORTIFIED, con generación propia y asegurada a niveles que las plantas del continente no necesitan.</p>
+</article>
+</div>
+<div class="callout-warn">
+<h3 data-i18n="caveats_title">Advertencias honestas</h3>
+<ul>
+<li data-i18n="caveat_1">PR no tiene hoy una fundición de aluminio. La fuerza laboral de ingeniería debe reclutarse o capacitarse. Suponemos una rampa de 12 meses para contrataciones directas y 3 años de desarrollo para roles supervisores.</li>
+<li data-i18n="caveat_2">Las latas se importan ya fabricadas (no hay planta de laminación de hoja de lata en la isla). Cerrar el ciclo sobre las latas mismas está fuera del alcance; esta propuesta cubre UBC → lingote/sow, que es la etapa de mayor valor de la cadena de reciclaje.</li>
+<li data-i18n="caveat_3">Los ingresos por créditos de carbono son elegibles metodológicamente (VCS VM0017/VM0039) pero con volumen limitado en mercados voluntarios. Modelamos $15–25/tCO₂e, no las cifras especulativas de $100+ que han circulado.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ============================== MAP ============================== -->
+<section class="section section-light" data-section="map" id="map">
+<div class="container">
+<h2 data-i18n="map_title">Dónde iría</h2>
+<div aria-describedby="eli5-map" aria-label="Where the plant and return points go" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_map_title">Dónde va todo</p>
+<p class="flip-hook" data-i18n="flip_map_hook">La fábrica va en la costa sur; los puntos de entrega van a todas partes.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_map_back" id="eli5-map">La planta de reciclaje principal se ubicaría probablemente en terreno industrial de PRIDCO cerca de Ponce, con Guayama como alternativa. El mapa muestra esas dos zonas industriales, más 14 puntos de entrega ya identificados y los municipios más poblados. El objetivo es una red de devolución que cubra los 78 municipios, para que casi nadie tenga que conducir lejos para entregar latas. La costa sur también tiene acceso a puertos, lo que importa para mover materiales.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="map_lede">Lista corta reducida a dos zonas industriales de PRIDCO en la costa sur: Ponce (líder, cerca del Puerto de las Américas, ancla IFCO 2017, FTZ 163) y Guayama (alternativa, cerca del terminal de LNG de Peñuelas y la MRF EcoEléctrica). La red de entrega cubre los 78 municipios; el mapa muestra sitios confirmados y en conversación, además de los 25 municipios más poblados y 8 zonas industriales.</p>
+<div class="map-controls">
+<label class="visually-hidden" for="map-search">Search map</label>
+<input aria-controls="pr-map" data-i18n-placeholder="map_search_placeholder" id="map-search" placeholder="Filtrar por municipio u operador…" type="search"/>
+<fieldset aria-label="Capas del mapa" class="layer-toggles" data-i18n-aria="map_layers">
+<legend class="visually-hidden">Map layers</legend>
+<label><input checked="" data-layer="dropOff" type="checkbox"/> <span data-i18n="map_layer_dropoff">Puntos de entrega</span></label>
+<label><input checked="" data-layer="industrial" type="checkbox"/> <span data-i18n="map_layer_industrial">Zonas industriales</span></label>
+<label><input checked="" data-layer="municipalities" type="checkbox"/> <span data-i18n="map_layer_municipalities">Municipios</span></label>
+</fieldset>
+</div>
+<div aria-label="Map of Puerto Rico with drop-off points, industrial zones, and municipalities" id="pr-map" role="region" tabindex="0"></div>
+<p class="map-meta">
+<span data-i18n="map_meta">Datos del mapa: 25 municipios más poblados, 8 zonas industriales de PRIDCO, 14 puntos de entrega.</span>
+<span class="map-legend">
+<span class="dot dot-cyan"></span> <span data-i18n="map_legend_dropoff">Punto de entrega</span>
+<span class="dot dot-amber"></span> <span data-i18n="map_legend_industrial">Zona industrial</span>
+<span class="dot dot-ink"></span> <span data-i18n="map_legend_municipality">Municipio</span>
+</span>
+</p>
+</div>
+</section>
+<!-- ============================== CASE STUDIES ============================== -->
+<section class="section" data-section="case-studies" id="case-studies">
+<div class="container">
+<h2 data-i18n="case_studies_title">Cómo lo hacen otras jurisdicciones</h2>
+<div aria-describedby="eli5-case-studies" aria-label="Lessons from other countries" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_case_title">Qué podemos aprender de otros lugares</p>
+<p class="flip-hook" data-i18n="flip_case_hook">Otros países ya descubrieron cómo recuperar latas a altas tasas.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_case_back" id="eli5-case-studies">Brasil, Japón, la UE, Australia, Islandia y partes de EE. UU. muestran distintas formas de recuperar latas. El patrón común es simple: dar a la gente una razón clara para devolver las vacías (un depósito o una recompensa pagada por productores) y asegurar una fábrica local que las funda. Australia y muchos países europeos usan depósitos. Japón y Brasil confían más en la responsabilidad extendida del productor. La lección para Puerto Rico es que los depósitos funcionan rápido y que un refusor local es la pieza faltante que retiene valor en la isla.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="case_studies_lede">Seis jurisdicciones, seis herramientas distintas. Ninguna es plantilla perfecta para PR, pero juntas dibujan el espacio de diseño.</p>
+<div aria-label="Cómo lo hacen otras jurisdicciones" class="tabs" data-i18n-aria="case_studies_title" role="tablist">
+<div class="tablist" role="presentation">
+<button aria-controls="panel-brazil" aria-selected="true" data-i18n="tab_brazil" data-target="brazil" id="tab-brazil" role="tab" tabindex="0">Brasil</button>
+<button aria-controls="panel-japan" aria-selected="false" data-i18n="tab_japan" data-target="japan" id="tab-japan" role="tab" tabindex="-1">Japón</button>
+<button aria-controls="panel-eu" aria-selected="false" data-i18n="tab_eu" data-target="eu" id="tab-eu" role="tab" tabindex="-1">UE</button>
+<button aria-controls="panel-us" aria-selected="false" data-i18n="tab_us" data-target="us" id="tab-us" role="tab" tabindex="-1">Estados Unidos</button>
+<button aria-controls="panel-australia" aria-selected="false" data-i18n="tab_australia" data-target="australia" id="tab-australia" role="tab" tabindex="-1">Australia</button>
+<button aria-controls="panel-iceland" aria-selected="false" data-i18n="tab_iceland" data-target="iceland" id="tab-iceland" role="tab" tabindex="-1">Islandia</button>
+</div>
+<div class="tab-panels">
+<!-- BRAZIL -->
+<div aria-labelledby="tab-brazil" data-panel="brazil" id="panel-brazil" role="tabpanel">
+<article class="case-report">
+<div class="case-meta">
+<span class="case-badge rate">97.3% recovery (2024)</span>
+<span class="case-badge scale">~417,700 t/yr</span>
+<span class="case-badge no-drs">No cash deposit</span>
+</div>
+<h3>1. How the system is structured and governed</h3>
+<p>
                 Brazil runs the world’s highest-performing aluminum-can recovery system without a consumer deposit. The legal foundation is the <strong>National Solid Waste Policy (PNRS, Law 12.305/2010)</strong> and its implementing decree, which require producers, importers, distributors, and retailers of disposable packaging to finance and operate <em>logística reversa</em> (reverse-logistics) systems.
               </p>
-              <p>
+<p>
                 For aluminum cans, the sector signs a federal <strong>Commitment Agreement</strong> administered by <strong>Abralatas</strong> (can manufacturers) and <strong>Abal</strong> (aluminum producers). Producers pay into a stewardship pool that guarantees purchase of 100% of the UBC scrap generated. Because aluminum scrap has a high commodity value, the system is largely self-financing: the sale of clean UBC covers collection and transport, with producer fees filling any gaps.
               </p>
-              <p>
+<p>
                 A distinctive governance feature is the formal integration of <strong>catadores</strong> — independent waste pickers and cooperatives — as recognized service providers. The PNRS explicitly includes them, and the Abralatas/Recicla Latas model channels revenue to cooperative collection points rather than relying solely on municipal contracts.
               </p>
-
-              <h3>2. Collection, sorting, and recycling infrastructure</h3>
-              <ul>
-                <li><strong>Decentralized collection:</strong> a nationwide web of cooperatives, voluntary drop-off points (PEVs), scrap merchants, and municipal programs. Only ~60% of Brazilian municipalities offer recycling collection, yet the can recovery rate is &gt;95% because the informal/cooperative layer fills the gap.</li>
-                <li><strong>Regional recycling hubs:</strong> the largest is <strong>Pindamonhangaba, São Paulo</strong>, a historic can-sheet and recycling cluster with capacity of roughly 250 t/day. Novelis and Aleris Latasa operate major re-melters and can-sheet plants.</li>
-                <li><strong>Speed:</strong> the average can is collected, recycled, and back on shelves in about <strong>30 days</strong>.</li>
-                <li><strong>Automation:</strong> collection is mostly manual or semi-mechanized; sorting relies on eddy-current and manual separation at MRFs and cooperative facilities.</li>
-              </ul>
-
-              <h3>3. Recovery rates and economic outcomes</h3>
-              <p>
+<h3>2. Collection, sorting, and recycling infrastructure</h3>
+<ul>
+<li><strong>Decentralized collection:</strong> a nationwide web of cooperatives, voluntary drop-off points (PEVs), scrap merchants, and municipal programs. Only ~60% of Brazilian municipalities offer recycling collection, yet the can recovery rate is &gt;95% because the informal/cooperative layer fills the gap.</li>
+<li><strong>Regional recycling hubs:</strong> the largest is <strong>Pindamonhangaba, São Paulo</strong>, a historic can-sheet and recycling cluster with capacity of roughly 250 t/day. Novelis and Aleris Latasa operate major re-melters and can-sheet plants.</li>
+<li><strong>Speed:</strong> the average can is collected, recycled, and back on shelves in about <strong>30 days</strong>.</li>
+<li><strong>Automation:</strong> collection is mostly manual or semi-mechanized; sorting relies on eddy-current and manual separation at MRFs and cooperative facilities.</li>
+</ul>
+<h3>3. Recovery rates and economic outcomes</h3>
+<p>
                 In 2024 Brazil recycled <strong>97.3%</strong> of aluminum beverage cans sold — the 15th consecutive year above 95%, amounting to <strong>33.9 billion cans (~417,700 t)</strong>. The rate slipped from 100% in 2022–2023 mainly because a 64% surge in aluminum scrap exports pulled material away from domestic recyclers.
               </p>
-              <p>
+<p>
                 Economic returns flow through the high scrap value. A tonne of clean UBC is worth substantially more than an equivalent mass of mixed recyclables, so cooperatives prioritize cans. Over the past decade the program claims to have avoided <strong>18 Mt CO₂e</strong> and <strong>17 Mt of bauxite extraction</strong>. No transparent public cost-per-tonne for the can-specific collection stream was found; the system’s surplus comes from scrap resale rather than from public appropriations.
               </p>
-
-              <h3>4. How it fits Brazil’s context</h3>
-              <p>
+<h3>4. How it fits Brazil’s context</h3>
+<p>
                 Brazil is a continental country with uneven municipal waste services, a large informal waste-picker workforce, and strong domestic can-sheet and re-melting capacity (Novelis, Aleris). The model works because:
               </p>
-              <ul>
-                <li>the metal is valuable enough to pay for its own collection;</li>
-                <li>cooperatives provide low-cost, geographically distributed labor; and</li>
-                <li>domestic recyclers are hungry for feedstock, so scrap is purchased quickly.</li>
-              </ul>
-              <p>
+<ul>
+<li>the metal is valuable enough to pay for its own collection;</li>
+<li>cooperatives provide low-cost, geographically distributed labor; and</li>
+<li>domestic recyclers are hungry for feedstock, so scrap is purchased quickly.</li>
+</ul>
+<p>
                 The 2024 export surge is a warning: even a mature closed loop can leak material if foreign buyers pay more than domestic recyclers.
               </p>
-
-              <h3>5. Lessons for Puerto Rico</h3>
-              <ul>
-                <li><strong>Producer stewardship + accessible drop-off beats deposit-only.</strong> A producer-funded system can reach 95%+ without a 10¢ consumer deposit if the economics are structured so that collection agents are paid immediately for clean UBC.</li>
-                <li><strong>Formalize waste-pickers and community groups as collection partners.</strong> PR has active community organizations and informal can collectors; giving them a recognized role and a direct revenue share is faster than building a municipal fleet from scratch.</li>
-                <li><strong>Protect domestic feedstock.</strong> Any PR law should require UBC to be offered first to the island plant before export, mirroring the EU’s new Waste Shipment Regulation “right of refusal” logic.</li>
-                <li><strong>Build the re-melter before the rate peaks.</strong> Brazil’s loop is tight because re-melters and can-sheet plants exist. PR needs the secondary plant to exist so that collected cans have a buyer.</li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- JAPAN -->
-          <div role="tabpanel" id="panel-japan" aria-labelledby="tab-japan" data-panel="japan" hidden>
-            <article class="case-report">
-              <div class="case-meta">
-                <span class="case-badge rate">99.8% collection · 75.7% can-to-can (2024)</span>
-                <span class="case-badge scale">~2.09 B cans/yr</span>
-                <span class="case-badge no-drs">EPR fee, no cash deposit</span>
-              </div>
-
-              <h3>1. How the system is structured and governed</h3>
-              <p>
+<h3>5. Lessons for Puerto Rico</h3>
+<ul>
+<li><strong>Producer stewardship + accessible drop-off beats deposit-only.</strong> A producer-funded system can reach 95%+ without a 10¢ consumer deposit if the economics are structured so that collection agents are paid immediately for clean UBC.</li>
+<li><strong>Formalize waste-pickers and community groups as collection partners.</strong> PR has active community organizations and informal can collectors; giving them a recognized role and a direct revenue share is faster than building a municipal fleet from scratch.</li>
+<li><strong>Protect domestic feedstock.</strong> Any PR law should require UBC to be offered first to the island plant before export, mirroring the EU’s new Waste Shipment Regulation “right of refusal” logic.</li>
+<li><strong>Build the re-melter before the rate peaks.</strong> Brazil’s loop is tight because re-melters and can-sheet plants exist. PR needs the secondary plant to exist so that collected cans have a buyer.</li>
+</ul>
+</article>
+</div>
+<!-- JAPAN -->
+<div aria-labelledby="tab-japan" data-panel="japan" hidden="" id="panel-japan" role="tabpanel">
+<article class="case-report">
+<div class="case-meta">
+<span class="case-badge rate">99.8% collection · 75.7% can-to-can (2024)</span>
+<span class="case-badge scale">~2.09 B cans/yr</span>
+<span class="case-badge no-drs">EPR fee, no cash deposit</span>
+</div>
+<h3>1. How the system is structured and governed</h3>
+<p>
                 Japan’s system is built on the <strong>Containers and Packaging Recycling Act (Law No. 112 of 1995, effective 1997)</strong>. It is an Extended Producer Responsibility (EPR) law, not a deposit-return scheme. Consumers sort and municipalities collect; beverage brand owners and packaging producers pay recycling fees to the government-designated <strong>Japan Container and Package Recycling Association (JCPRA)</strong>, which runs public tenders to select recyclers in each prefecture.
               </p>
-              <p>
+<p>
                 The <strong>Japan Aluminum Can Recycling Association (JACRA)</strong> coordinates industry awareness and publishes the annual recovery and can-to-can rates. Fees are published per fiscal year by material category; for aluminum cans they have historically been around ¥70–100/kg, paid by producers into JCPRA. Municipalities receive support for collection and transport, while recyclers buy the sorted UBC from municipal yards.
               </p>
-
-              <h3>2. Collection, sorting, and recycling infrastructure</h3>
-              <ul>
-                <li><strong>Kerbside source separation is dominant.</strong> Households put aluminum cans into dedicated transparent bags; collection occurs on scheduled days separate from combustibles and PET. Public recycling stations sit in almost every neighborhood.</li>
-                <li><strong>Vending-machine compression</strong> is common in dense urban areas: many machines accept the empty can at the side of the unit, compacting it and improving logistics.</li>
-                <li><strong>Domestic re-melters:</strong> Showa Denko (now Resonac), Daiki Aluminium, and Nippon Light Metal consume UBC and produce can-body sheet and other secondary alloys.</li>
-              </ul>
-
-              <h3>3. Recovery rates and economic outcomes</h3>
-              <p>
+<h3>2. Collection, sorting, and recycling infrastructure</h3>
+<ul>
+<li><strong>Kerbside source separation is dominant.</strong> Households put aluminum cans into dedicated transparent bags; collection occurs on scheduled days separate from combustibles and PET. Public recycling stations sit in almost every neighborhood.</li>
+<li><strong>Vending-machine compression</strong> is common in dense urban areas: many machines accept the empty can at the side of the unit, compacting it and improving logistics.</li>
+<li><strong>Domestic re-melters:</strong> Showa Denko (now Resonac), Daiki Aluminium, and Nippon Light Metal consume UBC and produce can-body sheet and other secondary alloys.</li>
+</ul>
+<h3>3. Recovery rates and economic outcomes</h3>
+<p>
                 In FY2023 Japan collected <strong>97.5%</strong> of aluminum cans; in 2024 JACRA reported <strong>99.8%</strong> collection and <strong>75.7% can-to-can</strong> — meaning roughly three-quarters of recovered cans returned to new can production, with the remainder downcycled into other aluminum products (still in-country). Demand held steady at about <strong>2.09 billion cans</strong> in 2025 as population decline and PET substitution offset each other.
               </p>
-              <p>
+<p>
                 The fee-for-service model means producers bear the system cost, not consumers. This reduces “return friction” — residents do not need to visit a redemption center — but it requires a disciplined, high-compliance sorting culture and a capable municipal collection fleet.
               </p>
-
-              <h3>4. How it fits Japan’s context</h3>
-              <p>
+<h3>4. How it fits Japan’s context</h3>
+<p>
                 Japan has high population density, strong local government capacity, a culture of household source separation, and domestic can-sheet and secondary smelting industries. The EPR model fits because municipalities can enforce sorting rules and producers are organized enough to collect and remit fees. It would be harder to replicate in a jurisdiction with weak municipal waste services and no domestic re-melter.
               </p>
-
-              <h3>5. Lessons for Puerto Rico</h3>
-              <ul>
-                <li><strong>Separate “collection rate” from “closed-loop rate.”</strong> A 99% collection rate is impressive, but the economically meaningful number for a domestic plant is the share that stays on-island. PR should target both metrics explicitly.</li>
-                <li><strong>EPR fees can substitute for deposits if collection discipline is high.</strong> If PR does not pass a 5¢ DRS, a producer-fee system modeled on JCPRA could still work — but only if municipalities deliver clean, sorted UBC to a central processor.</li>
-                <li><strong>Transparent public fee schedules build trust.</strong> JCPRA’s annual per-material fee schedule is published; a PR PRO should do the same.</li>
-                <li><strong>Convenience is the key driver.</strong> PR should place return points where people already shop — supermarkets, gas stations, pharmacies — rather than expecting dedicated trips.</li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- EU -->
-          <div role="tabpanel" id="panel-eu" aria-labelledby="tab-eu" data-panel="eu" hidden>
-            <article class="case-report">
-              <div class="case-meta">
-                <span class="case-badge rate">76.3% average (2023); Germany 99%</span>
-                <span class="case-badge scale">~1.2 Mt/yr (Europe aggregate)</span>
-                <span class="case-badge drs">DRS in 12+ member states</span>
-              </div>
-
-              <h3>1. How the system is structured and governed</h3>
-              <p>
+<h3>5. Lessons for Puerto Rico</h3>
+<ul>
+<li><strong>Separate “collection rate” from “closed-loop rate.”</strong> A 99% collection rate is impressive, but the economically meaningful number for a domestic plant is the share that stays on-island. PR should target both metrics explicitly.</li>
+<li><strong>EPR fees can substitute for deposits if collection discipline is high.</strong> If PR does not pass a 5¢ DRS, a producer-fee system modeled on JCPRA could still work — but only if municipalities deliver clean, sorted UBC to a central processor.</li>
+<li><strong>Transparent public fee schedules build trust.</strong> JCPRA’s annual per-material fee schedule is published; a PR PRO should do the same.</li>
+<li><strong>Convenience is the key driver.</strong> PR should place return points where people already shop — supermarkets, gas stations, pharmacies — rather than expecting dedicated trips.</li>
+</ul>
+</article>
+</div>
+<!-- EU -->
+<div aria-labelledby="tab-eu" data-panel="eu" hidden="" id="panel-eu" role="tabpanel">
+<article class="case-report">
+<div class="case-meta">
+<span class="case-badge rate">76.3% average (2023); Germany 99%</span>
+<span class="case-badge scale">~1.2 Mt/yr (Europe aggregate)</span>
+<span class="case-badge drs">DRS in 12+ member states</span>
+</div>
+<h3>1. How the system is structured and governed</h3>
+<p>
                 Europe is a patchwork moving toward harmonized high recovery. The <strong>Packaging and Packaging Waste Regulation (PPWR, Regulation (EU) 2025/40)</strong>, in force since February 2025, replaced the 1994 Directive. It mandates that member states hit <strong>80% separate collection of beverage cans by 2029 and 90% by 2033</strong>, and it effectively requires deposit-return schemes in most member states.
               </p>
-              <p>
+<p>
                 Two other laws shape aluminum specifically:
               </p>
-              <ul>
-                <li><strong>Critical Raw Materials Act (CRMA, 2024/1252):</strong> aluminum is listed as a strategic raw material; the EU aims for ≥25% of annual consumption to come from EU recycling by 2030, with stricter processing benchmarks for aluminum.</li>
-                <li><strong>Waste Shipment Regulation recast (2024/1157):</strong> from 21 May 2026, member states must notify and justify exports of “green-listed” scrap, including non-hazardous aluminum UBC, giving domestic recyclers a right of refusal before material leaves the EU.</li>
-              </ul>
-              <p>
+<ul>
+<li><strong>Critical Raw Materials Act (CRMA, 2024/1252):</strong> aluminum is listed as a strategic raw material; the EU aims for ≥25% of annual consumption to come from EU recycling by 2030, with stricter processing benchmarks for aluminum.</li>
+<li><strong>Waste Shipment Regulation recast (2024/1157):</strong> from 21 May 2026, member states must notify and justify exports of “green-listed” scrap, including non-hazardous aluminum UBC, giving domestic recyclers a right of refusal before material leaves the EU.</li>
+</ul>
+<p>
                 Governance is split: Brussels sets targets, member states design DRS and PRO structures, and industry associations (European Aluminium, Metal Packaging Europe) report aggregate rates and lobby for export curbs.
               </p>
-
-              <h3>2. Collection, sorting, and recycling infrastructure</h3>
-              <ul>
-                <li><strong>Mandatory DRS</strong> in 12+ member states by 2025 (Germany, Finland, Sweden, Norway, Denmark, Netherlands, Belgium, Estonia, Lithuania, Latvia, Ireland, Malta, Slovakia). Deposits are typically €0.10–0.25 per container, with dense Reverse Vending Machine (RVM) networks in every supermarket.</li>
-                <li><strong>Kerbside and bring-bank systems</strong> persist in non-DRS states (France, Italy, Spain), yielding lower and more variable recovery.</li>
-                <li><strong>Can-sheet capacity:</strong> Germany’s <strong>Novelis Nachterstedt</strong> and <strong>Speira Voerde</strong> plants, plus Novelis Göttingen and Pieve (Italy), Hydro (Norway/Germany), and Constellium (France), consume UBC for can-sheet production.</li>
-              </ul>
-
-              <h3>3. Recovery rates and economic outcomes</h3>
-              <p>
+<h3>2. Collection, sorting, and recycling infrastructure</h3>
+<ul>
+<li><strong>Mandatory DRS</strong> in 12+ member states by 2025 (Germany, Finland, Sweden, Norway, Denmark, Netherlands, Belgium, Estonia, Lithuania, Latvia, Ireland, Malta, Slovakia). Deposits are typically €0.10–0.25 per container, with dense Reverse Vending Machine (RVM) networks in every supermarket.</li>
+<li><strong>Kerbside and bring-bank systems</strong> persist in non-DRS states (France, Italy, Spain), yielding lower and more variable recovery.</li>
+<li><strong>Can-sheet capacity:</strong> Germany’s <strong>Novelis Nachterstedt</strong> and <strong>Speira Voerde</strong> plants, plus Novelis Göttingen and Pieve (Italy), Hydro (Norway/Germany), and Constellium (France), consume UBC for can-sheet production.</li>
+</ul>
+<h3>3. Recovery rates and economic outcomes</h3>
+<p>
                 Europe reached a record <strong>76.3%</strong> aluminum beverage can recycling rate in 2023. Mature DRS states cluster at 90–99%; Germany leads at <strong>99%</strong>. New DRS launches have produced rapid step changes: Malta, Latvia, and Slovakia jumped from ~50% to &gt;80% within 12–18 months of launch.
               </p>
-              <p>
+<p>
                 The economic driver is a combination of unredeemed-deposit (“breakage”) revenue and producer fees, which fund RVM networks and logistics. EU scrap prices in 2024 ranged roughly €1,400–1,800/t for clean UBC, linked to LME. The new export rules are expected to deepen the domestic closed loop by keeping material in-region.
               </p>
-
-              <h3>4. How it fits Europe’s context</h3>
-              <p>
+<h3>4. How it fits Europe’s context</h3>
+<p>
                 Europe has high population density, integrated supply chains, and existing can-sheet capacity. The political consensus for circular-economy regulation is strong, and the single market makes cross-border scrap movements easy to monitor. The EU’s export curbs are a direct response to Asian demand pulling material out of the European loop.
               </p>
-
-              <h3>5. Lessons for Puerto Rico</h3>
-              <ul>
-                <li><strong>Set binding recovery targets and ratchet them.</strong> The PPWR’s 80% by 2029 / 90% by 2033 framework gives investors certainty. PR could legislate 60% by 2030, 75% by 2033, and 85% by 2035.</li>
-                <li><strong>Pair a DRS with a “right of refusal” for domestic industry.</strong> A PR law should require exporters to offer UBC to the island plant first, at market terms, before shipping scrap off-island.</li>
-                <li><strong>DRS is the fastest lever.</strong> Europe’s new DRS states moved faster than its EPR-only states. A 5¢ DRS in PR is the most tested path to 75%+ recovery.</li>
-                <li><strong>Recycled-content mandates create pull.</strong> The PPWR’s recycled-content targets give domestic recyclers a guaranteed buyer. PR could require that a rising share of cans sold on-island use post-consumer aluminum.</li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- UNITED STATES -->
-          <div role="tabpanel" id="panel-us" aria-labelledby="tab-us" data-panel="us" hidden>
-            <article class="case-report">
-              <div class="case-meta">
-                <span class="case-badge rate">43% (2023, lowest in decades)</span>
-                <span class="case-badge scale">~1.7 Mt placed on market</span>
-                <span class="case-badge drs">10 state deposit laws</span>
-              </div>
-
-              <h3>1. How the system is structured and governed</h3>
-              <p>
+<h3>5. Lessons for Puerto Rico</h3>
+<ul>
+<li><strong>Set binding recovery targets and ratchet them.</strong> The PPWR’s 80% by 2029 / 90% by 2033 framework gives investors certainty. PR could legislate 60% by 2030, 75% by 2033, and 85% by 2035.</li>
+<li><strong>Pair a DRS with a “right of refusal” for domestic industry.</strong> A PR law should require exporters to offer UBC to the island plant first, at market terms, before shipping scrap off-island.</li>
+<li><strong>DRS is the fastest lever.</strong> Europe’s new DRS states moved faster than its EPR-only states. A 5¢ DRS in PR is the most tested path to 75%+ recovery.</li>
+<li><strong>Recycled-content mandates create pull.</strong> The PPWR’s recycled-content targets give domestic recyclers a guaranteed buyer. PR could require that a rising share of cans sold on-island use post-consumer aluminum.</li>
+</ul>
+</article>
+</div>
+<!-- UNITED STATES -->
+<div aria-labelledby="tab-us" data-panel="us" hidden="" id="panel-us" role="tabpanel">
+<article class="case-report">
+<div class="case-meta">
+<span class="case-badge rate">43% (2023, lowest in decades)</span>
+<span class="case-badge scale">~1.7 Mt placed on market</span>
+<span class="case-badge drs">10 state deposit laws</span>
+</div>
+<h3>1. How the system is structured and governed</h3>
+<p>
                 The United States has <strong>no federal packaging EPR or deposit law</strong>. Recycling is mostly funded by municipalities through general taxes, with revenue from commodity sales covering a declining share of costs. The result is a patchwork: ten states operate Container Deposit Laws (CDLs or “bottle bills”), while the rest rely on curbside single-stream, which recovers cans at much lower purity and rates.
               </p>
-              <p>
+<p>
                 The ten deposit states are California (CRV), Connecticut, Hawaii, Iowa, Maine, Massachusetts, Michigan, New York, Oregon, and Vermont. Deposits range from 5¢ to 10¢. Michigan and Oregon are at 10¢; California uses 5¢ for containers under 24 oz and 10¢ above. Industry groups — the <strong>Aluminum Association</strong> and <strong>Can Manufacturers Institute (CMI)</strong> — publish an annual recycling-rate report and a roadmap targeting 70% by 2030, 80% by 2040, and 90% by 2050.
               </p>
-              <p>
+<p>
                 Packaging EPR is now advancing separately: Maine, Oregon, California, Colorado, Minnesota, Maryland, and Washington passed EPR/PRO laws in 2021–2024, with fees rolling out between 2027 and 2031. Aluminum cans will increasingly be covered by PRO fees, but deposit states still deliver the highest recovery.
               </p>
-
-              <h3>2. Collection, sorting, and recycling infrastructure</h3>
-              <ul>
-                <li><strong>Curbside single-stream dominates</strong> in &gt;70% of municipalities. MRFs use eddy-current separators and hand sorting, but contamination and breakage are high, and aluminum revenue is often used to subsidize lower-value materials.</li>
-                <li><strong>Redemption centers and RVMs</strong> in deposit states capture the bulk of in-state UBC at higher purity and lower contamination.</li>
-                <li><strong>Major domestic can-sheet capacity:</strong> Novelis (multiple plants), Arconic, JW Aluminum, and Constellium Muscle Shoals. The U.S. can remelt most of its UBC domestically, but a large share leaks abroad as scrap.</li>
-              </ul>
-
-              <h3>3. Recovery rates and economic outcomes</h3>
-              <p>
+<h3>2. Collection, sorting, and recycling infrastructure</h3>
+<ul>
+<li><strong>Curbside single-stream dominates</strong> in &gt;70% of municipalities. MRFs use eddy-current separators and hand sorting, but contamination and breakage are high, and aluminum revenue is often used to subsidize lower-value materials.</li>
+<li><strong>Redemption centers and RVMs</strong> in deposit states capture the bulk of in-state UBC at higher purity and lower contamination.</li>
+<li><strong>Major domestic can-sheet capacity:</strong> Novelis (multiple plants), Arconic, JW Aluminum, and Constellium Muscle Shoals. The U.S. can remelt most of its UBC domestically, but a large share leaks abroad as scrap.</li>
+</ul>
+<h3>3. Recovery rates and economic outcomes</h3>
+<p>
                 The U.S. aluminum can recycling rate fell to <strong>43% in 2023</strong>, down from a long-term average near 52% since 1990 — the lowest in decades. Of roughly <strong>100 billion cans placed on market</strong> (~1.7 Mt of aluminum), the recycled share was about <strong>730,000 t</strong> of UBC. More than <strong>61 billion cans</strong> were landfilled, representing nearly <strong>$1.2 billion</strong> worth of aluminum.
               </p>
-              <p>
+<p>
                 The divergence between deposit and non-deposit states is stark: deposit states consistently recover 60–90% of containers, while non-deposit states often fall below 30%. The Aluminum Association and CMI explicitly identify well-designed deposit-return systems as the most effective strategy to reverse the decline.
               </p>
-
-              <h3>4. How it fits the U.S. context</h3>
-              <p>
+<h3>4. How it fits the U.S. context</h3>
+<p>
                 The U.S. has large, integrated aluminum and beverage industries, extensive MRF infrastructure, and strong domestic can-sheet capacity. The failure is policy, not technology: a federal system has been blocked by retail and beverage lobbying, leaving states to act alone. The result is that high-value aluminum is treated like a low-grade commodity in most of the country.
               </p>
-
-              <h3>5. Lessons for Puerto Rico</h3>
-              <ul>
-                <li><strong>A state/territory-level DRS is the most-tested U.S. tool.</strong> Michigan’s 10¢ deposit and Oregon’s modernized 10¢ scheme show that deposits work when the value is high enough and redemption is convenient.</li>
-                <li><strong>Single-stream alone is not enough.</strong> The U.S. decline proves that relying on curbside MRFs to recover cans fails at scale. PR should treat single-stream as a fallback, not the primary can-recovery channel.</li>
-                <li><strong>Protect against export leakage.</strong> The U.S. exports ~30–40% of UBC and mixed aluminum scrap. PR should legislate a domestic-first offer before export, so the island plant receives the material.</li>
-                <li><strong>Use PRO fees to backstop the DRS.</strong> Emerging U.S. EPR/PRO laws can fund education, RVM siting, and processing subsidies without replacing the deposit itself.</li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- AUSTRALIA -->
-          <div role="tabpanel" id="panel-australia" aria-labelledby="tab-australia" data-panel="australia" hidden>
-            <article class="case-report">
-              <div class="case-meta">
-                <span class="case-badge rate">75–80% national (2024)</span>
-                <span class="case-badge scale">~3 B cans/yr</span>
-                <span class="case-badge drs">10¢ state-level CDS</span>
-              </div>
-
-              <h3>1. How the system is structured and governed</h3>
-              <p>
+<h3>5. Lessons for Puerto Rico</h3>
+<ul>
+<li><strong>A state/territory-level DRS is the most-tested U.S. tool.</strong> Michigan’s 10¢ deposit and Oregon’s modernized 10¢ scheme show that deposits work when the value is high enough and redemption is convenient.</li>
+<li><strong>Single-stream alone is not enough.</strong> The U.S. decline proves that relying on curbside MRFs to recover cans fails at scale. PR should treat single-stream as a fallback, not the primary can-recovery channel.</li>
+<li><strong>Protect against export leakage.</strong> The U.S. exports ~30–40% of UBC and mixed aluminum scrap. PR should legislate a domestic-first offer before export, so the island plant receives the material.</li>
+<li><strong>Use PRO fees to backstop the DRS.</strong> Emerging U.S. EPR/PRO laws can fund education, RVM siting, and processing subsidies without replacing the deposit itself.</li>
+</ul>
+</article>
+</div>
+<!-- AUSTRALIA -->
+<div aria-labelledby="tab-australia" data-panel="australia" hidden="" id="panel-australia" role="tabpanel">
+<article class="case-report">
+<div class="case-meta">
+<span class="case-badge rate">75–80% national (2024)</span>
+<span class="case-badge scale">~3 B cans/yr</span>
+<span class="case-badge drs">10¢ state-level CDS</span>
+</div>
+<h3>1. How the system is structured and governed</h3>
+<p>
                 Australia is the <strong>first continent fully covered by Container Deposit Schemes (CDS)</strong>, after Tasmania launched Recycle Rewards on 1 May 2025. Each state and territory operates its own scheme; there is no federal harmonization. Deposits are uniformly <strong>10¢ per eligible container</strong>, funded by beverage producers and importers as a “first seller” fee, with consumers receiving the refund on return.
               </p>
-              <p>
+<p>
                 Key launch dates: South Australia (1977, pioneer), Northern Territory (2012), New South Wales (2017, “Return and Earn” run by TOMRA), ACT (2018), Queensland (2018, “Containers for Change”), Western Australia (2020), Victoria (2023, “CDS Vic”), and Tasmania (2025). Each scheme has a network operator or coordinator appointed by the state government.
               </p>
-              <p>
+<p>
                 The schemes are backed by national packaging policy under the <strong>Recycling and Waste Reduction Act 2020</strong> and the Australian Packaging Covenant, which sets mandatory targets and reporting.
               </p>
-
-              <h3>2. Collection, sorting, and recycling infrastructure</h3>
-              <ul>
-                <li><strong>RVM-dense networks:</strong> TOMRA is the dominant operator in NSW, QLD, and other states; Visy and Envirobank operate in Victoria. NSW alone has <strong>more than 600 return points</strong> (RVMs + depots).</li>
-                <li><strong>Over-the-counter returns</strong> at supermarkets, bottle shops, and community depots provide options for consumers who cannot use machines.</li>
-                <li><strong>Collection logistics:</strong> returned containers are counted, compacted, baled, and sent to recyclers. Because the schemes divert the high-value fraction out of kerbside bins, MRFs lose some revenue — a known transition cost.</li>
-              </ul>
-
-              <h3>3. Recovery rates and economic outcomes</h3>
-              <p>
+<h3>2. Collection, sorting, and recycling infrastructure</h3>
+<ul>
+<li><strong>RVM-dense networks:</strong> TOMRA is the dominant operator in NSW, QLD, and other states; Visy and Envirobank operate in Victoria. NSW alone has <strong>more than 600 return points</strong> (RVMs + depots).</li>
+<li><strong>Over-the-counter returns</strong> at supermarkets, bottle shops, and community depots provide options for consumers who cannot use machines.</li>
+<li><strong>Collection logistics:</strong> returned containers are counted, compacted, baled, and sent to recyclers. Because the schemes divert the high-value fraction out of kerbside bins, MRFs lose some revenue — a known transition cost.</li>
+</ul>
+<h3>3. Recovery rates and economic outcomes</h3>
+<p>
                 National aluminum can recovery climbed from ~67% before CDS rollout to roughly <strong>75–80%</strong> by 2024. Mature schemes such as South Australia and the Northern Territory exceed <strong>80%</strong>; NSW sits around <strong>70–75%</strong>. Victoria’s CDS Vic created an estimated <strong>597 direct jobs</strong> and reached &gt;90% public awareness in its first eight months.
               </p>
-              <p>
+<p>
                 The economics rely on <strong>unredeemed deposits (“breakage”)</strong>, which typically run 10–20% of containers and fund network operations. Producer fees net of breakage are roughly AUD$0.03–0.08 per can. Scheme operators report that a 10¢ deposit is high enough to motivate behavior but low enough to keep beverage prices stable.
               </p>
-
-              <h3>4. How it fits Australia’s context</h3>
-              <p>
+<h3>4. How it fits Australia’s context</h3>
+<p>
                 Australia is a wealthy, urbanized, island continent with strong state governments and sparse rural populations. The state-by-state approach allowed early adopters (SA, NSW) to prove the model before laggards joined. However, Australia has <strong>no major can-sheet rolling mill</strong>; most recovered UBC is exported to Korea, Thailand, India, or Indonesia for smelting. The loop is therefore <strong>broken at the re-melting/rolling stage</strong>.
               </p>
-
-              <h3>5. Lessons for Puerto Rico</h3>
-              <ul>
-                <li><strong>This is the most directly applicable model for an island.</strong> A 5¢ DRS with supermarket, mall, and civic drop-off points can lift recovery from &lt;2% to 70%+ within a few years, just as Australia moved from 67% to 75–80%.</li>
-                <li><strong>Keep the deposit lower than 10¢ to start.</strong> PR’s per-capita income and can volume argue for a 5¢ deposit initially; it can be raised after the network is dense.</li>
-                <li><strong>Pair the DRS with a domestic re-melter.</strong> Australia shows that high recovery without local reprocessing still sends value offshore. PR’s plant is the missing second half of the Australian model.</li>
-                <li><strong>Publish transparent tonnage and redemption data.</strong> Australian state schemes publish annual reports on return rates, jobs, and litter reduction, which builds political support.</li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- ICELAND -->
-          <div role="tabpanel" id="panel-iceland" aria-labelledby="tab-iceland" data-panel="iceland" hidden>
-            <article class="case-report">
-              <div class="case-meta">
-                <span class="case-badge rate">~88% can redemption; closed loop limited</span>
-                <span class="case-badge scale">Population ~380,000</span>
-                <span class="case-badge drs">Deposit since 1989</span>
-              </div>
-
-              <h3>1. How the system is structured and governed</h3>
-              <p>
+<h3>5. Lessons for Puerto Rico</h3>
+<ul>
+<li><strong>This is the most directly applicable model for an island.</strong> A 5¢ DRS with supermarket, mall, and civic drop-off points can lift recovery from &lt;2% to 70%+ within a few years, just as Australia moved from 67% to 75–80%.</li>
+<li><strong>Keep the deposit lower than 10¢ to start.</strong> PR’s per-capita income and can volume argue for a 5¢ deposit initially; it can be raised after the network is dense.</li>
+<li><strong>Pair the DRS with a domestic re-melter.</strong> Australia shows that high recovery without local reprocessing still sends value offshore. PR’s plant is the missing second half of the Australian model.</li>
+<li><strong>Publish transparent tonnage and redemption data.</strong> Australian state schemes publish annual reports on return rates, jobs, and litter reduction, which builds political support.</li>
+</ul>
+</article>
+</div>
+<!-- ICELAND -->
+<div aria-labelledby="tab-iceland" data-panel="iceland" hidden="" id="panel-iceland" role="tabpanel">
+<article class="case-report">
+<div class="case-meta">
+<span class="case-badge rate">~88% can redemption; closed loop limited</span>
+<span class="case-badge scale">Population ~380,000</span>
+<span class="case-badge drs">Deposit since 1989</span>
+</div>
+<h3>1. How the system is structured and governed</h3>
+<p>
                 Iceland is an outlier: a small, cold-climate island that is simultaneously a global primary-aluminum powerhouse and a pioneer of national deposit-return. <strong>Endurvinnslan hf.</strong> was founded by law in 1989 (Law No. 52/1989, Regulation 368/2000) and is the only company authorized to pay deposits on bottles and cans. Iceland was one of the first countries in the world to implement a national DRS.
               </p>
-              <p>
+<p>
                 The system is governed by the Ministry of Environment and the <strong>Icelandic Recycling Fund (Úrvinnslusjóður)</strong>, which executes extended producer responsibility for packaging, electronics, batteries, and vehicles. Beverage producers and importers pay fees into the fund, and the fund negotiates processing contracts with waste-management companies.
               </p>
-              <p>
+<p>
                 The deposit is currently a uniform <strong>16 ISK (~US$0.12)</strong> per container, with a 3 ISK handling fee. Unredeemed deposits are kept by Endurvinnslan to refinance the system.
               </p>
-
-              <h3>2. Collection, sorting, and recycling infrastructure</h3>
-              <ul>
-                <li><strong>60 return facilities nationwide,</strong> including 10 automated locations where consumers do not need to sort or count containers manually.</li>
-                <li><strong>Municipal recycling centers</strong> in every town accept aluminum cans in dedicated bins, often compacted on-site.</li>
-                <li><strong>Geographic density:</strong> despite a sparse population, Iceland’s ~380,000 residents are concentrated in the Greater Reykjavík area and a handful of coastal towns, making a single national operator feasible.</li>
-              </ul>
-
-              <h3>3. Recovery rates and economic outcomes</h3>
-              <p>
+<h3>2. Collection, sorting, and recycling infrastructure</h3>
+<ul>
+<li><strong>60 return facilities nationwide,</strong> including 10 automated locations where consumers do not need to sort or count containers manually.</li>
+<li><strong>Municipal recycling centers</strong> in every town accept aluminum cans in dedicated bins, often compacted on-site.</li>
+<li><strong>Geographic density:</strong> despite a sparse population, Iceland’s ~380,000 residents are concentrated in the Greater Reykjavík area and a handful of coastal towns, making a single national operator feasible.</li>
+</ul>
+<h3>3. Recovery rates and economic outcomes</h3>
+<p>
                 Endurvinnslan reports a historical drink-container recycling rate of approximately <strong>85%</strong>, with aluminum cans near <strong>88%</strong> in recent years and around <strong>91%</strong> in 2021. <strong>Redemption is not the same as closed-loop can-to-can recycling:</strong> Iceland has <em>no domestic can-sheet or can-making capacity</em>. The collected UBC is therefore baled and shipped abroad for re-melting and re-rolling; the metal may return to the island as new can sheet, but that second leg is produced in Europe or Asia, not Iceland. In other words, Iceland redeems cans very well, yet its beverage-can loop remains open at the rolling stage.
               </p>
-              <p>
+<p>
                 The primary-aluminum industry is large — three smelters produce roughly <strong>844,000 t/yr</strong> of P1020 ingot — but this is smelting, not can-sheet rolling, and it does not consume UBC. The distinction matters: a jurisdiction can be a world-class primary-aluminum producer and still not close the loop on its own used beverage cans.
               </p>
-
-              <h3>4. How it fits Iceland’s context</h3>
-              <p>
+<h3>4. How it fits Iceland’s context</h3>
+<p>
                 Iceland’s geology and hydropower made it a primary-aluminum smelting hub (Rio Tinto Alcan at Straumsvík, Norðurál at Grundartangi, Alcoa at Reyðarfjörður). But smelting alumina into P1020 ingot is not the same as making can sheet. The island lacks the downstream rolling and can-making industry, so UBC must leave. Iceland’s lesson is that <strong>primary metal capacity does not automatically create a closed beverage-can loop; redemption rate is a collection metric, not a can-to-can remelt metric.</strong>
-              </p>
-
-              <h3>5. Lessons for Puerto Rico</h3>
-              <ul>
-                <li><strong>Scale is not a barrier if the network is dense enough.</strong> A jurisdiction of ~3.2 million people can support a national DRS and a single secondary plant far more easily than Iceland’s 380,000 support their system.</li>
-                <li><strong>A single national operator simplifies governance.</strong> Endurvinnslan’s monopoly model reduces coordination costs. PR could appoint one territory-wide scheme coordinator (public or nonprofit) instead of 78 separate municipal programs.</li>
-                <li><strong>Do not confuse primary smelting with recycling.</strong> A secondary UBC-to-ingot plant is a different, far less energy-intensive asset than a primary smelter. PR should build the secondary plant first; primary smelting is not required.</li>
-                <li><strong>Keep the deposit simple and uniform.</strong> Iceland uses one deposit value for all materials, reducing consumer confusion. PR should start with one clear deposit for aluminum cans and add glass/PET later.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <h3>Reported can recovery rates</h3>
-      <p class="caption">Higher is better. Iceland's ~88% figure is redemption/collection, not closed-loop can-to-can. PR is included for context — both current and target.</p>
-      <figure class="chart-figure">
-        <div id="country-chart" role="img" aria-label="Horizontal bar chart of reported can recovery rates by jurisdiction. Brazil leads at over 95 percent; Iceland and Germany near 80 percent; Australia, Japan, and EU at 70 to 75 percent; the United States average at 43 percent; Puerto Rico current at 1.8 percent; Puerto Rico target at 75 percent."></div>
-        <figcaption class="caption">Sources: Abralatas / Recicla Latas, JACRA, European Aluminium / Metal Packaging Europe, Aluminum Association / CMI, Container Return Scheme NSW annual report 2024, Endurvinnslan / Úrvinnslusjóður.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ============================== ENGINEERING ============================== -->
-  <section id="engineering" class="section section-light" data-section="engineering">
-    <div class="container">
-      <h2>What the plant looks like</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="What the plant does" aria-describedby="eli5-engineering">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">What the factory actually looks like</p>
-            <p class="flip-hook">Think of it as a giant kitchen that cleans, melts, and reshapes used cans into solid aluminum blocks.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-engineering">Trucks bring baled cans to a receiving dock. Optical sorters separate aluminum from other material. A gas-fired drum burns off paint and coatings. Then a large rotary furnace melts the clean aluminum, and a casting line pours it into T-shaped bars called T-bar sow, plus standard P1020A ingots that can be sold anywhere in the world. The building is FORTIFIED for hurricanes, and on-site diesel generators plus batteries keep it running during grid outages. Permits cover air quality and water discharge.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        A single 15,000&nbsp;t/yr line, gas-fired (PR grid is ~95% fossil; gas dominates on
-        emissions and cost), inside an IBHS FORTIFIED&nbsp;Commercial steel building,
-        with on-site generation sized to ride through 4–8&nbsp;h of grid outage.
+</p>
+<h3>5. Lessons for Puerto Rico</h3>
+<ul>
+<li><strong>Scale is not a barrier if the network is dense enough.</strong> A jurisdiction of ~3.2 million people can support a national DRS and a single secondary plant far more easily than Iceland’s 380,000 support their system.</li>
+<li><strong>A single national operator simplifies governance.</strong> Endurvinnslan’s monopoly model reduces coordination costs. PR could appoint one territory-wide scheme coordinator (public or nonprofit) instead of 78 separate municipal programs.</li>
+<li><strong>Do not confuse primary smelting with recycling.</strong> A secondary UBC-to-ingot plant is a different, far less energy-intensive asset than a primary smelter. PR should build the secondary plant first; primary smelting is not required.</li>
+<li><strong>Keep the deposit simple and uniform.</strong> Iceland uses one deposit value for all materials, reducing consumer confusion. PR should start with one clear deposit for aluminum cans and add glass/PET later.</li>
+</ul>
+</article>
+</div>
+</div>
+</div>
+<h3 data-i18n="chart_country_title">Tasas de recuperación reportadas</h3>
+<p class="caption" data-i18n="chart_country_caption">Mientras más alto, mejor. La cifra de Islandia (~88 %) es redención/recolección, no circuito cerrado lata-a-lata. PR se incluye como contexto —actual y objetivo.</p>
+<figure class="chart-figure">
+<div aria-label="Horizontal bar chart of reported can recovery rates by jurisdiction. Brazil leads at over 95 percent; Iceland and Germany near 80 percent; Australia, Japan, and EU at 70 to 75 percent; the United States average at 43 percent; Puerto Rico current at 1.8 percent; Puerto Rico target at 75 percent." data-i18n-aria="chart_country_aria" id="country-chart" role="img"></div>
+<figcaption class="caption" data-i18n="chart_country_figcaption">Fuentes: Abralatas / Recicla Latas, JACRA, European Aluminium / Metal Packaging Europe, Aluminum Association / CMI, informe anual Container Return Scheme NSW 2024, Endurvinnslan / Úrvinnslusjóður.</figcaption>
+</figure>
+</div>
+</section>
+<!-- ============================== ENGINEERING ============================== -->
+<section class="section section-light" data-section="engineering" id="engineering">
+<div class="container">
+<h2 data-i18n="engineering_title">Cómo se ve la planta</h2>
+<div aria-describedby="eli5-engineering" aria-label="What the plant does" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_engineering_title">Qué hace la fábrica en realidad</p>
+<p class="flip-hook" data-i18n="flip_engineering_hook">Piensa en ella como una cocina gigante que limpia, funde y moldea latas usadas en bloques sólidos de aluminio.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_engineering_back" id="eli5-engineering">Camiones traen latas fardadas a una bahía de recepción. Clasificadores ópticos separan el aluminio de otros materiales. Un tambor a gas quema pintura y recubrimientos. Luego un gran horno rotatorio funde el aluminio limpio, y una línea de colada vierte el metal en barras en T llamadas T-bar sow, más lingotes estándar P1020A que se pueden vender en cualquier parte del mundo. El edificio es FORTIFIED para huracanes, y generadores diésel más baterías mantienen la operación durante cortes de red. Los permisos cubren calidad del aire y descarga de agua.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="engineering_lede">Una sola línea de 15 000 t/año, a gas (la red de PR es ~95 % fósil; el gas domina en emisiones y costo), dentro de un edificio de acero  de IBHS, con generación propia dimensionada para soportar 4–8 h de corte de red.</p>
+<div class="grid-2">
+<article class="card">
+<h3>Receiving &amp; sorting</h3>
+<p data-i18n="eng_card_receiving_body">Bahía de recepción de 4 calles, 2 líneas de clasificación óptica MSS para UBC. Capacidad: 3 t/h de alimentación. Proveedor: Van Dyk / MSS.</p>
+</article>
+<article class="card">
+<h3 data-i18n="eng_card_decoating_title">Despintado</h3>
+<p data-i18n="eng_card_decoating_body">Tambor rotatorio de flujo contracorriente, a gas, con postcombustor CEBA CLEAN RTO para destrucción de COV. Capacidad: 3 t/h. Proveedor: CEBA / Presezzi.</p>
+</article>
+<article class="card">
+<h3 data-i18n="eng_card_melting_title">Fundición</h3>
+<p data-i18n="eng_card_melting_body">Un horno rotativo basculante a gas , carga de 14 m³, tasa de fundición 1,5–8 t/h.  para limitar retrasos de entrega. Flujo de bajo contenido de sal (factor 0,2–0,5).</p>
+</article>
+<article class="card">
+<h3 data-i18n="eng_card_casting_title">Colada</h3>
+<p data-i18n="eng_card_casting_body">Línea de colada VDC T-bar Wagstaff. Producto:  —compatible con offtake global.</p>
+</article>
+<article class="card">
+<h3>Building &amp; resilience</h3>
+<p data-i18n="eng_card_resilience_body">Edificio de acero FORTIFIED Commercial de 3 500 m². Generador diésel de 2 MW + BESS de 1–2 MWh para respaldo. Opcional 1,5 MW solar en techo y estacionamiento.</p>
+</article>
+<article class="card">
+<h3 data-i18n="eng_card_permits_title">Permisos</h3>
+<p data-i18n="eng_card_permits_body">Permiso menor de aire NSR de JCA, certificación equivalente a NPDES de DRNA, PSD de EPA Región 2 no se activa (capacidad bajo el umbral de 50 kt/año).</p>
+</article>
+</div>
+<h3 data-i18n="eng_risks_title">Principales riesgos de ingeniería</h3>
+<ol class="risk-list">
+<li data-i18n="eng_risk_1"><strong>Retraso en permisos.</strong></li>
+<li data-i18n="eng_risk_2"><strong>Fragilidad de la red.</strong></li>
+<li data-i18n="eng_risk_3"><strong>Exposición a huracanes.</strong></li>
+<li data-i18n="eng_risk_4"><strong>Aluminio fundido + agua.</strong></li>
+<li data-i18n="eng_risk_5"><strong>Retraso en entrega de proveedores.</strong></li>
+</ol>
+</div>
+</section>
+<!-- ============================== BUDGET ============================== -->
+<section class="section" data-section="budget" id="budget">
+<div class="container">
+<h2 data-i18n="budget_title">Los números, completos</h2>
+<div aria-describedby="eli5-budget" aria-label="What the budget means" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_budget_title">Qué significan los números</p>
+<p class="flip-hook" data-i18n="flip_budget_hook">Cerca de $54 millones para construir, $12 millones al año para operar —y cerca de $32 millones al año en ingresos esperados.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_budget_back" id="eli5-budget">El plan 'mediano' es el recomendado: una planta de 15 000 toneladas/año que costaría cerca de $54 millones construir y $12,3 millones al año operar. En operación estacionaria se proyectan unos $32 millones anuales de ingresos, recuperando la inversión en unos tres años y obteniendo un retorno a largo plazo del 14–18 %. Los costos son algo mayores que en plantas del continente porque la electricidad de Puerto Rico es cara, la construcción debe resistir huracanes y el seguro es más alto. La propuesta compara tamaños pequeño, mediano y grande para que quienes decidan vean las compensaciones.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="budget_lede">Tres escenarios de tamaño, línea por línea. El mediano (15 000 t/año) es el caso líder; el pequeño y el grande se mantienen como referencia. Todos los valores son USD 2026 y llevan un rango de planificación de ±25 %. Cada línea documenta su método de estimación en .</p>
+<p class="muted small" data-i18n="budget_note"><strong>Nota:</strong><code>site/assets/budget-data-scenarios.json</code><code>budget-data.json</code></p></div>
+<h3 data-i18n="budget_revenue_title">Ingresos vs. OPEX (Año 1 → Año 5)</h3>
+<figure class="chart-figure">
+<div aria-label="Gráfico de barras de ingresos vs. gastos operativos durante cinco años. Los ingresos crecen del Año 1 al Año 3; OPEX se mantiene aproximadamente plano." data-i18n-aria="budget_revenue_aria" id="budget-revenue-line" role="img"></div>
+<figcaption class="caption" data-i18n="budget_revenue_caption">Estado estacionario desde el Año 3, después de la rampa y puesta en marcha. Ingresos coberturados: 60 % de ventas a futuro a 24 meses.</figcaption>
+</figure>
+<h3 data-i18n="budget_scenarios_title">Tres escenarios, lado a lado</h3>
+<div class="scenario-table-wrap">
+<table aria-label="Three-scenario financial comparison" class="data-table scenario-table" id="budget-scenarios">
+<thead>
+<tr>
+<th data-i18n="budget_scenarios_metric" scope="col">Métrica</th>
+<th data-i18n="budget_scenarios_small" scope="col">Pequeño (5 000 t/año)</th>
+<th data-i18n="budget_scenarios_medium" scope="col">Mediano (15 000 t/año) </th>
+<th data-i18n="budget_scenarios_large" scope="col">Grande (40 000 t/año)</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<div class="callout-info">
+<h3 data-i18n="sanity_title">Verificación vs. referencias de la industria</h3>
+<p data-i18n="sanity_body_1">Los rangos industriales para plantas verdes de UBC a lingote son  de intensidad de CAPEX y  de OPEX. El mediano aquí es  en CAPEX/t y  en OPEX/t —impulsado por el premio de electricidad industrial de PR (2,5× promedio EE. UU.), construcción FORTIFIED (+20–25 % sobre línea base), seguro (2,5 % del CAPEX vs. 0,5 % en continente) y penalidades de envío de la Ley Jones. Un complemento de 1,5 MW solar + 2 MWh BESS cerraría la mayor parte de la brecha de OPEX, dejando el mediano en ~$720/t (dentro de la banda industrial).</p>
+<p data-i18n="sanity_body_2">La planta sigue siendo financieramente viable porque el lado de ingresos está anclado a un descuento de UBC del 15–20 % sobre LME (~$2 000/t realizados) y un depósito de 5¢ que resuelve la economía de la materia prima de una manera que las plantas del continente no tienen.</p>
+</div>
+</section>
+<!-- ============================== FUNDING ============================== -->
+<section class="section section-light" data-section="funding" id="funding">
+<div class="container">
+<h2 data-i18n="funding_title">Cómo se paga</h2>
+<div aria-describedby="eli5-funding" aria-label="Where the money comes from" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_funding_title">De dónde viene el dinero</p>
+<p class="flip-hook" data-i18n="flip_funding_hook">Una mezcla de bono respaldado por depósitos, créditos fiscales federales de energía limpia y capital de inversionistas.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_funding_back" id="eli5-funding">La porción más grande es un bono de ingresos respaldado por los depósitos de 5¢ —cerca de $30 millones. Los créditos fiscales federales de la Ley de Reducción de Inflación añaden unos $11 millones en valor presente: un crédito para el sistema solar y baterías, y otro por producir aluminio reciclado en EE. UU. Subvenciones, capital privado y un préstamo de construcción llenan los vacíos restantes. El costo financiero combinado se estima en ~4,5 %, lo suficientemente bajo para hacer el proyecto atractivo.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="funding_lede">Siete fuentes, costo medio de capital ~4,5 % antes de impuestos. El bono de ingresos asegurado por el DRS es la línea más grande y la dependencia de mayor riesgo.</p>
+<div class="opex-table-wrap">
+<table aria-label="Funding sources for the medium scenario" class="data-table" id="funding-table">
+<caption class="caption"><span data-i18n="funding_table_caption">Objetivo: $52,0 M = 100 % del CAPEX mediano (excluyendo 10 % de contingencia, que se mantiene en reserva).</span></caption>
+<thead>
+<tr>
+<th data-i18n="funding_table_col_source" scope="col">Fuente</th>
+<th data-i18n="funding_table_col_share" scope="col">%</th>
+<th data-i18n="funding_table_col_amount" scope="col">$</th>
+<th data-i18n="funding_table_col_status" scope="col">Estado</th>
+<th data-i18n="funding_table_col_risk" scope="col">Riesgo</th>
+<th data-i18n="funding_table_col_note" scope="col">Nota</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<div class="callout-info">
+<h3 data-i18n="ira_title">Créditos IRA en palabras sencillas</h3>
+<p data-i18n="ira_body">Dos créditos hacen viable el negocio:  (30 % del CAPEX solar+BESS, transferible al 90 % del valor nominal) y  (crédito de producción sobre aluminio secundario, $580/t nominal, 10 años de duración, transferible). Regulaciones finales del IRS publicadas en octubre de 2024 aclararon la elegibilidad; un asesor fiscal debe confirmar el lenguaje de grado  vs.  para §45X. Valor nominal §45X a 10 años: $87 M; valor presente al 8 %: ~$61 M.</p>
+</div>
+</div>
+</section>
+<!-- ============================== TIMELINE ============================== -->
+<section class="section" data-section="timeline" id="timeline">
+<div class="container">
+<h2 data-i18n="timeline_title">Construcción de cinco años, en fases</h2>
+<div aria-describedby="eli5-timeline" aria-label="How long the build takes" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_timeline_title">Cuánto toma</p>
+<p class="flip-hook" data-i18n="flip_timeline_hook">Aproximadamente cinco años de la ley a la producción plena.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_timeline_back" id="eli5-timeline">El Año 0 es para papeleo, acuerdos de terreno y ordenar equipo de largo lead time. Los Años 1 y 2 cubren construcción y puesta en marcha —probar máquinas y capacitar trabajadores. Los Años 2 y 3 escalan desde un arranque parcial hasta los 15 000 toneladas/año. Desde el Año 3 en adelante, se espera que la planta esté en operación estacionaria, generando los ingresos usados en el presupuesto.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="timeline_lede">Sitio, permisos y adquisiciones en Año 0–1. Construcción y puesta en marcha Año 1–2. Rampa completa Año 2–3. Estado estacionario desde el Año 3.</p>
+<ol class="timeline" id="timeline-list"></ol>
+</div>
+</section>
+<!-- ============================== RISKS ============================== -->
+<section class="section section-light" data-section="risks" id="risks">
+<div class="container">
+<h2 data-i18n="risks_title">Qué podría salir mal (y qué hacemos)</h2>
+<div aria-describedby="eli5-risks" aria-label="Main risks" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_risks_title">¿Qué podría salir mal?</p>
+<p class="flip-hook" data-i18n="flip_risks_hook">Los mayores riesgos son política, precios del metal, huracanes y retrasos en trámites.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_risks_back" id="eli5-risks">El riesgo número uno es que la ley de depósito de 5¢ nunca se apruebe; el plan B es firmar contratos de materia prima directamente con productores de latas. Los precios del aluminio podrían caer, así que el plan cubre una gran parte de las ventas futuras. Los huracanes son una amenaza real, así que el edificio es reforzado y asegurado. Los permisos podrían tardar más de lo esperado, así que el equipo iniciaría reuniones pre-aplicación temprano. Los retrasos en entrega de equipos se manejan ordenando artículos de largo lead time temprano y teniendo dos proveedores de hornos.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="risks_lede">Clasificados aproximadamente por impacto en el proyecto.</p>
+<ol class="risk-list big">
+<li data-i18n="risk_1"><strong>La legislación DRS se estanca.</strong><code>funding-model.md §2.5</code></li>
+<li data-i18n="risk_2"><strong>Caída del precio del aluminio LME de más del 30 %.</strong></li>
+<li data-i18n="risk_3"><strong>Daños a la planta por huracán.</strong></li>
+<li data-i18n="risk_4"><strong>Retraso de permisos &gt; 12 meses.</strong></li>
+<li data-i18n="risk_5"><strong>Retraso en entrega de proveedores.</strong></li>
+<li data-i18n="risk_6"><strong>Estrechamiento de elegibilidad de créditos IRA.</strong></li>
+<li data-i18n="risk_7"><strong>Escasez de fuerza laboral (electricistas industriales, instrumentación).</strong></li>
+</ol>
+</div>
+</section>
+<!-- ============================== CONCLUSION / ASKS ============================== -->
+<section class="section section-light" data-section="conclusion" id="conclusion">
+<div class="container">
+<h2 data-i18n="conclusion_title">Qué se necesita para construirlo</h2>
+<div aria-describedby="eli5-conclusion" aria-label="What needs to happen next" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_conclusion_title">Qué debe pasar a continuación</p>
+<p class="flip-hook" data-i18n="flip_conclusion_hook">Tres síes: aprobar la ley de depósito, elegir el sitio y alinear el dinero.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_conclusion_back" id="eli5-conclusion">Primero, la Asamblea Legislativa de Puerto Rico debe aprobar el proyecto de depósito-reembolso de 5¢ para que las latas realmente regresen. Segundo, el Gobernador y PRIDCO deben designar el sitio industrial de Ponce e iniciar conversaciones de permisos con EPA, DRNA y JCA. Tercero, inversionistas y prestamistas deben cerrar la pila de financiamiento de cerca de $52 millones. Si esas tres cosas se alinean, la construcción podría comenzar en 2028 y la planta alcanzar producción plena alrededor de 2031.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="conclusion_lede">El proyecto es financiable, construible y operable. El cuello de botella es voluntad política, no ingeniería ni capital. Tres solicitudes, en orden de urgencia.</p>
+<div class="grid-3">
+<article class="card ask-card ask-1">
+<p class="ask-step" data-i18n="ask_1_step">Solicitud 1 · Fundamento</p>
+<h3 data-i18n="ask_1_title">Comprometer un sistema de depósito-reembolso de 5¢</h3>
+<p data-i18n="ask_1_meta">Meta: . La planta no es financiable sin ella.</p>
+<p class="muted small" data-i18n="ask_1_meta">Meta: . La planta no es financiable sin ella.</p>
+</article>
+<article class="card ask-card ask-2">
+<p class="ask-step" data-i18n="ask_2_step">Solicitud 2 · Terreno y permisos</p>
+<h3 data-i18n="ask_2_title">Designar PRIDCO Ponce como sitio anfitrión</h3>
+<p data-i18n="ask_2_meta">Meta: , paquete completo de permisos T2 2028, inicio de obra T3 2028.</p>
+<p class="muted small" data-i18n="ask_2_meta">Meta: , paquete completo de permisos T2 2028, inicio de obra T3 2028.</p>
+</article>
+<article class="card ask-card ask-3">
+<p class="ask-step" data-i18n="ask_3_step">Solicitud 3 · Capital</p>
+<h3 data-i18n="ask_3_title">Respaldar una pila de financiamiento verde de $52 M anclada en IRA</h3>
+<p data-i18n="ask_3_meta">Meta: , condicionado a la Solicitud 1.</p>
+<p class="muted small" data-i18n="ask_3_meta">Meta: , condicionado a la Solicitud 1.</p>
+</article>
+</div>
+<div class="callout-info callout-strong">
+<h3 data-i18n="economic_case_title">El caso económico en un párrafo</h3>
+<p data-i18n="economic_case_body">Cada año PR exporta ~17 000 t de UBC e importa de vuelta las latas resultantes. El sistema actual fuga capital, empleos, energía y material de la isla. Cerrar el ciclo retiene unos  en la isla, crea , evita  vs. aluminio primario virgen y reduce el déficit comercial de PR en aproximadamente la misma cifra que los ingresos de la planta. El DRS de 5¢ es la entrada; la planta es la captura de valor en la isla.</p>
+</div>
+<h3 data-i18n="stakeholders_title">Quién necesita decir que sí</h3>
+<ol class="stakeholder-list">
+<li data-i18n="stakeholder_1"><strong>Asamblea Legislativa de PR</strong></li>
+<li data-i18n="stakeholder_2"><strong>Oficina del Gobernador</strong></li>
+<li data-i18n="stakeholder_3"><strong>PRIDCO</strong></li>
+<li data-i18n="stakeholder_4"><strong>EPA Región 2</strong></li>
+<li data-i18n="stakeholder_5"><strong>DRNA</strong></li>
+<li data-i18n="stakeholder_6"><strong>JCA</strong></li>
+<li data-i18n="stakeholder_7"><strong>PREPA / LUMA</strong></li>
+<li data-i18n="stakeholder_8"><strong>Organizaciones de responsabilidad extendida del productor</strong></li>
+<li data-i18n="stakeholder_9"><strong>Gobiernos municipales (78)</strong></li>
+</ol>
+<h3 data-i18n="contact_title">Cómo comunicarse</h3>
+<p data-i18n="contact_body">Esta es una propuesta de trabajo, versión 1.0, intencionalmente abierta. Los datos, las fuentes y el código son públicos. Para comentar, contribuir o expresar interés: abre un issue en el , o escribe a . Para un resumen de una página apto para paquete legislativo, descarga  (generado 2026-07-03 desde esta propuesta).</p>
+</div>
+</section>
+<!-- ============================== SOURCES ============================== -->
+<section class="section" data-section="sources" id="sources">
+<div class="container">
+<h2>Sources &amp; citations</h2>
+<div aria-describedby="eli5-sources" aria-label="Where the information comes from" aria-pressed="false" class="flip-card" role="button" tabindex="0">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<p class="flip-title" data-i18n="flip_sources_title">De dónde viene la información</p>
+<p class="flip-hook" data-i18n="flip_sources_hook">Cada número está enlazado a una fuente pública: informes gubernamentales, datos de la industria y referencias técnicas.</p>
+<p aria-hidden="true" class="flip-hint" data-i18n="flip_hint"><span aria-hidden="true" class="icon">↻</span></p>
+</div>
+<div class="flip-card-back">
+<p data-i18n="flip_sources_back" id="eli5-sources">La propuesta no se basa en suposiciones. Las fuentes incluyen el CIA World Factbook para datos de la isla, la agencia de residuos sólidos de Puerto Rico para la tasa de recuperación del 1,8 %, PRIDCO para sitios industriales, EPA Región 2 para reglas de permisos, y proveedores de ingeniería como Hertwich y Wagstaff para especificaciones de equipo. Los datos de mercado provienen del London Metal Exchange y asociaciones industriales. Las comparaciones internacionales citan los informes oficiales de reciclaje de cada país y fuentes de noticias, todas listadas con enlaces.</p>
+</div>
+</div>
+</div>
+<p class="lede small" data-i18n="sources_lede">Cada afirmación de este documento enlaza a una fuente pública. La bibliografía completa está en ; la lista abreviada abajo cubre las referencias más citadas.</p>
+<div class="grid-2">
+<article class="card">
+<h3 data-i18n="sources_pr_title">Contexto de Puerto Rico</h3>
+<ul class="src-list">
+<li>CIA World Factbook — Puerto Rico (population, GDP, energy mix)</li>
+<li>DRNA — Integrated Solid Waste Management Plan 2022</li>
+<li>PRIDCO — Industrial parks directory 2024</li>
+<li>EPA Region 2 — Clean Air Permitting in Puerto Rico</li>
+<li>LUMA / PREB — Current industrial electricity tariffs 2024</li>
+<li>EcoEléctrica MRF — Annual intake report 2023</li>
+</ul>
+</article>
+<article class="card">
+<h3>Engineering &amp; technology</h3>
+<ul class="src-list">
+<li>SMS Group — Universal Rotary Tilting Furnaces (Hertwich URTF family)</li>
+<li>CEBA S.p.A. — Decoating system + CEBA CLEAN RTO</li>
+<li>Wagstaff — T-bar VDC casting lines</li>
+<li>Aluminum Association EPD — Secondary Ingot (2022)</li>
+<li>IBHS — FORTIFIED Commercial Wind Standard (2022)</li>
+<li>US EPA AP-42 Ch. 12.8 — Secondary Aluminum Operations</li>
+<li>NIOSH/CDC 1975 — Molten Aluminum-Water Explosion Mechanism</li>
+</ul>
+</article>
+<article class="card">
+<h3>Markets &amp; finance</h3>
+<ul class="src-list">
+<li>LME — Aluminium UBC Scrap US (Argus) contract specifications</li>
+<li>Westmetall — LME historical price data 2024–2025</li>
+<li>Abralatas — Brazil UBC market commentary Aug 2025</li>
+<li>Federal Register — IRA §45X and §48 final regulations (Oct 2024)</li>
+<li>IMPLAN — PR 2023 Type II employment multipliers (NAICS 562)</li>
+<li>U.S. EIA — Average Price of Electricity to Industrial Customers 2024</li>
+</ul>
+</article>
+<article class="card">
+<h3 data-i18n="sources_cases_title">Casos internacionales</h3>
+<ul class="src-list">
+<li>Abralatas / Recicla Latas, reported by The Metal Packager (18 Aug 2025) — Brazil 97.3% can recycling: <a href="https://metalpackager.com/2025/08/brazil-recycles-aluminium-cans/">metalpackager.com/2025/08/brazil-recycles-aluminium-cans/</a></li>
+<li>The Canmaker (19 Aug 2025) — Brazil maintains record beverage-can recycling rate: <a href="https://canmaker.com/brazil-maintains-consistent-record-in-beverage-can-recycling-rate/">canmaker.com/...</a></li>
+<li>Statista — Japan aluminum can recycling rate FY2023/FY2024: <a href="https://www.statista.com/statistics/1398654/japan-aluminum-can-recycling-rate/">statista.com/.../japan-aluminum-can-recycling-rate/</a></li>
+<li>Statista — Japan can-to-can recycling rate FY2023: <a href="https://www.statista.com/statistics/695417/japan-aluminum-can-to-can-recycling-rate/">statista.com/.../japan-aluminum-can-to-can-recycling-rate/</a></li>
+<li>AlCircle (23 Sep 2025) — Japan aluminium can demand at 2.09 billion units in 2025: <a href="https://www.alcircle.com/news/japans-aluminium-can-demand-holds-at-2-09-billion-units-in-2025-115610">alcircle.com/...</a></li>
+<li>European Aluminium / Metal Packaging Europe (17 Feb 2026) — EU 76.3% aluminium beverage can recycling 2023: <a href="https://european-aluminium.eu/wp-content/uploads/2026/02/EA-MPE-BevCan-2023-Recycling-Results-Press-Release-17-February.pdf">european-aluminium.eu/...pdf</a></li>
+<li>AlCircle (20 Feb 2026) — Europe 76.3% can recycling, Germany 99%: <a href="https://www.alcircle.com/news/europe-secures-76-3-in-aluminium-can-recycling-led-by-germany-with-99-117361">alcircle.com/...</a></li>
+<li>TOMRA — Germany DRS overview: <a href="https://www.tomra.com/reverse-vending/media-center/feature-articles/germany-deposit-return-scheme">tomra.com/...</a></li>
+<li>European Commission — Critical Raw Materials Act: <a href="https://commission.europa.eu/topics/competitiveness/green-deal-industrial-plan/european-critical-raw-materials-act_en">commission.europa.eu/.../european-critical-raw-materials-act_en</a></li>
+<li>Aluminum Association / CMI (Dec 2024) — U.S. 43% aluminum can recycling rate: <a href="https://www.aluminum.org/news/amid-recycling-rate-decline-aluminum-beverage-can-remains-most-recycled-drinks-package">aluminum.org/...</a></li>
+<li>Packaging Dive (11 Dec 2024) — U.S. can recycling lowest in decades: <a href="https://www.packagingdive.com/news/aluminum-beverage-cans-recycling-rate-cmi/734937/">packagingdive.com/...</a></li>
+<li>CMI (Dec 2024) — U.S. Recycling Rate Target Update: <a href="https://www.cancentral.com/wp-content/uploads/2024/12/24-Recycling-Rate-Target-Updates-1.pdf">cancentral.com/...pdf</a></li>
+<li>TOMRA (4 Sep 2025) — Australia first continent fully covered by CDS: <a href="https://www.tomra.com/reverse-vending/media-center/feature-articles/australia-container-deposit-schemes">tomra.com/...</a></li>
+<li>Australian Beverages — Container Deposit Schemes: <a href="https://www.australianbeverages.org/initiatives-advocacy-information/container-deposit-schemes/">australianbeverages.org/...</a></li>
+<li>Endurvinnslan hf. — Iceland national DRS operator</li>
+<li>Úrvinnslusjóður — Icelandic Recycling Fund</li>
+<li>Verkis — Straumsvík aluminium smelter project: <a href="https://verkis.com/projects/industry/straumsvik-aluminum-smelter/">verkis.com/...</a></li>
+</ul>
+</article>
+</div>
+<p class="muted" data-i18n="sources_footer_note">Bibliografía completa con enlaces directos en ,  y . Código fuente: . Este documento es abierto; PR, úsenlo.</p>
+</div>
+</section>
+<!-- ============================== FOOTER ============================== -->
+<footer class="site-footer" role="contentinfo">
+<div class="container">
+<p>
+<strong>Recircular Puerto Rico</strong> — a working proposal, v1.0, 2026.
+        Open data, open code, no marketing-speak. Made on a CachyOS box in Puerto Rico.
       </p>
-
-      <div class="grid-2">
-        <article class="card">
-          <h3>Receiving &amp; sorting</h3>
-          <p>4-bay receiving dock, 2× MSS optical-sort lines for UBC. Capacity: 3&nbsp;t/h feed. Vendor: Van Dyk / MSS.</p>
-        </article>
-        <article class="card">
-          <h3>De-coating</h3>
-          <p>Counterflow rotary drum, gas-fired, with CEBA&nbsp;CLEAN RTO afterburner for VOC destruction. Capacity: 3&nbsp;t/h. Vendor: CEBA / Presezzi.</p>
-        </article>
-        <article class="card">
-          <h3>Melting</h3>
-          <p>One <strong>Hertwich URTF-14</strong> gas-fired rotary tilting furnace, 14&nbsp;m³ charge, melt rate 1.5–8&nbsp;t/h. <em>Dual-source with StrikoWestofen</em> to limit delivery slip. Low-salt flux (0.2–0.5 salt factor).</p>
-        </article>
-        <article class="card">
-          <h3>Casting</h3>
-          <p>Wagstaff T-bar VDC casting line. Output: <strong>T-bar sow and P1020A ingot</strong> — global offtake-compatible.</p>
-        </article>
-        <article class="card">
-          <h3>Building &amp; resilience</h3>
-          <p>3,500&nbsp;m² FORTIFIED&nbsp;Commercial steel building. 2&nbsp;MW diesel gen + 1–2&nbsp;MWh BESS for ride-through. 1.5&nbsp;MW rooftop + carport solar optionality.</p>
-        </article>
-        <article class="card">
-          <h3>Permits</h3>
-          <p>JCA minor NSR air permit, DRNA NPDES-equivalent (PR water-quality certification), EPA Region 2 PSD not triggered (capacity below 50&nbsp;kt/yr threshold).</p>
-        </article>
-      </div>
-
-      <h3>Top engineering risks</h3>
-      <ol class="risk-list">
-        <li><strong>Permitting slip.</strong> Mitigation: pre-application meetings with DRNA and EPA Region 2, PRIDCO NEZ designation as a single point of contact.</li>
-        <li><strong>Grid fragility.</strong> Mitigation: on-site diesel + BESS sized for the medium scenario at 2&nbsp;MW / 1–2&nbsp;MWh minimum.</li>
-        <li><strong>Hurricane exposure.</strong> Mitigation: FORTIFIED Commercial shell, all process equipment anchored, salt storage indoors, dross pit covered.</li>
-        <li><strong>Molten aluminum + water.</strong> Mitigation: explicit dry-drainage, exclusion zone, quench pit discipline. NIOSH 1975 reference applies.</li>
-        <li><strong>Vendor delivery slip.</strong> Mitigation: dual-source furnace (Hertwich + StrikoWestofen); long-lead items (Wagstaff casting line) ordered Year 0.</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============================== BUDGET ============================== -->
-  <section id="budget" class="section" data-section="budget">
-    <div class="container">
-      <h2>The numbers, in full</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="What the budget means" aria-describedby="eli5-budget">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">What the numbers mean</p>
-            <p class="flip-hook">About $54 million to build, $12 million per year to run — and about $32 million per year in expected revenue.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-budget">The "medium" plan is the recommended one: a 15,000-tonne-per-year plant costing roughly $54 million to build and $12.3 million a year to operate. In steady operation it is projected to bring in about $32 million a year, paying back the build cost in about three years and earning a 14–18% long-term return. Costs are a bit higher than mainland plants because Puerto Rico's electricity is expensive, construction must survive hurricanes, and insurance is steeper. The proposal compares small, medium, and large sizes so decision-makers can see the trade-offs.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        Three facility-size scenarios, line-by-line. The medium (15,000&nbsp;t/yr) is the
-        lead case; small and large are kept for reference. All values are 2026 USD and
-        carry a ±25% planning range. Every line has a sourcing method documented in
-        <code>assets/budget-data.json</code>.
-      </p>
-
-      <p class="muted small">
-        <strong>Note:</strong> Detailed small and large scenario line items live in
-        <code>site/assets/budget-data-scenarios.json</code> (currently bundled into
-        <code>budget-data.json</code>). Medium is fully itemized below; small/large are
-        top-down summaries.
-      </p>
-
-      <div class="grid-2">
-        <figure class="chart-figure">
-          <h3>CAPEX by line — medium (lead)</h3>
-          <div id="budget-donut" role="img" aria-label="Donut chart of CAPEX allocation for the medium scenario. Largest slice: equipment and EPC installation; followed by building; then contingency."></div>
-          <ul id="budget-donut-legend" class="legend" aria-label="Donut chart legend"></ul>
-        </figure>
-        <figure class="chart-figure">
-          <h3>CAPEX $ per tonne installed</h3>
-          <div id="budget-capex-bar" role="img" aria-label="Horizontal bar chart of CAPEX per tonne installed for each scenario. Small is highest per tonne, large is lowest."></div>
-          <ul id="budget-capex-legend" class="legend" aria-label="CAPEX bar chart legend"></ul>
-        </figure>
-      </div>
-
-      <h3>OPEX breakdown — medium (lead)</h3>
-      <div class="opex-table-wrap">
-        <table id="budget-opex-table" class="data-table" aria-label="Medium scenario OPEX breakdown by category">
-          <caption class="caption">OPEX total: $12.3 M/yr ($820/t processed). Year-3 steady state, 2026 USD.</caption>
-          <thead>
-            <tr><th scope="col">Category</th><th scope="col">USD/yr</th><th scope="col">$/t</th><th scope="col">% of OPEX</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <h3>Revenue vs. OPEX (Year 1 → Year 5)</h3>
-      <figure class="chart-figure">
-        <div id="budget-revenue-line" role="img" aria-label="Line chart of revenue versus operating expenses over five years. Revenue grows from Year 1 to Year 3 steady state, OPEX stays roughly flat."></div>
-        <figcaption class="caption">Steady state from Year 3, after ramp and commissioning. Hedged revenue: 60% of forward sales 24&nbsp;mo out.</figcaption>
-      </figure>
-
-      <h3>Three scenarios, side by side</h3>
-      <div class="scenario-table-wrap">
-        <table id="budget-scenarios" class="data-table scenario-table" aria-label="Three-scenario financial comparison">
-          <thead>
-            <tr>
-              <th scope="col">Metric</th>
-              <th scope="col">Small (5,000&nbsp;t/yr)</th>
-              <th scope="col"><strong>Medium · lead (15,000&nbsp;t/yr)</strong></th>
-              <th scope="col">Large (40,000&nbsp;t/yr)</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div class="callout-info">
-        <h3>Sanity check vs. industry benchmarks</h3>
-        <p>
-          Industry ranges for greenfield UBC-to-ingot plants are <strong>~$2,000–2,500/t</strong> for
-          CAPEX intensity and <strong>~$550–700/t</strong> for OPEX. Medium here is
-          <strong>+39%</strong> on CAPEX/t and <strong>+17%</strong> on OPEX/t — driven by
-          PR's industrial electricity premium (2.5× U.S. avg), FORTIFIED construction (+20–25%
-          over baseline), insurance (2.5% of CAPEX vs. 0.5% mainland), and Jones&nbsp;Act
-          shipping penalties. A 1.5&nbsp;MW solar + 2&nbsp;MWh BESS add-on would close
-          most of the OPEX gap, putting medium at ~$720/t (within industry band).
-        </p>
-        <p>
-          The plant is still financially viable because the revenue side is anchored
-          to a 15–20% UBC discount on LME (~$2,000/t realized) and a 5¢ DRS that
-          solves feedstock economics in a way mainland plants don't have.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== FUNDING ============================== -->
-  <section id="funding" class="section section-light" data-section="funding">
-    <div class="container">
-      <h2>How it gets paid for</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Where the money comes from" aria-describedby="eli5-funding">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">Where the money comes from</p>
-            <p class="flip-hook">A mix of a bond backed by deposits, federal clean-energy tax credits, and investor money.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-funding">The biggest chunk is a revenue bond backed by the 5¢ deposits — roughly $30 million. Federal tax credits from the Inflation Reduction Act add about $11 million in present value: one credit for the solar-and-battery system and another for producing recycled aluminum in the U.S. Grants, private equity, and a construction loan fill the remaining gaps. The blended financing cost is estimated at about 4.5%, which is low enough to make the project attractive.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        Seven sources, blended cost of capital ~4.5% pre-tax. DRS-secured revenue bond is
-        the largest single line and the highest-risk dependency.
-      </p>
-
-      <div class="opex-table-wrap">
-        <table id="funding-table" class="data-table" aria-label="Funding sources for the medium scenario">
-          <caption class="caption">Target: $52.0 M = 100% of medium CAPEX (excluding 10% contingency, which is held in reserve).</caption>
-          <thead>
-            <tr>
-              <th scope="col">Source</th>
-              <th scope="col">%</th>
-              <th scope="col">$</th>
-              <th scope="col">Status</th>
-              <th scope="col">Risk</th>
-              <th scope="col">Note</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div class="callout-info">
-        <h3>IRA credits in plain English</h3>
-        <p>
-          Two credits make this deal pencil: <strong>§48 ITC</strong> (30% of solar+BESS
-          CAPEX, transferred at 90% face value) and <strong>§45X</strong> (production
-          credit on secondary aluminum, $580/t nominal, 10-yr duration, transferable).
-          Final IRS regulations published October 2024 cleared up the eligibility
-          questions; tax counsel needs to confirm <em>sow</em> vs. <em>P1020A</em>
-          grade language for §45X. Nominal §45X value over 10 years: $87M;
-          present value at 8%: ~$61M.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== TIMELINE ============================== -->
-  <section id="timeline" class="section" data-section="timeline">
-    <div class="container">
-      <h2>Five-year build, in phases</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="How long the build takes" aria-describedby="eli5-timeline">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">How long it takes</p>
-            <p class="flip-hook">Roughly five years from law to full production.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-timeline">Year 0 is for paperwork, land deals, and ordering long-lead equipment. Years 1 and 2 cover construction and commissioning — testing machines and training workers. Years 2 and 3 ramp up from a partial start to full 15,000-tonne annual output. From Year 3 onward, the plant is expected to be in steady operation, generating the revenue numbers used in the budget.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        Site, permits, and procurement happen in Year 0–1. Construction and commissioning
-        Year 1–2. Full ramp Year 2–3. Steady state from Year 3.
-      </p>
-      <ol id="timeline-list" class="timeline"></ol>
-    </div>
-  </section>
-
-  <!-- ============================== RISKS ============================== -->
-  <section id="risks" class="section section-light" data-section="risks">
-    <div class="container">
-      <h2>What could go wrong (and what we do about it)</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Main risks" aria-describedby="eli5-risks">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">What could go wrong?</p>
-            <p class="flip-hook">The biggest risks are politics, metal prices, hurricanes, and paperwork delays.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-risks">The number-one risk is that the 5¢ deposit law never passes; the backup plan is to sign feedstock contracts directly with can producers. Aluminum prices could fall, so the plan hedges a large share of future sales. Hurricanes are a real threat, so the building is storm-hardened and insured. Permits could take longer than expected, so the team would start pre-application meetings early. Equipment delivery delays are handled by ordering long-lead items early and having two furnace suppliers.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">Ranked roughly by impact on the deal.</p>
-      <ol class="risk-list big">
-        <li>
-          <strong>DRS legislation stalls.</strong> Mitigation: anchor EPR-style partnerships
-          with Coca-Cola, Ball, Novelis, Crown as a backstop feedstock-supply contract.
-          Modeled as a Phase&nbsp;1 fallback in <code>funding-model.md §2.5</code>.
-        </li>
-        <li>
-          <strong>LME aluminum price drop of 30%+.</strong> Mitigation: 60% of forward
-          sales hedged 24&nbsp;mo out via LME 3-mo + Argus UBC basis. Unhedged
-          exposure would push payback from 3.0 → 5.5&nbsp;yr; hedged: 3.0 → 4.0&nbsp;yr.
-        </li>
-        <li>
-          <strong>Hurricane damages plant.</strong> Mitigation: FORTIFIED Commercial
-          shell, on-site generation, 2.5% of CAPEX insurance line (vs. 0.5% mainland).
-          Plan for a 2-week offline period per major storm; revenue impact ~$1.3&nbsp;M.
-        </li>
-        <li>
-          <strong>Permit delay &gt; 12 months.</strong> Mitigation: pre-application
-          meetings, NEZ designation, dual-track minor NSR + Part 71. Worst case: slip
-          first dividend by one year (still inside investment horizon).
-        </li>
-        <li>
-          <strong>Vendor delivery slip.</strong> Mitigation: dual-source furnace
-          (Hertwich + StrikoWestofen); long-lead casting line (Wagstaff) ordered
-          Year 0; EPC contract carries liquidated-damages clause.
-        </li>
-        <li>
-          <strong>IRA tax-credit eligibility narrowing.</strong> Mitigation: §48 ITC
-          and §45X both have multi-year in-service windows; if administration
-          changes, transferability is already locked in contracts at 90% face.
-        </li>
-        <li>
-          <strong>Workforce shortage (industrial electricians, instrumentation).</strong>
-          Mitigation: 12-month pre-hire, partnership with UPR-Mayagüez, AEPPR apprenticeship.
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============================== CONCLUSION / ASKS ============================== -->
-  <section id="conclusion" class="section section-light" data-section="conclusion">
-    <div class="container">
-      <h2>What we need to build it</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="What needs to happen next" aria-describedby="eli5-conclusion">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">What needs to happen next</p>
-            <p class="flip-hook">Three yeses: pass the deposit law, pick the site, and line up the money.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-conclusion">First, the Puerto Rico Legislative Assembly needs to pass the 5¢ deposit-return bill so cans actually come back. Second, the Governor and PRIDCO need to designate the Ponce industrial site and start permit talks with EPA, DRNA, and JCA. Third, investors and lenders need to close the roughly $52 million financing stack. If those three things line up, construction could start in 2028 and the plant could reach full production around 2031.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        The project is fundable, buildable, and operable. The bottleneck is political will, not engineering or capital.
-        Three asks, in order of urgency.
-      </p>
-
-      <div class="grid-3">
-        <article class="card ask-card ask-1">
-          <p class="ask-step">Ask 1 · Foundation</p>
-          <h3>Commit to a 5¢ deposit-return scheme</h3>
-          <p>
-            A 5¢ DRS is the single policy intervention that makes the plant pencil. Without it, recovery stalls at &lt;5%
-            and the plant has no feedstock. We need a PR Legislative Assembly bill drafted before session 2027, modeled on
-            NSW's Container Deposit Scheme (Australia) and Michigan's Bottle Bill. Abralatas data shows producer-funded
-            stewardship beats deposit-only by 20+ percentage points on recovery — we propose the hybrid.
-          </p>
-          <p class="muted small">
-            Target: <strong>law enacted by Q4 2027</strong>. Plant is not financeable without it.
-          </p>
-        </article>
-
-        <article class="card ask-card ask-2">
-          <p class="ask-step">Ask 2 · Land &amp; permits</p>
-          <h3>Designate PRIDCO Ponce as the host site</h3>
-          <p>
-            A single point of contact at PRIDCO plus a pre-application MOU with EPA Region 2 / DRNA / JCA. NEZ tax
-            designation (Act 60-2019) provides 90–100% property-tax exemption, 4% corporate income tax, and
-            municipal-tax negotiation room. Caguas, Ponce, and Bayamón are the most consistent 100%-grantors.
-          </p>
-          <p class="muted small">
-            Target: <strong>land MOU signed Q2 2027</strong>, full permit package Q2 2028, groundbreaking Q3 2028.
-          </p>
-        </article>
-
-        <article class="card ask-card ask-3">
-          <p class="ask-step">Ask 3 · Capital</p>
-          <h3>Back a $52M green bond / IRA-anchored financing stack</h3>
-          <p>
-            Seven-source funding stack, blended cost of capital ~4.5% pre-tax. Largest single line: DRS-secured revenue
-            bond (~$30M). Second: IRA §45X + §48 ITC monetization (~$15M nominal, ~$11M PV). Equity sponsor
-            target: ~$10M from a PR-anchored impact fund or pension co-invest. Grant ask: $5–8M from the
-            EPA Solid Waste Infrastructure for Recycling (SWIFR) program, NOAA Marine Debris, or USDA Rural Development.
-          </p>
-          <p class="muted small">
-            Target: <strong>financial close Q4 2027</strong>, contingent on Ask 1.
-          </p>
-        </article>
-      </div>
-
-      <div class="callout-info callout-strong">
-        <h3>The economic case in one paragraph</h3>
-        <p>
-          Every year PR exports roughly 17,000 tonnes of UBC and imports back the resulting cans. The current system
-          leaks capital, jobs, energy, and material off the island. Closing the loop keeps an estimated
-          <strong>$32M/yr in revenue</strong> on-island, creates <strong>217 direct + indirect jobs</strong>,
-          avoids <strong>~140,000 tCO₂e/yr</strong> vs. virgin primary aluminum, and reduces PR's trade deficit by
-          roughly the same dollar amount as the plant's revenue. The 5¢ DRS is the on-ramp; the plant is the
-          on-island value capture.
-        </p>
-      </div>
-
-      <h3>Who needs to say yes</h3>
-      <ol class="stakeholder-list">
-        <li><strong>PR Legislative Assembly</strong> — DRS bill. 26 Senate + 51 House districts. Bill champions needed in both chambers; environment and economic-development committees are the natural leads.</li>
-        <li><strong>Office of the Governor</strong> — executive action on the PRIDCO land MOU, NEZ designation, executive order on government-fleet can-collection.</li>
-        <li><strong>PRIDCO</strong> — site lease, FTZ sub-zone designation, infrastructure extension (power, water, road).</li>
-        <li><strong>EPA Region 2</strong> — Part 71 air permit (minor NSR, capacity below 50 kt/yr PSD threshold).</li>
-        <li><strong>DRNA</strong> — NPDES-equivalent water-quality certification, solid-waste handling permit.</li>
-        <li><strong>JCA</strong> — minor NSR air permit (companion to EPA Part 71).</li>
-        <li><strong>PREPA / LUMA</strong> — interconnection agreement, tariff class, demand-response program opt-in.</li>
-        <li><strong>Producer stewardship organizations</strong> — Abralatas-style program design, EPR funding, stewardship fee collection.</li>
-        <li><strong>Municipal governments (all 78)</strong> — host-site compensation (Act 60 NEZ), bring-center siting, RVM placement in public spaces.</li>
-      </ol>
-
-      <h3>How to get in touch</h3>
-      <p>
-        This is a working proposal, version 1.0, intentionally open. The data, the sources, and the code are all
-        public. To comment, contribute, or signal interest: open an issue on the
-        <a href="https://github.com/ChrisDesarden/pr-aluminum-recycling">GitHub repo</a>,
-        or email <span class="noreply">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span>.
-        For a 1-page summary suitable for a legislative packet, see
-        <a href="docs/recircular-onepage.pdf" download>docs/recircular-onepage.pdf</a>
-        (generated 2026-07-03 from this proposal).
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================== SOURCES ============================== -->
-  <section id="sources" class="section" data-section="sources">
-    <div class="container">
-      <h2>Sources &amp; citations</h2>
-
-      <div class="flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Where the information comes from" aria-describedby="eli5-sources">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <p class="flip-title">Where the information comes from</p>
-            <p class="flip-hook">Every number is linked to a public source — government reports, industry data, and technical references.</p>
-            <p class="flip-hint" aria-hidden="true"><span class="icon" aria-hidden="true">↻</span> Click or tap to flip</p>
-          </div>
-          <div class="flip-card-back">
-            <p id="eli5-sources">The proposal does not rely on guesses. The sources include the CIA World Factbook for island data, Puerto Rico's solid-waste agency for the 1.8% recovery rate, PRIDCO for industrial sites, EPA Region 2 for permitting rules, and engineering vendors like Hertwich and Wagstaff for equipment specs. Market data comes from the London Metal Exchange and industry associations. International comparisons cite each country's official recycling reports and news sources, all listed with links.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="lede small">
-        Every claim in this document links to a public source. The full bibliography
-        lives in <code>research/*.md</code>; the abbreviated list below covers the
-        most-cited references.
-      </p>
-
-      <div class="grid-2">
-        <article class="card">
-          <h3>Puerto Rico context</h3>
-          <ul class="src-list">
-            <li>CIA World Factbook — Puerto Rico (population, GDP, energy mix)</li>
-            <li>DRNA — Integrated Solid Waste Management Plan 2022</li>
-            <li>PRIDCO — Industrial parks directory 2024</li>
-            <li>EPA Region 2 — Clean Air Permitting in Puerto Rico</li>
-            <li>LUMA / PREB — Current industrial electricity tariffs 2024</li>
-            <li>EcoEléctrica MRF — Annual intake report 2023</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Engineering &amp; technology</h3>
-          <ul class="src-list">
-            <li>SMS Group — Universal Rotary Tilting Furnaces (Hertwich URTF family)</li>
-            <li>CEBA S.p.A. — Decoating system + CEBA CLEAN RTO</li>
-            <li>Wagstaff — T-bar VDC casting lines</li>
-            <li>Aluminum Association EPD — Secondary Ingot (2022)</li>
-            <li>IBHS — FORTIFIED Commercial Wind Standard (2022)</li>
-            <li>US EPA AP-42 Ch. 12.8 — Secondary Aluminum Operations</li>
-            <li>NIOSH/CDC 1975 — Molten Aluminum-Water Explosion Mechanism</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Markets &amp; finance</h3>
-          <ul class="src-list">
-            <li>LME — Aluminium UBC Scrap US (Argus) contract specifications</li>
-            <li>Westmetall — LME historical price data 2024–2025</li>
-            <li>Abralatas — Brazil UBC market commentary Aug 2025</li>
-            <li>Federal Register — IRA §45X and §48 final regulations (Oct 2024)</li>
-            <li>IMPLAN — PR 2023 Type II employment multipliers (NAICS 562)</li>
-            <li>U.S. EIA — Average Price of Electricity to Industrial Customers 2024</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>International case studies</h3>
-          <ul class="src-list">
-            <li>Abralatas / Recicla Latas, reported by The Metal Packager (18 Aug 2025) — Brazil 97.3% can recycling: <a href="https://metalpackager.com/2025/08/brazil-recycles-aluminium-cans/">metalpackager.com/2025/08/brazil-recycles-aluminium-cans/</a></li>
-            <li>The Canmaker (19 Aug 2025) — Brazil maintains record beverage-can recycling rate: <a href="https://canmaker.com/brazil-maintains-consistent-record-in-beverage-can-recycling-rate/">canmaker.com/...</a></li>
-            <li>Statista — Japan aluminum can recycling rate FY2023/FY2024: <a href="https://www.statista.com/statistics/1398654/japan-aluminum-can-recycling-rate/">statista.com/.../japan-aluminum-can-recycling-rate/</a></li>
-            <li>Statista — Japan can-to-can recycling rate FY2023: <a href="https://www.statista.com/statistics/695417/japan-aluminum-can-to-can-recycling-rate/">statista.com/.../japan-aluminum-can-to-can-recycling-rate/</a></li>
-            <li>AlCircle (23 Sep 2025) — Japan aluminium can demand at 2.09 billion units in 2025: <a href="https://www.alcircle.com/news/japans-aluminium-can-demand-holds-at-2-09-billion-units-in-2025-115610">alcircle.com/...</a></li>
-            <li>European Aluminium / Metal Packaging Europe (17 Feb 2026) — EU 76.3% aluminium beverage can recycling 2023: <a href="https://european-aluminium.eu/wp-content/uploads/2026/02/EA-MPE-BevCan-2023-Recycling-Results-Press-Release-17-February.pdf">european-aluminium.eu/...pdf</a></li>
-            <li>AlCircle (20 Feb 2026) — Europe 76.3% can recycling, Germany 99%: <a href="https://www.alcircle.com/news/europe-secures-76-3-in-aluminium-can-recycling-led-by-germany-with-99-117361">alcircle.com/...</a></li>
-            <li>TOMRA — Germany DRS overview: <a href="https://www.tomra.com/reverse-vending/media-center/feature-articles/germany-deposit-return-scheme">tomra.com/...</a></li>
-            <li>European Commission — Critical Raw Materials Act: <a href="https://commission.europa.eu/topics/competitiveness/green-deal-industrial-plan/european-critical-raw-materials-act_en">commission.europa.eu/.../european-critical-raw-materials-act_en</a></li>
-            <li>Aluminum Association / CMI (Dec 2024) — U.S. 43% aluminum can recycling rate: <a href="https://www.aluminum.org/news/amid-recycling-rate-decline-aluminum-beverage-can-remains-most-recycled-drinks-package">aluminum.org/...</a></li>
-            <li>Packaging Dive (11 Dec 2024) — U.S. can recycling lowest in decades: <a href="https://www.packagingdive.com/news/aluminum-beverage-cans-recycling-rate-cmi/734937/">packagingdive.com/...</a></li>
-            <li>CMI (Dec 2024) — U.S. Recycling Rate Target Update: <a href="https://www.cancentral.com/wp-content/uploads/2024/12/24-Recycling-Rate-Target-Updates-1.pdf">cancentral.com/...pdf</a></li>
-            <li>TOMRA (4 Sep 2025) — Australia first continent fully covered by CDS: <a href="https://www.tomra.com/reverse-vending/media-center/feature-articles/australia-container-deposit-schemes">tomra.com/...</a></li>
-            <li>Australian Beverages — Container Deposit Schemes: <a href="https://www.australianbeverages.org/initiatives-advocacy-information/container-deposit-schemes/">australianbeverages.org/...</a></li>
-            <li>Endurvinnslan hf. — Iceland national DRS operator</li>
-            <li>Úrvinnslusjóður — Icelandic Recycling Fund</li>
-            <li>Verkis — Straumsvík aluminium smelter project: <a href="https://verkis.com/projects/industry/straumsvik-aluminum-smelter/">verkis.com/...</a></li>
-          </ul>
-        </article>
-      </div>
-
-      <p class="muted">
-        Full annotated bibliography with direct links lives in
-        <code>research/country-cases.md</code>, <code>research/engineering-tech.md</code>,
-        and <code>research/funding-model.md</code>.
-        Source code: <a href="https://github.com/ChrisDesarden/pr-aluminum-recycling">github.com/ChrisDesarden/pr-aluminum-recycling</a>.
-        This proposal is an open document; PR, please use it.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================== FOOTER ============================== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>
-        <strong>Recircular Puerto Rico</strong> — a working proposal, v1.0, 2026.
-        Open data, open code, no marketing-speak. Made on a CachyOS box in Puerto&nbsp;Rico.
-      </p>
-      <p class="muted small">
-        Project lead: <span class="noreply">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span><br>
-        Research &amp; writing assistance: Iris (autonomous AI assistant) · Built with vanilla HTML, CSS, ES2020+, D3, Leaflet.<br>
+<p class="muted small">
+        Project lead: <span class="noreply">Chris Desarden &lt;ChrisDesarden@users.noreply.github.com&gt;</span><br/>
+        Research &amp; writing assistance: Iris (autonomous AI assistant) · Built with vanilla HTML, CSS, ES2020+, D3, Leaflet.<br/>
         Data files: <code>site/assets/*.json</code> · Research files: <code>research/*.md</code>
-      </p>
-      <p class="muted small">
-        This document is licensed
-        <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY 4.0</a>.
-        Cite it. Improve it. Show your work.
-      </p>
-    </div>
-  </footer>
-  </main>
-
-  <!-- ============================== SCRIPTS ============================== -->
-  <noscript>
-    <style>
+</p>
+<p class="muted small">
+<span data-i18n="footer_license">Este documento está licenciado bajo . Cítalo. Mejóralo. Muestra tu trabajo.</span>
+</p>
+</div>
+</footer>
+</main>
+<!-- ============================== SCRIPTS ============================== -->
+<noscript>
+<style>
       .flip-card-back { position: relative; transform: none; display: block; margin-top: 0.75rem; border-style: dashed; }
       .flip-card-front .flip-hint { display: none; }
       .flip-card { cursor: default; }
     </style>
-  </noscript>
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" crossorigin=""></script>
-  <script src="app.js" defer></script>
+</noscript>
+<script crossorigin="" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script crossorigin="" src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+<script defer="" src="app.js"></script>
 </body>
 </html>

@@ -3,7 +3,13 @@
 A working proposal, version 1.0, for a 15,000 t/yr UBC (used beverage
 can) recycling facility on PRIDCO land in Puerto Rico. Plain HTML,
 CSS, and JavaScript — no build step, no framework. Designed to be
-read on GitHub Pages and printed to a 19-page PDF.
+read on GitHub Pages and printed to a PDF.
+
+**Bilingual:** Spanish is the primary language. Click the **ES / EN**
+toggle in the header to switch to English.
+
+**Plain-language cards:** every major section has a flip card that
+explains the content in simple terms for any reader.
 
 ## Live site
 
@@ -21,7 +27,7 @@ read on GitHub Pages and printed to a 19-page PDF.
   funding model). ~268 KB total. These are the source of every
   number on the site.
 - **`docs/recircular-onepage.pdf`** — full-site PDF export,
-  generated from the live site. 19 pages, A4.
+  generated from the live site. ~26 pages, A4.
 - **`audit/`** — local-only previews of the site (gitignored).
 - **`docs/preview-*.png`** — local-only screenshots (gitignored).
 
