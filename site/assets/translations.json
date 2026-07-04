@@ -304,6 +304,8 @@
     "chart_axis_y_share": "% del total",
     "chart_axis_y_recovery": "Tasa de recuperación",
     "chart_total_label": "Total",
+    "chart_legend_revenue": "Ingresos",
+    "chart_legend_opex": "OPEX",
     "chart_insight_revenue": "<strong>Lectura clave:</strong> los ingresos superan al OPEX desde el Año 1, con un margen creciente hasta el estado estacionario (Año 3+). El OPEX permanece casi plano por la tarifa eléctrica fija de PREPA.",
     "chart_insight_capex": "<strong>Lectura clave:</strong> el escenario mediano es el recomendado: CAPEX 60 % mayor que el pequeño, pero los ingresos a estado estacionario son 3× mayores y la recuperación se mantiene en ~3 años.",
     "chart_insight_donut": "<strong>Lectura clave:</strong> el horno de fusión y la planta física concentran el 60 % del CAPEX. La inversión es intensiva en equipo, no en terreno.",
@@ -831,6 +833,29 @@
           }
         ]
       }
+    },
+    "chart_categories_capex": {
+      "Receiving (4-bay) + 2x sort lines": "Recepción (4 bahías) + 2 líneas de clasificación",
+      "2x shred lines (5 t/h each)": "2x líneas de trituración (5 t/h cada una)",
+      "Wash (industrial DAF + clarifier)": "Lavado (DAF industrial + clarificador)",
+      "De-coater (3 t/h continuous rotary)": "Desrecubridora (3 t/h rotativa continua)",
+      "Furnace (Hertwich URTF-14, 25 t charge)": "Horno de fusión (Hertwich URTF-14, carga 25 t)",
+      "Dross cooler + press + sieving": "Enfriador de escoria + prensa + tamizado",
+      "Sow caster (5-8 t/h)": "Colada de lingotes (5-8 t/h)",
+      "Air pollution control (full RTO train)": "Control de contaminación del aire (tren RTO completo)",
+      "Materials handling, scales, lab": "Manejo de materiales, básculas, laboratorio",
+      "Installation / EPC (40% equipment)": "Instalación / EPC (40 % del equipo)",
+      "Building & site (3,500 m^2 FORTIFIED)": "Edificio y sitio (3 500 m² FORTIFIED)",
+      "Land (3.5 ha industrial zoned)": "Terreno (3.5 ha zona industrial)",
+      "Pre-production (engineering, permits, WC)": "Pre-producción (ingeniería, permisos, capital de trabajo)"
+    },
+    "chart_categories_opex": {
+      "Energy (electricity + natural gas)": "Energía (electricidad + gas natural)",
+      "Labor (62 FTE)": "Mano de obra (62 FTE)",
+      "Consumables (salt flux, refractories)": "Consumibles (sal flux, refractarios)",
+      "Maintenance (3.5% CAPEX)": "Mantenimiento (3.5 % del CAPEX)",
+      "Transport & logistics": "Transporte y logística",
+      "Insurance, compliance, G&A": "Seguros, cumplimiento, gastos generales"
     }
   },
   "en": {
@@ -1130,6 +1155,8 @@
     "chart_axis_y_share": "% of total",
     "chart_axis_y_recovery": "Recovery rate",
     "chart_total_label": "Total",
+    "chart_legend_revenue": "Revenue",
+    "chart_legend_opex": "OPEX",
     "chart_insight_revenue": "<strong>Key insight:</strong> revenue exceeds OPEX from Year 1, with a growing margin into steady state (Year 3+). OPEX stays nearly flat due to PREPA's fixed electric tariff.",
     "chart_insight_capex": "<strong>Key insight:</strong> the medium scenario is the recommended case: CAPEX is 60% higher than the small case, but steady-state revenue is 3× larger and payback stays at ~3 years.",
     "chart_insight_donut": "<strong>Key insight:</strong> the melting furnace and physical plant account for 60% of CAPEX. The investment is equipment-intensive, not land-intensive.",
@@ -1657,6 +1684,29 @@
           }
         ]
       }
+    },
+    "chart_categories_capex": {
+      "Receiving (4-bay) + 2x sort lines": "Receiving (4-bay) + 2x sort lines",
+      "2x shred lines (5 t/h each)": "2x shred lines (5 t/h each)",
+      "Wash (industrial DAF + clarifier)": "Wash (industrial DAF + clarifier)",
+      "De-coater (3 t/h continuous rotary)": "De-coater (3 t/h continuous rotary)",
+      "Furnace (Hertwich URTF-14, 25 t charge)": "Furnace (Hertwich URTF-14, 25 t charge)",
+      "Dross cooler + press + sieving": "Dross cooler + press + sieving",
+      "Sow caster (5-8 t/h)": "Sow caster (5-8 t/h)",
+      "Air pollution control (full RTO train)": "Air pollution control (full RTO train)",
+      "Materials handling, scales, lab": "Materials handling, scales, lab",
+      "Installation / EPC (40% equipment)": "Installation / EPC (40% equipment)",
+      "Building & site (3,500 m^2 FORTIFIED)": "Building & site (3,500 m^2 FORTIFIED)",
+      "Land (3.5 ha industrial zoned)": "Land (3.5 ha industrial zoned)",
+      "Pre-production (engineering, permits, WC)": "Pre-production (engineering, permits, WC)"
+    },
+    "chart_categories_opex": {
+      "Energy (electricity + natural gas)": "Energy (electricity + natural gas)",
+      "Labor (62 FTE)": "Labor (62 FTE)",
+      "Consumables (salt flux, refractories)": "Consumables (salt flux, refractories)",
+      "Maintenance (3.5% CAPEX)": "Maintenance (3.5% CAPEX)",
+      "Transport & logistics": "Transport & logistics",
+      "Insurance, compliance, G&A": "Insurance, compliance, G&A"
     }
   }
 }

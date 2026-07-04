@@ -66,12 +66,12 @@
     renderFundingTable(lang);
     renderTimeline(lang);
     renderCases(lang);
+    renderBudgetLegends(lang);
     $$('.lang-btn').forEach(btn => {
       const active = btn.dataset.lang === lang;
       btn.classList.toggle('is-active', active);
       btn.setAttribute('aria-pressed', String(active));
     });
-    renderCountryChart(lang);
   };
 
   const initI18n = () => {
@@ -202,11 +202,11 @@
       data = await res.json();
     } catch (e) { host.textContent = t('chart_country_error', lang); return; }
     const rates = data.rates.slice().sort((a, b) => b.rate - a.rate);
-    const w = host.clientWidth || 600;
-    const rowH = 32, padL = 110, padR = 70;
+    const w = Math.min(host.clientWidth || 600, 720);
+    const rowH = 26, padL = 110, padR = 70;
     const h = rates.length * rowH + 24;
     const svg = d3.select(host).append('svg')
-      .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
+      .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
       .attr('aria-label', t('chart_country_aria', lang));
     const x = d3.scaleLinear().domain([0, 1]).range([0, w - padL - padR]);
     const y = d3.scaleBand().domain(rates.map(d => d.iso)).range([0, rates.length * rowH]).padding(0.2);
@@ -229,8 +229,8 @@
     rows.selectAll('text.val').data(rates).join('text')
       .attr('class','val')
       .attr('x', d => x(d.rate) + 6)
-      .attr('y', d => y(d.iso) + y.bandwidth()/2 + 4)
-      .attr('font-size', 12).attr('font-weight','600').attr('fill', '#1d2939')
+      .attr('y', d => y(d.iso) + y.bandwidth()/2 + 3)
+      .attr('font-size', 11).attr('font-weight','600').attr('fill', '#1d2939')
       .text(d => fmt.pct1(d.rate));
     // Tooltip
     rows.selectAll('title').data(rates).join('title')
@@ -282,6 +282,70 @@
     }
   };
 
+  // Localized label for a CAPEX/OPEX category. Falls back to the canonical English string.
+  const categoryLabel = (key, kind, lang = currentLang) => {
+    const map = t(`chart_categories_${kind}`, lang);
+    if (map && Object.prototype.hasOwnProperty.call(map, key)) return map[key];
+    return key;
+  };
+
+  // Re-render just the legends (i18n-only) for the budget charts.
+  // The SVGs are fixed on initial load; legends need language swap.
+  const renderOpexTable = (lang = currentLang) => {
+    if (!budgetData) return;
+    const tbl = $('#budget-opex-table');
+    if (!tbl) return;
+    const lead = budgetData.scenario_lead || 'medium';
+    const opex = budgetData.opexAnnual[lead];
+    const perT = opex.total_per_t || Math.round(opex.total / budgetData.scenario_lead_capacity_tonnes_yr);
+    const rows = opex.lines.map(l => `
+      <tr>
+        <th scope="row">${categoryLabel(l.category, 'opex', lang)}</th>
+        <td class="num">${fmt.usd0.format(l.amount)}</td>
+        <td class="num">${fmt.usd0.format(Math.round(l.amount / budgetData.scenario_lead_capacity_tonnes_yr))}</td>
+        <td class="num pct">${(l.amount / opex.total * 100).toFixed(0)}%</td>
+      </tr>`).join('');
+    tbl.innerHTML = `
+      <caption>Annual OPEX, ${lead} scenario · total <strong>${fmt.usd0.format(opex.total)}</strong>
+        (${fmt.usd0.format(perT)}/t)</caption>
+      <thead><tr><th scope="col">Line</th><th scope="col" class="num">USD/yr</th><th scope="col" class="num">$/t</th><th scope="col" class="num">%</th></tr></thead>
+      <tbody>${rows}</tbody>`;
+  };
+
+  const renderBudgetLegends = (lang = currentLang) => {
+    if (!budgetData) return;
+    // Re-render the OPEX table body (categories need lang swap)
+    renderOpexTable(lang);
+    const lead = budgetData.scenario_lead || 'medium';
+    const capex = budgetData.capex[lead];
+    // Donut legend (medium scenario, 13 lines)
+    const donutLg = $('#budget-donut-legend');
+    if (donutLg && capex.lines) {
+      donutLg.innerHTML = capex.lines.map((l, i) =>
+        `<li class="item"><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${categoryLabel(l.category, 'capex', lang)}</span></li>`
+      ).join('');
+    }
+    // Capex bar legend (categories from medium breakdown)
+    const barLg = $('#budget-capex-legend');
+    if (barLg && capex.lines) {
+      const cats = capex.lines.map(l => l.category);
+      barLg.innerHTML = cats.map((c, i) =>
+        `<li class="item"><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${categoryLabel(c, 'capex', lang)}</span></li>`
+      ).join('');
+    }
+    // Revenue chart legend
+    const revLg = $('#budget-revenue-legend');
+    if (revLg) {
+      const items = [
+        { label: t('chart_legend_revenue', lang), color: PALETTE[0] },
+        { label: t('chart_legend_opex', lang),     color: PALETTE[5] },
+      ];
+      revLg.innerHTML = items.map(it =>
+        `<li class="item"><span class="sw" style="background:${it.color}"></span><span>${it.label}</span></li>`
+      ).join('');
+    }
+  };
+
   const renderRevenueChart = (lang = currentLang) => {
     if (!budgetData) return;
     const host = $('#budget-revenue-line');
@@ -292,10 +356,10 @@
     const years = [1, 2, 3, 4, 5];
     const rows = years.map(y => ({ year: y, revenue: rev, opex }));
 
-    const w = host.clientWidth || 500;
+    const w = Math.min(host.clientWidth || 500, 720);
     const h = 220, padL = 56, padR = 24, padT = 16, padB = 56;
     const svg = d3.select(host).append('svg')
-      .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
+      .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
       .attr('aria-label', t('budget_revenue_aria', lang));
     const x = d3.scaleLinear().domain([1, 5]).range([padL, w - padR]);
     const y = d3.scaleLinear().domain([0, Math.max(rev, opex) * 1.1]).range([h - padB, padT]);
@@ -328,20 +392,6 @@
     g.selectAll('circle.op').data(rows).join('circle').attr('class','op')
       .attr('cx', d => x(d.year)).attr('cy', d => y(d.opex))
       .attr('r', 3.5).attr('fill', PALETTE[5]);
-
-    // legend
-    const legend = svg.append('g').attr('transform', `translate(${padL + 8}, ${padT})`);
-    const legItems = [
-      { label: 'Ingresos', color: PALETTE[0] },
-      { label: 'OPEX', color: PALETTE[5], dash: '6,4' },
-    ];
-    legItems.forEach((item, i) => {
-      const lx = i * 90;
-      legend.append('line').attr('x1', lx).attr('x2', lx + 18).attr('y1', 0).attr('y2', 0)
-        .attr('stroke', item.color).attr('stroke-width', 2.5).attr('stroke-dasharray', item.dash || 'none');
-      legend.append('text').attr('x', lx + 24).attr('y', 4)
-        .attr('font-size', 11).attr('fill', '#1d2939').text(item.label);
-    });
   };
 
   const renderScenariosTable = (lang = currentLang) => {
@@ -437,10 +487,12 @@
     // ----- CAPEX donut (medium) -----
     const donut = $('#budget-donut');
     if (donut) {
-      const w = donut.clientWidth || 360, size = Math.min(w, 360);
-      const r = size/2 - 8, ir = r - 60;
+      const w = donut.clientWidth || 360, size = Math.min(w, 320);
+      const r = size/2 - 4, ir = r - 50;
       const svg = d3.select(donut).append('svg')
-        .attr('viewBox', `0 0 ${size} ${size}`).attr('role','img')
+        .attr('viewBox', `0 0 ${size} ${size}`)
+        .attr('width', size).attr('height', size)
+        .attr('role','img')
         .attr('aria-label', `CAPEX composition for ${lead} scenario`);
       const g = svg.append('g').attr('transform', `translate(${size/2}, ${size/2})`);
       const pie = d3.pie().value(d => d.amount).sort(null);
@@ -448,24 +500,21 @@
       const arcs = g.selectAll('path').data(pie(capex.lines)).join('path')
         .attr('d', arc).attr('fill', (d, i) => PALETTE[i % PALETTE.length])
         .attr('stroke','#fff').attr('stroke-width', 1.5);
-      arcs.append('title').text(d => `${d.data.category}\n${fmt.usd0.format(d.data.amount)}`);
-      g.append('text').attr('text-anchor','middle').attr('y', -8)
-        .attr('font-size', 13).attr('fill', '#475467').text('Total CAPEX');
-      g.append('text').attr('text-anchor','middle').attr('y', 14)
-        .attr('font-size', 20).attr('font-weight','700').attr('fill', '#0c5c8a')
+      arcs.append('title').text(d => `${categoryLabel(d.data.category, 'capex', currentLang)}\n${fmt.usd0.format(d.data.amount)}`);
+      g.append('text').attr('text-anchor','middle').attr('y', -6)
+        .attr('font-size', 11).attr('fill', '#475467').text('Total CAPEX');
+      g.append('text').attr('text-anchor','middle').attr('y', 12)
+        .attr('font-size', 18).attr('font-weight','700').attr('fill', '#0c5c8a')
         .text(fmt.usd0.format(capex.total));
-      g.append('text').attr('text-anchor','middle').attr('y', 34)
-        .attr('font-size', 11).attr('fill', '#7a8699')
-        .text(`${lead} scenario · ${fmt.usd0.format(km.capex_per_t)}/t`);
+      g.append('text').attr('text-anchor','middle').attr('y', 30)
+        .attr('font-size', 10).attr('fill', '#7a8699')
+        .text(`${lead} · ${fmt.usd0.format(km.capex_per_t)}/t`);
 
-      // Legend
+      // Legend (chip-row format, no amt/pct — those are in caption)
       const legend = $('#budget-donut-legend');
       if (legend) {
         legend.innerHTML = capex.lines.map((l, i) => `
-          <li><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span>
-              <span class="lbl">${l.category}</span>
-              <span class="amt">${fmt.usd0.format(l.amount)}</span>
-              <span class="pct">${(l.amount / capex.subtotal * 100).toFixed(0)}%</span></li>
+          <li class="item"><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${categoryLabel(l.category, 'capex', currentLang)}</span></li>
         `).join('');
       }
     }
@@ -476,10 +525,10 @@
       // Build a unified line-item set across scenarios for stacking
       const scenarios = data.scenarios;
       const scenarioCapex = scenarios.map(s => ({ id: s, ...data.capex[s] }));
-      const w = bar.clientWidth || 600;
-      const h = 320, padL = 130, padR = 30, padT = 24, padB = 60;
+      const w = Math.min(bar.clientWidth || 600, 720);
+      const h = 240, padL = 130, padR = 30, padT = 20, padB = 50;
       const svg = d3.select(bar).append('svg')
-        .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
+        .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
         .attr('aria-label','CAPEX by scenario, stacked by category');
       const x = d3.scaleBand().domain(scenarios).range([padL, w - padR]).padding(0.3);
       const yMax = d3.max(scenarioCapex, d => d.total) * 1.18;
@@ -520,7 +569,7 @@
         .attr('y', d => Number.isFinite(d.y1) ? d.y1 : 0)
         .attr('height', d => Number.isFinite(d.y0) && Number.isFinite(d.y1) ? Math.max(0, d.y0 - d.y1) : 0)
         .attr('width', d => d.width)
-        .append('title').text(d => `${d.key}\n${fmt.usd0.format(d.amount)}`);
+        .append('title').text(d => `${categoryLabel(d.key, 'capex', currentLang)}\n${fmt.usd0.format(d.amount)}`);
       // X axis
       const xLabels = { small: t('budget_scenarios_small_short', currentLang) || (currentLang === 'en' ? 'Small' : 'Pequeño'),
                         medium: t('budget_scenarios_medium_short', currentLang) || (currentLang === 'en' ? 'Medium' : 'Mediano'),
@@ -541,32 +590,17 @@
         .attr('text-anchor','middle')
         .attr('font-size', 12).attr('font-weight','700').attr('fill', '#0c5c8a')
         .text(d => fmt.usd0.format(d.total));
-      // Legend
+      // Legend (chip-row format)
       const legend = $('#budget-capex-legend');
       if (legend) {
         legend.innerHTML = cats.map((c, i) =>
-          `<li><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${c}</span></li>`
+          `<li class="item"><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${categoryLabel(c, 'capex', currentLang)}</span></li>`
         ).join('');
       }
     }
 
     // ----- OPEX table (medium) -----
-    const tbl = $('#budget-opex-table');
-    if (tbl) {
-      const perT = opex.total_per_t || Math.round(opex.total / data.scenario_lead_capacity_tonnes_yr);
-      const rows = opex.lines.map(l => `
-        <tr>
-          <th scope="row">${l.category}</th>
-          <td class="num">${fmt.usd0.format(l.amount)}</td>
-          <td class="num">${fmt.usd0.format(Math.round(l.amount / data.scenario_lead_capacity_tonnes_yr))}</td>
-          <td class="num pct">${(l.amount / opex.total * 100).toFixed(0)}%</td>
-        </tr>`).join('');
-      tbl.innerHTML = `
-        <caption>Annual OPEX, ${lead} scenario · total <strong>${fmt.usd0.format(opex.total)}</strong>
-          (${fmt.usd0.format(perT)}/t)</caption>
-        <thead><tr><th scope="col">Line</th><th scope="col" class="num">USD/yr</th><th scope="col" class="num">$/t</th><th scope="col" class="num">%</th></tr></thead>
-        <tbody>${rows}</tbody>`;
-    }
+    renderOpexTable();
 
     // ----- Revenue line/bar -----
     const rline = $('#budget-revenue-line');
@@ -602,10 +636,10 @@
     // ----- Funding stack bar (CAPEX sources) -----
     const fs = $('#budget-funding');
     if (fs && data.fundingSources) {
-      const w = fs.clientWidth || 600, h = 220, padL = 200, padR = 90, padT = 8, padB = 8;
+      const w = Math.min(fs.clientWidth || 600, 720), h = 180, padL = 200, padR = 90, padT = 6, padB = 6;
       const total = d3.sum(data.fundingSources, d => d.amount);
       const svg = d3.select(fs).append('svg')
-        .attr('viewBox', `0 0 ${w} ${h}`).attr('role','img')
+        .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
         .attr('aria-label', `Funding stack: ${fmt.usd0.format(total)} across ${data.fundingSources.length} sources`);
       const y = d3.scaleBand().domain(data.fundingSources.map(d => d.source)).range([padT, h - padB]).padding(0.2);
       const x = d3.scaleLinear().domain([0, total]).range([0, w - padL - padR]);
@@ -764,14 +798,14 @@
     await loadTranslations();
     initNav();
     initI18n();
-    applyLang(currentLang);
     initScrollspy();
     initCaseTabs();
     initFlipCards();
     renderCountryChart(currentLang);
-    initBudgetCharts();
     initMap();
     initTimeline();
     initFootnotes();
+    await initBudgetCharts();  // populates budgetData + renders the chart-figures
+    applyLang(currentLang);     // translates the static DOM + refreshes budget legends now that budgetData exists
   });
 })();
