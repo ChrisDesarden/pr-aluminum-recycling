@@ -930,6 +930,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 /* Direct value labels sit cleanly above bars */
 .chart-figure .chart-host .value-label--lead { fill: var(--c-primary); }
 .chart-figure .chart-host .value-label--accent { fill: var(--c-chart-opex); }
+.chart-figure .chart-host .value-label--pr { fill: #fff; }
 .chart-legend-row {
   display: flex;
   flex-wrap: wrap;

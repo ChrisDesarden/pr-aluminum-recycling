@@ -326,7 +326,10 @@
       .append('title').text(d => `${d.name}\n${fmt.pct1(d.rate)} (${d.mechanism})`);
     // Value labels to the right of each bar
     rows.selectAll('text.value-label').data(rates).join('text')
-      .attr('class', d => d.isTarget ? 'value-label value-label--accent' : 'value-label value-label--lead')
+      .attr('class', d => {
+        if (d.iso === 'PR') return 'value-label value-label--pr';
+        return d.isTarget ? 'value-label value-label--accent' : 'value-label value-label--lead';
+      })
       .attr('x', d => x(d.rate) + 8)
       .attr('y', d => y(d.iso) + y.bandwidth() / 2 + 4)
       .attr('font-size', 11).attr('font-weight', 700)
@@ -679,7 +682,7 @@
       const arcs = g.selectAll('path').data(pie(capex.lines)).join('path')
         .attr('class', 'donut-arc')
         .attr('d', arc).attr('fill', (d, i) => donutColor(i))
-        .attr('stroke','#fff').attr('stroke-width', 2);
+        .attr('stroke','none');
       arcs.append('title').text(d => `${categoryLabel(d.data.category, 'capex', currentLang)}\n${fmt.usd0.format(d.data.amount)}`);
       g.append('text').attr('class', 'center-sub')
         .attr('text-anchor','middle').attr('y', -18)
