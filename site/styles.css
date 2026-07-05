@@ -16,6 +16,7 @@
   --c-link:         #0c5c8a;   /* deep teal */
   --c-link-hover:   #c0392b;   /* hurricane red */
   --c-primary:      #0c5c8a;   /* deep teal */
+  --c-chart-opex:   #b27300;   /* OPEX series + accent value label on light bg */
   --c-accent:       #f5a524;   /* amber (aluminum can) */
   --c-warn:         #c0392b;   /* hurricane red */
   --c-good:         #2a9d8f;   /* teal (recycling-good) */
@@ -68,11 +69,13 @@
     --c-bg-alt:   #10243a;
     --c-bg-inv:   #07111c;
     --c-fg:       #e8eef6;
-    --c-fg-soft:  #a8b6c8;
-    --c-fg-muted: #6b7c93;
+    --c-fg-soft:  #b8c5d6;
+    --c-fg-muted: #8ea3bb;
     --c-rule:     #1f2f44;
     --c-link:     #5fb8d3;
     --c-link-hover: #f5a524;
+    --c-primary:  #5fb8d3;       /* brighter teal for chart bar fills + PR target line on dark bg */
+    --c-chart-opex: #f5a524;     /* OPEX series + accent value label on dark bg */
     --c-card:     #122a44;
     --c-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
     --c-card-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -862,7 +865,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .chart-figure .chart-host .series-dot { stroke: var(--c-card); stroke-width: 2; }
 .chart-figure .chart-host .series-label { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .chart-figure .chart-host .series-label--revenue { fill: var(--c-primary); }
-.chart-figure .chart-host .series-label--opex { fill: #b27300; }
+.chart-figure .chart-host .series-label--opex { fill: var(--c-chart-opex); }
 /* Chart polish — target / threshold markers */
 .chart-figure .chart-host .target-marker { stroke-dasharray: 4 3; stroke-width: 1.5; opacity: 0.85; }
 .chart-figure .chart-host .target-label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -870,7 +873,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
 .chart-figure .chart-host .seg-label { font-size: 10px; font-weight: 700; fill: #fff; font-variant-numeric: tabular-nums; text-anchor: middle; pointer-events: none; }
 /* Direct value labels sit cleanly above bars */
 .chart-figure .chart-host .value-label--lead { fill: var(--c-primary); }
-.chart-figure .chart-host .value-label--accent { fill: #b27300; }
+.chart-figure .chart-host .value-label--accent { fill: var(--c-chart-opex); }
 .chart-legend-row {
   display: flex;
   flex-wrap: wrap;
