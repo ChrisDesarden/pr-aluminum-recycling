@@ -293,7 +293,13 @@
       .attr('x', d => x(d.rate) + 8)
       .attr('y', d => y(d.iso) + y.bandwidth() / 2 + 4)
       .attr('font-size', 11).attr('font-weight', 700)
-      .text(d => fmt.pct1(d.rate));
+      .text(d => {
+        const pct = fmt.pct1(d.rate);
+        // Iceland's 88% is a redemption rate, not closed-loop — tag it so a
+        // skimmer doesn't read it as comparable to Brazil/Germany/Japan.
+        if (d.iso === 'IS') return `${pct} *`;
+        return pct;
+      });
   };
 
   // ---------- budget renderer helpers ----------

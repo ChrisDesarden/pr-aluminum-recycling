@@ -516,11 +516,13 @@ If structured as a tax-equity deal with a corporate buyer under §6418, the cred
 
 ### 6.2 Recommended PR drop-off target
 
-- **Phase 1 (Year 1–2):** 50 bring centers + 25 RVMs in 5 metro areas. Cost: **$3.5–5.0 M CAPEX**, $0.5–0.8 M/yr OPEX.
-- **Phase 2 (Year 3–5):** Scale to **150 bring centers + 100 RVMs** + 200 school/workplace bins. Total CAPEX **$10–15 M**, OPEX $2.5–3.5 M/yr.
-- **Phase 3 (Year 5–10):** universal coverage — **1 drop-off point per 2,500 residents** in urban areas, **1 per 1,500 in dense San Juan metro**. Estimated **300+ bring centers + 250 RVMs**.
+> **Note on terminology:** the steps below describe the **drop-off network rollout** schedule, not the project phases defined in §9. (The site's public timeline uses Project Phase 1–4 over Years 0–7; these rollout steps live in a different frame.)
 
-**Coverage math:** PR has 3.2M people; at 2,500 per bring center = 1,280 sites; at 1,500 = 2,133 sites for full saturation. Realistic Phase 3 ≈ 300 sites (one per ~10,000 residents) is a high-impact but achievable target.
+- **Rollout Step 1 (Year 1–2):** 50 bring centers + 25 RVMs in 5 metro areas. Cost: **$3.5–5.0 M CAPEX**, $0.5–0.8 M/yr OPEX.
+- **Rollout Step 2 (Year 3–5):** Scale to **150 bring centers + 100 RVMs** + 200 school/workplace bins. Total CAPEX **$10–15 M**, OPEX $2.5–3.5 M/yr.
+- **Rollout Step 3 (Year 5–10):** universal coverage — **1 drop-off point per 2,500 residents** in urban areas, **1 per 1,500 in dense San Juan metro**. Estimated **300+ bring centers + 250 RVMs**.
+
+**Coverage math:** PR has 3.2M people; at 2,500 per bring center = 1,280 sites; at 1,500 = 2,133 sites for full saturation. Realistic Step 3 ≈ 300 sites (one per ~10,000 residents) is a high-impact but achievable target.
 
 ### 6.3 50 candidate drop-off locations (illustrative)
 
