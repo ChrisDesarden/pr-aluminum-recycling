@@ -286,16 +286,29 @@
   };
 
   // ---------- budget renderer helpers ----------
-  const fundingStatusText = (source) => {
+  // Returns an i18n key for a funding source's status (not the translated string)
+  const fundingStatusKey = (source) => {
     const s = source.toLowerCase();
-    if (s.includes('pridco')) return 'Asegurado';
-    if (s.includes('drs')) return 'Pendiente legislativo';
-    if (s.includes('anchor')) return 'LOI';
-    if (s.includes('eib') || s.includes('idb')) return 'En aplicación';
-    if (s.includes('swifr')) return 'Competitivo';
-    if (s.includes('45x') || s.includes('ira')) return 'IRS final 2024';
-    if (s.includes('carbon') || s.includes('verra') || s.includes('gold standard')) return 'Voluntario';
-    return '—';
+    if (s.includes('pridco')) return 'funding_status_assured';
+    if (s.includes('drs')) return 'funding_status_pending_legislation';
+    if (s.includes('anchor')) return 'funding_status_loi';
+    if (s.includes('eib') || s.includes('idb')) return 'funding_status_applying';
+    if (s.includes('swifr')) return 'funding_status_competitive';
+    if (s.includes('45x') || s.includes('ira')) return 'funding_status_irs_final_2024';
+    if (s.includes('carbon') || s.includes('verra') || s.includes('gold standard')) return 'funding_status_voluntary';
+    return null;
+  };
+  // Returns an i18n key for a confidence/risk level. Strips parentheticals like "MEDIUM (note)".
+  const riskLevelKey = (confidence) => {
+    const c = (confidence || '').trim().toUpperCase();
+    if (c.startsWith('LOW')) return 'funding_risk_low';
+    if (c.startsWith('HIGH')) return 'funding_risk_high';
+    if (c.startsWith('MEDIUM')) return 'funding_risk_medium';
+    return null;
+  };
+  const sourceLabel = (f, lang) => {
+    if (lang === 'en') return f.source_en || f.source;
+    return f.source_es || f.source_en || f.source;
   };
   const trunc140 = (str) => {
     if (!str || str.length <= 140) return str || '';
@@ -353,10 +366,10 @@
         <td class="num">${fmt.usd0.format(Math.round(l.amount / budgetData.scenario_lead_capacity_tonnes_yr))}</td>
         <td class="num pct">${(l.amount / opex.total * 100).toFixed(0)}%</td>
       </tr>`).join('');
+    const leadLabel = t(`budget_scenarios_${lead}_short`, lang) || lead;
     tbl.innerHTML = `
-      <caption>Annual OPEX, ${lead} scenario · total <strong>${fmt.usd0.format(opex.total)}</strong>
-        (${fmt.usd0.format(perT)}/t)</caption>
-      <thead><tr><th scope="col">Line</th><th scope="col" class="num">USD/yr</th><th scope="col" class="num">$/t</th><th scope="col" class="num">%</th></tr></thead>
+      <caption>${t('budget_opex_caption_short', lang).replace('{scenario}', leadLabel)} <strong>${fmt.usd0.format(opex.total)}</strong> (${fmt.usd0.format(perT)}/t)</caption>
+      <thead><tr><th scope="col">${t('budget_opex_col_category', lang)}</th><th scope="col" class="num">${t('budget_opex_col_usdyr', lang)}</th><th scope="col" class="num">${t('budget_opex_col_per_t', lang)}</th><th scope="col" class="num">${t('budget_opex_col_pct', lang)}</th></tr></thead>
       <tbody>${rows}</tbody>`;
   };
 
@@ -534,19 +547,33 @@
     const host = $('#funding-table');
     if (!host) return;
     const rows = budgetData.fundingSources.map(f => {
-      const status = fundingStatusText(f.source);
-      const risk = (f.confidence || f.sourcing_risk || 'MEDIUM').toUpperCase();
+      const statusKey = fundingStatusKey(f.source);
+      const status = statusKey ? t(statusKey, lang) : '—';
+      const riskKey = riskLevelKey(f.confidence);
+      const risk = riskKey ? t(riskKey, lang) : (f.confidence || '—');
       const note = trunc140(f.note);
       return `<tr>
-        <th scope="row">${f.source}</th>
+        <th scope="row">${escapeAttr(sourceLabel(f, lang))}</th>
         <td class="num">${(f.share * 100).toFixed(0)}%</td>
         <td class="num">$${(f.amount / 1e6).toFixed(1)} M</td>
-        <td>${status}</td>
-        <td>${risk}</td>
+        <td>${escapeAttr(status)}</td>
+        <td>${escapeAttr(risk)}</td>
         <td class="note">${note}</td>
       </tr>`;
     }).join('');
     host.querySelector('tbody').innerHTML = rows;
+    // Also localize the <thead> if present
+    const head = host.querySelector('thead');
+    if (head) {
+      head.innerHTML = `<tr>
+        <th scope="col">${t('funding_table_col_source', lang)}</th>
+        <th scope="col" class="num">${t('funding_table_col_share', lang)}</th>
+        <th scope="col" class="num">${t('funding_table_col_amount', lang)}</th>
+        <th scope="col">${t('funding_table_col_status', lang)}</th>
+        <th scope="col">${t('funding_table_col_risk', lang)}</th>
+        <th scope="col">${t('funding_table_col_note', lang)}</th>
+      </tr>`;
+    }
   };
 
   const renderTimeline = (lang = currentLang) => {
@@ -555,12 +582,14 @@
     if (!host) return;
     host.innerHTML = timelineData.phases.map((p, i) => {
       const span = lang === 'en' ? p.span_en : p.span_es;
+      const title = lang === 'en' ? (p.title_en || p.title) : (p.title_es || p.title_en || p.title);
+      const milestones = lang === 'en' ? p.milestones : (p.milestones_es || p.milestones);
       return `<li class="timeline-item" id="${p.id}">
         <div class="timeline-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</div>
         <div class="timeline-card">
-          <h3>${p.title}</h3>
+          <h3>${title}</h3>
           <p class="timeline-span">${span}</p>
-          <ul>${p.milestones.map(m => `<li>${m}</li>`).join('')}</ul>
+          <ul>${milestones.map(m => `<li>${m}</li>`).join('')}</ul>
         </div>
       </li>`;
     }).join('');
@@ -761,7 +790,7 @@
       const svg = d3.select(fs).append('svg')
         .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
         .attr('aria-label', `Funding stack: ${fmt.usd0.format(total)} across ${data.fundingSources.length} sources`);
-      const y = d3.scaleBand().domain(data.fundingSources.map(d => d.source)).range([padT, h - padB]).padding(0.28);
+      const y = d3.scaleBand().domain(data.fundingSources.map(d => sourceLabel(d, currentLang))).range([padT, h - padB]).padding(0.28);
       const x = d3.scaleLinear().domain([0, total]).range([0, w - padL - padR]);
 
       // Faint gridlines (vertical, at 25/50/75/100% of total)
@@ -779,12 +808,12 @@
         .attr('height', y.bandwidth()).attr('width', d => x(d.amount))
         .attr('fill', (d, i) => fundingColor(i))
         .attr('rx', 3)
-        .append('title').text(d => `${d.source}\n${fmt.usd0.format(d.amount)} (${(d.share*100).toFixed(0)}%) — ${d.confidence}`);
+        .append('title').text(d => `${sourceLabel(d, currentLang)}\n${fmt.usd0.format(d.amount)} (${(d.share*100).toFixed(0)}%) — ${riskLevelKey(d.confidence) ? t(riskLevelKey(d.confidence), currentLang) : d.confidence}`);
       svg.append('g').selectAll('text.lbl').data(data.fundingSources).join('text')
         .attr('class','lbl')
-        .attr('x', padL - 8).attr('y', d => y(d.source) + y.bandwidth()/2 + 4)
+        .attr('x', padL - 8).attr('y', d => y(sourceLabel(d, currentLang)) + y.bandwidth()/2 + 4)
         .attr('text-anchor','end').attr('font-size', 12).attr('font-weight', 600).attr('fill', '#0d1b2a')
-        .text(d => d.source);
+        .text(d => sourceLabel(d, currentLang));
       svg.append('g').selectAll('text.amt').data(data.fundingSources).join('text')
         .attr('class','value-label')
         .attr('x', d => padL + x(d.amount) + 6)

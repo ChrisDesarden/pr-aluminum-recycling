@@ -14,8 +14,24 @@
         "Bond financing closed (DRS-revenue-secured)"
       ],
       "risks": [
-        { "name": "Permit delay", "mitigation": "Early JCA scoping; pre-application NEZ designation" },
-        { "name": "Geotech surprises on industrial parcel", "mitigation": "Phase I ESA + 6 geotech borings before site commitment" }
+        {
+          "name": "Permit delay",
+          "mitigation": "Early JCA scoping; pre-application NEZ designation"
+        },
+        {
+          "name": "Geotech surprises on industrial parcel",
+          "mitigation": "Phase I ESA + 6 geotech borings before site commitment"
+        }
+      ],
+      "title_es": "Fase 1 — Sitio, permisos y adquisiciones",
+      "title_en": "Phase 1 — Site, permits, procurement",
+      "milestones_es": [
+        "Sitio seleccionado en zona industrial candidata (Guayama o Ponce)",
+        "Reunión de pre-solicitud con JCA para permisos de aire y agua",
+        "RFP de EPC emitido a proveedores calificados (StrikoWestofen, Hertwich, Danieli)",
+        "Proyecto de ley de DRS presentado en la Legislatura de PR con depósito modelado de 5¢",
+        "LOI de offtake con socio ancla firmado (Coca-Cola, Ball, o Novelis)",
+        "Financiamiento de bono cerrado (respaldado por ingresos DRS)"
       ]
     },
     {
@@ -31,8 +47,23 @@
         "Off-gas permit operational; first compliance test"
       ],
       "risks": [
-        { "name": "Equipment delivery slip", "mitigation": "Liquidated-damages clauses; 2-vendor shortlist for critical-path items" },
-        { "name": "Skilled-labor scarcity", "mitigation": "Partnership with UPR-Mayagüez + UAGM; 6-month paid apprenticeship pipeline" }
+        {
+          "name": "Equipment delivery slip",
+          "mitigation": "Liquidated-damages clauses; 2-vendor shortlist for critical-path items"
+        },
+        {
+          "name": "Skilled-labor scarcity",
+          "mitigation": "Partnership with UPR-Mayagüez + UAGM; 6-month paid apprenticeship pipeline"
+        }
+      ],
+      "title_es": "Fase 2 — Construcción y puesta en marcha",
+      "title_en": "Phase 2 — Construction and commissioning",
+      "milestones_es": [
+        "Horno y despintadora entregados y comisionados en frío",
+        "Caseta del edificio y sistema de gases de escape en línea",
+        "38 FTE contratados (alineados con PRIDCO; ~70 % de la fuerza laboral de PR)",
+        "Primera colada (fundición de prueba) Año 2 T1",
+        "Permiso de gases operativo; primera prueba de cumplimiento"
       ]
     },
     {
@@ -48,8 +79,23 @@
         "Local sheet/casting client pipeline (≥ 3 offtake agreements)"
       ],
       "risks": [
-        { "name": "Collection rate shortfall", "mitigation": "RVM density at 1 per 4,000 residents; DRS makes the system self-funding" },
-        { "name": "Aluminum price downturn", "mitigation": "LME hedge 60% of forward sales; offtake floors with floor prices" }
+        {
+          "name": "Collection rate shortfall",
+          "mitigation": "RVM density at 1 per 4,000 residents; DRS makes the system self-funding"
+        },
+        {
+          "name": "Aluminum price downturn",
+          "mitigation": "LME hedge 60% of forward sales; offtake floors with floor prices"
+        }
+      ],
+      "title_es": "Fase 3 — Rampa y piloto DRS",
+      "title_en": "Phase 3 — Ramp and DRS pilot",
+      "milestones_es": [
+        "70 % de capacidad nominal en el Año 3",
+        "Piloto DRS en 2 municipios (San Juan + Caguas)",
+        "Primer envío de lingote al socio de offtake",
+        "Registro de créditos de carbono (Verra VCS o Gold Standard)",
+        "Cartera de clientes locales de hojalata/lingote (≥ 3 acuerdos de offtake)"
       ]
     },
     {
@@ -65,8 +111,23 @@
         "Full PR DRS rollout (78 municipalities)"
       ],
       "risks": [
-        { "name": "Hurricane disruption (Cat 4+ storm)", "mitigation": "FORTIFIED Gold building; 30-day feedstock stockpile; 14-day on-site generator fuel" },
-        { "name": "Energy price volatility (LUMA uncertainty)", "mitigation": "PPA structure; on-site 5 MW solar + 10 MWh BESS" }
+        {
+          "name": "Hurricane disruption (Cat 4+ storm)",
+          "mitigation": "FORTIFIED Gold building; 30-day feedstock stockpile; 14-day on-site generator fuel"
+        },
+        {
+          "name": "Energy price volatility (LUMA uncertainty)",
+          "mitigation": "PPA structure; on-site 5 MW solar + 10 MWh BESS"
+        }
+      ],
+      "title_es": "Fase 4 — Rampa plena e integración regional",
+      "title_en": "Phase 4 — Full ramp and regional integration",
+      "milestones_es": [
+        "100 % de capacidad nominal (15 000 t/año) en el Año 5",
+        "Estudio de opcionalidad de un segundo horno (camino a 30 000 t/año)",
+        "Acuerdos de offtake transfronterizos con USVI y República Dominicana",
+        "Solar + almacenamiento en sitio cubre 30 % de la electricidad",
+        "Despliegue completo del DRS en PR (78 municipios)"
       ]
     }
   ]

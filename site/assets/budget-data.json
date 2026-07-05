@@ -254,7 +254,9 @@
       "amount": 10747000,
       "note": "4% corporate income tax (vs 37% federal + 18.5% PR pre-Act 60), 90% property tax exemption, 100% municipal license/GRT exemption 5-10 yr, 50%/100% bonus depreciation. Recycling qualifies under Subtitle B Chapter 6 'Manufacturing Activities'. PV at 8% / 15 yr = ~$2.0-2.5M/yr tax-incentive value, or ~$30M nominal.",
       "citation": "Act 60-2019 (bvirtualogp.pr.gov); BLS Strategies https://www.blsstrategies.com/incentives/puerto-rico",
-      "confidence": "MEDIUM"
+      "confidence": "MEDIUM",
+      "source_es": "Capital de PRIDCO (Ley 60-2019)",
+      "source_en": "PRIDCO equity (Act 60-2019)"
     },
     {
       "source": "DRS-secured revenue bond",
@@ -262,7 +264,9 @@
       "amount": 16120000,
       "note": "40-yr amortizing, investment-grade w/ anchor offtake; modeled on NSW CDS (TOMRA-operated) bond structure. Coverage: 5c deposit x 1.4B cans x 15% unredeemed = $10.5M/yr breakage, supports $130-160M of 40-yr par at 5.5% coupon at 1.4x DSCR. Bond rating target: A/A- (Moody's) at 5.0-5.5% pricing.",
       "citation": "TOMRA Australia DRS tomra.com/reverse-vending/media-center/feature-articles/australia-container-deposit-schemes; TOMRA Germany tomra.com/reverse-vending/media-center/feature-articles/germany-deposit-return-scheme",
-      "confidence": "LOW (contingent on PR DRS legislation, PS 369 2024 session not yet passed)"
+      "confidence": "LOW (contingent on PR DRS legislation, PS 369 2024 session not yet passed)",
+      "source_es": "Bono de ingresos respaldado por DRS",
+      "source_en": "DRS-secured revenue bond"
     },
     {
       "source": "Anchor partner CAPEX (Coca-Cola, Ball, Novelis, Crown)",
@@ -270,7 +274,9 @@
       "amount": 8060000,
       "note": "Long-term offtake agreements pegged to LME, with 5-10% anchor capital participation. Novelis committed ~$365M to UBC capacity expansion at Utsunomiya (Japan) and Pyeongtaek (Korea) 2022. Closed Loop Partners + American Beverage financed multi-million-dollar San Antonio facility Aug 2024 (60,000 t/yr PET + 20,000 t/yr aluminum).",
       "citation": "American Beverage/Closed Loop Partners Aug 2024 americanbeverage.org/press-releases/american-beverage-closed-loop-partners-finance-multi-million-dollar-loan-to-support-new-san-antonio-recycling-facility/; Novelis 2022 via Recycling Today",
-      "confidence": "MEDIUM (LOI-stage, no signed agreement as of 2026-07-03)"
+      "confidence": "MEDIUM (LOI-stage, no signed agreement as of 2026-07-03)",
+      "source_es": "CAPEX de socios ancla (Coca-Cola, Ball, Novelis, Crown)",
+      "source_en": "Anchor partner CAPEX (Coca-Cola, Ball, Novelis, Crown)"
     },
     {
       "source": "EIB / IDB green-loan facility",
@@ -278,7 +284,9 @@
       "amount": 10747000,
       "note": "15-20 yr, sub-5% fixed; eligible under EU Global Gateway + IDB Climate Action. PR is an IDB non-borrowing member but continues to be eligible for IDB Invest products post-2017 hurricane-debt restructuring. EIB template: MM S.p.A. EUR 100M Nov 2024 (15-yr, sub-5%) for circular-economy water/waste program. IDB Invest circular-economy facility: $200M revolving credit 2023.",
       "citation": "EIB circular-economy eib.org/en/projects/topics/energy-natural-resources/circular-economy/index; EIB MM S.p.A. 2024-454 eib.org/en/press/all/2024-454; IDB Invest circular-economy facility 2023 idbinvest.org",
-      "confidence": "MEDIUM"
+      "confidence": "MEDIUM",
+      "source_es": "Línea de crédito verde BEI / BID",
+      "source_en": "EIB / IDB green-loan facility"
     },
     {
       "source": "EPA SWIFR grant",
@@ -286,7 +294,9 @@
       "amount": 2688000,
       "note": "FY2024 cohort: $58M total across U.S.; max $4M/award (Waste Dive Dec 2025). PR is eligible as a U.S. territory. Realistic PR application size: $2-3M. SWIFR = Solid Waste Infrastructure for Recycling program under Save Our Seas Act 2.0 (2020).",
       "citation": "EPA SWIFR epa.gov/circulareconomy/solid-waste-infrastructure-recycling-grant-program; Waste Dive wastedive.com/news/us-epa-announces-58-million-in-recycling-infrastructure-grants/808008/",
-      "confidence": "MEDIUM (competitive grant, not entitlement)"
+      "confidence": "MEDIUM (competitive grant, not entitlement)",
+      "source_es": "Subvención EPA SWIFR",
+      "source_en": "EPA SWIFR grant"
     },
     {
       "source": "IRA Section 45X production credit",
@@ -294,7 +304,9 @@
       "amount": 5373000,
       "note": "IRS final regulations published 28 Oct 2024 (Federal Register 2024-24840) confirm secondary production from recycled material is included in 'produced by the taxpayer' definition. Credit: $0.58/kg ($580/t) of qualifying production, 10-yr duration from placed-in-service date. Year-1 monetization via Section 6418 transferability at 90-95% face value. $8.7M/yr x 10 yr = $87M nominal, $61M PV at 8%. Sow vs. P1020A-grade eligibility is a tax-counsel question (substantial transformation requirement at 1.45X-1(c)(2)).",
       "citation": "Treasury/IRS final regs federalregister.gov/documents/2024/10/28/2024-24840/advanced-manufacturing-production-credit; Grant Thornton grantthornton.com/insights/alerts/tax/2024/flash/irs-expands-section-45x-advanced-manufacturing-production-credit; Plante Moran plantemoran.com/explore-our-thinking/insight/2024/11/final-45x-guidance-clarifies-advanced-manufacturing-production-credit-costs",
-      "confidence": "MEDIUM (sow vs. P1020A-grade is a tax-counsel question)"
+      "confidence": "MEDIUM (sow vs. P1020A-grade is a tax-counsel question)",
+      "source_es": "Crédito de producción IRA §45X",
+      "source_en": "IRA Section 45X production credit"
     },
     {
       "source": "Verra / Gold Standard carbon credits (revenue, not CAPEX)",
@@ -302,7 +314,9 @@
       "amount": 0,
       "note": "Listed for completeness; carbon credits are an operating revenue stream, not a CAPEX source. Aluminum-recycling displacement: ~1.3 tCO2e/t avoided (IAI/Ecoinvent). At medium scenario: 1.3 x 15,000 t x $15-25/tCO2e (Verra Q1 2025) = $293k-$488k/yr, included in revenueAnnual.medium.auxiliary. Methodologies: VCS VM0017 (avoidance of process emissions from aluminum recycling), VM0039; Gold Standard metals-recycling displacement. Lead time to first issuance: 12-18 months.",
       "citation": "Verra Registry verra.org; VCS methodology VM0017; International Aluminium Institute LCA data",
-      "confidence": "MEDIUM (volatile voluntary market; 50% price decline 2023-2024)"
+      "confidence": "MEDIUM (volatile voluntary market; 50% price decline 2023-2024)",
+      "source_es": "Créditos de carbono Verra / Gold Standard (ingreso, no CAPEX)",
+      "source_en": "Verra / Gold Standard carbon credits (revenue, not CAPEX)"
     }
   ],
   "funding_stack_total": 53735000,
