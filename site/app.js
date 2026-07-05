@@ -808,7 +808,7 @@
 
       svg.append('g').selectAll('rect').data(data.fundingSources).join('rect')
         .attr('class', 'bar')
-        .attr('x', padL).attr('y', d => y(d.source))
+        .attr('x', padL).attr('y', d => y(sourceLabel(d, currentLang)))
         .attr('height', y.bandwidth()).attr('width', d => x(d.amount))
         .attr('fill', (d, i) => fundingColor(i))
         .attr('rx', 3)
@@ -821,7 +821,7 @@
       svg.append('g').selectAll('text.amt').data(data.fundingSources).join('text')
         .attr('class','value-label')
         .attr('x', d => padL + x(d.amount) + 6)
-        .attr('y', d => y(d.source) + y.bandwidth()/2 + 4)
+        .attr('y', d => y(sourceLabel(d, currentLang)) + y.bandwidth()/2 + 4)
         .attr('font-size', 11).attr('font-weight', 700)
         .text(d => `${fmt.usd0.format(d.amount)}  (${(d.share*100).toFixed(0)}%)`);
     }
