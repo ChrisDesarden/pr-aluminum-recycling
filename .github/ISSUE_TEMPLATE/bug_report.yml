@@ -62,7 +62,7 @@ body:
       options:
         - Sitio en producción (GitHub Pages)
         - Servidor local (python3 -m http.server 8765)
-        - PDF (docs/recircular-onepage.pdf)
+        - PDF (site/recircular-onepage.pdf)
         - Otro (explica en "Notas adicionales")
     validations:
       required: false

@@ -40,7 +40,7 @@ body:
         - research/engineering-tech.md
         - research/engineering-budget.md
         - research/funding-model.md
-        - docs/recircular-onepage.pdf
+        - site/recircular-onepage.pdf
         - Otro (indicar abajo)
     validations:
       required: true

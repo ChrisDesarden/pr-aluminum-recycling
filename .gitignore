@@ -3,6 +3,7 @@ docs/preview-*.png
 site/preview-*.png
 site/preview.png
 audit/
+.tmp-screens/
 
 # Build / editor
 .DS_Store

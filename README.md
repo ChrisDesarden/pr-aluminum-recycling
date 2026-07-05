@@ -94,6 +94,7 @@ pr-aluminum-recycling/
 │   ├── index.html
 │   ├── app.js
 │   ├── styles.css
+│   ├── recircular-onepage.pdf ← PDF de 32 páginas A4 (también servido por GitHub Pages)
 │   ├── DESIGN.md              ← especificación de diseño (14 secciones)
 │   └── assets/                ← 7 archivos JSON que alimentan los gráficos
 ├── research/                  ← 5 documentos de investigación
@@ -102,8 +103,6 @@ pr-aluminum-recycling/
 │   ├── engineering-tech.md    ← proceso, equipos, balance energético
 │   ├── engineering-budget.md  ← desglose de CAPEX, build-up de OPEX
 │   └── funding-model.md       ← estructura de capital de 7 fuentes
-└── docs/
-    └── recircular-onepage.pdf ← PDF de 26 páginas A4 (export del sitio)
 ```
 
 ---
@@ -155,20 +154,20 @@ python3 -m http.server 8765
 
 ## 🖨️ Cómo regenerar el PDF
 
-El PDF en `docs/recircular-onepage.pdf` se genera a partir del sitio
+El PDF en `site/recircular-onepage.pdf` se genera a partir del sitio
 usando Puppeteer + Chromium headless:
 
 ```bash
 cd tools/puppeteer
 npm ci                          # instalar puppeteer + chromium (una sola vez)
-node generate-pdf.js            # escribe docs/recircular-onepage.pdf
+node generate-pdf.js            # escribe site/recircular-onepage.pdf
 ```
 
 Alternativa con Chrome headless:
 
 ```bash
 google-chrome --headless \
-  --print-to-pdf=docs/recircular-onepage.pdf \
+  --print-to-pdf=site/recircular-onepage.pdf \
   --no-pagerender-await \
   http://127.0.0.1:8765/index.html
 ```
