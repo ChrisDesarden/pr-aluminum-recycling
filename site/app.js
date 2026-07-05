@@ -285,17 +285,14 @@
     [0, 0.25, 0.5, 0.75, 1].forEach(v => {
       gridG.append('line').attr('class', 'gridline')
         .attr('x1', padL + x(v)).attr('x2', padL + x(v))
-        .attr('y1', padT - 6).attr('y2', padT + rates.length * rowH)
-        .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+        .attr('y1', padT - 6).attr('y2', padT + rates.length * rowH);
     });
 
     // X axis with percent ticks
     const xAxis = svg.append('g').attr('class', 'axis')
       .attr('transform', `translate(${padL}, ${padT + rates.length * rowH})`)
       .call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
-    xAxis.selectAll('text').attr('font-size', 11).attr('fill', '#6b7c93');
-    xAxis.select('.domain').attr('stroke', '#d6cbb4');
-    xAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+    xAxis.selectAll('text').attr('font-size', 11);
 
     // X axis title
     svg.append('text').attr('class', 'axis-title')
@@ -308,7 +305,7 @@
       .attr('transform', `translate(${padL}, 0)`)
       .call(d3.axisLeft(y).tickSize(0));
     yAxis.select('.domain').remove();
-    yAxis.selectAll('text').attr('font-size', 12).attr('fill', '#0d1b2a').attr('font-weight', 600);
+    yAxis.selectAll('text').attr('font-size', 12).attr('font-weight', 600);
 
     const rows = svg.append('g').attr('transform', `translate(${padL}, 0)`);
     // Bars — semantic colors: PR current=red (status quo pain), PR target=amber
@@ -488,8 +485,7 @@
     y.ticks(5).forEach(v => {
       gridG.append('line').attr('class', 'gridline')
         .attr('x1', padL).attr('x2', w - padR)
-        .attr('y1', y(v)).attr('y2', y(v))
-        .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+        .attr('y1', y(v)).attr('y2', y(v));
     });
 
     // Soft area under revenue (visual emphasis: revenue is the headline number)
@@ -500,7 +496,7 @@
       .curve(d3.curveMonotoneX);
     svg.append('path').datum(rows)
       .attr('class', 'series-area')
-      .attr('fill', '#0c5c8a')
+      .attr('fill', 'var(--c-primary)')
       .attr('opacity', 0.10)
       .attr('d', areaGen);
 
@@ -508,9 +504,7 @@
     const xAxis = svg.append('g').attr('class', 'axis')
       .attr('transform', `translate(0, ${h - padB})`)
       .call(d3.axisBottom(x).ticks(5).tickFormat(d => `${t('budget_year', lang) || 'Año'} ${d}`));
-    xAxis.selectAll('text').attr('font-size', 11).attr('fill', '#6b7c93');
-    xAxis.select('.domain').attr('stroke', '#d6cbb4');
-    xAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+    xAxis.selectAll('text').attr('font-size', 11);
     svg.append('text').attr('class', 'axis-title')
       .attr('x', padL + (w - padL - padR) / 2).attr('y', h - 8)
       .attr('text-anchor', 'middle')
@@ -520,9 +514,7 @@
     const yAxis = svg.append('g').attr('class', 'axis')
       .attr('transform', `translate(${padL}, 0)`)
       .call(d3.axisLeft(y).ticks(5).tickFormat(d => '$' + (d/1e6).toFixed(0) + 'M'));
-    yAxis.selectAll('text').attr('font-size', 10).attr('fill', '#6b7c93');
-    yAxis.select('.domain').attr('stroke', '#d6cbb4');
-    yAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+    yAxis.selectAll('text').attr('font-size', 10);
     svg.append('text').attr('class', 'axis-title')
       .attr('transform', `translate(14, ${padT + (h - padT - padB) / 2}) rotate(-90)`)
       .attr('text-anchor', 'middle')
@@ -749,8 +741,7 @@
       y.ticks(5).forEach(v => {
         gridG.append('line').attr('class', 'gridline')
           .attr('x1', padL).attr('x2', w - padR)
-          .attr('y1', y(v)).attr('y2', y(v))
-          .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+          .attr('y1', y(v)).attr('y2', y(v));
       });
 
       svg.append('g').selectAll('g').data(series).join('g')
@@ -777,16 +768,12 @@
       const xAxis = svg.append('g').attr('class', 'axis')
         .attr('transform', `translate(0, ${h - padB})`)
         .call(d3.axisBottom(x).tickFormat(id => xLabels[id] || id));
-      xAxis.selectAll('text').attr('font-size', 12).attr('fill', '#0d1b2a').attr('font-weight', 600);
-      xAxis.select('.domain').attr('stroke', '#d6cbb4');
-      xAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+      xAxis.selectAll('text').attr('font-size', 12).attr('font-weight', 600);
       // Y axis
       const yAxis = svg.append('g').attr('class', 'axis')
         .attr('transform', `translate(${padL}, 0)`)
         .call(d3.axisLeft(y).ticks(5).tickFormat(d => fmt.usd0.format(d).replace('$','$')));
-      yAxis.selectAll('text').attr('font-size', 10).attr('fill', '#6b7c93');
-      yAxis.select('.domain').attr('stroke', '#d6cbb4');
-      yAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+      yAxis.selectAll('text').attr('font-size', 10);
       // Y axis title
       svg.append('text').attr('class', 'axis-title')
         .attr('transform', `translate(14, ${padT + (h - padT - padB) / 2}) rotate(-90)`)
@@ -858,8 +845,7 @@
       [0.25, 0.5, 0.75, 1].forEach(v => {
         gridG.append('line').attr('class', 'gridline')
           .attr('x1', padL + x(total * v)).attr('x2', padL + x(total * v))
-          .attr('y1', padT - 2).attr('y2', h - padB + 2)
-          .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+          .attr('y1', padT - 2).attr('y2', h - padB + 2);
       });
 
       svg.append('g').selectAll('rect').data(data.fundingSources).join('rect')
@@ -872,7 +858,7 @@
       svg.append('g').selectAll('text.lbl').data(data.fundingSources).join('text')
         .attr('class','lbl')
         .attr('x', padL - 8).attr('y', d => y(sourceLabel(d, currentLang)) + y.bandwidth()/2 + 4)
-        .attr('text-anchor','end').attr('font-size', 12).attr('font-weight', 600).attr('fill', '#0d1b2a')
+        .attr('text-anchor','end').attr('font-size', 12).attr('font-weight', 600)
         .text(d => sourceLabel(d, currentLang));
       svg.append('g').selectAll('text.amt').data(data.fundingSources).join('text')
         .attr('class','value-label')
