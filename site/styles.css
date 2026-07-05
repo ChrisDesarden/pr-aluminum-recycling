@@ -805,6 +805,7 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   border: 1px solid var(--c-rule);
   background: #cfe5f3;
   z-index: 0;
+  overflow: hidden;
 }
 @media (max-width: 600px) { #pr-map { height: 400px; } }
 .map-meta {
