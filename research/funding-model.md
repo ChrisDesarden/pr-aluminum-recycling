@@ -201,7 +201,7 @@ Each source below is sized to the medium scenario ($52M total CAPEX) and to the 
 
 ### 2.1 PRIDCO equity grant - Act 60-2019 (Manufacturing Activities, including recycling)
 
-**Mechanism.** Act 60-2019 (the *Código de Incentivos de Puerto Rico*) consolidated prior incentive laws (notably Acts 20/22) and is administered by the **DDEC / OITE** (Puerto Rico Department of Economic Development and Commerce, Office of Industrial Tax Exemption). Chapter 6 of Subtitle B covers **"Manufacturing Activities"** and explicitly includes **recycling** within its scope. (BLS Strategies Act 60 summary, <https://www.blsstrategies.com/incentives/puerto-rico>; full text at bvirtualogp.pr.gov.)
+**Mechanism.** Act 60-2019 (the *Código de Incentivos de Puerto Rico*) consolidated prior incentive laws (notably Acts 20/22) and is administered by the **DDEC / OITE** (Puerto Rico Department of Economic Development and Commerce, Office of Industrial Tax Exemption). Chapter 6 of Subtitle B covers **"Manufacturing Activities"** and explicitly includes **recycling** within its scope. (BLS Strategies Act 60 summary, <https://www.blsstrategies.com/incentives/puerto-rico>; full text at <https://docs.pr.gov/files/OCIF/LEYES-REGLAMENTOS-CARTAS-CIRCULARES/Leyes-delegan-Facultad-OCIF/Ley%20N%C3%BAm.%2060-2019%20-%20C%C3%B3digo%20de%20Incentivos%20de%20Puerto%20Rico.pdf>.)
 
 **What you get.**
 - **4% corporate income tax** on net income derived from the exempt operation, on business volume above $3M (below $3M, an even lower graduated rate applies).
@@ -401,7 +401,7 @@ These adjustments are tracked in the updated `budget-data.json` as a `sensitivit
 
 ## Sources (consolidated)
 
-**PR context and policy.** See full list in `research/pr-context.md` §7. Specifically relied on here: Act 60-2019 (bvirtualogp.pr.gov), BLS Strategies Act 60 summary, ASCE 2019 PR Report Card, LUMA 2024 Resource Adequacy Report, EPA Region 2 PR solid waste GFX fact sheet, IFCO Ponce 2017 announcement, BLS OEWS PR 2024, PRIDCO incentive lists.
+**PR context and policy.** See full list in `research/pr-context.md` §7. Specifically relied on here: Act 60-2019 (<https://docs.pr.gov/files/OCIF/LEYES-REGLAMENTOS-CARTAS-CIRCULARES/Leyes-delegan-Facultad-OCIF/Ley%20N%C3%BAm.%2060-2019%20-%20C%C3%B3digo%20de%20Incentivos%20de%20Puerto%20Rico.pdf>), BLS Strategies Act 60 summary, ASCE 2019 PR Report Card, LUMA 2024 Resource Adequacy Report, EPA Region 2 PR solid waste GFX fact sheet, IFCO Ponce 2017 announcement, BLS OEWS PR 2024, PRIDCO incentive lists.
 
 **Country benchmarking.** See `research/country-cases.md` for full list. Abralatas/Recicla Latas 2024 (Brazil), JACRA FY2023 (Japan), European Aluminium/MPE 2023 (EU), CMI/AA 2024 (U.S.), TOMRA (Australia/Germany), Taiwan EPA (Taiwan).
 
