@@ -1,0 +1,50 @@
+name: Discusión general
+description: Para preguntas, ideas abiertas, o comentarios que no encajan en otras plantillas.
+title: "[discusión] "
+labels: ["discussion"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¿Una pregunta abierta? ¿Una idea que quieres discutir antes de
+        abrir una solicitud formal? ¿Un comentario sobre la propuesta en
+        general? Este es el lugar.
+
+  - type: textarea
+    id: tema
+    attributes:
+      label: ¿Cuál es el tema?
+      description: Expón tu pregunta o idea con el mayor detalle posible.
+      placeholder: |
+        He estado leyendo la sección de casos comparativos y me parece
+        que falta el caso de Uruguay. ¿Hay alguna razón específica por la
+        que no se incluyó? Conozco datos recientes que podrían ser
+        relevantes.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contexto
+    attributes:
+      label: Contexto (opcional)
+      description: ¿Esto encaja con alguna otra categoría?
+      options:
+        - Investigación / datos
+        - Diseño / UX del sitio
+        - Financiamiento / modelo de negocio
+        - Política pública / regulación
+        - Traducción / i18n
+        - Otro
+    validations:
+      required: false
+
+  - type: textarea
+    id: referencias
+    attributes:
+      label: Referencias o enlaces útiles (opcional)
+      description: Si tienes datos, enlaces o capturas que ilustren el punto, compártelos.
+      placeholder: ""
+    validations:
+      required: false

@@ -1,0 +1,67 @@
+name: Solicitud de funcionalidad
+description: Propón una mejora al sitio, al PDF, a la documentación, o a la propuesta en general.
+title: "[feat] "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¿Tienes una idea para mejorar la propuesta o el sitio? Cuéntanos.
+        Las solicitudes de funcionalidad son valiosas porque nos ayudan a
+        priorizar el trabajo.
+
+  - type: textarea
+    id: problema
+    attributes:
+      label: ¿Qué problema resuelve?
+      description: Describe la necesidad o el vacío que esta mejora llenaría.
+      placeholder: |
+        Ejemplo: Los usuarios en móvil no pueden acceder fácilmente a la
+        lista de municipios desde la sección del mapa.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solucion
+    attributes:
+      label: Solución propuesta
+      description: Describe brevemente la mejora que sugieres.
+      placeholder: |
+        Ejemplo: Añadir un botón flotante en móvil que abra la lista de
+        municipios como un panel lateral.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas consideradas (opcional)
+      description: Otras opciones que consideraste y por qué las descartaste.
+      placeholder: ""
+    validations:
+      required: false
+
+  - type: dropdown
+    id: alcance
+    attributes:
+      label: Alcance
+      description: ¿Dónde aplicaría el cambio?
+      options:
+        - Solo el sitio web (site/)
+        - Solo el PDF (docs/)
+        - Solo los documentos de investigación (research/)
+        - Varios de los anteriores
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: notas
+    attributes:
+      label: Notas adicionales
+      description: Capturas, maquetas, referencias a proyectos similares, etc.
+      placeholder: ""
+    validations:
+      required: false

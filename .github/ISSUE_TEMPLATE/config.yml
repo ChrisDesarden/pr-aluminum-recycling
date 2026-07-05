@@ -1,0 +1,7 @@
+contact_links:
+  - name: Reportar un dato desactualizado
+    url: https://github.com/chrisdesarden/pr-aluminum-recycling/issues/new?template=data_correction.yml
+    about: La contribución más valiosa. Si encontraste un dato o fuente que necesita actualización, usa esta plantilla.
+  - name: Contacto privado por email
+    url: mailto:ChrisDesarden@users.noreply.github.com
+    about: Para temas que no quieres hacer públicos. Para temas técnicos, es preferible abrir un *issue*.

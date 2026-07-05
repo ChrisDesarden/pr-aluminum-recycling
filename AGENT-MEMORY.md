@@ -32,7 +32,7 @@ Economic Development.
 - **CAPEX:** $52M USD
 - **OPEX:** $12.3M/yr
 - **Payback:** 3.0 yr base case; 2.5-3.5 yr across scenarios
-- **IRR:** 14-18% over 7-yr horizon
+- **IRR:** 14-18% over 20-yr horizon (budget-data.json medium scenario)
 - **FTE:** 62 direct + 155 indirect/induced
 - **Energy savings vs. virgin Al:** 95% (industry standard for closed-loop UBC)
 

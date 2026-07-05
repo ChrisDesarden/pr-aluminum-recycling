@@ -1,0 +1,96 @@
+name: Corrección de datos
+description: Reporta una cifra desactualizada, una fuente rota, o un dato que no coincide con la fuente citada. Esta es la contribución más valiosa del proyecto.
+title: "[datos] "
+labels: ["data-correction", "needs-verification"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Las cifras son la columna vertebral de la propuesta. Si ves algo
+        desactualizado o contradictorio, este es el *issue* que debes
+        abrir. **Esta es la forma más valiosa de contribuir al proyecto.**
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de corrección
+      description: ¿Qué tipo de problema encontraste?
+      options:
+        - La cifra ya no es correcta (dato desactualizado)
+        - La URL de la fuente está rota
+        - La cifra no coincide con la fuente citada
+        - Falta una fuente
+        - Cifra nueva / mejor disponible
+        - Otro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: donde
+    attributes:
+      label: ¿Dónde lo encontraste?
+      description: Archivo o sección donde aparece el dato.
+      options:
+        - site/index.html (sitio web)
+        - site/assets/*.json
+        - research/pr-context.md
+        - research/country-cases.md
+        - research/engineering-tech.md
+        - research/engineering-budget.md
+        - research/funding-model.md
+        - docs/recircular-onepage.pdf
+        - Otro (indicar abajo)
+    validations:
+      required: true
+
+  - type: textarea
+    id: cifra-actual
+    attributes:
+      label: Cifra actual
+      description: Copia y pega exactamente lo que dice el sitio o el documento.
+      placeholder: |
+        Ejemplo: "Tasa de reciclaje actual: 1,8 %"
+    validations:
+      required: true
+
+  - type: textarea
+    id: fuente-actual
+    attributes:
+      label: Fuente actual citada
+      description: Si el dato cita una fuente, pégala aquí.
+      placeholder: |
+        Ejemplo: "Abralatas 2024 — https://abralatas.org.br/..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: fuente-nueva
+    attributes:
+      label: Fuente que contradice o actualiza el dato
+      description: URL + fecha de acceso + cita textual del valor que reporta.
+      placeholder: |
+        URL: https://...
+        Fecha de acceso: 2026-07-05
+        Cita: "En 2024, Brasil recicló el 97,3 % de las latas de aluminio vendidas."
+    validations:
+      required: true
+
+  - type: textarea
+    id: valor-propuesto
+    attributes:
+      label: Valor propuesto y justificación
+      description: Si tienes una sugerencia concreta de cambio, escríbela aquí.
+      placeholder: ""
+    validations:
+      required: false
+
+  - type: textarea
+    id: notas
+    attributes:
+      label: Contexto adicional
+      description: Cualquier cosa que ayude a verificar el cambio.
+      placeholder: ""
+    validations:
+      required: false
