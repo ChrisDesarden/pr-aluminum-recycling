@@ -18,6 +18,24 @@
   };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const PALETTE = ['#0c5c8a','#1f8fb8','#5fb8d3','#a3d9b1','#d6c25a','#e89c52','#c45a4a','#7a4a96','#444'];
+  // Semantic chart palette — 4-color editorial family.
+  // brand=teal (PR / primary data), light=light teal (alt / lead category),
+  // amber=amber (target / highlight), gray=warm gray (context / fallback).
+  const CHART_PALETTE = ['#0c5c8a', '#1f8fb8', '#5fb8d3', '#f5a524', '#d6c25a', '#e89c52', '#94a3b8', '#cbd5e1'];
+  // 6-color brand-aligned ramp for CAPEX/funding categories
+  const donutColor = (i) => CHART_PALETTE[i % CHART_PALETTE.length];
+  // For 2-3 category charts, use only the first 2-3 slots
+  const fundingColor = (i) => {
+    // 0=largest=teal, 1=second=light teal, 2+=amber, 3+=gray
+    if (i === 0) return '#0c5c8a';
+    if (i === 1) return '#1f8fb8';
+    if (i === 2) return '#5fb8d3';
+    if (i === 3) return '#f5a524';
+    if (i === 4) return '#d6c25a';
+    return '#94a3b8';
+  };
+  // For stacked bar (CAPEX scenarios): same 6-color scheme as donut
+  const capexColor = (i) => donutColor(i);
 
   // ---------- i18n ----------
   let currentLang = document.documentElement.lang || 'es';
@@ -203,38 +221,68 @@
     } catch (e) { host.textContent = t('chart_country_error', lang); return; }
     const rates = data.rates.slice().sort((a, b) => b.rate - a.rate);
     const w = Math.min(host.clientWidth || 600, 720);
-    const rowH = 26, padL = 110, padR = 70;
-    const h = rates.length * rowH + 24;
+    const rowH = 30, padL = 96, padR = 92, padT = 28, padB = 44;
+    const h = rates.length * rowH + padT + padB;
     const svg = d3.select(host).append('svg')
       .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
       .attr('aria-label', t('chart_country_aria', lang));
     const x = d3.scaleLinear().domain([0, 1]).range([0, w - padL - padR]);
-    const y = d3.scaleBand().domain(rates.map(d => d.iso)).range([0, rates.length * rowH]).padding(0.2);
-    svg.append('g').attr('transform', `translate(${padL}, 0)`)
-      .call(d3.axisLeft(y).tickSize(0))
-      .call(g => g.select('.domain').remove())
-      .call(g => g.selectAll('text').attr('font-size', 12).attr('fill', '#1d2939'));
+    const y = d3.scaleBand().domain(rates.map(d => d.iso)).range([padT, padT + rates.length * rowH]).padding(0.25);
+
+    // Horizontal gridlines at 0, 25, 50, 75, 100%
+    const gridG = svg.append('g').attr('class', 'gridlines');
+    [0, 0.25, 0.5, 0.75, 1].forEach(v => {
+      gridG.append('line').attr('class', 'gridline')
+        .attr('x1', padL + x(v)).attr('x2', padL + x(v))
+        .attr('y1', padT - 6).attr('y2', padT + rates.length * rowH)
+        .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+    });
+
     // X axis with percent ticks
-    svg.append('g').attr('transform', `translate(${padL}, ${rates.length * rowH})`)
-      .call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')))
-      .call(g => g.selectAll('text').attr('font-size', 11).attr('fill', '#475467'))
-      .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+    const xAxis = svg.append('g').attr('class', 'axis')
+      .attr('transform', `translate(${padL}, ${padT + rates.length * rowH})`)
+      .call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
+    xAxis.selectAll('text').attr('font-size', 11).attr('fill', '#6b7c93');
+    xAxis.select('.domain').attr('stroke', '#d6cbb4');
+    xAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+
+    // X axis title
+    svg.append('text').attr('class', 'axis-title')
+      .attr('x', padL + (w - padL - padR) / 2).attr('y', h - 6)
+      .attr('text-anchor', 'middle')
+      .text(t('chart_country_axis', lang) || (lang === 'en' ? 'Reported recovery rate' : 'Tasa de recuperación reportada'));
+
+    // Y axis (country labels)
+    const yAxis = svg.append('g').attr('class', 'axis')
+      .attr('transform', `translate(${padL}, 0)`)
+      .call(d3.axisLeft(y).tickSize(0));
+    yAxis.select('.domain').remove();
+    yAxis.selectAll('text').attr('font-size', 12).attr('fill', '#0d1b2a').attr('font-weight', 600);
+
     const rows = svg.append('g').attr('transform', `translate(${padL}, 0)`);
-    rows.selectAll('rect').data(rates).join('rect')
+    // Bars — semantic colors: PR current=red (status quo pain), PR target=amber
+    // (the goal), leader=light teal (standout), others=warm gray gradient
+    const colorFor = (d, i) => {
+      if (d.iso === 'PR' && d.isCurrent) return '#c45a4a';
+      if (d.iso === 'PR' && d.isTarget)  return '#f5a524';
+      if (i === 0)                        return '#1f8fb8'; // leader gets light teal
+      return '#cbd5e1';
+    };
+    rows.selectAll('rect.bar').data(rates).join('rect')
+      .attr('class', 'bar')
       .attr('x', 0).attr('y', d => y(d.iso))
       .attr('height', y.bandwidth())
       .attr('width', d => x(d.rate))
-      .attr('fill', (d, i) => i === rates.length - 1 ? '#c45a4a' : (d.iso === 'PR' ? '#0c5c8a' : PALETTE[i % PALETTE.length]))
-      .attr('rx', 3);
-    rows.selectAll('text.val').data(rates).join('text')
-      .attr('class','val')
-      .attr('x', d => x(d.rate) + 6)
-      .attr('y', d => y(d.iso) + y.bandwidth()/2 + 3)
-      .attr('font-size', 11).attr('font-weight','600').attr('fill', '#1d2939')
+      .attr('fill', (d, i) => colorFor(d, i))
+      .attr('rx', 4)
+      .append('title').text(d => `${d.name}\n${fmt.pct1(d.rate)} (${d.mechanism})`);
+    // Value labels to the right of each bar
+    rows.selectAll('text.value-label').data(rates).join('text')
+      .attr('class', d => d.isTarget ? 'value-label value-label--accent' : 'value-label value-label--lead')
+      .attr('x', d => x(d.rate) + 8)
+      .attr('y', d => y(d.iso) + y.bandwidth() / 2 + 4)
+      .attr('font-size', 11).attr('font-weight', 700)
       .text(d => fmt.pct1(d.rate));
-    // Tooltip
-    rows.selectAll('title').data(rates).join('title')
-      .text(d => `${d.name}\n${fmt.pct1(d.rate)} (${d.mechanism})`);
   };
 
   // ---------- budget renderer helpers ----------
@@ -357,41 +405,91 @@
     const rows = years.map(y => ({ year: y, revenue: rev, opex }));
 
     const w = Math.min(host.clientWidth || 500, 720);
-    const h = 220, padL = 56, padR = 24, padT = 16, padB = 56;
+    const h = 240, padL = 64, padR = 110, padT = 24, padB = 48;
     const svg = d3.select(host).append('svg')
       .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
       .attr('aria-label', t('budget_revenue_aria', lang));
     const x = d3.scaleLinear().domain([1, 5]).range([padL, w - padR]);
-    const y = d3.scaleLinear().domain([0, Math.max(rev, opex) * 1.1]).range([h - padB, padT]);
+    const yMax = Math.max(rev, opex) * 1.15;
+    const y = d3.scaleLinear().domain([0, yMax]).range([h - padB, padT]);
 
-    const line = (accessor) => d3.line()
+    // Horizontal gridlines
+    const gridG = svg.append('g').attr('class', 'gridlines');
+    y.ticks(5).forEach(v => {
+      gridG.append('line').attr('class', 'gridline')
+        .attr('x1', padL).attr('x2', w - padR)
+        .attr('y1', y(v)).attr('y2', y(v))
+        .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+    });
+
+    // Soft area under revenue (visual emphasis: revenue is the headline number)
+    const areaGen = d3.area()
       .x(d => x(d.year))
-      .y(d => y(accessor(d)))
+      .y0(y(0))
+      .y1(d => y(d.revenue))
       .curve(d3.curveMonotoneX);
+    svg.append('path').datum(rows)
+      .attr('class', 'series-area')
+      .attr('fill', '#0c5c8a')
+      .attr('opacity', 0.10)
+      .attr('d', areaGen);
 
-    svg.append('g').attr('transform', `translate(0, ${h - padB})`)
-      .call(d3.axisBottom(x).ticks(5).tickFormat(d => `${t('budget_year', lang) || 'Año'} ${d}`))
-      .call(g => g.selectAll('text').attr('font-size', 11).attr('fill', '#475467'))
-      .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+    // X axis
+    const xAxis = svg.append('g').attr('class', 'axis')
+      .attr('transform', `translate(0, ${h - padB})`)
+      .call(d3.axisBottom(x).ticks(5).tickFormat(d => `${t('budget_year', lang) || 'Año'} ${d}`));
+    xAxis.selectAll('text').attr('font-size', 11).attr('fill', '#6b7c93');
+    xAxis.select('.domain').attr('stroke', '#d6cbb4');
+    xAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+    svg.append('text').attr('class', 'axis-title')
+      .attr('x', padL + (w - padL - padR) / 2).attr('y', h - 8)
+      .attr('text-anchor', 'middle')
+      .text(t('chart_budget_revenue_axis', lang) || (lang === 'en' ? 'Operating years' : 'Años operativos'));
 
-    svg.append('g').attr('transform', `translate(${padL}, 0)`)
-      .call(d3.axisLeft(y).ticks(5).tickFormat(d => '$' + (d/1e6).toFixed(0) + 'M'))
-      .call(g => g.selectAll('text').attr('font-size', 10).attr('fill', '#475467'))
-      .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+    // Y axis
+    const yAxis = svg.append('g').attr('class', 'axis')
+      .attr('transform', `translate(${padL}, 0)`)
+      .call(d3.axisLeft(y).ticks(5).tickFormat(d => '$' + (d/1e6).toFixed(0) + 'M'));
+    yAxis.selectAll('text').attr('font-size', 10).attr('fill', '#6b7c93');
+    yAxis.select('.domain').attr('stroke', '#d6cbb4');
+    yAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+    svg.append('text').attr('class', 'axis-title')
+      .attr('transform', `translate(14, ${padT + (h - padT - padB) / 2}) rotate(-90)`)
+      .attr('text-anchor', 'middle')
+      .text(t('budget_axis_y', lang) || (lang === 'en' ? 'Annual USD' : 'USD anual'));
 
-    const g = svg.append('g');
-    g.append('path').datum(rows).attr('fill','none').attr('stroke', PALETTE[0]).attr('stroke-width', 2.5)
-      .attr('d', line(d => d.revenue));
-    g.append('path').datum(rows).attr('fill','none').attr('stroke', PALETTE[5]).attr('stroke-width', 2.5).attr('stroke-dasharray','6,4')
-      .attr('d', line(d => d.opex));
+    // Lines
+    const lineGen = (accessor) => d3.line()
+      .x(d => x(d.year)).y(d => y(accessor(d)))
+      .curve(d3.curveMonotoneX);
+    svg.append('path').datum(rows)
+      .attr('class', 'series-line')
+      .attr('stroke', '#0c5c8a')
+      .attr('d', lineGen(d => d.revenue));
+    svg.append('path').datum(rows)
+      .attr('class', 'series-line')
+      .attr('stroke', '#f5a524')
+      .attr('stroke-dasharray', '6,4')
+      .attr('d', lineGen(d => d.opex));
 
-    // dots
-    g.selectAll('circle.rev').data(rows).join('circle').attr('class','rev')
+    // Dots
+    svg.selectAll('circle.rev').data(rows).join('circle')
+      .attr('class', 'series-dot')
       .attr('cx', d => x(d.year)).attr('cy', d => y(d.revenue))
-      .attr('r', 3.5).attr('fill', PALETTE[0]);
-    g.selectAll('circle.op').data(rows).join('circle').attr('class','op')
+      .attr('r', 4).attr('fill', '#0c5c8a');
+    svg.selectAll('circle.op').data(rows).join('circle')
+      .attr('class', 'series-dot')
       .attr('cx', d => x(d.year)).attr('cy', d => y(d.opex))
-      .attr('r', 3.5).attr('fill', PALETTE[5]);
+      .attr('r', 4).attr('fill', '#f5a524');
+
+    // Direct labels at line ends
+    const lastX = x(5);
+    svg.append('text').attr('class', 'series-label series-label--revenue')
+      .attr('x', lastX + 10).attr('y', y(rev) + 4)
+      .text(`${t('chart_legend_revenue', lang)}  $${(rev/1e6).toFixed(1)}M`);
+    svg.append('text').attr('class', 'series-label series-label--opex')
+      .attr('x', lastX + 10).attr('y', y(opex) + 4)
+      .text(`${t('chart_legend_opex', lang)}  $${(opex/1e6).toFixed(1)}M`);
   };
 
   const renderScenariosTable = (lang = currentLang) => {
@@ -488,7 +586,7 @@
     const donut = $('#budget-donut');
     if (donut) {
       const w = donut.clientWidth || 360, size = Math.min(w, 320);
-      const r = size/2 - 4, ir = r - 50;
+      const r = size/2 - 4, ir = r - 52;
       const svg = d3.select(donut).append('svg')
         .attr('viewBox', `0 0 ${size} ${size}`)
         .attr('width', size).attr('height', size)
@@ -496,25 +594,27 @@
         .attr('aria-label', `CAPEX composition for ${lead} scenario`);
       const g = svg.append('g').attr('transform', `translate(${size/2}, ${size/2})`);
       const pie = d3.pie().value(d => d.amount).sort(null);
-      const arc = d3.arc().innerRadius(ir).outerRadius(r);
+      const arc = d3.arc().innerRadius(ir).outerRadius(r).cornerRadius(2).padAngle(0.012);
       const arcs = g.selectAll('path').data(pie(capex.lines)).join('path')
-        .attr('d', arc).attr('fill', (d, i) => PALETTE[i % PALETTE.length])
-        .attr('stroke','#fff').attr('stroke-width', 1.5);
+        .attr('class', 'donut-arc')
+        .attr('d', arc).attr('fill', (d, i) => donutColor(i))
+        .attr('stroke','#fff').attr('stroke-width', 2);
       arcs.append('title').text(d => `${categoryLabel(d.data.category, 'capex', currentLang)}\n${fmt.usd0.format(d.data.amount)}`);
-      g.append('text').attr('text-anchor','middle').attr('y', -6)
-        .attr('font-size', 11).attr('fill', '#475467').text('Total CAPEX');
-      g.append('text').attr('text-anchor','middle').attr('y', 12)
-        .attr('font-size', 18).attr('font-weight','700').attr('fill', '#0c5c8a')
+      g.append('text').attr('class', 'center-sub')
+        .attr('text-anchor','middle').attr('y', -18)
+        .text(t('budget_donut_eyebrow', currentLang) || (currentLang === 'en' ? 'Total CAPEX' : 'CAPEX total'));
+      g.append('text').attr('class', 'center-label')
+        .attr('text-anchor','middle').attr('y', 8)
         .text(fmt.usd0.format(capex.total));
-      g.append('text').attr('text-anchor','middle').attr('y', 30)
-        .attr('font-size', 10).attr('fill', '#7a8699')
+      g.append('text').attr('class', 'center-outer')
+        .attr('text-anchor','middle').attr('y', 28)
         .text(`${lead} · ${fmt.usd0.format(km.capex_per_t)}/t`);
 
       // Legend (chip-row format, no amt/pct — those are in caption)
       const legend = $('#budget-donut-legend');
       if (legend) {
         legend.innerHTML = capex.lines.map((l, i) => `
-          <li class="item"><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${categoryLabel(l.category, 'capex', currentLang)}</span></li>
+          <li class="item"><span class="sw" style="background:${donutColor(i)}"></span><span>${categoryLabel(l.category, 'capex', currentLang)}</span></li>
         `).join('');
       }
     }
@@ -526,12 +626,12 @@
       const scenarios = data.scenarios;
       const scenarioCapex = scenarios.map(s => ({ id: s, ...data.capex[s] }));
       const w = Math.min(bar.clientWidth || 600, 720);
-      const h = 240, padL = 130, padR = 30, padT = 20, padB = 50;
+      const h = 260, padL = 130, padR = 30, padT = 24, padB = 56;
       const svg = d3.select(bar).append('svg')
         .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
         .attr('aria-label','CAPEX by scenario, stacked by category');
-      const x = d3.scaleBand().domain(scenarios).range([padL, w - padR]).padding(0.3);
-      const yMax = d3.max(scenarioCapex, d => d.total) * 1.18;
+      const x = d3.scaleBand().domain(scenarios).range([padL, w - padR]).padding(0.4);
+      const yMax = d3.max(scenarioCapex, d => d.total) * 1.22;
       const y = d3.scaleLinear().domain([0, yMax]).range([h - padB, padT]);
       // Use the medium scenario's line items as the canonical list (only scenario with full breakdown)
       const medium = scenarioCapex.find(s => s.id === data.scenario_lead || s.id === 'medium') || scenarioCapex[0];
@@ -550,13 +650,22 @@
       });
       const stack = d3.stack().keys(cats)
         .value((d, key) => {
-          // Map category → amount within this scenario
           const catIdx = cats.indexOf(key);
           return catIdx >= 0 ? (d.amounts[catIdx] || 0) : 0;
         });
       const series = stack(grouped);
+
+      // Horizontal gridlines (subtle, behind the bars)
+      const gridG = svg.append('g').attr('class', 'gridlines');
+      y.ticks(5).forEach(v => {
+        gridG.append('line').attr('class', 'gridline')
+          .attr('x1', padL).attr('x2', w - padR)
+          .attr('y1', y(v)).attr('y2', y(v))
+          .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+      });
+
       svg.append('g').selectAll('g').data(series).join('g')
-        .attr('fill', (d, i) => PALETTE[i % PALETTE.length])
+        .attr('fill', (d, i) => capexColor(i))
         .selectAll('rect').data((d, gi) => d.map((v, ri) => ({
           x: x(grouped[ri].scenarioId),
           y0: y(v[0]),
@@ -565,36 +674,47 @@
           key: d.key,
           amount: v[1] - v[0],
         }))).join('rect')
+        .attr('class', 'bar')
         .attr('x', d => d.x)
         .attr('y', d => Number.isFinite(d.y1) ? d.y1 : 0)
         .attr('height', d => Number.isFinite(d.y0) && Number.isFinite(d.y1) ? Math.max(0, d.y0 - d.y1) : 0)
         .attr('width', d => d.width)
+        .attr('rx', 2)
         .append('title').text(d => `${categoryLabel(d.key, 'capex', currentLang)}\n${fmt.usd0.format(d.amount)}`);
       // X axis
       const xLabels = { small: t('budget_scenarios_small_short', currentLang) || (currentLang === 'en' ? 'Small' : 'Pequeño'),
                         medium: t('budget_scenarios_medium_short', currentLang) || (currentLang === 'en' ? 'Medium' : 'Mediano'),
                         large: t('budget_scenarios_large_short', currentLang) || (currentLang === 'en' ? 'Large' : 'Grande') };
-      svg.append('g').attr('transform', `translate(0, ${h - padB})`)
-        .call(d3.axisBottom(x).tickFormat(id => xLabels[id] || id))
-        .call(g => g.selectAll('text').attr('font-size', 12).attr('fill', '#1d2939'))
-        .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+      const xAxis = svg.append('g').attr('class', 'axis')
+        .attr('transform', `translate(0, ${h - padB})`)
+        .call(d3.axisBottom(x).tickFormat(id => xLabels[id] || id));
+      xAxis.selectAll('text').attr('font-size', 12).attr('fill', '#0d1b2a').attr('font-weight', 600);
+      xAxis.select('.domain').attr('stroke', '#d6cbb4');
+      xAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
       // Y axis
-      svg.append('g').attr('transform', `translate(${padL}, 0)`)
-        .call(d3.axisLeft(y).ticks(5).tickFormat(d => fmt.usd0.format(d).replace('$','$')))
-        .call(g => g.selectAll('text').attr('font-size', 10).attr('fill', '#475467'))
-        .call(g => g.select('.domain').attr('stroke', '#cdd5df'));
+      const yAxis = svg.append('g').attr('class', 'axis')
+        .attr('transform', `translate(${padL}, 0)`)
+        .call(d3.axisLeft(y).ticks(5).tickFormat(d => fmt.usd0.format(d).replace('$','$')));
+      yAxis.selectAll('text').attr('font-size', 10).attr('fill', '#6b7c93');
+      yAxis.select('.domain').attr('stroke', '#d6cbb4');
+      yAxis.selectAll('.tick line').attr('stroke', '#d6cbb4');
+      // Y axis title
+      svg.append('text').attr('class', 'axis-title')
+        .attr('transform', `translate(14, ${padT + (h - padT - padB) / 2}) rotate(-90)`)
+        .attr('text-anchor', 'middle')
+        .text(t('chart_budget_capex_axis', currentLang) || (currentLang === 'en' ? 'Total CAPEX (USD)' : 'CAPEX total (USD)'));
       // Total labels on top
       svg.append('g').selectAll('text').data(scenarioCapex).join('text')
+        .attr('class', 'total-label')
         .attr('x', d => x(d.id) + x.bandwidth()/2)
-        .attr('y', d => y(d.total) - 6)
+        .attr('y', d => y(d.total) - 8)
         .attr('text-anchor','middle')
-        .attr('font-size', 12).attr('font-weight','700').attr('fill', '#0c5c8a')
         .text(d => fmt.usd0.format(d.total));
       // Legend (chip-row format)
       const legend = $('#budget-capex-legend');
       if (legend) {
         legend.innerHTML = cats.map((c, i) =>
-          `<li class="item"><span class="sw" style="background:${PALETTE[i % PALETTE.length]}"></span><span>${categoryLabel(c, 'capex', currentLang)}</span></li>`
+          `<li class="item"><span class="sw" style="background:${capexColor(i)}"></span><span>${categoryLabel(c, 'capex', currentLang)}</span></li>`
         ).join('');
       }
     }
@@ -636,28 +756,40 @@
     // ----- Funding stack bar (CAPEX sources) -----
     const fs = $('#budget-funding');
     if (fs && data.fundingSources) {
-      const w = Math.min(fs.clientWidth || 600, 720), h = 180, padL = 200, padR = 90, padT = 6, padB = 6;
+      const w = Math.min(fs.clientWidth || 600, 720), h = 200, padL = 220, padR = 100, padT = 8, padB = 8;
       const total = d3.sum(data.fundingSources, d => d.amount);
       const svg = d3.select(fs).append('svg')
         .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
         .attr('aria-label', `Funding stack: ${fmt.usd0.format(total)} across ${data.fundingSources.length} sources`);
-      const y = d3.scaleBand().domain(data.fundingSources.map(d => d.source)).range([padT, h - padB]).padding(0.2);
+      const y = d3.scaleBand().domain(data.fundingSources.map(d => d.source)).range([padT, h - padB]).padding(0.28);
       const x = d3.scaleLinear().domain([0, total]).range([0, w - padL - padR]);
+
+      // Faint gridlines (vertical, at 25/50/75/100% of total)
+      const gridG = svg.append('g').attr('class', 'gridlines');
+      [0.25, 0.5, 0.75, 1].forEach(v => {
+        gridG.append('line').attr('class', 'gridline')
+          .attr('x1', padL + x(total * v)).attr('x2', padL + x(total * v))
+          .attr('y1', padT - 2).attr('y2', h - padB + 2)
+          .attr('stroke', '#e4dcc4').attr('stroke-dasharray', '2 4').attr('opacity', 0.7);
+      });
+
       svg.append('g').selectAll('rect').data(data.fundingSources).join('rect')
+        .attr('class', 'bar')
         .attr('x', padL).attr('y', d => y(d.source))
         .attr('height', y.bandwidth()).attr('width', d => x(d.amount))
-        .attr('fill', (d, i) => PALETTE[i % PALETTE.length]).attr('rx', 2)
+        .attr('fill', (d, i) => fundingColor(i))
+        .attr('rx', 3)
         .append('title').text(d => `${d.source}\n${fmt.usd0.format(d.amount)} (${(d.share*100).toFixed(0)}%) — ${d.confidence}`);
       svg.append('g').selectAll('text.lbl').data(data.fundingSources).join('text')
         .attr('class','lbl')
         .attr('x', padL - 8).attr('y', d => y(d.source) + y.bandwidth()/2 + 4)
-        .attr('text-anchor','end').attr('font-size', 12).attr('fill', '#1d2939')
+        .attr('text-anchor','end').attr('font-size', 12).attr('font-weight', 600).attr('fill', '#0d1b2a')
         .text(d => d.source);
       svg.append('g').selectAll('text.amt').data(data.fundingSources).join('text')
-        .attr('class','amt')
+        .attr('class','value-label')
         .attr('x', d => padL + x(d.amount) + 6)
         .attr('y', d => y(d.source) + y.bandwidth()/2 + 4)
-        .attr('font-size', 11).attr('font-weight','600').attr('fill', '#0c5c8a')
+        .attr('font-size', 11).attr('font-weight', 700)
         .text(d => `${fmt.usd0.format(d.amount)}  (${(d.share*100).toFixed(0)}%)`);
     }
   };
