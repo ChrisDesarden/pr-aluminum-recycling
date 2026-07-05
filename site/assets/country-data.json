@@ -7,10 +7,10 @@
     { "iso": "DE", "name": "Germany",                "rate": 0.990, "mechanism": "VerpackG Pfand DRS (25¢/can)",  "scaleTonnesYr": 250000, "note": "2023; 99% recovery; Novelis Nachterstedt + Speira Voerde can-sheet" },
     { "iso": "EU", "name": "European Union (avg.)",  "rate": 0.763, "mechanism": "PPWR 2025/40 + CRMA 2024/1252 + WSR 2024/1157", "scaleTonnesYr": 1200000,"note": "2023 Europe aggregate 76.3%; 12+ states with DRS by 2025; 80/90% targets by 2029/2033" },
     { "iso": "US", "name": "United States",          "rate": 0.430, "mechanism": "Mixed: 10-state CDL + single-stream", "scaleTonnesYr": 730000, "note": "2023; 43% lowest in decades; deposit states 60–90%, non-deposit often <30%" },
-    { "iso": "AU", "name": "Australia",              "rate": 0.775, "mechanism": "State CDS 10¢/can",            "scaleTonnesYr": 40000,  "note": "2024 est. 75–80% national; first continent fully covered (Tasmania May 2025); SA/NT/ACT 80%+" },
+    { "iso": "AU", "name": "Australia",              "rate": 0.775, "mechanism": "State CDS 10¢/can",            "scaleTonnesYr": 40000,  "note": "2024 est. ~77.5% national avg (75–80% band); first continent fully covered (Tasmania May 2025); SA/NT/ACT 80%+" },
     { "iso": "TW", "name": "Taiwan",                 "rate": 0.660, "mechanism": "EPR + RVMs at convenience stores", "scaleTonnesYr": 91000, "note": "2019 blended est.; 55% household / 77% industrial; strong domestic secondary loop" },
     { "iso": "IS", "name": "Iceland",                "rate": 0.880, "mechanism": "National DRS (Endurvinnslan); 16 ISK deposit", "scaleTonnesYr": 1800,   "note": "~88% aluminum can redemption (est. recent); ~844 kt/yr primary smelting but no domestic can-sheet, so UBC is exported for re-rolling" },
-    { "iso": "PR", "name": "Puerto Rico (current)",  "rate": 0.018, "mechanism": "Informal + export to US",      "scaleTonnesYr": 1200,   "note": "est.; no DRS, no EPR for cans", "isCurrent": true },
-    { "iso": "PR", "name": "Puerto Rico (target)",   "rate": 0.750, "mechanism": "Proposed: DRS + facility",     "scaleTonnesYr": 12800,  "note": "Year-7 target per project proposal", "isTarget": true }
+    { "iso": "PR", "name": "Puerto Rico (current)",  "rate": 0.018, "mechanism": "Informal + export to US",      "scaleTonnesYr": 300,    "note": "est. ≈ 1.8% × 17,000 t/yr UBC generated; no DRS, no EPR for cans", "isCurrent": true },
+    { "iso": "PR", "name": "Puerto Rico (target)",   "rate": 0.750, "mechanism": "Proposed: DRS + facility",     "scaleTonnesYr": 12750,  "note": "Year-7 target: ≈ 75% × 17,000 t/yr UBC generated; 15,000 t/yr plant capacity gives ~2,250 t/yr ramp headroom", "isTarget": true }
   ]
 }
