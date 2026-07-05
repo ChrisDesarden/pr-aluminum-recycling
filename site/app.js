@@ -150,14 +150,17 @@
     const panels = tabs.map(t => $(`#${t.getAttribute('aria-controls')}`)).filter(Boolean);
     if (!tabs.length || !panels.length) return;
 
-    const setActiveTab = (i) => {
+    const setActiveTab = (i, opts = {}) => {
+      const { skipScroll = false, updateHash = true } = opts;
       tabs.forEach((t, j) => {
         const on = i === j;
         t.setAttribute('aria-selected', String(on));
         t.setAttribute('tabindex', on ? '0' : '-1');
         if (on) {
           t.classList.add('is-active');
-          t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+          if (!skipScroll) {
+            t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+          }
         } else {
           t.classList.remove('is-active');
         }
@@ -176,12 +179,14 @@
           p.classList.remove('is-visible');
         }
       });
-      history.replaceState(null, '', `#case-${panels[i].id.replace('panel-', '')}`);
+      if (updateHash) {
+        history.replaceState(null, '', `#case-${panels[i].id.replace('panel-', '')}`);
+      }
     };
 
-    const activate = (i) => {
+    const activate = (i, opts) => {
       if (i < 0 || i >= tabs.length) return;
-      setActiveTab(i);
+      setActiveTab(i, opts);
     };
 
     tabs.forEach((tab, i) => {
@@ -202,7 +207,12 @@
     };
 
     const initialIndex = resolveFromHash();
-    activate(initialIndex >= 0 ? initialIndex : 0);
+    // On initial load, don't auto-scroll to the active tab and don't
+    // overwrite the URL hash — both would fight scroll restoration
+    // (user reloads expecting to land at the same y, not at the
+    // case-tab; URL hash should be preserved for deep-links).
+    // Scroll and hash update only happen on user click or hashchange.
+    activate(initialIndex >= 0 ? initialIndex : 0, { skipScroll: true, updateHash: false });
 
     window.addEventListener('hashchange', () => {
       const idx = resolveFromHash();
@@ -959,6 +969,22 @@
     });
   };
 
+  // ---------- scroll position restore ----------
+  // JS-heavy pages have a problem: the browser tries to restore scroll
+  // before the d3/timeline/map renders are done, so it lands in the
+  // wrong place. Save scroll to sessionStorage on every scroll and
+  // re-apply after boot completes. (Browser auto-restore is disabled
+  // in the <head> of index.html.)
+  const SCROLL_KEY = 'recirc-scroll';
+  let scrollSaveTimer = null;
+  const saveScroll = () => {
+    clearTimeout(scrollSaveTimer);
+    scrollSaveTimer = setTimeout(() => {
+      try { sessionStorage.setItem(SCROLL_KEY, String(window.scrollY)); } catch (_) {}
+    }, 80);
+  };
+  window.addEventListener('scroll', saveScroll, { passive: true });
+
   // ---------- boot ----------
   document.addEventListener('DOMContentLoaded', async () => {
     await loadTranslations();
@@ -973,5 +999,35 @@
     initFootnotes();
     await initBudgetCharts();  // populates budgetData + renders the chart-figures
     applyLang(currentLang);     // translates the static DOM + refreshes budget legends now that budgetData exists
+
+    // Restore scroll after all renders complete.
+    // Wait for the next paint so any layout shift from late render is settled.
+    // On reload/back-forward, use sessionStorage (preserves scroll across
+    // page refreshes). On fresh load with a URL hash, re-apply the hash
+    // navigation AFTER renders (the browser's auto-hash-scroll often lands
+    // in the wrong place because the d3/timeline/map charts haven't laid
+    // out yet when it runs).
+    const navType = performance.getEntriesByType('navigation')[0]?.type || 'navigate';
+    const isReload = navType === 'reload' || navType === 'back_forward';
+    requestAnimationFrame(() => {
+      if (isReload) {
+        let savedY = null;
+        try { savedY = sessionStorage.getItem(SCROLL_KEY); } catch (_) {}
+        if (savedY !== null) {
+          const y = parseInt(savedY, 10);
+          if (!Number.isNaN(y)) {
+            // Always restore, including y=0 — the browser will otherwise auto-restore
+            // its own (stale) position from before the page finished rendering.
+            window.scrollTo({ top: y, left: 0, behavior: 'auto' });
+          }
+        }
+      } else if (location.hash) {
+        // Fresh load with a URL hash — re-apply the hash after renders
+        // (browser did it too early, before late content was laid out).
+        const id = location.hash.slice(1);
+        const tgt = document.getElementById(id);
+        if (tgt) tgt.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    });
   });
 })();
