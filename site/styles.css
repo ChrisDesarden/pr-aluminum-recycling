@@ -284,6 +284,42 @@ hr { border: 0; border-top: 1px solid var(--c-rule); margin: var(--sp-6) 0; }
   outline-offset: 2px;
 }
 
+.theme-toggle {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-rule);
+  border-radius: var(--radius);
+  padding: 2px;
+  margin-right: var(--sp-3);
+}
+.theme-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-fg-soft);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.theme-btn svg { display: block; }
+.theme-btn:hover, .theme-btn:focus {
+  color: var(--c-link);
+  background: rgba(12, 92, 138, 0.08);
+}
+.theme-btn.is-active {
+  background: var(--c-primary);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(13, 27, 42, 0.15);
+}
+.theme-btn:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
 .nav-toggle-icon, .nav-toggle-icon::before, .nav-toggle-icon::after {
   content: "";
   display: block;

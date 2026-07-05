@@ -93,6 +93,46 @@
     });
   };
 
+  // ---------- theme (light / dark / auto) ----------
+  const validThemes = new Set(['light', 'dark', 'auto']);
+  const readSavedTheme = () => {
+    try {
+      const v = localStorage.getItem('recirc-theme');
+      return validThemes.has(v) ? v : 'auto';
+    } catch (e) { return 'auto'; }
+  };
+  const applyTheme = (theme) => {
+    if (!validThemes.has(theme)) theme = 'auto';
+    document.documentElement.setAttribute('data-theme', theme);
+    $$('.theme-btn').forEach(btn => {
+      const isActive = btn.dataset.theme === theme;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+  };
+  const initTheme = () => {
+    const saved = readSavedTheme();
+    applyTheme(saved);
+    $$('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const next = btn.dataset.theme;
+        if (!next || !validThemes.has(next)) return;
+        applyTheme(next);
+        try { localStorage.setItem('recirc-theme', next); } catch (e) {}
+      });
+    });
+    // If user is on 'auto', follow system preference changes live.
+    if (window.matchMedia) {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const onChange = () => {
+        if (readSavedTheme() === 'auto') applyTheme('auto');
+      };
+      if (mq.addEventListener) mq.addEventListener('change', onChange);
+      else if (mq.addListener) mq.addListener(onChange);  // older Safari
+    }
+  };
+
+  // ---------- i18n ----------
   const initI18n = () => {
     $$('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -995,6 +1035,7 @@
   document.addEventListener('DOMContentLoaded', async () => {
     await loadTranslations();
     initNav();
+    initTheme();
     initI18n();
     initScrollspy();
     initCaseTabs();

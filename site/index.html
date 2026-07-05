@@ -34,6 +34,17 @@
 </span>
 </a>
 <nav aria-label="Primary" class="site-nav">
+<div aria-label="Selector de tema" class="theme-toggle" data-i18n-aria="theme_label" role="group">
+<button aria-label="Tema claro" aria-pressed="false" class="theme-btn" data-i18n-aria="theme_light" data-theme="light" title="Tema claro" type="button">
+<svg aria-hidden="true" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="currentColor" r="3.2"></circle><g stroke="currentColor" stroke-linecap="round" stroke-width="1.4"><line x1="8" x2="8" y1="1" y2="2.8"></line><line x1="8" x2="8" y1="13.2" y2="15"></line><line x1="1" x2="2.8" y1="8" y2="8"></line><line x1="13.2" x2="15" y1="8" y2="8"></line><line x1="2.9" x2="4.2" y1="2.9" y2="4.2"></line><line x1="11.8" x2="13.1" y1="11.8" y2="13.1"></line><line x1="2.9" x2="4.2" y1="13.1" y2="11.8"></line><line x1="11.8" x2="13.1" y1="4.2" y2="2.9"></line></g></svg>
+</button>
+<button aria-label="Tema automático" aria-pressed="true" class="theme-btn is-active" data-i18n-aria="theme_auto" data-theme="auto" title="Tema automático" type="button">
+<svg aria-hidden="true" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="currentColor" r="6"></circle><path d="M 8 2 A 6 6 0 0 1 8 14 Z" fill="var(--c-bg-alt)"></path></svg>
+</button>
+<button aria-label="Tema oscuro" aria-pressed="false" class="theme-btn" data-i18n-aria="theme_dark" data-theme="dark" title="Tema oscuro" type="button">
+<svg aria-hidden="true" height="14" viewbox="0 0 16 16" width="14"><path d="M 12 10 A 5 5 0 1 1 6 4 A 4 4 0 0 0 12 10 Z" fill="currentColor"></path></svg>
+</button>
+</div>
 <div aria-label="Selector de idioma" class="lang-toggle" role="group">
 <button aria-pressed="true" class="lang-btn is-active" data-i18n-title="lang_es" data-lang="es" title="Español" type="button">ES</button>
 <button aria-pressed="false" class="lang-btn" data-i18n-title="lang_en" data-lang="en" title="English" type="button">EN</button>
