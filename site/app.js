@@ -42,7 +42,8 @@
   let translations = {};
   const loadTranslations = async () => {
     try {
-      const res = await fetch('assets/translations.json');
+      // Cache-bust — translations evolve frequently during i18n polish
+      const res = await fetch(`assets/translations.json?v=${Date.now()}`);
       translations = await res.json();
     } catch (e) { translations = {}; }
   };
@@ -580,10 +581,13 @@
     if (!timelineData) return;
     const host = $('#timeline-list');
     if (!host) return;
+    // Always trust currentLang as source of truth — prevents any race where
+    // a stale lang param would render English content in ES mode
+    const useLang = currentLang;
     host.innerHTML = timelineData.phases.map((p, i) => {
-      const span = lang === 'en' ? p.span_en : p.span_es;
-      const title = lang === 'en' ? (p.title_en || p.title) : (p.title_es || p.title_en || p.title);
-      const milestones = lang === 'en' ? p.milestones : (p.milestones_es || p.milestones);
+      const span = useLang === 'en' ? p.span_en : p.span_es;
+      const title = useLang === 'en' ? (p.title_en || p.title) : (p.title_es || p.title_en || p.title);
+      const milestones = useLang === 'en' ? p.milestones : (p.milestones_es || p.milestones);
       return `<li class="timeline-item" id="${p.id}">
         <div class="timeline-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</div>
         <div class="timeline-card">
@@ -601,7 +605,7 @@
     if (typeof d3 === 'undefined') return;
     let data;
     try {
-      const res = await fetch('assets/budget-data.json');
+      const res = await fetch(`assets/budget-data.json?v=${Date.now()}`);
       data = await res.json();
     } catch (e) { return; }
     budgetData = data;
@@ -917,7 +921,8 @@
     const host = $('#timeline-list');
     if (!host) return;
     try {
-      const res = await fetch('assets/timeline-data.json');
+      // Cache-bust the data fetch — the timeline is small and changes often
+      const res = await fetch(`assets/timeline-data.json?v=${Date.now()}`);
       timelineData = (await res.json());
     } catch (e) { return; }
     renderTimeline();
