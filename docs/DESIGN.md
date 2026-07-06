@@ -515,7 +515,7 @@ Target: **WCAG 2.1 Level AA**, with selected AAA behaviors where they cost littl
 
 ## 7. Data File Schemas
 
-All data files live in `site/assets/`. The build agent must produce these files from `research/` notes.
+All data files live in `docs/assets/`. The build agent must produce these files from `research/` notes.
 
 ### `assets/pr-map-data.json`
 
@@ -691,7 +691,7 @@ Aluminum-can glyph, 32×32, single color `#0E1116`. No raster fallback required 
 ## 8. File Structure
 
 ```
-site/
+docs/
 ├── index.html              # The single page, semantic, all sections in <main>
 ├── styles.css              # All styles, custom properties at top
 ├── app.js                  # ES2020 module; imports D3 + Leaflet from CDN
@@ -715,7 +715,7 @@ site/
     └── proposal.pdf
 ```
 
-`index.html` references `styles.css` and `app.js` with relative paths so the site works at the project root and at any subpath. For GitHub Pages, deploy from `main` branch, `/site/` directory.
+`index.html` references `styles.css` and `app.js` with relative paths so the site works at the project root and at any subpath. For GitHub Pages, deploy from `main` branch, `/docs` directory.
 
 ---
 
@@ -731,7 +731,7 @@ site/
 8. **Real places only.** Do not invent municipalities, partners, or rates. If a number is uncertain, flag it `[research-pending]` in the data file and the build agent must show the field as "—" in the UI.
 9. **Accessibility self-check before commit:** run the page through `axe` (browser extension) and `pa11y` CLI; both should report 0 AA violations. Document results in `assets/audit.md`.
 10. **Performance budget self-check:** run Lighthouse on a deployed preview; target Performance ≥ 95, Accessibility = 100, Best Practices ≥ 95, SEO ≥ 95. Document results in `assets/audit.md`.
-11. **GitHub Pages deploy:** commit `site/` to `main`, configure Pages to serve from `/site` on `main`. Custom domain `recircular.pr` (placeholder) is a future PR.
+11. **GitHub Pages deploy:** commit `docs/` to `main`, configure Pages to serve from `/docs` on `main`. Custom domain `recircular.pr` (placeholder) is a future PR.
 12. **No tracker scripts, no analytics by default.** If analytics is later added, prefer a single self-hosted Plausible or Umami instance; do not add Google Analytics.
 13. **The "Spanish version stretch goal"** is logged at the end of `#about` as: "Translation to Spanish is a community contribution. See `CONTRIBUTING.md`." A `CONTRIBUTING.md` need not exist for v1; the line is a marker for future work.
 
@@ -756,7 +756,7 @@ These are listed so the build agent does not silently include them.
 
 The site is considered done when all of the following are true:
 
-- [ ] `site/index.html` validates as HTML5 (no console errors, no missing alt).
+- [ ] `docs/index.html` validates as HTML5 (no console errors, no missing alt).
 - [ ] All 14 sections render in order with stable IDs.
 - [ ] Dot nav is keyboard-operable and reflects scroll position.
 - [ ] Country-case-studies tabs are keyboard-operable; deep link to a specific tab works.

@@ -57,7 +57,7 @@ pr-aluminum-recycling/
 │   ├── DESIGN.md              778 lines, the spec the site was built from
 │   ├── assets/                6 JSONs driving charts and the map
 │   ├── preview-*.png          (gitignored; old preview screenshots)
-│   └── site/recircular-onepage.pdf  (the 32-page A4 PDF, 2.1 MB — also served by GitHub Pages)
+│   └── docs/recircular-onepage.pdf  (the 32-page A4 PDF, 2.1 MB — also served by GitHub Pages)
 ├── research/                  5 deep docs, ~268KB
 │   ├── pr-context.md          PR industrial/economic/regulatory baseline
 │   ├── country-cases.md       4 country/regional comparators
@@ -146,7 +146,7 @@ lives at `/tmp/pdfgen/generate.js`. To regenerate after HTML changes:
 curl -sI http://127.0.0.1:8765/ | head -1   # confirm 200
 
 node /tmp/pdfgen/generate.js
-# This produces /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/site/recircular-onepage.pdf
+# This produces /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/docs/recircular-onepage.pdf
 ```
 
 If `generate.js` doesn't exist or is stale, you can write a new one with:
@@ -158,7 +158,7 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
   await page.goto('http://127.0.0.1:8765/', {waitUntil: 'networkidle0'});
   await page.pdf({
-    path: '/home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/site/recircular-onepage.pdf',
+    path: '/home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/docs/recircular-onepage.pdf',
     format: 'A4',
     printBackground: true,
     margin: {top: '20mm', right: '15mm', bottom: '20mm', left: '15mm'}
@@ -213,16 +213,16 @@ python3 -m http.server 8765
 # Full-page screenshot of the live site
 firefox --headless --window-size=1280,4000 \
   --screenshot=/tmp/recirc-full.png \
-  file:///home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/site/index.html
+  file:///home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/docs/index.html
 
 # Just the visible viewport
 firefox --headless --window-size=1280,900 \
   --screenshot=/tmp/recirc-hero.png \
-  file:///home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/site/index.html
+  file:///home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/docs/index.html
 
 # PDF check
-pdfinfo /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/site/recircular-onepage.pdf
-pdftotext /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/site/recircular-onepage.pdf - | head -20
+pdfinfo /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/docs/recircular-onepage.pdf
+pdftotext /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling/docs/recircular-onepage.pdf - | head -20
 
 # Git state
 cd /home/kriizo/.openclaw/workspace/projects/pr-aluminum-recycling && git status

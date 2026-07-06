@@ -4,7 +4,7 @@ const path = require('path');
 
 (async () => {
   const projectRoot = path.resolve(__dirname, '../..');
-  const outPdf = path.join(projectRoot, 'site', 'recircular-onepage.pdf');
+  const outPdf = path.join(projectRoot, 'docs', 'recircular-onepage.pdf');
   const browser = await puppeteer.launch({
     headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],

@@ -90,11 +90,11 @@ pr-aluminum-recycling/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/        ← plantillas para reportar problemas
 │   └── PULL_REQUEST_TEMPLATE.md
-├── site/                      ← el sitio web en sí
+├── docs/                      ← el sitio web (lo que se publica en GitHub Pages)
 │   ├── index.html
 │   ├── app.js
 │   ├── styles.css
-│   ├── recircular-onepage.pdf ← PDF de 32 páginas A4 (también servido por GitHub Pages)
+│   ├── recircular-onepage.pdf ← PDF de 32 páginas A4 (también servido por Pages)
 │   ├── DESIGN.md              ← especificación de diseño (14 secciones)
 │   └── assets/                ← 7 archivos JSON que alimentan los gráficos
 ├── research/                  ← 5 documentos de investigación
@@ -109,9 +109,9 @@ pr-aluminum-recycling/
 
 ## 🇪🇸 / 🇺🇸 El sitio bilingüe
 
-El sitio (`site/index.html`) es **bilingüe español/inglés** con un
+El sitio (`docs/index.html`) es **bilingüe español/inglés** con un
 selector en la esquina superior derecha. El contenido de cada
-sección está definido en `site/assets/translations.json` con
+sección está definido en `docs/assets/translations.json` con
 **325 claves** por idioma, sin cadenas huérfanas ni vacías.
 
 Si encuentras un problema de traducción o quieres mejorar el texto
@@ -128,11 +128,11 @@ y JavaScript puro.
 - **Gráficos:** [D3 v7](https://d3js.org/) (CDN)
 - **Mapa:** [Leaflet](https://leafletjs.com/) con teselas de
   [OpenStreetMap](https://www.openstreetmap.org/) (sin clave API)
-- **Datos:** seis archivos JSON en `site/assets/` que el JavaScript
+- **Datos:** seis archivos JSON en `docs/assets/` que el JavaScript
   consume en tiempo real
 
 Esto significa que cualquiera puede clonar el repositorio, abrir
-`site/index.html` en un navegador y ver la propuesta tal como se
+`docs/index.html` en un navegador y ver la propuesta tal como se
 publicará — sin instalar nada.
 
 ---
@@ -140,7 +140,7 @@ publicará — sin instalar nada.
 ## 🖥️ Cómo verlo en local
 
 ```bash
-cd site
+cd docs
 python3 -m http.server 8765
 # abrir http://127.0.0.1:8765
 ```
@@ -154,20 +154,20 @@ python3 -m http.server 8765
 
 ## 🖨️ Cómo regenerar el PDF
 
-El PDF en `site/recircular-onepage.pdf` se genera a partir del sitio
+El PDF en `docs/recircular-onepage.pdf` se genera a partir del sitio
 usando Puppeteer + Chromium headless:
 
 ```bash
 cd tools/puppeteer
 npm ci                          # instalar puppeteer + chromium (una sola vez)
-node generate-pdf.js            # escribe site/recircular-onepage.pdf
+node generate-pdf.js            # escribe docs/recircular-onepage.pdf
 ```
 
 Alternativa con Chrome headless:
 
 ```bash
 google-chrome --headless \
-  --print-to-pdf=site/recircular-onepage.pdf \
+  --print-to-pdf=docs/recircular-onepage.pdf \
   --no-pagerender-await \
   http://127.0.0.1:8765/index.html
 ```

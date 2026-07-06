@@ -33,14 +33,14 @@ body:
       label: ¿Dónde lo encontraste?
       description: Archivo o sección donde aparece el dato.
       options:
-        - site/index.html (sitio web)
+        - docs/index.html (sitio web)
         - site/assets/*.json
         - research/pr-context.md
         - research/country-cases.md
         - research/engineering-tech.md
         - research/engineering-budget.md
         - research/funding-model.md
-        - site/recircular-onepage.pdf
+        - docs/recircular-onepage.pdf
         - Otro (indicar abajo)
     validations:
       required: true
