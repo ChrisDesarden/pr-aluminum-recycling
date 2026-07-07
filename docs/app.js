@@ -271,7 +271,9 @@
       data = await res.json();
     } catch (e) { host.textContent = t('chart_country_error', lang); return; }
     const rates = data.rates.slice().sort((a, b) => b.rate - a.rate);
-    const w = Math.min(host.clientWidth || 600, 720);
+    // Floor `w` so d3.scaleLinear produces positive widths on narrow hosts
+    // (e.g., 375px viewport with sub-container padding). padL + padR = 188.
+    const w = Math.max(240, Math.min(host.clientWidth || 600, 720));
     const rowH = 30, padL = 96, padR = 92, padT = 28, padB = 44;
     const h = rates.length * rowH + padT + padB;
     const svg = d3.select(host).append('svg')
@@ -394,7 +396,7 @@
           if (blk.type === 'ul') return `<ul>${blk.items.map(it => `<li>${it}</li>`).join('')}</ul>`;
           return '';
         }).join('');
-        return `<section class="case-section"><h4>${escapeAttr(sec.title)}</h4>${blocks}</section>`;
+        return `<section class="case-section"><h3>${escapeAttr(sec.title)}</h3>${blocks}</section>`;
       }).join('');
       host.innerHTML = `<article class="case-report"><div class="case-meta">${meta}</div>${sections}</article>`;
     }
@@ -474,7 +476,7 @@
     const years = [1, 2, 3, 4, 5];
     const rows = years.map(y => ({ year: y, revenue: rev, opex }));
 
-    const w = Math.min(host.clientWidth || 500, 720);
+    const w = Math.max(220, Math.min(host.clientWidth || 500, 720));
     const h = 240, padL = 64, padR = 110, padT = 24, padB = 48;
     const svg = d3.select(host).append('svg')
       .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
@@ -709,7 +711,11 @@
       // Build a unified line-item set across scenarios for stacking
       const scenarios = data.scenarios;
       const scenarioCapex = scenarios.map(s => ({ id: s, ...data.capex[s] }));
-      const w = Math.min(bar.clientWidth || 600, 720);
+      // Floor `w` so d3.scaleBand doesn't invert when the host is very narrow
+      // (e.g., 375px viewport with sub-container padding). Without the floor,
+      // padL+padR > w causes `x.bandwidth()` to go negative and SVG <rect>
+      // width attributes to throw at runtime.
+      const w = Math.max(220, Math.min(bar.clientWidth || 600, 720));
       const h = 260, padL = 130, padR = 30, padT = 24, padB = 56;
       const svg = d3.select(bar).append('svg')
         .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
@@ -835,7 +841,12 @@
     // ----- Funding stack bar (CAPEX sources) -----
     const fs = $('#budget-funding');
     if (fs && data.fundingSources) {
-      const w = Math.min(fs.clientWidth || 600, 720), h = 200, padL = 220, padR = 100, padT = 8, padB = 8;
+      // Floor `w` so d3.scaleLinear produces positive bar widths on narrow
+      // hosts. padL + padR = 320 — anything less and the bar width attribute
+      // throws at runtime. The host is also marked overflow-x: auto in CSS so
+      // the chart can scroll horizontally on small viewports without
+      // pushing the page wider than the viewport.
+      const w = Math.max(360, Math.min(fs.clientWidth || 600, 720)), h = 200, padL = 220, padR = 100, padT = 8, padB = 8;
       const total = d3.sum(data.fundingSources, d => d.amount);
       const svg = d3.select(fs).append('svg')
         .attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h).attr('role','img')
