@@ -137,6 +137,10 @@ publicará — sin instalar nada.
 
 ---
 
+## 🌐 Cómo verlo en la web
+
+https://chrisdesarden.github.io/pr-aluminum-recycling/#sources
+
 ## 🖥️ Cómo verlo en local
 
 ```bash
